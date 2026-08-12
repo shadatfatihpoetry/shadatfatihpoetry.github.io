@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Shadat Fatih — Admin Dashboard</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #f5f5f7;
+      color: #1d1d1f;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      height: 70px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 30px;
+
+      background: rgba(255,255,255,.82);
+
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+
+      border-bottom: 1px solid #ddd;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+
+      border-radius: 50%;
+
+      object-fit: cover;
+    }
+
+    .brand strong {
+      font-family: Georgia, serif;
+      font-size: 19px;
+    }
+
+    .brand span {
+      display: block;
+
+      color: #777;
+
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    .logout {
+      border: 0;
+
+      padding: 10px 16px;
+
+      border-radius: 20px;
+
+      background: #111;
+      color: white;
+
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+
+      margin: 0 auto;
+
+      padding: 45px 0 80px;
+    }
+
+    .welcome {
+      margin-bottom: 35px;
+    }
+
+    .welcome small {
+      color: #777;
+
+      letter-spacing: 2px;
+    }
+
+    .welcome h1 {
+      margin-top: 8px;
+
+      font-family: Georgia, serif;
+
+      font-size: clamp(32px, 5vw, 55px);
+
+      font-weight: 500;
+    }
+
+    .stats {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 18px;
+
+      margin-bottom: 40px;
+    }
+
+    .stat {
+      padding: 25px;
+
+      background: white;
+
+      border: 1px solid #e5e5e5;
+
+      border-radius: 20px;
+
+      box-shadow:
+        0 8px 25px rgba(0,0,0,.04);
+    }
+
+    .stat span {
+      color: #777;
+
+      font-size: 13px;
+    }
+
+    .stat strong {
+      display: block;
+
+      margin-top: 8px;
+
+      font-size: 35px;
+    }
+
+    .toolbar {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 15px;
+
+      margin-bottom: 20px;
+    }
+
+    .toolbar h2 {
+      font-family: Georgia, serif;
+
+      font-size: 30px;
+      font-weight: 500;
+    }
+
+    .primary {
+      border: 0;
+
+      padding: 13px 20px;
+
+      border-radius: 24px;
+
+      background: #111;
+      color: white;
+
+      cursor: pointer;
+    }
+
+    .search {
+      width: 100%;
+
+      padding: 14px 17px;
+
+      margin-bottom: 20px;
+
+      border: 1px solid #ddd;
+
+      border-radius: 14px;
+
+      outline: none;
+
+      background: white;
+    }
+
+    .poems {
+      display: grid;
+
+      gap: 14px;
+    }
+
+    .poem {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      padding: 20px;
+
+      background: white;
+
+      border: 1px solid #e5e5e5;
+
+      border-radius: 18px;
+    }
+
+    .poem-info h3 {
+      margin-bottom: 6px;
+
+      font-family: Georgia, serif;
+
+      font-size: 22px;
+    }
+
+    .poem-info p {
+      color: #777;
+
+      font-size: 13px;
+    }
+
+    .status {
+      display: inline-block;
+
+      margin-top: 9px;
+
+      padding: 4px 9px;
+
+      border-radius: 20px;
+
+      font-size: 11px;
+    }
+
+    .published {
+      background: #e5f8e9;
+      color: #19733a;
+    }
+
+    .draft {
+      background: #eee;
+      color: #666;
+    }
+
+    .actions {
+      display: flex;
+
+      gap: 8px;
+
+      flex-wrap: wrap;
+    }
+
+    .actions button {
+      padding: 9px 13px;
+
+      border: 0;
+
+      border-radius: 10px;
+
+      cursor: pointer;
+
+      background: #eee;
+    }
+
+    .actions .delete {
+      background: #ffe8e8;
+      color: #c00;
+    }
+
+    .empty {
+      padding: 50px 20px;
+
+      text-align: center;
+
+      background: white;
+
+      border-radius: 18px;
+
+      color: #777;
+    }
+
+
+    /* MODAL */
+
+    .modal {
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 1000;
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 20px;
+
+      background: rgba(0,0,0,.45);
+
+      backdrop-filter: blur(8px);
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-box {
+      width: min(650px, 100%);
+
+      max-height: 90vh;
+
+      overflow-y: auto;
+
+      padding: 30px;
+
+      background: white;
+
+      border-radius: 24px;
+    }
+
+    .modal-box h2 {
+      margin-bottom: 25px;
+
+      font-family: Georgia, serif;
+
+      font-size: 30px;
+      font-weight: 500;
+    }
+
+    .field {
+      margin-bottom: 17px;
+    }
+
+    .field label {
+      display: block;
+
+      margin-bottom: 7px;
+
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+
+      padding: 13px 14px;
+
+      border: 1px solid #ddd;
+
+      border-radius: 12px;
+
+      outline: none;
+    }
+
+    .field textarea {
+      min-height: 250px;
+
+      resize: vertical;
+
+      line-height: 1.8;
+    }
+
+    .modal-actions {
+      display: flex;
+
+      justify-content: flex-end;
+
+      gap: 10px;
+
+      margin-top: 20px;
+    }
+
+    .cancel {
+      padding: 12px 18px;
+
+      border: 0;
+
+      border-radius: 12px;
+
+      background: #eee;
+
+      cursor: pointer;
+    }
+
+    .save {
+      padding: 12px 20px;
+
+      border: 0;
+
+      border-radius: 12px;
+
+      background: #111;
+
+      color: white;
+
+      cursor: pointer;
+    }
+
+    #message {
+      margin-top: 15px;
+
+      text-align: center;
+
+      font-size: 13px;
+    }
+
+
+    @media (max-width: 700px) {
+
+      .topbar {
+        padding: 0 18px;
+      }
+
+      .container {
+        width: 92%;
+
+        padding-top: 30px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .toolbar {
+        align-items: flex-start;
+
+        flex-direction: column;
+      }
+
+      .poem {
+        align-items: flex-start;
+
+        flex-direction: column;
+      }
+
+      .actions {
+        width: 100%;
+      }
+
+      .actions button {
+        flex: 1;
+      }
+
+      .modal-box {
+        padding: 22px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<header class="topbar">
+
+  <div class="brand">
+
+    <img
+      src="../shadat-fatih.jpg"
+      alt="Shadat Fatih"
+    >
+
+    <div>
+      <strong>Shadat Fatih</strong>
+      <span>ADMIN PANEL</span>
+    </div>
+
+  </div>
+
+
+  <button
+    class="logout"
+    id="logoutBtn"
+  >
+    Logout
+  </button>
+
+</header>
+
+
+
+<main class="container">
+
+
+  <section class="welcome">
+
+    <small>
+      SHADAT FATIH POETRY
+    </small>
+
+    <h1>
+      Dashboard
+    </h1>
+
+  </section>
+
+
+
+  <section class="stats">
+
+    <div class="stat">
+      <span>Total Poetry</span>
+      <strong id="totalPoems">0</strong>
+    </div>
+
+    <div class="stat">
+      <span>Published</span>
+      <strong id="publishedPoems">0</strong>
+    </div>
+
+    <div class="stat">
+      <span>Draft</span>
+      <strong id="draftPoems">0</strong>
+    </div>
+
+  </section>
+
+
+
+  <section>
+
+    <div class="toolbar">
+
+      <h2>
+        Poetry
+      </h2>
+
+      <button
+        class="primary"
+        id="addPoemBtn"
+      >
+        + নতুন কবিতা
+      </button>
+
+    </div>
+
+
+    <input
+      class="search"
+      id="search"
+      type="search"
+      placeholder="কবিতা খুঁজুন..."
+    >
+
+
+    <div
+      class="poems"
+      id="poems"
+    ></div>
+
+  </section>
+
+
+</main>
+
+
+
+<!-- MODAL -->
+
+<div
+  class="modal"
+  id="poemModal"
+>
+
+  <div class="modal-box">
+
+    <h2 id="modalTitle">
+      নতুন কবিতা
+    </h2>
+
+
+    <form id="poemForm">
+
+      <div class="field">
+
+        <label>
+          কবিতার নাম
+        </label>
+
+        <input
+          type="text"
+          id="title"
+          required
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          সংক্ষিপ্ত পরিচিতি
+        </label>
+
+        <input
+          type="text"
+          id="excerpt"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Cover Image URL
+        </label>
+
+        <input
+          type="text"
+          id="cover_url"
+          placeholder="https://..."
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          পুরো কবিতা
+        </label>
+
+        <textarea
+          id="content"
+          required
+        ></textarea>
+
+      </div>
+
+
+      <div class="modal-actions">
+
+        <button
+          type="button"
+          class="cancel"
+          id="cancelBtn"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          class="save"
+        >
+          Save
+        </button>
+
+      </div>
+
+
+      <div id="message"></div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+const SUPABASE_URL =
+  "https://ooxbtwxqumaixvrwsllg.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_dNAV-kJ5rv_-BH6GhChYVg_1xbRUNdy";
+
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+
+let poems = [];
+
+let editingId = null;
+
+
+const poemsContainer =
+  document.getElementById("poems");
+
+const modal =
+  document.getElementById("poemModal");
+
+const form =
+  document.getElementById("poemForm");
+
+
+/* CHECK LOGIN */
+
+async function checkUser() {
+
+  const {
+    data: { session }
+  } = await supabaseClient.auth.getSession();
+
+
+  if (!session) {
+
+    window.location.href = "./index.html";
+
+    return false;
+  }
+
+
+  return true;
+}
+
+
+/* LOAD POEMS */
+
+async function loadPoems() {
+
+  const { data, error } =
+    await supabaseClient
+      .from("poems")
+      .select("*")
+      .order("created_at", {
+        ascending: false
+      });
+
+
+  if (error) {
+
+    console.error(error);
+
+    poemsContainer.innerHTML =
+      `<div class="empty">
+        কবিতা load করা যায়নি।
+        <br><br>
+        ${error.message}
+      </div>`;
+
+    return;
+  }
+
+
+  poems = data || [];
+
+  renderPoems();
+  updateStats();
+}
+
+
+/* STATS */
+
+function updateStats() {
+
+  const published =
+    poems.filter(
+      poem => poem.published === true
+    ).length;
+
+
+  document.getElementById(
+    "totalPoems"
+  ).textContent = poems.length;
+
+
+  document.getElementById(
+    "publishedPoems"
+  ).textContent = published;
+
+
+  document.getElementById(
+    "draftPoems"
+  ).textContent =
+    poems.length - published;
+}
+
+
+/* RENDER */
+
+function renderPoems() {
+
+  const search =
+    document.getElementById(
+      "search"
+    ).value
+      .toLowerCase();
+
+
+  const filtered =
+    poems.filter(poem =>
+      (poem.title || "")
+        .toLowerCase()
+        .includes(search)
+    );
+
+
+  if (!filtered.length) {
+
+    poemsContainer.innerHTML =
+      `<div class="empty">
+        এখনো কোনো কবিতা নেই।
+      </div>`;
+
+    return;
+  }
+
+
+  poemsContainer.innerHTML =
+    filtered.map(poem => `
+
+      <article class="poem">
+
+        <div class="poem-info">
+
+          <h3>
+            ${escapeHtml(
+              poem.title || "Untitled"
+            )}
+          </h3>
+
+          <p>
+            ${escapeHtml(
+              poem.excerpt || "No description"
+            )}
+          </p>
+
+          <span class="status ${
+            poem.published
+              ? "published"
+              : "draft"
+          }">
+
+            ${
+              poem.published
+                ? "Published"
+                : "Draft"
+            }
+
+          </span>
+
+        </div>
+
+
+        <div class="actions">
+
+          <button
+            onclick="editPoem('${poem.id}')"
+          >
+            Edit
+          </button>
+
+
+          <button
+            onclick="togglePublish('${poem.id}', ${
+              poem.published
+            })"
+          >
+            ${
+              poem.published
+                ? "Unpublish"
+                : "Publish"
+            }
+          </button>
+
+
+          <button
+            class="delete"
+            onclick="deletePoem('${poem.id}')"
+          >
+            Delete
+          </button>
+
+        </div>
+
+      </article>
+
+    `).join("");
+}
+
+
+/* ESCAPE HTML */
+
+function escapeHtml(value) {
+
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+
+/* OPEN ADD */
+
+document
+  .getElementById("addPoemBtn")
+  .addEventListener("click", () => {
+
+    editingId = null;
+
+    document.getElementById(
+      "modalTitle"
+    ).textContent =
+      "নতুন কবিতা";
+
+    form.reset();
+
+    modal.classList.add("active");
+
+  });
+
+
+/* EDIT */
+
+window.editPoem =
+async function(id) {
+
+  const poem =
+    poems.find(
+      item => String(item.id) === String(id)
+    );
+
+
+  if (!poem) return;
+
+
+  editingId = id;
+
+
+  document.getElementById(
+    "modalTitle"
+  ).textContent =
+    "কবিতা সম্পাদনা";
+
+
+  document.getElementById(
+    "title"
+  ).value =
+    poem.title || "";
+
+
+  document.getElementById(
+    "excerpt"
+  ).value =
+    poem.excerpt || "";
+
+
+  document.getElementById(
+    "cover_url"
+  ).value =
+    poem.cover_url || "";
+
+
+  document.getElementById(
+    "content"
+  ).value =
+    poem.content || "";
+
+
+  modal.classList.add("active");
+};
+
+
+/* SAVE */
+
+form.addEventListener(
+  "submit",
+  async e => {
+
+    e.preventDefault();
+
+
+    const title =
+      document.getElementById(
+        "title"
+      ).value.trim();
+
+
+    const excerpt =
+      document.getElementById(
+        "excerpt"
+      ).value.trim();
+
+
+    const cover_url =
+      document.getElementById(
+        "cover_url"
+      ).value.trim();
+
+
+    const content =
+      document.getElementById(
+        "content"
+      ).value.trim();
+
+
+    const message =
+      document.getElementById(
+        "message"
+      );
+
+
+    message.style.color =
+      "#777";
+
+    message.textContent =
+      "Saving...";
+
+
+    const payload = {
+
+      title,
+      excerpt,
+      cover_url,
+      content
+
+    };
+
+
+    let result;
+
+
+    if (editingId) {
+
+      result =
+        await supabaseClient
+          .from("poems")
+          .update(payload)
+          .eq("id", editingId);
+
+    } else {
+
+      result =
+        await supabaseClient
+          .from("poems")
+          .insert({
+
+            ...payload,
+
+            published: false
+
+          });
+
+    }
+
+
+    if (result.error) {
+
+      console.error(
+        result.error
+      );
+
+      message.style.color =
+        "#d00";
+
+      message.textContent =
+        result.error.message;
+
+      return;
+    }
+
+
+    message.style.color =
+      "#16803c";
+
+    message.textContent =
+      "Saved successfully";
+
+
+    setTimeout(() => {
+
+      modal.classList.remove(
+        "active"
+      );
+
+      loadPoems();
+
+    }, 500);
+
+  }
+);
+
+
+/* DELETE */
+
+window.deletePoem =
+async function(id) {
+
+  const confirmed =
+    confirm(
+      "এই কবিতাটি কি সত্যিই মুছে ফেলতে চান?"
+    );
+
+
+  if (!confirmed) return;
+
+
+  const { error } =
+    await supabaseClient
+      .from("poems")
+      .delete()
+      .eq("id", id);
+
+
+  if (error) {
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  loadPoems();
+};
+
+
+/* PUBLISH */
+
+window.togglePublish =
+async function(id, current) {
+
+  const { error } =
+    await supabaseClient
+      .from("poems")
+      .update({
+
+        published:
+          !current
+
+      })
+      .eq("id", id);
+
+
+  if (error) {
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  loadPoems();
+};
+
+
+/* SEARCH */
+
+document
+  .getElementById("search")
+  .addEventListener(
+    "input",
+    renderPoems
+  );
+
+
+/* CANCEL */
+
+document
+  .getElementById("cancelBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      modal.classList.remove(
+        "active"
+      );
+
+    }
+  );
+
+
+/* LOGOUT */
+
+document
+  .getElementById("logoutBtn")
+  .addEventListener(
+    "click",
+    async () => {
+
+      await supabaseClient.auth.signOut();
+
+      window.location.href =
+        "./index.html";
+
+    }
+  );
+
+
+/* START */
+
+(async () => {
+
+  const loggedIn =
+    await checkUser();
+
+  if (loggedIn) {
+
+    loadPoems();
+
+  }
+
+})();
+
+</script>
+
+
+</body>
+</html>
