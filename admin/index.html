@@ -228,67 +228,50 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+const SUPABASE_URL = "https://ooxbtwxqumaixvrwsllg.supabase.co";
 
-const SUPABASE_URL =
-  "https://ooxbtwxqumaixvrwsllg.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_dNAV-kJ5rv_-BH6GhChYVg_1xbRUNdy";
 
-const SUPABASE_PUBLISHABLE_KEY =
-  "sb_publishable_dNAV-kJ5rv_-BH6GhChYVg_1xbRUNdy";
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
 
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
-
-
-const form =
-  document.getElementById("loginForm");
-
-const message =
-  document.getElementById("message");
-
+const form = document.getElementById("loginForm");
+const message = document.getElementById("message");
 
 form.addEventListener("submit", async (e) => {
-
   e.preventDefault();
 
-  const email =
-    document.getElementById("email").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
 
-  const password =
-    document.getElementById("password").value;
-
-
+  message.style.color = "#aaa";
   message.textContent = "Signing in...";
 
+  try {
+    const { data, error } =
+      await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+      });
 
-  const { data, error } =
-    await supabaseClient.auth.signInWithPassword({
-      email: email,
-      password: password
-    });
+    if (error) {
+      console.error(error);
+      message.style.color = "#ff7777";
+      message.textContent = error.message;
+      return;
+    }
 
+    message.style.color = "#7cff9b";
+    message.textContent = "Login successful!";
 
-  if (error) {
-
-    message.textContent =
-      "Email অথবা password ভুল।";
-
-    return;
+  } catch (err) {
+    console.error(err);
+    message.style.color = "#ff7777";
+    message.textContent = "Connection error. আবার চেষ্টা করুন।";
   }
-
-
-  message.style.color = "#7cff9b";
-
-  message.textContent =
-    "Login successful!";
-
-
-  // পরে এখানে Dashboard-এ পাঠাব
-
 });
-
 </script>
 
 </body>
