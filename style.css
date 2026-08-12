@@ -1042,3 +1042,112 @@ footer {
   }
 
 }
+
+/* ========================================
+   PREMIUM APPLE-INSPIRED NAVBAR
+======================================== */
+
+/* CENTER NAME */
+
+.site-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 27px;
+  font-weight: 600;
+  letter-spacing: -1px;
+
+  color: #1d1d1f;
+  text-decoration: none;
+  white-space: nowrap;
+
+  text-shadow: 0 1px 1px rgba(255,255,255,.7);
+
+  transition: opacity .25s ease,
+              transform .25s ease;
+}
+
+.site-title:hover {
+  opacity: .65;
+}
+
+
+/* PREMIUM GLASS MENU BUTTON */
+
+.menu-btn {
+  width: 44px;
+  height: 44px;
+
+  margin-left: auto;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255,255,255,.65);
+  border-radius: 50%;
+
+  background: rgba(255,255,255,.55);
+
+  color: #1d1d1f;
+
+  font-family: Arial, sans-serif;
+  font-size: 27px;
+  font-weight: 500;
+  line-height: 1;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 20px rgba(0,0,0,.08),
+    inset 0 1px 1px rgba(255,255,255,.9);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
+}
+
+
+/* HOVER */
+
+.menu-btn:hover {
+  background: rgba(255,255,255,.85);
+
+  transform: scale(1.08);
+
+  box-shadow:
+    0 10px 28px rgba(0,0,0,.13),
+    inset 0 1px 2px rgba(255,255,255,1);
+}
+
+
+/* CLICK */
+
+.menu-btn:active {
+  transform: scale(.92);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+  .site-title {
+    font-size: 22px;
+    letter-spacing: -.7px;
+  }
+
+  .menu-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+
+}
