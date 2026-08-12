@@ -1,13 +1,13 @@
-const menuBtn = document.getElementById("menuBtn");
-const navMenu = document.getElementById("navMenu");
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
 
-menuBtn.addEventListener("click", () => {
-  navMenu.classList.toggle("active");
+menuToggle.addEventListener("click", () => {
+  mainNav.classList.toggle("active");
 });
 
-document.querySelectorAll("#navMenu a").forEach(link => {
+document.querySelectorAll("#mainNav a").forEach(link => {
   link.addEventListener("click", () => {
-    navMenu.classList.remove("active");
+    mainNav.classList.remove("active");
   });
 });
 
