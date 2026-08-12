@@ -135,31 +135,31 @@ blockquote em {
   transition: transform .3s;
 }
 
-.hero-button:hover {
-  transform: translateY(-3px);
-}
-
-.hero-button span {
-  margin-left: 14px;
-}
-
 .hero-image {
   position: relative;
   min-height: 650px;
-  background:
-    linear-gradient(145deg, #222, #777);
   overflow: hidden;
+  background: #111;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 650px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 .hero-image::after {
-  content: "SF";
+  content: "";
   position: absolute;
   inset: 0;
-  display: grid;
-  place-items: center;
-  font-family: "Playfair Display", serif;
-  font-size: 250px;
-  color: rgba(255,255,255,.08);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.05) 65%
+  );
+  pointer-events: none;
 }
 
 .hero-caption {
@@ -549,6 +549,13 @@ footer {
     min-height: 450px;
   }
 
+  .hero-image img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  object-position: center;
+}
+  
   .intro {
     padding: 120px 28px;
   }
