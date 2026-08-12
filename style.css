@@ -1,0 +1,611 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f5f5f2;
+  color: #111;
+  font-family: "Noto Serif Bengali", serif;
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  z-index: 1000;
+  background: rgba(245, 245, 242, 0.78);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,.07);
+}
+
+.nav-inner {
+  max-width: 1180px;
+  height: 100%;
+  margin: auto;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #111;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-family: "Playfair Display", serif;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+nav {
+  display: flex;
+  gap: 34px;
+  font-size: 14px;
+}
+
+nav a {
+  transition: opacity .25s;
+}
+
+nav a:hover {
+  opacity: .5;
+}
+
+.menu-btn {
+  display: none;
+  border: 0;
+  background: none;
+  font-size: 22px;
+}
+
+
+/* HERO */
+
+.hero {
+  min-height: 100vh;
+  padding-top: 64px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #f5f5f2;
+}
+
+.hero-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 80px;
+}
+
+.eyebrow {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-family: "Playfair Display", "Noto Serif Bengali", serif;
+  font-size: clamp(55px, 7vw, 100px);
+  line-height: 1.02;
+  font-weight: 500;
+  letter-spacing: -4px;
+}
+
+.hero h1 em,
+.intro h2 em,
+blockquote em {
+  font-style: normal;
+  opacity: .48;
+}
+
+.hero-text {
+  margin-top: 32px;
+  font-size: 18px;
+  opacity: .7;
+}
+
+.hero-button {
+  width: fit-content;
+  margin-top: 38px;
+  padding: 13px 22px;
+  border-radius: 30px;
+  background: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  transition: transform .3s;
+}
+
+.hero-button:hover {
+  transform: translateY(-3px);
+}
+
+.hero-button span {
+  margin-left: 14px;
+}
+
+.hero-image {
+  position: relative;
+  min-height: 650px;
+  background:
+    linear-gradient(145deg, #222, #777);
+  overflow: hidden;
+}
+
+.hero-image::after {
+  content: "SF";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: "Playfair Display", serif;
+  font-size: 250px;
+  color: rgba(255,255,255,.08);
+}
+
+.hero-caption {
+  position: absolute;
+  bottom: 28px;
+  left: 32px;
+  right: 32px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+
+/* INTRO */
+
+.intro {
+  padding: 180px 28px;
+  background: #fff;
+}
+
+.intro-inner {
+  max-width: 900px;
+  margin: auto;
+}
+
+.intro h2 {
+  font-family: "Playfair Display", "Noto Serif Bengali", serif;
+  font-size: clamp(40px, 6vw, 76px);
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -2px;
+}
+
+.intro p:last-child {
+  max-width: 600px;
+  margin-top: 40px;
+  font-size: 18px;
+  opacity: .65;
+}
+
+
+/* GENERAL */
+
+.content-section {
+  padding: 140px 28px;
+}
+
+.light {
+  background: #f5f5f2;
+}
+
+.dark {
+  background: #111;
+  color: white;
+}
+
+.section-container {
+  max-width: 1120px;
+  margin: auto;
+}
+
+.section-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 80px;
+}
+
+.section-top h2 {
+  font-family: "Playfair Display", "Noto Serif Bengali", serif;
+  font-size: 70px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.section-top > p {
+  max-width: 300px;
+  opacity: .6;
+}
+
+
+/* POETRY CARD */
+
+.writing-card {
+  min-height: 350px;
+  padding: 60px;
+  background: white;
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  align-items: center;
+}
+
+.card-number {
+  font-family: Arial, sans-serif;
+  font-size: 90px;
+  font-weight: 700;
+  opacity: .08;
+}
+
+.card-label,
+.story-card span {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  opacity: .55;
+}
+
+.writing-card h3 {
+  font-family: "Playfair Display", "Noto Serif Bengali", serif;
+  font-size: 42px;
+  font-weight: 500;
+}
+
+.writing-card p {
+  max-width: 550px;
+  margin: 18px 0;
+  opacity: .6;
+}
+
+.text-link {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* STORIES */
+
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+
+.story-card {
+  min-height: 420px;
+  padding: 50px;
+  background: #1b1b1b;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  transition: background .3s;
+}
+
+.story-card:hover {
+  background: #252525;
+}
+
+.story-card h3 {
+  font-family: "Playfair Display", "Noto Serif Bengali", serif;
+  font-size: 40px;
+  font-weight: 500;
+  margin: 15px 0;
+}
+
+.story-card p {
+  opacity: .55;
+  max-width: 400px;
+}
+
+.story-card a {
+  margin-top: 25px;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+
+
+/* NOVEL */
+
+.novel-section {
+  background: #e8e7e2;
+}
+
+.novel-content {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 100px;
+  align-items: center;
+}
+
+.novel-content h2 {
+  font-family: "Playfair Display", "Noto Serif Bengali", serif;
+  font-size: 80px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.novel-description {
+  max-width: 500px;
+  margin: 30px 0;
+  opacity: .65;
+}
+
+.dark-button {
+  background: #111;
+}
+
+.book {
+  height: 540px;
+  background: #111;
+  padding: 15px;
+  box-shadow: 25px 25px 50px rgba(0,0,0,.2);
+  transform: rotate(3deg);
+}
+
+.book-inner {
+  height: 100%;
+  border: 1px solid rgba(255,255,255,.3);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.book-inner strong {
+  font-family: "Playfair Display", serif;
+  font-size: 48px;
+  line-height: 1;
+  margin: 30px 0;
+}
+
+.book-small,
+.book-bottom {
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  opacity: .6;
+}
+
+
+/* QUOTE */
+
+.quote-section {
+  padding: 180px 28px;
+  background: #fff;
+}
+
+.quote-container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.quote-symbol {
+  font-family: Georgia, serif;
+  font-size: 100px;
+  line-height: .5;
+  opacity: .12;
+}
+
+blockquote {
+  font-family: "Playfair Display", "Noto Serif Bengali", serif;
+  font-size: clamp(45px, 7vw, 90px);
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -3px;
+}
+
+.quote-container p {
+  margin-top: 35px;
+  opacity: .5;
+}
+
+
+/* AUTHOR */
+
+.author-section {
+  padding: 140px 28px;
+  background: #f5f5f2;
+}
+
+.author-grid {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.author-photo {
+  height: 500px;
+  background: #222;
+  display: grid;
+  place-items: center;
+  color: white;
+}
+
+.author-photo span {
+  font-family: "Playfair Display", serif;
+  font-size: 120px;
+  opacity: .15;
+}
+
+.author-info h2 {
+  font-family: "Playfair Display", "Noto Serif Bengali", serif;
+  font-size: 70px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.author-info > p:not(.eyebrow) {
+  max-width: 550px;
+  margin-top: 30px;
+  opacity: .65;
+}
+
+.social-links {
+  display: flex;
+  gap: 25px;
+  margin-top: 35px;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+
+
+/* FOOTER */
+
+footer {
+  background: #111;
+  color: white;
+  padding: 45px 28px;
+}
+
+.footer-inner {
+  max-width: 1120px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.footer-inner strong {
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+}
+
+.footer-inner p {
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  opacity: .45;
+  margin-top: 8px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+  nav {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    background: rgba(245,245,242,.98);
+    padding: 25px;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-content {
+    padding: 110px 28px 70px;
+  }
+
+  .hero h1 {
+    font-size: 55px;
+    letter-spacing: -2px;
+  }
+
+  .hero-image {
+    min-height: 450px;
+  }
+
+  .intro {
+    padding: 120px 28px;
+  }
+
+  .section-top {
+    display: block;
+  }
+
+  .section-top > p {
+    margin-top: 25px;
+  }
+
+  .section-top h2,
+  .novel-content h2,
+  .author-info h2 {
+    font-size: 55px;
+  }
+
+  .writing-card {
+    grid-template-columns: 1fr;
+    padding: 40px;
+  }
+
+  .card-number {
+    font-size: 50px;
+    margin-bottom: 20px;
+  }
+
+  .story-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .novel-content {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .book {
+    max-width: 330px;
+    margin: auto;
+    width: 100%;
+  }
+
+  .author-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .author-photo {
+    height: 420px;
+  }
+
+  .footer-inner {
+    display: block;
+  }
+
+  .footer-inner > p {
+    margin-top: 30px;
+  }
+}
