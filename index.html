@@ -433,5 +433,144 @@
 
 <script src="script.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+  "https://ooxbtwxqumaixvrwsllg.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_dNAV-kJ5rv_-BH6GhChYVg_1xbRUNdy";
+
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+
+async function loadPoetry() {
+
+  const poetryList =
+    document.getElementById(
+      "poetry-list"
+    );
+
+
+  const { data, error } =
+    await supabaseClient
+      .from("poems")
+      .select("*")
+      .eq("published", true)
+      .order("created_at", {
+        ascending: false
+      });
+
+
+  if (error) {
+
+    console.error(error);
+
+    poetryList.innerHTML = `
+      <p>
+        কবিতা লোড করা যায়নি।
+      </p>
+    `;
+
+    return;
+  }
+
+
+  if (!data || data.length === 0) {
+
+    poetryList.innerHTML = `
+      <div>
+
+        <p class="card-label">
+          POETRY
+        </p>
+
+        <h3>
+          শীঘ্রই আসছে
+        </h3>
+
+        <p>
+          নতুন কবিতা খুব শীঘ্রই প্রকাশিত হবে।
+        </p>
+
+      </div>
+    `;
+
+    return;
+  }
+
+
+  poetryList.innerHTML =
+    data.map((poem, index) => `
+
+      <div>
+
+        <div class="card-number">
+          ${String(index + 1).padStart(2, "0")}
+        </div>
+
+        <p class="card-label">
+          POETRY
+        </p>
+
+        <h3>
+          ${escapePoetryHtml(poem.title)}
+        </h3>
+
+        <p>
+          ${escapePoetryHtml(
+            poem.excerpt || ""
+          )}
+        </p>
+
+        <a
+          href="#"
+          class="text-link"
+          onclick="openPoem('${poem.id}'); return false;"
+        >
+          কবিতা পড়ুন →
+        </a>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+function escapePoetryHtml(value) {
+
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+function openPoem(id) {
+
+  const poemUrl =
+    "poem.html?id=" +
+    encodeURIComponent(id);
+
+  window.location.href =
+    poemUrl;
+
+}
+
+
+loadPoetry();
+
+</script>
 </body>
 </html>
