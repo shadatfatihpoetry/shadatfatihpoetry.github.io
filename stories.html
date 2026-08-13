@@ -12,39 +12,390 @@
 
   <title>Shadat Fatih — গল্প</title>
 
+  <meta
+    name="description"
+    content="Shadat Fatih-এর গল্পসমূহ"
+  >
+
   <link
     rel="stylesheet"
     href="style.css"
   >
+
+  <style>
+
+    /* ========================================
+       STORIES PAGE
+    ======================================== */
+
+    .stories-page {
+      width: 100%;
+      min-height: 100vh;
+
+      padding: 100px 24px 90px;
+
+      background: #f5f5f2;
+
+      color: #111;
+
+      overflow-x: hidden;
+    }
+
+
+    .stories-content {
+      width: 100%;
+      max-width: 900px;
+
+      margin: 0 auto;
+    }
+
+
+    /* PAGE HEADER */
+
+    .stories-header {
+      margin-bottom: 55px;
+    }
+
+
+    .stories-header .eyebrow {
+      margin-bottom: 18px;
+
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      font-weight: 700;
+    }
+
+
+    .stories-header h1 {
+      margin: 0;
+
+      font-family:
+        "Playfair Display",
+        "Noto Serif Bengali",
+        serif;
+
+      font-size: clamp(45px, 8vw, 78px);
+
+      font-weight: 500;
+
+      line-height: 1.15;
+
+      letter-spacing: -2px;
+    }
+
+
+    .stories-intro {
+      max-width: 600px;
+
+      margin-top: 20px;
+
+      font-size: 16px;
+
+      line-height: 1.9;
+
+      opacity: .58;
+    }
+
+
+    /* STORIES LIST */
+
+    .stories-list {
+      width: 100%;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 18px;
+    }
+
+
+    /* STORY CARD */
+
+    .stories-list .story-card {
+      width: 100%;
+
+      min-height: auto;
+
+      padding: 32px;
+
+      background: #ffffff;
+
+      color: #111;
+
+      border: 1px solid rgba(0, 0, 0, .07);
+
+      border-radius: 18px;
+
+      display: block;
+
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+    }
+
+
+    /* HOVER */
+
+    .stories-list .story-card:hover {
+
+      background: #ffffff;
+
+      transform: translateY(-3px);
+
+      border-color: rgba(0, 0, 0, .12);
+
+      box-shadow:
+        0 15px 40px rgba(0, 0, 0, .08);
+    }
+
+
+    /* STORY TITLE */
+
+    .stories-list .story-card h2 {
+
+      margin: 0 0 14px;
+
+      font-family:
+        "Playfair Display",
+        "Noto Serif Bengali",
+        serif;
+
+      font-size: clamp(26px, 4vw, 38px);
+
+      font-weight: 500;
+
+      line-height: 1.35;
+
+      letter-spacing: -.5px;
+    }
+
+
+    /* EXCERPT */
+
+    .stories-list .story-card .story-excerpt {
+
+      margin: 0 0 22px;
+
+      max-width: 720px;
+
+      font-family:
+        "Noto Serif Bengali",
+        serif;
+
+      font-size: 16px;
+
+      line-height: 1.9;
+
+      opacity: .62;
+    }
+
+
+    /* READ LINK */
+
+    .stories-list .story-card .text-link {
+
+      display: inline-block;
+
+      color: #111;
+
+      font-family: Arial, sans-serif;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      transition: opacity .2s ease;
+    }
+
+
+    .stories-list .story-card .text-link:hover {
+
+      opacity: .5;
+    }
+
+
+    /* LOADING */
+
+    .stories-loading {
+
+      padding: 30px 0;
+
+      font-size: 16px;
+
+      opacity: .55;
+    }
+
+
+    /* EMPTY */
+
+    .stories-empty {
+
+      padding: 40px 0;
+
+      font-size: 17px;
+
+      opacity: .6;
+    }
+
+
+    /* ERROR */
+
+    .stories-error {
+
+      padding: 25px;
+
+      background: #fff;
+
+      border: 1px solid rgba(0, 0, 0, .08);
+
+      border-radius: 15px;
+
+      color: #111;
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      .stories-page {
+
+        padding:
+          90px 20px 60px;
+      }
+
+
+      .stories-content {
+
+        max-width: 100%;
+      }
+
+
+      .stories-header {
+
+        margin-bottom: 38px;
+      }
+
+
+      .stories-header h1 {
+
+        font-size: 48px;
+
+        letter-spacing: -1px;
+      }
+
+
+      .stories-intro {
+
+        font-size: 15px;
+
+        line-height: 1.8;
+      }
+
+
+      .stories-list {
+
+        gap: 14px;
+      }
+
+
+      .stories-list .story-card {
+
+        padding: 24px;
+
+        border-radius: 15px;
+      }
+
+
+      .stories-list .story-card h2 {
+
+        font-size: 28px;
+
+        line-height: 1.4;
+      }
+
+
+      .stories-list .story-card .story-excerpt {
+
+        font-size: 15px;
+
+        line-height: 1.85;
+      }
+
+    }
+
+  </style>
 
 </head>
 
 
 <body>
 
-  <main class="poem-page">
+
+  <main class="stories-page">
+
 
     <section
-      class="poem-reader"
+      class="stories-content"
       id="stories-content"
     >
 
-      <p>
+
+      <!-- HEADER -->
+
+      <header class="stories-header">
+
+        <p class="eyebrow">
+          STORIES
+        </p>
+
+        <h1>
+          গল্প
+        </h1>
+
+        <p class="stories-intro">
+          Shadat Fatih-এর গল্পসমূহ।
+        </p>
+
+      </header>
+
+
+      <!-- LOADING -->
+
+      <p class="stories-loading">
         গল্প লোড হচ্ছে...
       </p>
 
+
     </section>
+
 
   </main>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- SUPABASE -->
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+  ></script>
+
 
 
   <script>
 
+
+    /* ========================================
+       SUPABASE CONFIG
+    ======================================== */
+
+
     const SUPABASE_URL =
       "https://ooxbtwxqumaixvrwsllg.supabase.co";
+
 
     const SUPABASE_PUBLISHABLE_KEY =
       "sb_publishable_dNAV-kJ5rv_-BH6GhChYVg_1xbRUNdy";
@@ -57,7 +408,14 @@
       );
 
 
+
+    /* ========================================
+       LOAD STORIES
+    ======================================== */
+
+
     async function loadStories() {
+
 
       const container =
         document.getElementById(
@@ -65,123 +423,282 @@
         );
 
 
-      const { data, error } =
-        await supabaseClient
-          .from("stories")
-          .select(
-            "id, title, excerpt, published"
-          )
-          .eq("published", true)
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
+      try {
+
+
+        const { data, error } =
+          await supabaseClient
+
+            .from("stories")
+
+            .select(
+              "id, title, excerpt, created_at, published"
+            )
+
+            .eq(
+              "published",
+              true
+            )
+
+            .order(
+              "created_at",
+              {
+                ascending: false
+              }
+            );
+
+
+
+        /* ERROR */
+
+        if (error) {
+
+          console.error(
+            "Supabase Error:",
+            error
           );
 
 
-      if (error) {
+          container.innerHTML = `
 
-        console.error(error);
+            <div class="stories-error">
+
+              <p>
+                গল্প লোড করা যায়নি।
+              </p>
+
+              <p style="
+                margin-top:10px;
+                font-family:Arial,sans-serif;
+                font-size:12px;
+                opacity:.6;
+              ">
+
+                ${escapeHtml(
+                  error.message
+                )}
+
+              </p>
+
+            </div>
+
+          `;
+
+          return;
+
+        }
+
+
+
+        /* NO STORIES */
+
+        if (
+          !data ||
+          data.length === 0
+        ) {
+
+
+          container.innerHTML = `
+
+            <header class="stories-header">
+
+              <p class="eyebrow">
+                STORIES
+              </p>
+
+              <h1>
+                গল্প
+              </h1>
+
+              <p class="stories-intro">
+                Shadat Fatih-এর গল্পসমূহ।
+              </p>
+
+            </header>
+
+
+            <p class="stories-empty">
+              বর্তমানে কোনো প্রকাশিত গল্প নেই।
+            </p>
+
+          `;
+
+
+          return;
+
+        }
+
+
+
+        /* STORIES */
 
         container.innerHTML = `
-          <h1>গল্প লোড করা যায়নি</h1>
 
-          <p>
-            ${escapeHtml(error.message)}
-          </p>
+          <header class="stories-header">
+
+            <p class="eyebrow">
+              STORIES
+            </p>
+
+            <h1>
+              গল্প
+            </h1>
+
+            <p class="stories-intro">
+              Shadat Fatih-এর গল্পসমূহ।
+            </p>
+
+          </header>
+
+
+          <div class="stories-list">
+
+
+            ${data.map(
+              story => `
+
+
+                <article
+                  class="story-card"
+                >
+
+
+                  <h2>
+
+                    ${escapeHtml(
+                      story.title
+                    )}
+
+                  </h2>
+
+
+
+                  ${
+                    story.excerpt
+                      ? `
+
+                        <p class="story-excerpt">
+
+                          ${escapeHtml(
+                            story.excerpt
+                          )}
+
+                        </p>
+
+                      `
+                      : ""
+                  }
+
+
+
+                  <a
+                    href="story.html?id=${encodeURIComponent(
+                      story.id
+                    )}"
+                    class="text-link"
+                  >
+
+                    গল্পটি পড়ুন →
+
+                  </a>
+
+
+                </article>
+
+
+              `
+            ).join("")}
+
+
+          </div>
+
         `;
 
-        return;
+
       }
 
 
-      if (!data || data.length === 0) {
+      catch (error) {
+
+
+        console.error(
+          "Unexpected error:",
+          error
+        );
+
 
         container.innerHTML = `
-          <p class="eyebrow">
-            STORIES
-          </p>
 
-          <h1>
-            গল্প
-          </h1>
+          <div class="stories-error">
 
-          <p>
-            বর্তমানে কোনো প্রকাশিত গল্প নেই।
-          </p>
+            <p>
+              গল্প লোড করতে সমস্যা হয়েছে।
+            </p>
+
+          </div>
+
         `;
 
-        return;
       }
 
-
-      container.innerHTML = `
-
-        <p class="eyebrow">
-          STORIES
-        </p>
-
-        <h1>
-          গল্প
-        </h1>
-
-
-        <div class="stories-list">
-
-          ${data.map(story => `
-
-            <article class="story-card">
-
-              <h2>
-                ${escapeHtml(story.title)}
-              </h2>
-
-
-              ${
-                story.excerpt
-                  ? `
-                    <p class="poem-excerpt">
-                      ${escapeHtml(story.excerpt)}
-                    </p>
-                  `
-                  : ""
-              }
-
-
-              <a
-                href="story.html?id=${encodeURIComponent(story.id)}"
-                class="text-link"
-              >
-                গল্পটি পড়ুন →
-              </a>
-
-            </article>
-
-          `).join("")}
-
-        </div>
-
-      `;
 
     }
 
 
-    function escapeHtml(value) {
 
-      return String(value || "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+    /* ========================================
+       SECURITY
+    ======================================== */
+
+
+    function escapeHtml(
+      value
+    ) {
+
+
+      return String(
+        value || ""
+      )
+
+        .replaceAll(
+          "&",
+          "&amp;"
+        )
+
+        .replaceAll(
+          "<",
+          "&lt;"
+        )
+
+        .replaceAll(
+          ">",
+          "&gt;"
+        )
+
+        .replaceAll(
+          '"',
+          "&quot;"
+        )
+
+        .replaceAll(
+          "'",
+          "&#039;"
+        );
 
     }
+
+
+
+    /* ========================================
+       START
+    ======================================== */
 
 
     loadStories();
 
+
   </script>
+
 
 </body>
 
