@@ -1710,7 +1710,459 @@ window.manageChapters = async function(novelId) {
   );
 
 };  
+/* =========================
+   CHAPTER MANAGEMENT
+========================= */
 
+let currentNovelId = null;
+
+
+/* OPEN CHAPTER MANAGER */
+
+window.manageChapters = async function(novelId) {
+
+  currentNovelId = Number(novelId);
+
+  const novel =
+    contents.find(
+      item =>
+        Number(item.id) === currentNovelId
+    );
+
+
+  document.getElementById(
+    "chapterNovelName"
+  ).textContent =
+    novel
+      ? `উপন্যাস: ${novel.title}`
+      : "উপন্যাস";
+
+
+  document.getElementById(
+    "chapterModal"
+  ).classList.add("active");
+
+
+  document.getElementById(
+    "chapterMessage"
+  ).textContent = "";
+
+
+  document.getElementById(
+    "chapterForm"
+  ).reset();
+
+
+  await loadChapters();
+
+};
+
+
+/* LOAD CHAPTERS */
+
+async function loadChapters() {
+
+  const list =
+    document.getElementById(
+      "chapterList"
+    );
+
+
+  list.innerHTML = `
+    <div class="empty">
+      Chapter লোড হচ্ছে...
+    </div>
+  `;
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+
+      .from("chapters")
+
+      .select(
+        "id, novel_id, chapter_number, title, content, published, created_at"
+      )
+
+      .eq(
+        "novel_id",
+        currentNovelId
+      )
+
+      .order(
+        "chapter_number",
+        {
+          ascending: true
+        }
+      );
+
+
+  if (error) {
+
+    console.error(
+      "Chapter load error:",
+      error
+    );
+
+
+    list.innerHTML = `
+      <div class="empty">
+
+        Chapter লোড করা যায়নি।
+
+        <br><br>
+
+        ${escapeHtml(error.message)}
+
+      </div>
+    `;
+
+    return;
+  }
+
+
+  if (!data || data.length === 0) {
+
+    list.innerHTML = `
+      <div class="empty">
+
+        এই উপন্যাসে এখনো কোনো Chapter নেই।
+
+      </div>
+    `;
+
+    return;
+  }
+
+
+  list.innerHTML = data.map(
+    chapter => `
+
+      <div
+        class="content-item"
+        style="margin-bottom:12px;"
+      >
+
+        <div class="content-info">
+
+          <h3>
+
+            Chapter
+            ${chapter.chapter_number}
+
+            —
+            ${escapeHtml(
+              chapter.title
+            )}
+
+          </h3>
+
+
+          <span
+            class="status ${
+              chapter.published
+                ? "published"
+                : "draft"
+            }"
+          >
+
+            ${
+              chapter.published
+                ? "Published"
+                : "Draft"
+            }
+
+          </span>
+
+        </div>
+
+
+        <div class="actions">
+
+          <button
+            type="button"
+            onclick="toggleChapterPublish(
+              ${chapter.id},
+              ${chapter.published === true}
+            )"
+          >
+
+            ${
+              chapter.published
+                ? "Unpublish"
+                : "Publish"
+            }
+
+          </button>
+
+
+          <button
+            type="button"
+            class="delete"
+            onclick="deleteChapter(
+              ${chapter.id}
+            )"
+          >
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+
+    `
+  ).join("");
+
+}
+
+
+/* ADD CHAPTER */
+
+document
+  .getElementById(
+    "chapterForm"
+  )
+  .addEventListener(
+    "submit",
+    async function(event) {
+
+      event.preventDefault();
+
+
+      const chapterNumber =
+        Number(
+          document.getElementById(
+            "chapterNumber"
+          ).value
+        );
+
+
+      const title =
+        document.getElementById(
+          "chapterTitle"
+        ).value.trim();
+
+
+      const content =
+        document.getElementById(
+          "chapterContent"
+        ).value.trim();
+
+
+      const msg =
+        document.getElementById(
+          "chapterMessage"
+        );
+
+
+      if (!chapterNumber || chapterNumber < 1) {
+
+        msg.style.color = "#d00";
+
+        msg.textContent =
+          "সঠিক Chapter Number দিন।";
+
+        return;
+      }
+
+
+      if (!title || !content) {
+
+        msg.style.color = "#d00";
+
+        msg.textContent =
+          "Chapter title এবং content দিতে হবে।";
+
+        return;
+      }
+
+
+      msg.style.color = "#777";
+
+      msg.textContent =
+        "Chapter যোগ হচ্ছে...";
+
+
+      const {
+        error
+      } =
+        await supabaseClient
+
+          .from("chapters")
+
+          .insert({
+
+            novel_id:
+              currentNovelId,
+
+            chapter_number:
+              chapterNumber,
+
+            title:
+
+              title,
+
+            content:
+
+              content,
+
+            published:
+              false
+
+          });
+
+
+      if (error) {
+
+        console.error(
+          "Chapter insert error:",
+          error
+        );
+
+
+        msg.style.color = "#d00";
+
+        msg.textContent =
+          error.message;
+
+        return;
+      }
+
+
+      msg.style.color =
+        "#16803c";
+
+      msg.textContent =
+        "Chapter সফলভাবে যোগ হয়েছে।";
+
+
+      document
+        .getElementById(
+          "chapterForm"
+        )
+        .reset();
+
+
+      await loadChapters();
+
+    }
+  );
+
+
+/* PUBLISH / UNPUBLISH CHAPTER */
+
+window.toggleChapterPublish =
+async function(
+  chapterId,
+  currentStatus
+) {
+
+  const {
+    error
+  } =
+    await supabaseClient
+
+      .from("chapters")
+
+      .update({
+
+        published:
+          !currentStatus
+
+      })
+
+      .eq(
+        "id",
+        chapterId
+      );
+
+
+  if (error) {
+
+    alert(
+      error.message
+    );
+
+    return;
+  }
+
+
+  await loadChapters();
+
+};
+
+
+/* DELETE CHAPTER */
+
+window.deleteChapter =
+async function(chapterId) {
+
+  const confirmed =
+    confirm(
+      "এই Chapter মুছে ফেলতে চান?"
+    );
+
+
+  if (!confirmed) {
+    return;
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+
+      .from("chapters")
+
+      .delete()
+
+      .eq(
+        "id",
+        chapterId
+      );
+
+
+  if (error) {
+
+    alert(
+      error.message
+    );
+
+    return;
+  }
+
+
+  await loadChapters();
+
+};
+
+
+/* CLOSE CHAPTER MODAL */
+
+document
+  .getElementById(
+    "chapterCancelBtn"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      document
+        .getElementById(
+          "chapterModal"
+        )
+        .classList.remove(
+          "active"
+        );
+
+      currentNovelId = null;
+
+    }
+  );
 /* =========================
    DELETE CONTENT
 ========================= */
@@ -2028,7 +2480,107 @@ document
 })();
 
 </script>
+<!-- =========================
+     CHAPTER MODAL
+========================= -->
 
+<div class="modal" id="chapterModal">
+
+  <div class="modal-box">
+
+    <h2 id="chapterModalTitle">
+      Chapter Management
+    </h2>
+
+    <p
+      id="chapterNovelName"
+      style="margin-bottom:20px;color:#777;"
+    ></p>
+
+    <div id="chapterList"></div>
+
+    <hr style="margin:25px 0;border:0;border-top:1px solid #eee;">
+
+    <h3 style="margin-bottom:18px;">
+      নতুন Chapter
+    </h3>
+
+    <form id="chapterForm">
+
+      <div class="field">
+
+        <label>
+          Chapter Number
+        </label>
+
+        <input
+          type="number"
+          id="chapterNumber"
+          min="1"
+          required
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Chapter Title
+        </label>
+
+        <input
+          type="text"
+          id="chapterTitle"
+          placeholder="যেমন: প্রথম অধ্যায়"
+          required
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Chapter Content
+        </label>
+
+        <textarea
+          id="chapterContent"
+          placeholder="এখানে Chapter-এর সম্পূর্ণ লেখা লিখুন..."
+          required
+        ></textarea>
+
+      </div>
+
+
+      <div class="modal-actions">
+
+        <button
+          type="button"
+          class="cancel"
+          id="chapterCancelBtn"
+        >
+          বন্ধ করুন
+        </button>
+
+        <button
+          type="submit"
+          class="save"
+          id="chapterSaveBtn"
+        >
+          Chapter যোগ করুন
+        </button>
+
+      </div>
+
+      <div id="chapterMessage"></div>
+
+    </form>
+
+  </div>
+
+</div>
 </body>
 
 </html>
