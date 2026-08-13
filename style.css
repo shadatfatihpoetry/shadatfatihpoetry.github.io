@@ -1631,3 +1631,54 @@ a:focus-visible {
   }
 
 }
+
+/* =====================================================
+   NOVEL LAYOUT FIX
+===================================================== */
+
+.novel-section .section-container {
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.novel-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  margin: 0 auto;
+}
+
+.novel-card {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.novel-info {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  .novel-section .section-container {
+    width: calc(100% - 30px);
+    margin: 0 auto;
+  }
+
+  .novel-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .novel-card {
+    width: 100%;
+  }
+
+}
