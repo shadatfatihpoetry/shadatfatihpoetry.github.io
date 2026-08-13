@@ -155,6 +155,8 @@ async function loadNovel() {
   const id =
     params.get("id");
 
+  const novelId =
+  Number(id);
 
   if (!id) {
 
@@ -181,7 +183,7 @@ async function loadNovel() {
         "id, title, content, excerpt, created_at, published"
       )
 
-      .eq("id", id)
+      .eq("id", novelId)
 
       .eq("published", true)
 
