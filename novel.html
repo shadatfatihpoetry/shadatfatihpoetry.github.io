@@ -36,7 +36,7 @@
   <style>
 
     /* =========================
-       NOVEL PAGE
+       NOVEL READING PAGE
     ========================= */
 
     .novel-reading-page {
@@ -46,81 +46,40 @@
 
 
     .novel-reading {
-      max-width: 900px;
+      max-width: 850px;
       margin: 0 auto;
     }
 
 
     /* =========================
-       NOVEL COVER
-    ========================= */
-
-    .novel-cover {
-      width: 100%;
-      max-width: 420px;
-
-      margin: 0 auto 45px;
-
-      border-radius: 22px;
-
-      overflow: hidden;
-
-      box-shadow:
-        0 20px 60px rgba(0,0,0,.15);
-    }
-
-
-    .novel-cover img {
-      display: block;
-
-      width: 100%;
-
-      height: auto;
-
-      max-height: 560px;
-
-      object-fit: cover;
-    }
-
-
-    /* =========================
-       HEADER
+       NOVEL HEADER
     ========================= */
 
     .novel-header {
       text-align: center;
-
-      margin-bottom: 45px;
+      margin-bottom: 60px;
     }
 
 
     .novel-header .eyebrow {
       margin-bottom: 18px;
-
-      font-size: 12px;
-
-      letter-spacing: 4px;
-
-      opacity: .55;
     }
 
 
     .novel-header h1 {
-      font-family:
-        "Noto Serif Bengali",
-        serif;
+      font-family: "Noto Serif Bengali", serif;
 
       font-size:
         clamp(2.2rem, 6vw, 4.5rem);
 
       line-height: 1.25;
 
-      margin: 0 0 22px;
+      margin: 0 0 25px;
     }
 
 
     .novel-excerpt {
-      max-width: 680px;
+      max-width: 650px;
 
       margin: 0 auto;
 
@@ -141,162 +100,55 @@
 
       height: 1px;
 
-      margin: 40px auto 0;
+      margin: 45px auto;
 
       background: currentColor;
 
-      opacity: .25;
+      opacity: .3;
     }
 
 
     /* =========================
-       CHAPTER AREA
+       CHAPTER
     ========================= */
 
-    .chapter-section {
-      margin-top: 50px;
+    .chapter {
+      margin-bottom: 80px;
     }
 
 
-    .chapter-heading {
+    .chapter-header {
       text-align: center;
 
-      margin-bottom: 25px;
+      margin-bottom: 35px;
 
-      font-family:
-        "Noto Serif Bengali",
-        serif;
+      padding-bottom: 25px;
 
-      font-size: 1.35rem;
-    }
-
-
-    .chapter-list {
-      display: grid;
-
-      gap: 10px;
-
-      margin-bottom: 55px;
-    }
-
-
-    .chapter-item {
-      display: flex;
-
-      align-items: center;
-
-      gap: 15px;
-
-      width: 100%;
-
-      padding: 15px 18px;
-
-      border: 1px solid rgba(0,0,0,.10);
-
-      border-radius: 14px;
-
-      background: rgba(255,255,255,.55);
-
-      cursor: pointer;
-
-      text-align: left;
-
-      transition:
-        transform .2s ease,
-        background .2s ease,
-        box-shadow .2s ease;
-    }
-
-
-    .chapter-item:hover {
-      transform: translateY(-2px);
-
-      box-shadow:
-        0 8px 25px rgba(0,0,0,.08);
-    }
-
-
-    .chapter-item.active {
-      background: #111;
-
-      color: #fff;
-
-      border-color: #111;
+      border-bottom:
+        1px solid rgba(0,0,0,.10);
     }
 
 
     .chapter-number {
-      flex: 0 0 auto;
+      display: block;
 
-      width: 38px;
-      height: 38px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 50%;
-
-      background: rgba(0,0,0,.07);
-
-      font-size: 13px;
-
-      font-weight: 600;
-    }
-
-
-    .chapter-item.active
-    .chapter-number {
-      background: rgba(255,255,255,.16);
-    }
-
-
-    .chapter-title {
-      min-width: 0;
+      margin-bottom: 10px;
 
       font-family:
-        "Noto Serif Bengali",
+        "Playfair Display",
         serif;
 
-      font-size: 1rem;
+      font-size: .9rem;
 
-      line-height: 1.5;
+      letter-spacing: 2px;
 
-      word-break: break-word;
-    }
-
-
-    /* =========================
-       CURRENT CHAPTER
-    ========================= */
-
-    .current-chapter {
-      margin-top: 20px;
-    }
-
-
-    .current-chapter-header {
-      text-align: center;
-
-      margin-bottom: 40px;
-    }
-
-
-    .current-chapter-label {
-      display: inline-block;
-
-      margin-bottom: 12px;
-
-      font-size: 11px;
-
-      letter-spacing: 3px;
+      text-transform: uppercase;
 
       opacity: .55;
     }
 
 
-    .current-chapter-title {
+    .chapter-title {
       margin: 0;
 
       font-family:
@@ -304,94 +156,71 @@
         serif;
 
       font-size:
-        clamp(1.8rem, 5vw, 3rem);
+        clamp(1.6rem, 4vw, 2.4rem);
 
-      line-height: 1.4;
+      line-height: 1.5;
     }
 
 
-    /* =========================
-       CHAPTER CONTENT
-    ========================= */
-
-    .novel-body {
+    .chapter-body {
       font-family:
         "Noto Serif Bengali",
         serif;
 
       font-size: 1.15rem;
 
-      line-height: 2.25;
-
-      text-align: left;
+      line-height: 2.15;
     }
 
 
-    .novel-body p {
+    .chapter-body p {
       margin: 0 0 28px;
     }
 
 
     /* =========================
-       NAVIGATION
+       CHAPTER DIVIDER
     ========================= */
 
-    .chapter-navigation {
-      display: flex;
-
-      justify-content: space-between;
-
-      gap: 15px;
-
-      margin-top: 60px;
-
-      padding-top: 30px;
+    .chapter + .chapter {
+      padding-top: 60px;
 
       border-top:
-        1px solid rgba(0,0,0,.12);
+        1px solid rgba(0,0,0,.10);
     }
 
 
-    .chapter-nav-button {
-      display: inline-flex;
+    /* =========================
+       EMPTY CHAPTER
+    ========================= */
 
-      align-items: center;
+    .no-chapters {
+      padding: 70px 20px;
 
-      justify-content: center;
-
-      gap: 8px;
-
-      min-width: 130px;
-
-      padding: 12px 18px;
-
-      border: 1px solid rgba(0,0,0,.12);
-
-      border-radius: 25px;
-
-      background: transparent;
-
-      color: inherit;
-
-      cursor: pointer;
-
-      text-decoration: none;
+      text-align: center;
 
       font-family:
         "Noto Serif Bengali",
         serif;
+
+      border:
+        1px solid rgba(0,0,0,.10);
+
+      border-radius: 18px;
     }
 
 
-    .chapter-nav-button:hover {
-      background: rgba(0,0,0,.05);
+    .no-chapters h2 {
+      margin-bottom: 12px;
+
+      font-size: 1.5rem;
     }
 
 
-    .chapter-nav-button:disabled {
-      opacity: .35;
+    .no-chapters p {
+      opacity: .65;
 
-      cursor: not-allowed;
+      line-height: 1.8;
     }
 
 
@@ -402,7 +231,7 @@
     .novel-footer {
       text-align: center;
 
-      margin-top: 80px;
+      margin-top: 90px;
 
       padding-top: 40px;
 
@@ -423,7 +252,7 @@
 
 
     /* =========================
-       LOADING
+       LOADING / ERROR
     ========================= */
 
     .novel-loading {
@@ -461,64 +290,37 @@
 
 
     /* =========================
-       EMPTY CHAPTER
-    ========================= */
-
-    .chapter-empty {
-      padding: 40px 20px;
-
-      text-align: center;
-
-      border:
-        1px solid rgba(0,0,0,.10);
-
-      border-radius: 18px;
-
-      font-family:
-        "Noto Serif Bengali",
-        serif;
-
-      opacity: .7;
-    }
-
-
-    /* =========================
-       RESPONSIVE
+       MOBILE
     ========================= */
 
     @media (max-width: 600px) {
 
       .novel-reading-page {
-        padding: 70px 18px 60px;
-      }
-
-
-      .novel-cover {
-        margin-bottom: 35px;
-
-        border-radius: 16px;
+        padding:
+          70px 18px 60px;
       }
 
 
       .novel-header {
-        margin-bottom: 35px;
+        margin-bottom: 45px;
       }
 
 
-      .novel-body {
+      .novel-body,
+      .chapter-body {
         font-size: 1.05rem;
 
-        line-height: 2.05;
+        line-height: 2;
       }
 
 
-      .chapter-navigation {
-        flex-direction: column;
+      .chapter {
+        margin-bottom: 60px;
       }
 
 
-      .chapter-nav-button {
-        width: 100%;
+      .chapter + .chapter {
+        padding-top: 45px;
       }
 
     }
@@ -538,6 +340,7 @@
 <header class="navbar">
 
   <div class="nav-inner">
+
 
     <a
       href="index.html"
@@ -567,9 +370,11 @@
       ← ফিরে যান
     </a>
 
+
   </div>
 
 </header>
+
 
 
 <!-- =========================
@@ -578,36 +383,40 @@
 
 <main>
 
-<section class="novel-reading-page">
+  <section class="novel-reading-page">
 
-  <div
-    id="novel-container"
-    class="novel-reading"
-  >
+    <div
+      id="novel-container"
+      class="novel-reading"
+    >
 
-    <div class="novel-loading">
+      <div class="novel-loading">
 
-      <p>
-        উপন্যাস লোড হচ্ছে...
-      </p>
+        <p>
+          উপন্যাস লোড হচ্ছে...
+        </p>
+
+      </div>
 
     </div>
 
-  </div>
-
-</section>
+  </section>
 
 </main>
+
 
 
 <!-- =========================
      SUPABASE
 ========================= -->
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+</script>
 
 
 <script>
+
 
 /* =========================
    SUPABASE
@@ -628,29 +437,9 @@ const supabaseClient =
   );
 
 
-/* =========================
-   STATE
-========================= */
-
-let novel = null;
-
-let chapters = [];
-
-let currentChapterIndex = 0;
-
 
 /* =========================
-   ELEMENT
-========================= */
-
-const container =
-  document.getElementById(
-    "novel-container"
-  );
-
-
-/* =========================
-   SECURITY
+   ESCAPE HTML
 ========================= */
 
 function escapeHtml(value) {
@@ -685,19 +474,16 @@ function escapeHtml(value) {
 }
 
 
+
 /* =========================
-   CONTENT FORMAT
+   FORMAT CONTENT
 ========================= */
 
 function formatContent(content) {
 
   if (!content) {
 
-    return `
-      <p>
-        এই Chapter-এর লেখা এখনো প্রকাশিত হয়নি।
-      </p>
-    `;
+    return "";
 
   }
 
@@ -724,11 +510,22 @@ function formatContent(content) {
 }
 
 
+
 /* =========================
-   GET URL PARAMETERS
+   LOAD NOVEL
 ========================= */
 
-function getParameters() {
+async function loadNovel() {
+
+  const container =
+    document.getElementById(
+      "novel-container"
+    );
+
+
+  /* =========================
+     GET NOVEL ID
+  ========================= */
 
   const params =
     new URLSearchParams(
@@ -740,79 +537,52 @@ function getParameters() {
     params.get("id");
 
 
-  const chapter =
-    params.get("chapter");
-
-
   const novelId =
     Number(id);
 
 
-  const chapterNumber =
-    chapter
-      ? Number(chapter)
-      : null;
-
-
-  return {
-
-    id,
-
-    novelId,
-
-    chapterNumber
-
-  };
-
-}
-
-
-/* =========================
-   LOAD NOVEL
-========================= */
-
-async function loadNovel() {
-
-  const {
-    id,
-    novelId,
-    chapterNumber
-  } =
-    getParameters();
-
-
-  /* INVALID NOVEL ID */
-
   if (
     !id ||
-    !Number.isInteger(novelId) ||
-    novelId < 1
+    !Number.isInteger(novelId)
   ) {
 
-    showError(
-      "উপন্যাস পাওয়া যায়নি",
-      "সঠিক Novel ID পাওয়া যায়নি।"
-    );
+    container.innerHTML = `
+
+      <div class="novel-error">
+
+        <h2>
+          উপন্যাস পাওয়া যায়নি
+        </h2>
+
+        <p>
+          সঠিক Novel ID পাওয়া যায়নি।
+        </p>
+
+      </div>
+
+    `;
 
     return;
 
   }
 
 
+
   /* =========================
-     LOAD NOVEL INFO
+     LOAD NOVEL
   ========================= */
 
   const {
-    data: novelData,
+    data: novel,
     error: novelError
   } =
+
     await supabaseClient
 
       .from("novels")
 
       .select(
-        "id,title,excerpt,cover_url,published,created_at"
+        "id,title,excerpt,cover_url,content,published"
       )
 
       .eq(
@@ -828,6 +598,11 @@ async function loadNovel() {
       .single();
 
 
+
+  /* =========================
+     NOVEL ERROR
+  ========================= */
+
   if (novelError) {
 
     console.error(
@@ -836,30 +611,48 @@ async function loadNovel() {
     );
 
 
-    showError(
-      "উপন্যাস লোড করা যায়নি",
-      novelError.message
-    );
+    container.innerHTML = `
+
+      <div class="novel-error">
+
+        <h2>
+          উপন্যাস লোড করা যায়নি
+        </h2>
+
+        <p>
+          ${escapeHtml(
+            novelError.message
+          )}
+        </p>
+
+      </div>
+
+    `;
 
     return;
 
   }
 
 
-  if (!novelData) {
 
-    showError(
-      "উপন্যাস পাওয়া যায়নি",
-      "এই উপন্যাসটি বর্তমানে প্রকাশিত নয়।"
-    );
+  if (!novel) {
+
+    container.innerHTML = `
+
+      <div class="novel-error">
+
+        <h2>
+          উপন্যাস পাওয়া যায়নি
+        </h2>
+
+      </div>
+
+    `;
 
     return;
 
   }
 
-
-  novel =
-    novelData;
 
 
   /* =========================
@@ -867,9 +660,10 @@ async function loadNovel() {
   ========================= */
 
   const {
-    data: chapterData,
+    data: chapters,
     error: chapterError
   } =
+
     await supabaseClient
 
       .from("chapters")
@@ -896,6 +690,11 @@ async function loadNovel() {
       );
 
 
+
+  /* =========================
+     CHAPTER ERROR
+  ========================= */
+
   if (chapterError) {
 
     console.error(
@@ -904,366 +703,185 @@ async function loadNovel() {
     );
 
 
-    showError(
-      "Chapter লোড করা যায়নি",
-      chapterError.message
-    );
+    container.innerHTML = `
+
+      <div class="novel-error">
+
+        <h2>
+          Chapter লোড করা যায়নি
+        </h2>
+
+        <p>
+          ${escapeHtml(
+            chapterError.message
+          )}
+        </p>
+
+      </div>
+
+    `;
 
     return;
 
   }
 
 
-  chapters =
-    Array.isArray(chapterData)
-      ? chapterData
-      : [];
-
 
   /* =========================
-     NO CHAPTER
+     CHAPTER CONTENT
   ========================= */
 
-  if (!chapters.length) {
-
-    renderNovelWithoutChapters();
-
-    return;
-
-  }
+  let chapterContent = "";
 
 
-  /* =========================
-     SELECT CHAPTER
-  ========================= */
 
   if (
-    Number.isInteger(chapterNumber)
+    chapters &&
+    chapters.length > 0
   ) {
 
-    const requestedIndex =
-      chapters.findIndex(
-        chapter =>
-          Number(
-            chapter.chapter_number
-          ) === chapterNumber
-      );
+    chapterContent =
+
+      chapters.map(
+        (chapter, index) => {
+
+          return `
+
+            <article
+              class="chapter"
+              id="chapter-${chapter.id}"
+            >
+
+              <header
+                class="chapter-header"
+              >
+
+                <span
+                  class="chapter-number"
+                >
+                  Chapter
+                  ${escapeHtml(
+                    chapter.chapter_number
+                  )}
+                </span>
 
 
-    if (
-      requestedIndex !== -1
-    ) {
+                <h2
+                  class="chapter-title"
+                >
+                  ${escapeHtml(
+                    chapter.title
+                  )}
+                </h2>
 
-      currentChapterIndex =
-        requestedIndex;
+              </header>
+
+
+              <div
+                class="chapter-body"
+              >
+
+                ${formatContent(
+                  chapter.content
+                )}
+
+              </div>
+
+            </article>
+
+          `;
+
+        }
+      ).join("");
+
+  }
+
+
+  else {
+
+    /* =========================
+       OLD NOVEL CONTENT
+    ========================= */
+
+    if (novel.content) {
+
+      chapterContent = `
+
+        <article class="chapter">
+
+          <header
+            class="chapter-header"
+          >
+
+            <span
+              class="chapter-number"
+            >
+              Novel
+            </span>
+
+
+            <h2
+              class="chapter-title"
+            >
+              ${escapeHtml(
+                novel.title
+              )}
+            </h2>
+
+          </header>
+
+
+          <div
+            class="chapter-body"
+          >
+
+            ${formatContent(
+              novel.content
+            )}
+
+          </div>
+
+        </article>
+
+      `;
+
+    }
+
+    else {
+
+      chapterContent = `
+
+        <div
+          class="no-chapters"
+        >
+
+          <h2>
+            এই উপন্যাসে এখনো কোনো
+            প্রকাশিত Chapter নেই।
+          </h2>
+
+          <p>
+            Chapter প্রকাশিত হলে
+            এখানে পড়া যাবে।
+          </p>
+
+        </div>
+
+      `;
 
     }
 
   }
 
 
-  renderNovel();
 
-}
-
-
-/* =========================
-   RENDER NOVEL
-========================= */
-
-function renderNovel() {
-
-  const currentChapter =
-    chapters[
-      currentChapterIndex
-    ];
-
-
-  if (!currentChapter) {
-
-    return;
-
-  }
-
-
-  const cover =
-    novel.cover_url
-      ? `
-
-        <div class="novel-cover">
-
-          <img
-            src="${escapeHtml(
-              novel.cover_url
-            )}"
-            alt="${escapeHtml(
-              novel.title
-            )}"
-            loading="eager"
-          >
-
-        </div>
-
-      `
-      : "";
-
-
-  const chapterList =
-    chapters.map(
-      (chapter, index) => {
-
-        const active =
-          index ===
-          currentChapterIndex;
-
-
-        return `
-
-          <button
-            type="button"
-            class="chapter-item ${
-              active
-                ? "active"
-                : ""
-            }"
-            onclick="openChapter(${index})"
-          >
-
-            <span
-              class="chapter-number"
-            >
-              ${chapter.chapter_number}
-            </span>
-
-
-            <span
-              class="chapter-title"
-            >
-              ${escapeHtml(
-                chapter.title ||
-                "অধ্যায়"
-              )}
-            </span>
-
-          </button>
-
-        `;
-
-      }
-    ).join("");
-
+  /* =========================
+     DISPLAY
+  ========================= */
 
   container.innerHTML = `
 
     <article>
-
-      ${cover}
-
-
-      <!-- NOVEL HEADER -->
-
-      <header class="novel-header">
-
-        <p class="eyebrow">
-          NOVEL
-        </p>
-
-
-        <h1>
-          ${escapeHtml(
-            novel.title
-          )}
-        </h1>
-
-
-        ${
-          novel.excerpt
-            ? `
-
-              <p class="novel-excerpt">
-                ${escapeHtml(
-                  novel.excerpt
-                )}
-              </p>
-
-            `
-            : ""
-        }
-
-
-        <div class="novel-divider"></div>
-
-      </header>
-
-
-      <!-- CHAPTER LIST -->
-
-      <section
-        class="chapter-section"
-      >
-
-        <h2
-          class="chapter-heading"
-        >
-          অধ্যায়সমূহ
-        </h2>
-
-
-        <div
-          class="chapter-list"
-        >
-
-          ${chapterList}
-
-        </div>
-
-      </section>
-
-
-      <!-- CURRENT CHAPTER -->
-
-      <section
-        class="current-chapter"
-        id="current-chapter"
-      >
-
-        <header
-          class="current-chapter-header"
-        >
-
-          <span
-            class="current-chapter-label"
-          >
-            CHAPTER
-            ${currentChapter.chapter_number}
-          </span>
-
-
-          <h2
-            class="current-chapter-title"
-          >
-            ${escapeHtml(
-              currentChapter.title ||
-              "অধ্যায়"
-            )}
-          </h2>
-
-        </header>
-
-
-        <div
-          class="novel-body"
-        >
-
-          ${formatContent(
-            currentChapter.content
-          )}
-
-        </div>
-
-
-        <!-- CHAPTER NAVIGATION -->
-
-        <div
-          class="chapter-navigation"
-        >
-
-          <button
-            type="button"
-            class="chapter-nav-button"
-            onclick="previousChapter()"
-            ${
-              currentChapterIndex === 0
-                ? "disabled"
-                : ""
-            }
-          >
-            ← আগের অধ্যায়
-          </button>
-
-
-          <button
-            type="button"
-            class="chapter-nav-button"
-            onclick="nextChapter()"
-            ${
-              currentChapterIndex ===
-              chapters.length - 1
-                ? "disabled"
-                : ""
-            }
-          >
-            পরের অধ্যায় →
-          </button>
-
-        </div>
-
-      </section>
-
-
-      <!-- FOOTER -->
-
-      <footer
-        class="novel-footer"
-      >
-
-        <a
-          href="index.html#novels"
-          class="hero-button"
-        >
-          ← সব উপন্যাস
-        </a>
-
-      </footer>
-
-    </article>
-
-  `;
-
-
-  updateUrl();
-
-
-  document.title =
-    currentChapter.title
-      ? `${currentChapter.title} — ${novel.title} — Shadat Fatih`
-      : `${novel.title} — Shadat Fatih`;
-
-}
-
-
-/* =========================
-   NOVEL WITHOUT CHAPTER
-========================= */
-
-function renderNovelWithoutChapters() {
-
-  const cover =
-    novel.cover_url
-      ? `
-
-        <div class="novel-cover">
-
-          <img
-            src="${escapeHtml(
-              novel.cover_url
-            )}"
-            alt="${escapeHtml(
-              novel.title
-            )}"
-          >
-
-        </div>
-
-      `
-      : "";
-
-
-  container.innerHTML = `
-
-    <article>
-
-      ${cover}
 
 
       <header
@@ -1286,10 +904,14 @@ function renderNovelWithoutChapters() {
           novel.excerpt
             ? `
 
-              <p class="novel-excerpt">
+              <p
+                class="novel-excerpt"
+              >
+
                 ${escapeHtml(
                   novel.excerpt
                 )}
+
               </p>
 
             `
@@ -1297,19 +919,23 @@ function renderNovelWithoutChapters() {
         }
 
 
-        <div class="novel-divider"></div>
+        <div
+          class="novel-divider"
+        ></div>
+
 
       </header>
 
 
+
       <div
-        class="chapter-empty"
+        class="novel-chapters"
       >
 
-        এই উপন্যাসে এখনো কোনো
-        প্রকাশিত Chapter নেই।
+        ${chapterContent}
 
       </div>
+
 
 
       <footer
@@ -1325,202 +951,13 @@ function renderNovelWithoutChapters() {
 
       </footer>
 
+
     </article>
 
   `;
 
 }
 
-
-/* =========================
-   OPEN CHAPTER
-========================= */
-
-window.openChapter =
-function(index) {
-
-  if (
-    index < 0 ||
-    index >= chapters.length
-  ) {
-
-    return;
-
-  }
-
-
-  currentChapterIndex =
-    index;
-
-
-  renderNovel();
-
-
-  setTimeout(
-    () => {
-
-      const chapterElement =
-        document.getElementById(
-          "current-chapter"
-        );
-
-
-      if (
-        chapterElement
-      ) {
-
-        chapterElement.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-
-      }
-
-    },
-    50
-  );
-
-};
-
-
-/* =========================
-   PREVIOUS
-========================= */
-
-window.previousChapter =
-function() {
-
-  if (
-    currentChapterIndex <= 0
-  ) {
-
-    return;
-
-  }
-
-
-  openChapter(
-    currentChapterIndex - 1
-  );
-
-};
-
-
-/* =========================
-   NEXT
-========================= */
-
-window.nextChapter =
-function() {
-
-  if (
-    currentChapterIndex >=
-    chapters.length - 1
-  ) {
-
-    return;
-
-  }
-
-
-  openChapter(
-    currentChapterIndex + 1
-  );
-
-};
-
-
-/* =========================
-   UPDATE URL
-========================= */
-
-function updateUrl() {
-
-  if (!novel) {
-
-    return;
-
-  }
-
-
-  const chapter =
-    chapters[
-      currentChapterIndex
-    ];
-
-
-  if (!chapter) {
-
-    return;
-
-  }
-
-
-  const url =
-    new URL(
-      window.location.href
-    );
-
-
-  url.searchParams.set(
-    "id",
-    novel.id
-  );
-
-
-  url.searchParams.set(
-    "chapter",
-    chapter.chapter_number
-  );
-
-
-  window.history.replaceState(
-    {},
-    "",
-    url
-  );
-
-}
-
-
-/* =========================
-   ERROR
-========================= */
-
-function showError(
-  title,
-  message
-) {
-
-  container.innerHTML = `
-
-    <div class="novel-error">
-
-      <h2>
-        ${escapeHtml(title)}
-      </h2>
-
-
-      <p>
-        ${escapeHtml(message)}
-      </p>
-
-
-      <br>
-
-
-      <a
-        href="index.html#novels"
-        class="hero-button"
-      >
-        ← সব উপন্যাস
-      </a>
-
-    </div>
-
-  `;
-
-}
 
 
 /* =========================
