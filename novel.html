@@ -110,7 +110,7 @@
 <script>
 
 const SUPABASE_URL =
-  "https://ooxbtwxqumaixvrwsllg.supabase.co/rest/v1/";
+  "https://ooxbtwxqumaixvrwsllg.supabase.co";
 
 
 const SUPABASE_PUBLISHABLE_KEY =
@@ -122,7 +122,8 @@ const supabaseClient =
     SUPABASE_URL,
     SUPABASE_PUBLISHABLE_KEY
   );
-
+console.log("Supabase URL:", SUPABASE_URL);
+console.log("Novel URL:", window.location.href);
 
 
 function escapeHtml(value) {
@@ -175,20 +176,12 @@ async function loadNovel() {
 
 
   const { data, error } =
-    await supabaseClient
-
-      .from("novels")
-
-      .select(
-        "id, title, content, excerpt, created_at, published"
-      )
-
-      .eq("id", novelId)
-
-      .eq("published", true)
-
-      .single();
-
+  await supabaseClient
+    .from("novels")
+    .select("*")
+    .eq("id", novelId)
+    .eq("published", true)
+    .single();
 
   if (error) {
 
