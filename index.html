@@ -531,16 +531,14 @@ async function loadStories() {
 
   if (!container) return;
 
-
   const { data, error } =
     await supabaseClient
       .from("stories")
-      .select("id, title, content, excerpt, created_at, published")
+      .select("id, title, excerpt, created_at, published")
       .eq("published", true)
       .order("created_at", {
         ascending: false
       });
-
 
   if (error) {
 
@@ -567,7 +565,6 @@ async function loadStories() {
     return;
   }
 
-
   if (!data || data.length === 0) {
 
     container.innerHTML = `
@@ -578,11 +575,11 @@ async function loadStories() {
         </span>
 
         <h3>
-          শীঘ্রই আসছে
+          কোনো প্রকাশিত গল্প নেই
         </h3>
 
         <p>
-          নতুন গল্প খুব শীঘ্রই প্রকাশিত হবে।
+          Admin Dashboard থেকে গল্পটি Publish করা আছে কিনা দেখুন।
         </p>
 
       </div>
@@ -591,38 +588,38 @@ async function loadStories() {
     return;
   }
 
+  container.innerHTML =
+    data.map((story, index) => `
 
-  container.innerHTML = data.map((story, index) => `
+      <article class="story-card">
 
-    <article class="story-card">
+        <span>
+          STORY ${String(index + 1).padStart(2, "0")}
+        </span>
 
-      <span>
-        STORY ${String(index + 1).padStart(2, "0")}
-      </span>
+        <h3>
+          ${escapeHtml(story.title)}
+        </h3>
 
-      <h3>
-        ${escapeHtml(story.title)}
-      </h3>
+        ${
+          story.excerpt
+            ? `
+              <p>
+                ${escapeHtml(story.excerpt)}
+              </p>
+            `
+            : ""
+        }
 
-      ${
-        story.excerpt
-          ? `
-            <p>
-              ${escapeHtml(story.excerpt)}
-            </p>
-          `
-          : ""
-      }
+        <a
+          href="story.html?id=${encodeURIComponent(story.id)}"
+        >
+          গল্প পড়ুন ↗
+        </a>
 
-      <a
-        href="story.html?id=${encodeURIComponent(story.id)}"
-      >
-        গল্প পড়ুন ↗
-      </a>
+      </article>
 
-    </article>
-
-  `).join("");
+    `).join("");
 
 }
 
