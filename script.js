@@ -386,57 +386,22 @@ function showToast(message) {
 
 
 /* =====================================================
-   ACTION BUTTONS
+   TOTAL VIEWS
 ===================================================== */
 
-function actionButtons(
-  type,
-  id,
-  title
-) {
+function totalViews(item) {
 
-  const url =
-    new URL(
-      `${type}.html?id=${encodeURIComponent(id)}`,
-      window.location.href
-    ).href;
-
+  const views =
+    Number(item.views || 0);
 
   return `
-
-    <div class="writing-actions">
-
-      <button
-        type="button"
-        class="action-btn"
-        onclick="openComment('${escapeHtml(type)}', '${escapeHtml(id)}')"
-      >
-        Comment
-      </button>
-
-
-      <button
-        type="button"
-        class="action-btn"
-        onclick="copyLink('${escapeHtml(url)}')"
-      >
-        Copy Link
-      </button>
-
-
-      <button
-        type="button"
-        class="action-btn"
-        onclick="shareContent('${escapeHtml(title)}', '${escapeHtml(url)}')"
-      >
-        Share
-      </button>
-
+    <div class="total-views">
+      <span>VIEWS</span>
+      <strong>${views.toLocaleString("en-US")}</strong>
     </div>
-
   `;
-
 }
+
 
 
 /* =====================================================
@@ -469,8 +434,8 @@ async function loadPoetry() {
         .from("poems")
 
         .select(
-          "id, title, content, excerpt, created_at, published"
-        )
+  "id, title, content, excerpt, created_at, published, views"
+)
 
         .eq(
           "published",
@@ -530,7 +495,7 @@ async function loadPoetry() {
             return `
 
               <article class="writing-card">
-
+${totalViews(poem)}
                 <div class="card-number">
                   ${String(index + 1).padStart(2, "0")}
                 </div>
@@ -571,11 +536,6 @@ async function loadPoetry() {
                     কবিতা পড়ুন →
                   </a>
 
-
-                  ${actionButtons(
-                    "poem",
-                    poem.id,
-                    poem.title
                   )}
 
                 </div>
@@ -651,8 +611,8 @@ async function loadStories() {
         .from("stories")
 
         .select(
-          "id, title, excerpt, content, created_at, published"
-        )
+  "id, title, excerpt, content, created_at, published, views"
+)
 
         .eq(
           "published",
@@ -712,7 +672,7 @@ async function loadStories() {
             return `
 
               <article class="story-card">
-
+${totalViews(story)}
                 <div class="published-date">
                   ${formatDate(story.created_at)}
                 </div>
@@ -746,11 +706,6 @@ async function loadStories() {
                   গল্প পড়ুন ↗
                 </a>
 
-
-                ${actionButtons(
-                  "story",
-                  story.id,
-                  story.title
                 )}
 
               </article>
@@ -824,9 +779,8 @@ async function loadNovels() {
         .from("novels")
 
         .select(
-          "id, title, content, excerpt, created_at, published"
-        )
-
+  "id, title, content, excerpt, created_at, published, views"
+)
         .eq(
           "published",
           true
@@ -885,7 +839,7 @@ async function loadNovels() {
             return `
 
               <article class="novel-card">
-
+${totalViews(novel)}
                 <div class="novel-info">
 
 
@@ -921,13 +875,6 @@ async function loadNovels() {
                   >
                     উপন্যাস পড়ুন →
                   </a>
-
-
-                  ${actionButtons(
-                    "novel",
-                    novel.id,
-                    novel.title
-                  )}
 
                 </div>
 
