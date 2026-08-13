@@ -12,32 +12,6 @@
 
   <title>Shadat Fatih — উপন্যাস</title>
 
-  <meta
-    name="description"
-    content="Shadat Fatih-এর উপন্যাস"
-  >
-
-  <meta
-    name="author"
-    content="Shadat Fatih"
-  >
-
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  >
-
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-    crossorigin
-  >
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
-    rel="stylesheet"
-  >
-
   <link
     rel="stylesheet"
     href="style.css"
@@ -45,435 +19,217 @@
 
   <style>
 
-    /* =====================================================
-       NOVEL PAGE
-    ===================================================== */
+    /* =================================================
+       PREMIUM READER
+    ================================================= */
 
-    .novel-page {
-
-      min-height: 100vh;
-
-      padding:
-        80px 20px
-        100px;
-
-    }
-
-
-    .novel-reader {
-
-      max-width: 900px;
-
-      margin: 0 auto;
-
-      padding:
-        60px 55px;
-
-    }
-
-
-    .novel-reader .eyebrow {
-
-      margin-bottom: 18px;
-
-      letter-spacing: 3px;
-
-    }
-
-
-    .novel-reader h1 {
-
-      font-family:
-        "Noto Serif Bengali",
-        serif;
-
-      font-size:
-        clamp(36px, 6vw, 68px);
-
-      line-height: 1.25;
-
-      margin:
-        0 0 20px;
-
-    }
-
-
-    /* =====================================================
-       META
-    ===================================================== */
-
-    .novel-meta {
-
+    .reader-top {
       display: flex;
-
+      justify-content: flex-end;
       align-items: center;
+      margin-bottom: 22px;
+    }
 
-      flex-wrap: wrap;
+    .view-counter {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
 
-      gap: 15px;
+      font-family: "Playfair Display", serif;
+      font-size: 14px;
+      letter-spacing: 1.5px;
 
-      margin-bottom: 35px;
+      color: #8f7540;
 
-      font-size: 13px;
+      padding: 8px 14px;
 
-      opacity: .65;
+      border: 1px solid rgba(143,117,64,.35);
+      border-radius: 30px;
 
+      background: rgba(255,255,255,.45);
+    }
+
+    .view-icon {
+      font-size: 16px;
+      line-height: 1;
     }
 
 
-    .novel-excerpt {
+    /* =================================================
+       BOTTOM ACTIONS
+    ================================================= */
 
-      font-family:
-        "Noto Serif Bengali",
-        serif;
-
-      font-size: 19px;
-
-      line-height: 1.9;
-
-      opacity: .75;
-
-      margin-bottom: 40px;
-
-    }
-
-
-    /* =====================================================
-       NOVEL BODY
-    ===================================================== */
-
-    .novel-body {
-
-      font-family:
-        "Noto Serif Bengali",
-        serif;
-
-      font-size: 19px;
-
-      line-height: 2.15;
-
-      word-break: break-word;
-
-    }
-
-
-    .novel-body p {
-
-      margin:
-        0 0 28px;
-
-    }
-
-
-    /* =====================================================
-       PREMIUM ACTIONS
-    ===================================================== */
-
-    .novel-actions {
-
+    .reader-actions {
       display: flex;
-
       align-items: center;
-
       flex-wrap: wrap;
-
       gap: 10px;
 
-      margin-top: 50px;
+      margin-top: 35px;
+      padding-top: 20px;
 
-      padding-top: 25px;
-
-      border-top:
-        1px solid
-        rgba(127,127,127,.2);
-
+      border-top: 1px solid rgba(0,0,0,.10);
     }
 
-
-    .novel-action-btn {
-
-      display: inline-flex;
-
-      align-items: center;
-
-      gap: 7px;
-
-      border:
-        1px solid
-        rgba(127,127,127,.25);
-
+    .reader-action {
+      appearance: none;
       background: transparent;
 
-      padding:
-        11px 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
 
-      border-radius: 999px;
+      padding: 9px 13px;
+
+      color: #292929;
+
+      font-family: "Noto Serif Bengali", serif;
+      font-size: 14px;
 
       cursor: pointer;
 
-      font-family: inherit;
-
-      font-size: 13px;
+      border: 1px solid rgba(0,0,0,.13);
+      border-radius: 25px;
 
       transition:
         transform .2s ease,
+        border-color .2s ease,
+        color .2s ease,
         background .2s ease;
+    }
 
+    .reader-action:hover {
+      transform: translateY(-2px);
+      border-color: #9c8147;
+      color: #9c8147;
+      background: rgba(156,129,71,.05);
+    }
+
+    .action-icon {
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      color: #9c8147;
     }
 
 
-    .novel-action-btn:hover {
+    /* =================================================
+       AUTHOR
+    ================================================= */
 
-      transform:
-        translateY(-2px);
+    .reader-author {
+      margin-top: 28px;
 
+      font-family: "Playfair Display", serif;
+
+      font-size: 17px;
     }
 
 
-    .premium-icon {
-
-      font-size: 15px;
-
-    }
-
-
-    /* =====================================================
-       BACK
-    ===================================================== */
-
-    .novel-back {
-
-      display: inline-block;
-
-      margin-top: 30px;
-
-    }
-
-
-    /* =====================================================
+    /* =================================================
        COMMENTS
-    ===================================================== */
+    ================================================= */
 
-    .novel-comments {
+    .comments-area {
+      margin-top: 45px;
+      padding-top: 25px;
 
-      max-width: 900px;
-
-      margin:
-        45px auto 0;
-
-      padding:
-        35px 55px 60px;
-
-      border-top:
-        1px solid
-        rgba(127,127,127,.2);
-
+      border-top: 1px solid rgba(0,0,0,.10);
     }
 
+    .comments-heading {
+      font-family: "Playfair Display", serif;
 
-    .comments-title {
+      letter-spacing: 3px;
 
-      font-family:
-        "Noto Serif Bengali",
-        serif;
+      color: #9c8147;
 
-      font-size: 28px;
+      font-size: 13px;
 
       margin-bottom: 25px;
+    }
 
+    .comment-box {
+      padding: 22px 0;
+    }
+
+    .comment-box h2 {
+      margin-bottom: 12px;
+    }
+
+    .comment-box p {
+      line-height: 1.9;
+    }
+
+    .comment-notice {
+      margin-top: 10px;
+      opacity: .65;
+      font-size: 14px;
     }
 
 
-    .comment-form {
+    /* =================================================
+       TOAST
+    ================================================= */
 
-      display: grid;
+    #sf-toast {
+      position: fixed;
 
-      gap: 12px;
+      left: 50%;
+      bottom: 25px;
 
-    }
+      transform:
+        translateX(-50%)
+        translateY(20px);
 
+      padding: 11px 18px;
 
-    .comment-form input,
-    .comment-form textarea {
+      background: #171717;
+      color: #fff;
 
-      width: 100%;
-
-      box-sizing: border-box;
-
-      padding:
-        13px 15px;
-
-      border:
-        1px solid
-        rgba(127,127,127,.3);
-
-      border-radius: 8px;
-
-      background: transparent;
-
-      font-family:
-        "Noto Serif Bengali",
-        serif;
-
-      font-size: 15px;
-
-      outline: none;
-
-    }
-
-
-    .comment-form textarea {
-
-      min-height: 130px;
-
-      resize: vertical;
-
-    }
-
-
-    .comment-submit {
-
-      width: fit-content;
-
-      border: none;
-
-      border-radius: 999px;
-
-      padding:
-        12px 20px;
-
-      cursor: pointer;
-
-      font-family: inherit;
-
-      font-weight: 600;
-
-    }
-
-
-    .comment-status {
+      border-radius: 30px;
 
       font-size: 14px;
 
-      margin-top: 5px;
+      opacity: 0;
 
+      pointer-events: none;
+
+      transition: .25s ease;
+
+      z-index: 9999;
+    }
+
+    #sf-toast.show {
+      opacity: 1;
+
+      transform:
+        translateX(-50%)
+        translateY(0);
     }
 
 
-    .comments-list {
-
-      display: grid;
-
-      gap: 15px;
-
-      margin-top: 35px;
-
-    }
-
-
-    .comment-card {
-
-      padding: 18px;
-
-      border:
-        1px solid
-        rgba(127,127,127,.18);
-
-      border-radius: 10px;
-
-    }
-
-
-    .comment-author {
-
-      font-weight: 700;
-
-      margin-bottom: 6px;
-
-    }
-
-
-    .comment-text {
-
-      font-family:
-        "Noto Serif Bengali",
-        serif;
-
-      line-height: 1.8;
-
-    }
-
-
-    .comment-date {
-
-      font-size: 11px;
-
-      opacity: .55;
-
-      margin-top: 8px;
-
-    }
-
-
-    /* =====================================================
+    /* =================================================
        MOBILE
-    ===================================================== */
+    ================================================= */
 
-    @media (max-width: 700px) {
+    @media (max-width: 600px) {
 
-      .novel-page {
-
-        padding:
-          35px 12px
-          70px;
-
+      .reader-top {
+        margin-bottom: 18px;
       }
 
-
-      .novel-reader {
-
-        padding:
-          35px 20px;
-
+      .view-counter {
+        font-size: 13px;
+        padding: 7px 12px;
       }
 
-
-      .novel-reader h1 {
-
-        font-size: 34px;
-
+      .reader-actions {
+        gap: 7px;
       }
 
-
-      .novel-excerpt {
-
-        font-size: 17px;
-
-      }
-
-
-      .novel-body {
-
-        font-size: 17px;
-
-        line-height: 2;
-
-      }
-
-
-      .novel-comments {
-
-        padding:
-          30px 20px 45px;
-
-      }
-
-
-      .novel-action-btn {
-
-        padding:
-          10px 13px;
-
+      .reader-action {
+        padding: 8px 11px;
+        font-size: 13px;
       }
 
     }
@@ -486,15 +242,10 @@
 <body>
 
 
-<main class="novel-page">
-
-
-  <!-- =====================================================
-       NOVEL READER
-  ====================================================== -->
+<main class="poem-page">
 
   <article
-    class="novel-reader"
+    class="poem-reader"
     id="novel-content"
   >
 
@@ -504,83 +255,13 @@
 
   </article>
 
-
-  <!-- =====================================================
-       COMMENTS
-  ====================================================== -->
-
-  <section
-    class="novel-comments"
-    id="comments"
-  >
-
-    <h2 class="comments-title">
-      মন্তব্য
-    </h2>
-
-
-    <form
-      class="comment-form"
-      id="commentForm"
-    >
-
-      <input
-        type="text"
-        id="commentName"
-        placeholder="আপনার নাম"
-        maxlength="100"
-        required
-      >
-
-
-      <input
-        type="email"
-        id="commentEmail"
-        placeholder="আপনার ইমেইল"
-        maxlength="150"
-        required
-      >
-
-
-      <textarea
-        id="commentText"
-        placeholder="আপনার মন্তব্য লিখুন..."
-        maxlength="1000"
-        required
-      ></textarea>
-
-
-      <button
-        type="submit"
-        class="comment-submit"
-      >
-        মন্তব্য প্রকাশ করুন
-      </button>
-
-
-      <p
-        class="comment-status"
-        id="commentStatus"
-      ></p>
-
-    </form>
-
-
-    <div
-      class="comments-list"
-      id="commentsList"
-    ></div>
-
-  </section>
-
-
 </main>
 
 
 
-<!-- =====================================================
+<!-- =================================================
      SUPABASE
-====================================================== -->
+================================================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -590,9 +271,9 @@
 "use strict";
 
 
-/* =====================================================
+/* =================================================
    SUPABASE
-===================================================== */
+================================================= */
 
 const SUPABASE_URL =
   "https://ooxbtwxqumaixvrwsllg.supabase.co";
@@ -610,70 +291,57 @@ const supabaseClient =
 
 
 
-/* =====================================================
-   GET NOVEL ID
-===================================================== */
-
-const params =
-  new URLSearchParams(
-    window.location.search
-  );
-
-
-const novelId =
-  params.get("id");
-
-
-
-/* =====================================================
+/* =================================================
    ESCAPE HTML
-===================================================== */
+================================================= */
 
 function escapeHtml(value) {
 
   return String(value || "")
 
     .replaceAll("&", "&amp;")
-
     .replaceAll("<", "&lt;")
-
     .replaceAll(">", "&gt;")
-
     .replaceAll('"', "&quot;")
-
     .replaceAll("'", "&#039;");
 
 }
 
 
 
-/* =====================================================
+/* =================================================
+   TEXT FORMAT
+================================================= */
+
+function formatText(text) {
+
+  return escapeHtml(text)
+    .replace(/\r?\n/g, "<br>");
+
+}
+
+
+
+/* =================================================
    DATE
-===================================================== */
+================================================= */
 
-function formatDate(dateValue) {
+function formatDate(value) {
 
-  if (!dateValue) {
-
+  if (!value) {
     return "";
-
   }
 
-
   const date =
-    new Date(dateValue);
-
+    new Date(value);
 
   if (
     Number.isNaN(
       date.getTime()
     )
   ) {
-
     return "";
-
   }
-
 
   return date.toLocaleDateString(
     "bn-BD",
@@ -688,288 +356,103 @@ function formatDate(dateValue) {
 
 
 
-/* =====================================================
-   FORMAT NOVEL
-===================================================== */
+/* =================================================
+   TOAST
+================================================= */
 
-function formatNovel(text) {
+function showToast(message) {
 
-  if (!text) {
+  let toast =
+    document.getElementById(
+      "sf-toast"
+    );
 
-    return "";
+  if (!toast) {
+
+    toast =
+      document.createElement(
+        "div"
+      );
+
+    toast.id =
+      "sf-toast";
+
+    document.body.appendChild(
+      toast
+    );
 
   }
 
+  toast.textContent =
+    message;
 
-  return escapeHtml(text)
+  toast.classList.add(
+    "show"
+  );
 
-    .split(
-      /\r?\n\s*\r?\n/
-    )
+  clearTimeout(
+    window.sfToastTimer
+  );
 
-    .map(
-      paragraph => {
+  window.sfToastTimer =
+    setTimeout(
+      () => {
 
-        return `
+        toast.classList.remove(
+          "show"
+        );
 
-          <p>
-            ${paragraph.replace(
-              /\r?\n/g,
-              "<br>"
-            )}
-          </p>
-
-        `;
-
-      }
-    )
-
-    .join("");
+      },
+      2200
+    );
 
 }
 
 
 
-/* =====================================================
-   LOAD NOVEL
-===================================================== */
+/* =================================================
+   COPY LINK
+================================================= */
 
-async function loadNovel() {
-
-  const container =
-    document.getElementById(
-      "novel-content"
-    );
-
-
-  if (!novelId) {
-
-    container.innerHTML = `
-
-      <p class="eyebrow">
-        NOVEL
-      </p>
-
-
-      <h1>
-        উপন্যাস পাওয়া যায়নি
-      </h1>
-
-
-      <p class="novel-excerpt">
-        উপন্যাসটির কোনো ID পাওয়া যায়নি।
-      </p>
-
-
-      <a
-        href="index.html#novels"
-        class="text-link novel-back"
-      >
-        ← সব উপন্যাস
-      </a>
-
-    `;
-
-    return;
-
-  }
-
+async function copyCurrentLink() {
 
   try {
 
-    /*
-      এখানে views ব্যবহার করা হচ্ছে না।
-      কারণ novels table-এ views column নেই।
-    */
+    await navigator.clipboard.writeText(
+      window.location.href
+    );
 
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-
-        .from("novels")
-
-        .select(
-          "id, title, content, excerpt, created_at, published"
-        )
-
-        .eq(
-          "id",
-          novelId
-        )
-
-        .eq(
-          "published",
-          true
-        )
-
-        .single();
-
-
-    if (error) {
-
-      throw error;
-
-    }
-
-
-    if (!data) {
-
-      throw new Error(
-        "Novel not found"
-      );
-
-    }
-
-
-    document.title =
-      `${data.title} — Shadat Fatih`;
-
-
-    container.innerHTML = `
-
-      <p class="eyebrow">
-        NOVEL
-      </p>
-
-
-      <h1>
-        ${escapeHtml(data.title)}
-      </h1>
-
-
-      <div class="novel-meta">
-
-        <span>
-          ${formatDate(data.created_at)}
-        </span>
-
-      </div>
-
-
-      ${
-        data.excerpt
-          ? `
-
-            <p class="novel-excerpt">
-              ${escapeHtml(data.excerpt)}
-            </p>
-
-          `
-          : ""
-      }
-
-
-      <div class="novel-body">
-
-        ${formatNovel(data.content)}
-
-      </div>
-
-
-      <!-- PREMIUM ACTIONS -->
-
-      <div class="novel-actions">
-
-
-        <button
-          type="button"
-          class="novel-action-btn"
-          onclick="shareNovel()"
-        >
-
-          <span class="premium-icon">
-            ✦
-          </span>
-
-          শেয়ার
-
-        </button>
-
-
-        <button
-          type="button"
-          class="novel-action-btn"
-          onclick="copyNovelLink()"
-        >
-
-          <span class="premium-icon">
-            ⧉
-          </span>
-
-          কপি লিংক
-
-        </button>
-
-
-        <button
-          type="button"
-          class="novel-action-btn"
-          onclick="scrollToComments()"
-        >
-
-          <span class="premium-icon">
-            ◌
-          </span>
-
-          মন্তব্য
-
-        </button>
-
-
-      </div>
-
-
-      <a
-        href="index.html#novels"
-        class="text-link novel-back"
-      >
-        ← সব উপন্যাস
-      </a>
-
-    `;
-
-
-    loadComments();
+    showToast(
+      "লিংক কপি হয়েছে"
+    );
 
   }
 
-
   catch (error) {
 
-    console.error(
-      "Novel Error:",
-      error
+    const textarea =
+      document.createElement(
+        "textarea"
+      );
+
+    textarea.value =
+      window.location.href;
+
+    document.body.appendChild(
+      textarea
     );
 
+    textarea.select();
 
-    container.innerHTML = `
+    document.execCommand(
+      "copy"
+    );
 
-      <p class="eyebrow">
-        NOVEL
-      </p>
+    textarea.remove();
 
-
-      <h1>
-        উপন্যাস পাওয়া যায়নি
-      </h1>
-
-
-      <p class="novel-excerpt">
-        এই উপন্যাসটি বর্তমানে প্রকাশিত নয়
-        অথবা পাওয়া যাচ্ছে না।
-      </p>
-
-
-      <a
-        href="index.html#novels"
-        class="text-link novel-back"
-      >
-        ← সব উপন্যাস
-      </a>
-
-    `;
+    showToast(
+      "লিংক কপি হয়েছে"
+    );
 
   }
 
@@ -977,19 +460,16 @@ async function loadNovel() {
 
 
 
-/* =====================================================
+/* =================================================
    SHARE
-===================================================== */
+================================================= */
 
-async function shareNovel() {
+async function shareCurrentPage(
+  title
+) {
 
   const url =
     window.location.href;
-
-
-  const title =
-    document.title;
-
 
   if (
     navigator.share
@@ -1000,6 +480,9 @@ async function shareNovel() {
       await navigator.share({
 
         title:
+          title,
+
+        text:
           title,
 
         url:
@@ -1019,187 +502,146 @@ async function shareNovel() {
 
   }
 
-
-  copyNovelLink();
-
-}
-
-
-
-/* =====================================================
-   COPY LINK
-===================================================== */
-
-async function copyNovelLink() {
-
-  const url =
-    window.location.href;
-
-
-  try {
-
-    await navigator.clipboard.writeText(
-      url
-    );
-
-
-    showStatus(
-      "লিংক কপি হয়েছে ✓"
-    );
-
-  }
-
-
-  catch (error) {
-
-    const textarea =
-      document.createElement(
-        "textarea"
-      );
-
-
-    textarea.value =
-      url;
-
-
-    document.body.appendChild(
-      textarea
-    );
-
-
-    textarea.select();
-
-
-    document.execCommand(
-      "copy"
-    );
-
-
-    textarea.remove();
-
-
-    showStatus(
-      "লিংক কপি হয়েছে ✓"
-    );
-
-  }
+  await copyCurrentLink();
 
 }
 
 
 
-/* =====================================================
-   COMMENT SCROLL
-===================================================== */
+/* =================================================
+   COMMENT
+================================================= */
 
-function scrollToComments() {
+function openComments() {
 
-  document
-    .getElementById(
+  const comments =
+    document.getElementById(
       "comments"
-    )
-    ?.scrollIntoView({
-      behavior: "smooth"
+    );
+
+  if (comments) {
+
+    comments.scrollIntoView({
+
+      behavior:
+        "smooth",
+
+      block:
+        "start"
+
     });
 
-
-  setTimeout(() => {
-
-    document
-      .getElementById(
-        "commentText"
-      )
-      ?.focus();
-
-  }, 600);
+  }
 
 }
 
 
 
-/* =====================================================
-   LOAD COMMENTS
-===================================================== */
+/* =================================================
+   LOCAL VIEW COUNTER
+=================================================
 
-async function loadComments() {
+   novels.views ব্যবহার করা হচ্ছে না।
+================================================= */
 
-  const list =
+function getViewKey(id) {
+
+  return (
+    "shadat_novel_views_" +
+    id
+  );
+
+}
+
+
+function increaseView(id) {
+
+  const key =
+    getViewKey(id);
+
+  let value =
+    Number(
+      localStorage.getItem(key) || 0
+    );
+
+  const sessionKey =
+    key + "_counted";
+
+
+  if (
+    !sessionStorage.getItem(
+      sessionKey
+    )
+  ) {
+
+    value++;
+
+    localStorage.setItem(
+      key,
+      value
+    );
+
+    sessionStorage.setItem(
+      sessionKey,
+      "1"
+    );
+
+  }
+
+  return value;
+
+}
+
+
+
+/* =================================================
+   LOAD NOVEL
+================================================= */
+
+async function loadNovel() {
+
+  const container =
     document.getElementById(
-      "commentsList"
+      "novel-content"
     );
 
 
-  if (
-    !list ||
-    !novelId
-  ) {
-
-    return;
-
-  }
-
-
-  /*
-    IMPORTANT:
-
-    comments.novel_id-এর type
-    novels.id-এর type-এর
-    সঙ্গে একই হতে হবে।
-  */
-
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-
-      .from("comments")
-
-      .select(
-        "id, name, comment, created_at"
-      )
-
-      .eq(
-        "novel_id",
-        novelId
-      )
-
-      .eq(
-        "approved",
-        true
-      )
-
-      .order(
-        "created_at",
-        {
-          ascending: false
-        }
-      );
-
-
-  if (error) {
-
-    console.error(
-      "Comments Error:",
-      error
+  const params =
+    new URLSearchParams(
+      window.location.search
     );
 
-    return;
 
-  }
+  const id =
+    params.get("id");
 
 
-  if (
-    !data ||
-    data.length === 0
-  ) {
+  /* =================================================
+     NO ID
+  ================================================= */
 
-    list.innerHTML = `
+  if (!id) {
 
-      <p>
-        এখনো কোনো মন্তব্য নেই।
+    container.innerHTML = `
+
+      <p class="eyebrow">
+        NOVELS
       </p>
+
+      <h1>
+        উপন্যাস পাওয়া যায়নি
+      </h1>
+
+      <p class="poem-excerpt">
+        উপন্যাসটির কোনো ID পাওয়া যায়নি।
+      </p>
+
+      <a
+        href="index.html#novels"
+        class="text-link"
+      >
+        ← সব উপন্যাস
+      </a>
 
     `;
 
@@ -1208,216 +650,351 @@ async function loadComments() {
   }
 
 
-  list.innerHTML =
-    data
-      .map(
-        comment => {
+  try {
 
-          return `
+    /* =================================================
+       FETCH NOVEL
+    ================================================= */
 
-            <article
-              class="comment-card"
-            >
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
 
-              <div
-                class="comment-author"
-              >
-                ${escapeHtml(
-                  comment.name
-                )}
-              </div>
+        .from("novels")
 
-
-              <div
-                class="comment-text"
-              >
-                ${escapeHtml(
-                  comment.comment
-                )}
-              </div>
-
-
-              <div
-                class="comment-date"
-              >
-                ${formatDate(
-                  comment.created_at
-                )}
-              </div>
-
-            </article>
-
-          `;
-
-        }
-      )
-      .join("");
-
-}
-
-
-
-/* =====================================================
-   COMMENT SUBMIT
-===================================================== */
-
-document
-  .getElementById(
-    "commentForm"
-  )
-  ?.addEventListener(
-    "submit",
-    async event => {
-
-      event.preventDefault();
-
-
-      const name =
-        document
-          .getElementById(
-            "commentName"
-          )
-          .value
-          .trim();
-
-
-      const email =
-        document
-          .getElementById(
-            "commentEmail"
-          )
-          .value
-          .trim();
-
-
-      const comment =
-        document
-          .getElementById(
-            "commentText"
-          )
-          .value
-          .trim();
-
-
-      const status =
-        document.getElementById(
-          "commentStatus"
-        );
-
-
-      if (
-        !name ||
-        !email ||
-        !comment
-      ) {
-
-        status.textContent =
-          "সব তথ্য পূরণ করুন।";
-
-        return;
-
-      }
-
-
-      status.textContent =
-        "মন্তব্য পাঠানো হচ্ছে...";
-
-
-      const {
-        error
-      } =
-        await supabaseClient
-
-          .from("comments")
-
-          .insert({
-
-            novel_id:
-              novelId,
-
-            name:
-              name,
-
-            email:
-              email,
-
-            comment:
-              comment,
-
-            approved:
-              false
-
-          });
-
-
-      if (error) {
-
-        console.error(
-          "Comment Insert Error:",
-          error
-        );
-
-
-        status.textContent =
-          "মন্তব্য পাঠানো যায়নি।";
-
-        return;
-
-      }
-
-
-      document
-        .getElementById(
-          "commentForm"
+        .select(
+          "id, title, content, excerpt, created_at, published"
         )
-        .reset();
+
+        .eq(
+          "id",
+          id
+        )
+
+        .eq(
+          "published",
+          true
+        )
+
+        .single();
 
 
-      status.textContent =
-        "মন্তব্য পাঠানো হয়েছে। অনুমোদনের পর এটি দেখা যাবে।";
+    if (
+      error ||
+      !data
+    ) {
+
+      throw (
+        error ||
+        new Error(
+          "Novel not found"
+        )
+      );
 
     }
-  );
+
+
+    /* =================================================
+       VIEW
+    ================================================= */
+
+    const views =
+      increaseView(
+        data.id
+      );
+
+
+    /* =================================================
+       RENDER NOVEL
+    ================================================= */
+
+    container.innerHTML = `
+
+      <!-- =========================================
+           TOP RIGHT VIEW
+      ========================================== -->
+
+      <div class="reader-top">
+
+        <div
+          class="view-counter"
+          title="Views"
+        >
+
+          <span class="view-icon">
+            ◉
+          </span>
+
+          <span>
+            ${views.toLocaleString("en-US")}
+            Views
+          </span>
+
+        </div>
+
+      </div>
 
 
 
-/* =====================================================
-   STATUS
-===================================================== */
+      <!-- =========================================
+           CATEGORY
+      ========================================== -->
 
-function showStatus(message) {
-
-  const status =
-    document.getElementById(
-      "commentStatus"
-    );
+      <p class="eyebrow">
+        NOVEL
+      </p>
 
 
-  if (!status) {
 
-    return;
+      <!-- =========================================
+           DATE
+      ========================================== -->
+
+      <div class="published-date">
+
+        ${formatDate(
+          data.created_at
+        )}
+
+      </div>
+
+
+
+      <!-- =========================================
+           TITLE
+      ========================================== -->
+
+      <h1>
+
+        ${escapeHtml(
+          data.title
+        )}
+
+      </h1>
+
+
+
+      <!-- =========================================
+           EXCERPT
+      ========================================== -->
+
+      ${
+        data.excerpt
+
+          ? `
+
+            <p class="poem-excerpt">
+
+              ${escapeHtml(
+                data.excerpt
+              )}
+
+            </p>
+
+          `
+
+          : ""
+      }
+
+
+
+      <!-- =========================================
+           NOVEL CONTENT
+      ========================================== -->
+
+      <div class="poem-body">
+
+        ${formatText(
+          data.content
+        )}
+
+      </div>
+
+
+
+      <!-- =========================================
+           AUTHOR
+      ========================================== -->
+
+      <div class="reader-author">
+
+        Written by
+
+        <strong>
+          Shadat Fatih
+        </strong>
+
+      </div>
+
+
+
+      <!-- =========================================
+           BOTTOM ACTIONS ONLY
+      ========================================== -->
+
+      <div class="reader-actions">
+
+
+        <button
+          type="button"
+          class="reader-action"
+          onclick="openComments()"
+        >
+
+          <span class="action-icon">
+            ✦
+          </span>
+
+          <span>
+            Comment
+          </span>
+
+        </button>
+
+
+
+        <button
+          type="button"
+          class="reader-action"
+          onclick='shareCurrentPage(${JSON.stringify(data.title)})'
+        >
+
+          <span class="action-icon">
+            ↗
+          </span>
+
+          <span>
+            Share
+          </span>
+
+        </button>
+
+
+
+        <button
+          type="button"
+          class="reader-action"
+          onclick="copyCurrentLink()"
+        >
+
+          <span class="action-icon">
+            ⛓
+          </span>
+
+          <span>
+            Copy Link
+          </span>
+
+        </button>
+
+
+      </div>
+
+
+
+      <!-- =========================================
+           COMMENTS
+      ========================================== -->
+
+      <section
+        class="comments-area"
+        id="comments"
+      >
+
+        <div class="comments-heading">
+          COMMENTS
+        </div>
+
+
+        <div class="comment-box">
+
+          <h2>
+            আপনার মতামত
+          </h2>
+
+
+          <p>
+            এই উপন্যাস সম্পর্কে আপনার অনুভূতি লিখুন।
+          </p>
+
+
+          <p class="comment-notice">
+            কমেন্ট সিস্টেম এখানে যুক্ত করা হবে।
+          </p>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- =========================================
+           BACK
+      ========================================== -->
+
+      <a
+        href="index.html#novels"
+        class="text-link"
+      >
+
+        ← সব উপন্যাস
+
+      </a>
+
+    `;
 
   }
 
+  catch (error) {
 
-  status.textContent =
-    message;
+    console.error(
+      "Novel Error:",
+      error
+    );
 
 
-  setTimeout(() => {
+    container.innerHTML = `
 
-    status.textContent =
-      "";
+      <p class="eyebrow">
+        NOVELS
+      </p>
 
-  }, 2500);
+
+      <h1>
+        উপন্যাস পাওয়া যায়নি
+      </h1>
+
+
+      <p class="poem-excerpt">
+
+        এই উপন্যাসটি বর্তমানে প্রকাশিত নয়
+        অথবা পাওয়া যাচ্ছে না।
+
+      </p>
+
+
+      <a
+        href="index.html#novels"
+        class="text-link"
+      >
+
+        ← সব উপন্যাস
+
+      </a>
+
+    `;
+
+  }
 
 }
 
 
 
-/* =====================================================
+/* =================================================
    START
-===================================================== */
+================================================= */
 
 loadNovel();
 
