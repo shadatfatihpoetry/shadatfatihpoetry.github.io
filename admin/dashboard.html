@@ -71,7 +71,6 @@
       height: 42px;
 
       border-radius: 50%;
-
       object-fit: cover;
     }
 
@@ -116,7 +115,6 @@
 
     .welcome small {
       color: #777;
-
       letter-spacing: 2px;
     }
 
@@ -129,6 +127,49 @@
 
       font-weight: 500;
     }
+
+    /* TABS */
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+
+      margin-bottom: 30px;
+
+      padding: 6px;
+
+      background: #e9e9ec;
+
+      border-radius: 16px;
+    }
+
+    .tab {
+      flex: 1;
+
+      border: 0;
+
+      padding: 12px 15px;
+
+      border-radius: 12px;
+
+      background: transparent;
+
+      color: #666;
+
+      cursor: pointer;
+
+      font-weight: 600;
+    }
+
+    .tab.active {
+      background: white;
+      color: #111;
+
+      box-shadow:
+        0 3px 12px rgba(0,0,0,.08);
+    }
+
+    /* STATS */
 
     .stats {
       display: grid;
@@ -156,7 +197,6 @@
 
     .stat span {
       color: #777;
-
       font-size: 13px;
     }
 
@@ -167,6 +207,8 @@
 
       font-size: 35px;
     }
+
+    /* TOOLBAR */
 
     .toolbar {
       display: flex;
@@ -215,13 +257,14 @@
       background: white;
     }
 
-    .poems {
-      display: grid;
+    /* CONTENT LIST */
 
+    .content-list {
+      display: grid;
       gap: 14px;
     }
 
-    .poem {
+    .content-item {
       display: flex;
 
       align-items: center;
@@ -238,7 +281,7 @@
       border-radius: 18px;
     }
 
-    .poem-info h3 {
+    .content-info h3 {
       margin-bottom: 6px;
 
       font-family: Georgia, serif;
@@ -246,9 +289,8 @@
       font-size: 22px;
     }
 
-    .poem-info p {
+    .content-info p {
       color: #777;
-
       font-size: 13px;
     }
 
@@ -310,7 +352,6 @@
 
       color: #777;
     }
-
 
     /* MODAL */
 
@@ -438,7 +479,6 @@
       font-size: 13px;
     }
 
-
     @media (max-width: 700px) {
 
       .topbar {
@@ -447,8 +487,15 @@
 
       .container {
         width: 92%;
-
         padding-top: 30px;
+      }
+
+      .tabs {
+        overflow-x: auto;
+      }
+
+      .tab {
+        min-width: 100px;
       }
 
       .stats {
@@ -457,13 +504,11 @@
 
       .toolbar {
         align-items: flex-start;
-
         flex-direction: column;
       }
 
-      .poem {
+      .content-item {
         align-items: flex-start;
-
         flex-direction: column;
       }
 
@@ -523,7 +568,7 @@
   <section class="welcome">
 
     <small>
-      SHADAT FATIH POETRY
+      SHADAT FATIH
     </small>
 
     <h1>
@@ -534,38 +579,94 @@
 
 
 
+  <!-- CONTENT TABS -->
+
+  <div class="tabs">
+
+    <button
+      class="tab active"
+      data-type="poems"
+    >
+      Poetry
+    </button>
+
+    <button
+      class="tab"
+      data-type="stories"
+    >
+      Stories
+    </button>
+
+    <button
+      class="tab"
+      data-type="novels"
+    >
+      Novels
+    </button>
+
+  </div>
+
+
+
+  <!-- STATS -->
+
   <section class="stats">
 
     <div class="stat">
-      <span>Total Poetry</span>
-      <strong id="totalPoems">0</strong>
+
+      <span>
+        Total
+      </span>
+
+      <strong id="totalContent">
+        0
+      </strong>
+
     </div>
 
-    <div class="stat">
-      <span>Published</span>
-      <strong id="publishedPoems">0</strong>
-    </div>
 
     <div class="stat">
-      <span>Draft</span>
-      <strong id="draftPoems">0</strong>
+
+      <span>
+        Published
+      </span>
+
+      <strong id="publishedContent">
+        0
+      </strong>
+
+    </div>
+
+
+    <div class="stat">
+
+      <span>
+        Draft
+      </span>
+
+      <strong id="draftContent">
+        0
+      </strong>
+
     </div>
 
   </section>
 
 
 
+  <!-- CONTENT -->
+
   <section>
 
     <div class="toolbar">
 
-      <h2>
+      <h2 id="sectionTitle">
         Poetry
       </h2>
 
       <button
         class="primary"
-        id="addPoemBtn"
+        id="addContentBtn"
       >
         + নতুন কবিতা
       </button>
@@ -582,8 +683,8 @@
 
 
     <div
-      class="poems"
-      id="poems"
+      class="content-list"
+      id="contentList"
     ></div>
 
   </section>
@@ -597,7 +698,7 @@
 
 <div
   class="modal"
-  id="poemModal"
+  id="contentModal"
 >
 
   <div class="modal-box">
@@ -607,12 +708,13 @@
     </h2>
 
 
-    <form id="poemForm">
+    <form id="contentForm">
+
 
       <div class="field">
 
         <label>
-          কবিতার নাম
+          নাম / Title
         </label>
 
         <input
@@ -622,6 +724,7 @@
         >
 
       </div>
+
 
 
       <div class="field">
@@ -636,6 +739,7 @@
         >
 
       </div>
+
 
 
       <div class="field">
@@ -653,9 +757,10 @@
       </div>
 
 
+
       <div class="field">
 
-        <label>
+        <label id="contentLabel">
           পুরো কবিতা
         </label>
 
@@ -667,6 +772,7 @@
       </div>
 
 
+
       <div class="modal-actions">
 
         <button
@@ -676,6 +782,7 @@
         >
           Cancel
         </button>
+
 
         <button
           type="submit"
@@ -713,19 +820,100 @@ const supabaseClient =
   );
 
 
-let poems = [];
+/* STATE */
+
+let currentType = "poems";
+
+let contents = [];
 
 let editingId = null;
 
 
-const poemsContainer =
-  document.getElementById("poems");
+/* TYPE SETTINGS */
+
+const typeSettings = {
+
+  poems: {
+
+    table: "poems",
+
+    title: "Poetry",
+
+    add: "+ নতুন কবিতা",
+
+    search: "কবিতা খুঁজুন...",
+
+    modal: "নতুন কবিতা",
+
+    edit: "কবিতা সম্পাদনা",
+
+    label: "পুরো কবিতা",
+
+    empty: "এখনো কোনো কবিতা নেই।"
+
+  },
+
+
+  stories: {
+
+    table: "stories",
+
+    title: "Stories",
+
+    add: "+ নতুন গল্প",
+
+    search: "গল্প খুঁজুন...",
+
+    modal: "নতুন গল্প",
+
+    edit: "গল্প সম্পাদনা",
+
+    label: "পুরো গল্প",
+
+    empty: "এখনো কোনো গল্প নেই।"
+
+  },
+
+
+  novels: {
+
+    table: "novels",
+
+    title: "Novels",
+
+    add: "+ নতুন উপন্যাস",
+
+    search: "উপন্যাস খুঁজুন...",
+
+    modal: "নতুন উপন্যাস",
+
+    edit: "উপন্যাস সম্পাদনা",
+
+    label: "পুরো উপন্যাস",
+
+    empty: "এখনো কোনো উপন্যাস নেই।"
+
+  }
+
+};
+
+
+/* ELEMENTS */
+
+const contentList =
+  document.getElementById(
+    "contentList"
+  );
 
 const modal =
-  document.getElementById("poemModal");
+  document.getElementById(
+    "contentModal"
+  );
 
 const form =
-  document.getElementById("poemForm");
+  document.getElementById(
+    "contentForm"
+  );
 
 
 /* CHECK LOGIN */
@@ -734,12 +922,14 @@ async function checkUser() {
 
   const {
     data: { session }
-  } = await supabaseClient.auth.getSession();
+  } =
+    await supabaseClient.auth.getSession();
 
 
   if (!session) {
 
-    window.location.href = "./index.html";
+    window.location.href =
+      "./index.html";
 
     return false;
   }
@@ -749,13 +939,26 @@ async function checkUser() {
 }
 
 
-/* LOAD POEMS */
+/* LOAD CONTENT */
 
-async function loadPoems() {
+async function loadContent() {
 
-  const { data, error } =
+  const settings =
+    typeSettings[currentType];
+
+
+  contentList.innerHTML =
+    `<div class="empty">
+      Loading...
+    </div>`;
+
+
+  const {
+    data,
+    error
+  } =
     await supabaseClient
-      .from("poems")
+      .from(settings.table)
       .select("*")
       .order("created_at", {
         ascending: false
@@ -766,21 +969,24 @@ async function loadPoems() {
 
     console.error(error);
 
-    poemsContainer.innerHTML =
+    contentList.innerHTML =
       `<div class="empty">
-        কবিতা load করা যায়নি।
+        ${settings.title} load করা যায়নি।
         <br><br>
-        ${error.message}
+        ${escapeHtml(error.message)}
       </div>`;
 
     return;
   }
 
 
-  poems = data || [];
+  contents = data || [];
 
-  renderPoems();
+
+  renderContent();
+
   updateStats();
+
 }
 
 
@@ -789,85 +995,100 @@ async function loadPoems() {
 function updateStats() {
 
   const published =
-    poems.filter(
-      poem => poem.published === true
+    contents.filter(
+      item => item.published === true
     ).length;
 
 
   document.getElementById(
-    "totalPoems"
-  ).textContent = poems.length;
-
-
-  document.getElementById(
-    "publishedPoems"
-  ).textContent = published;
-
-
-  document.getElementById(
-    "draftPoems"
+    "totalContent"
   ).textContent =
-    poems.length - published;
+    contents.length;
+
+
+  document.getElementById(
+    "publishedContent"
+  ).textContent =
+    published;
+
+
+  document.getElementById(
+    "draftContent"
+  ).textContent =
+    contents.length - published;
+
 }
 
 
 /* RENDER */
 
-function renderPoems() {
+function renderContent() {
+
+  const settings =
+    typeSettings[currentType];
+
 
   const search =
-    document.getElementById(
-      "search"
-    ).value
+    document
+      .getElementById("search")
+      .value
       .toLowerCase();
 
 
   const filtered =
-    poems.filter(poem =>
-      (poem.title || "")
+    contents.filter(item =>
+
+      (item.title || "")
         .toLowerCase()
         .includes(search)
+
     );
 
 
   if (!filtered.length) {
 
-    poemsContainer.innerHTML =
+    contentList.innerHTML =
       `<div class="empty">
-        এখনো কোনো কবিতা নেই।
+        ${settings.empty}
       </div>`;
 
     return;
   }
 
 
-  poemsContainer.innerHTML =
-    filtered.map(poem => `
+  contentList.innerHTML =
 
-      <article class="poem">
+    filtered.map(item => `
 
-        <div class="poem-info">
+      <article class="content-item">
+
+        <div class="content-info">
 
           <h3>
             ${escapeHtml(
-              poem.title || "Untitled"
+              item.title || "Untitled"
             )}
           </h3>
 
+
           <p>
             ${escapeHtml(
-              poem.excerpt || "No description"
+              item.excerpt ||
+              "No description"
             )}
           </p>
 
-          <span class="status ${
-            poem.published
-              ? "published"
-              : "draft"
-          }">
+
+          <span
+            class="status ${
+              item.published
+                ? "published"
+                : "draft"
+            }"
+          >
 
             ${
-              poem.published
+              item.published
                 ? "Published"
                 : "Draft"
             }
@@ -880,28 +1101,31 @@ function renderPoems() {
         <div class="actions">
 
           <button
-            onclick="editPoem('${poem.id}')"
+            onclick="editContent('${item.id}')"
           >
             Edit
           </button>
 
 
           <button
-            onclick="togglePublish('${poem.id}', ${
-              poem.published
-            })"
+            onclick="togglePublish(
+              '${item.id}',
+              ${item.published}
+            )"
           >
+
             ${
-              poem.published
+              item.published
                 ? "Unpublish"
                 : "Publish"
             }
+
           </button>
 
 
           <button
             class="delete"
-            onclick="deletePoem('${poem.id}')"
+            onclick="deleteContent('${item.id}')"
           >
             Delete
           </button>
@@ -911,54 +1135,107 @@ function renderPoems() {
       </article>
 
     `).join("");
+
 }
 
 
-/* ESCAPE HTML */
+/* ESCAPE */
 
 function escapeHtml(value) {
 
   return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
+
 }
 
 
 /* OPEN ADD */
 
 document
-  .getElementById("addPoemBtn")
-  .addEventListener("click", () => {
+  .getElementById(
+    "addContentBtn"
+  )
+  .addEventListener(
+    "click",
+    () => {
 
-    editingId = null;
+      editingId = null;
 
-    document.getElementById(
-      "modalTitle"
-    ).textContent =
-      "নতুন কবিতা";
+      const settings =
+        typeSettings[currentType];
 
-    form.reset();
 
-    modal.classList.add("active");
+      document.getElementById(
+        "modalTitle"
+      ).textContent =
+        settings.modal;
 
-  });
+
+      document.getElementById(
+        "contentLabel"
+      ).textContent =
+        settings.label;
+
+
+      form.reset();
+
+
+      document.getElementById(
+        "message"
+      ).textContent =
+        "";
+
+
+      modal.classList.add(
+        "active"
+      );
+
+    }
+  );
 
 
 /* EDIT */
 
-window.editPoem =
+window.editContent =
 async function(id) {
 
-  const poem =
-    poems.find(
-      item => String(item.id) === String(id)
+  const item =
+    contents.find(
+      content =>
+        String(content.id) ===
+        String(id)
     );
 
 
-  if (!poem) return;
+  if (!item) return;
+
+
+  const settings =
+    typeSettings[currentType];
 
 
   editingId = id;
@@ -967,34 +1244,49 @@ async function(id) {
   document.getElementById(
     "modalTitle"
   ).textContent =
-    "কবিতা সম্পাদনা";
+    settings.edit;
+
+
+  document.getElementById(
+    "contentLabel"
+  ).textContent =
+    settings.label;
 
 
   document.getElementById(
     "title"
   ).value =
-    poem.title || "";
+    item.title || "";
 
 
   document.getElementById(
     "excerpt"
   ).value =
-    poem.excerpt || "";
+    item.excerpt || "";
 
 
   document.getElementById(
     "cover_url"
   ).value =
-    poem.cover_url || "";
+    item.cover_url || "";
 
 
   document.getElementById(
     "content"
   ).value =
-    poem.content || "";
+    item.content || "";
 
 
-  modal.classList.add("active");
+  document.getElementById(
+    "message"
+  ).textContent =
+    "";
+
+
+  modal.classList.add(
+    "active"
+  );
+
 };
 
 
@@ -1005,6 +1297,10 @@ form.addEventListener(
   async e => {
 
     e.preventDefault();
+
+
+    const settings =
+      typeSettings[currentType];
 
 
     const title =
@@ -1061,15 +1357,25 @@ form.addEventListener(
 
       result =
         await supabaseClient
-          .from("poems")
-          .update(payload)
-          .eq("id", editingId);
 
-    } else {
+          .from(settings.table)
+
+          .update(payload)
+
+          .eq(
+            "id",
+            editingId
+          );
+
+    }
+
+    else {
 
       result =
         await supabaseClient
-          .from("poems")
+
+          .from(settings.table)
+
           .insert({
 
             ...payload,
@@ -1087,32 +1393,40 @@ form.addEventListener(
         result.error
       );
 
+
       message.style.color =
         "#d00";
+
 
       message.textContent =
         result.error.message;
 
+
       return;
+
     }
 
 
     message.style.color =
       "#16803c";
 
+
     message.textContent =
       "Saved successfully";
 
 
-    setTimeout(() => {
+    setTimeout(
+      () => {
 
-      modal.classList.remove(
-        "active"
-      );
+        modal.classList.remove(
+          "active"
+        );
 
-      loadPoems();
+        loadContent();
 
-    }, 500);
+      },
+      500
+    );
 
   }
 );
@@ -1120,12 +1434,16 @@ form.addEventListener(
 
 /* DELETE */
 
-window.deletePoem =
+window.deleteContent =
 async function(id) {
+
+  const settings =
+    typeSettings[currentType];
+
 
   const confirmed =
     confirm(
-      "এই কবিতাটি কি সত্যিই মুছে ফেলতে চান?"
+      `এই ${settings.title} item-টি কি সত্যিই মুছে ফেলতে চান?`
     );
 
 
@@ -1134,9 +1452,15 @@ async function(id) {
 
   const { error } =
     await supabaseClient
-      .from("poems")
+
+      .from(settings.table)
+
       .delete()
-      .eq("id", id);
+
+      .eq(
+        "id",
+        id
+      );
 
 
   if (error) {
@@ -1144,28 +1468,43 @@ async function(id) {
     alert(error.message);
 
     return;
+
   }
 
 
-  loadPoems();
+  loadContent();
+
 };
 
 
 /* PUBLISH */
 
 window.togglePublish =
-async function(id, current) {
+async function(
+  id,
+  current
+) {
+
+  const settings =
+    typeSettings[currentType];
+
 
   const { error } =
     await supabaseClient
-      .from("poems")
+
+      .from(settings.table)
+
       .update({
 
         published:
           !current
 
       })
-      .eq("id", id);
+
+      .eq(
+        "id",
+        id
+      );
 
 
   if (error) {
@@ -1173,27 +1512,95 @@ async function(id, current) {
     alert(error.message);
 
     return;
+
   }
 
 
-  loadPoems();
+  loadContent();
+
 };
 
 
 /* SEARCH */
 
 document
-  .getElementById("search")
+  .getElementById(
+    "search"
+  )
   .addEventListener(
     "input",
-    renderPoems
+    renderContent
   );
+
+
+/* TABS */
+
+document
+  .querySelectorAll(".tab")
+  .forEach(tab => {
+
+    tab.addEventListener(
+      "click",
+      () => {
+
+        document
+          .querySelectorAll(
+            ".tab"
+          )
+          .forEach(item =>
+            item.classList.remove(
+              "active"
+            )
+          );
+
+
+        tab.classList.add(
+          "active"
+        );
+
+
+        currentType =
+          tab.dataset.type;
+
+
+        const settings =
+          typeSettings[
+            currentType
+          ];
+
+
+        document.getElementById(
+          "sectionTitle"
+        ).textContent =
+          settings.title;
+
+
+        document.getElementById(
+          "addContentBtn"
+        ).textContent =
+          settings.add;
+
+
+        document.getElementById(
+          "search"
+        ).placeholder =
+          settings.search;
+
+
+        loadContent();
+
+      }
+    );
+
+  });
 
 
 /* CANCEL */
 
 document
-  .getElementById("cancelBtn")
+  .getElementById(
+    "cancelBtn"
+  )
   .addEventListener(
     "click",
     () => {
@@ -1209,12 +1616,17 @@ document
 /* LOGOUT */
 
 document
-  .getElementById("logoutBtn")
+  .getElementById(
+    "logoutBtn"
+  )
   .addEventListener(
     "click",
     async () => {
 
-      await supabaseClient.auth.signOut();
+      await supabaseClient
+        .auth
+        .signOut();
+
 
       window.location.href =
         "./index.html";
@@ -1230,14 +1642,17 @@ document
   const loggedIn =
     await checkUser();
 
+
   if (loggedIn) {
 
-    loadPoems();
+    loadContent();
 
   }
 
 })();
+
 </script>
 
 </body>
+
 </html>
