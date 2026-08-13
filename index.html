@@ -638,7 +638,7 @@ async function loadNovels() {
   const { data, error } =
     await supabaseClient
       .from("novels")
-      .select("id, title, content, excerpt, cover_image, created_at, published")
+      .select("id, title, content, excerpt, created_at, published")
       .eq("published", true)
       .order("created_at", {
         ascending: false
@@ -698,19 +698,6 @@ async function loadNovels() {
   container.innerHTML = data.map((novel, index) => `
 
     <article class="novel-card">
-
-      ${
-        novel.cover_image
-          ? `
-            <div class="novel-cover">
-              <img
-                src="${escapeHtml(novel.cover_image)}"
-                alt="${escapeHtml(novel.title)}"
-              >
-            </div>
-          `
-          : ""
-      }
 
       <div class="novel-info">
 
