@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Shadat Fatih — গল্প</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+</head>
+
+
+<body>
+
+  <main class="poem-page">
+
+    <section
+      class="poem-reader"
+      id="stories-content"
+    >
+
+      <p>
+        গল্প লোড হচ্ছে...
+      </p>
+
+    </section>
+
+  </main>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+  <script>
+
+    const SUPABASE_URL =
+      "https://ooxbtwxqumaixvrwsllg.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_dNAV-kJ5rv_-BH6GhChYVg_1xbRUNdy";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+
+
+    async function loadStories() {
+
+      const container =
+        document.getElementById(
+          "stories-content"
+        );
+
+
+      const { data, error } =
+        await supabaseClient
+          .from("stories")
+          .select(
+            "id, title, excerpt, published"
+          )
+          .eq("published", true)
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          );
+
+
+      if (error) {
+
+        console.error(error);
+
+        container.innerHTML = `
+          <h1>গল্প লোড করা যায়নি</h1>
+
+          <p>
+            ${escapeHtml(error.message)}
+          </p>
+        `;
+
+        return;
+      }
+
+
+      if (!data || data.length === 0) {
+
+        container.innerHTML = `
+          <p class="eyebrow">
+            STORIES
+          </p>
+
+          <h1>
+            গল্প
+          </h1>
+
+          <p>
+            বর্তমানে কোনো প্রকাশিত গল্প নেই।
+          </p>
+        `;
+
+        return;
+      }
+
+
+      container.innerHTML = `
+
+        <p class="eyebrow">
+          STORIES
+        </p>
+
+        <h1>
+          গল্প
+        </h1>
+
+
+        <div class="stories-list">
+
+          ${data.map(story => `
+
+            <article class="story-card">
+
+              <h2>
+                ${escapeHtml(story.title)}
+              </h2>
+
+
+              ${
+                story.excerpt
+                  ? `
+                    <p class="poem-excerpt">
+                      ${escapeHtml(story.excerpt)}
+                    </p>
+                  `
+                  : ""
+              }
+
+
+              <a
+                href="story.html?id=${encodeURIComponent(story.id)}"
+                class="text-link"
+              >
+                গল্পটি পড়ুন →
+              </a>
+
+            </article>
+
+          `).join("")}
+
+        </div>
+
+      `;
+
+    }
+
+
+    function escapeHtml(value) {
+
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+    }
+
+
+    loadStories();
+
+  </script>
+
+</body>
+
+</html>
