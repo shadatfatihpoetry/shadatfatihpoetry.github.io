@@ -1238,38 +1238,5 @@ document
 
 })();
 
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-const SUPABASE_URL =
-  "https://ooxbtwxqumaixvrwsllg.supabase.co";
-
-const SUPABASE_PUBLISHABLE_KEY =
-  "তোমার Publishable key এখানে বসাও";
-
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
-
-
-async function checkAdminLogin() {
-
-  const {
-    data: { session }
-  } = await supabaseClient.auth.getSession();
-
-  if (!session) {
-    window.location.href = "login.html";
-  }
-
-}
-
-checkAdminLogin();
-</script>
-
 </body>
 </html>
