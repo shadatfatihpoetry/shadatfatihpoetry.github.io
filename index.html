@@ -395,8 +395,6 @@
 
 </main>
 
-<script src="script.js"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
@@ -407,7 +405,6 @@ const SUPABASE_URL =
 const SUPABASE_PUBLISHABLE_KEY =
   "sb_publishable_dNAV-kJ5rv_-BH6GhChYVg_1xbRUNdy";
 
-
 const supabaseClient =
   window.supabase.createClient(
     SUPABASE_URL,
@@ -415,18 +412,38 @@ const supabaseClient =
   );
 
 
+/* =========================
+   HTML SECURITY
+========================= */
+
+function escapeHtml(value) {
+
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+/* =========================
+   POETRY
+========================= */
+
 async function loadPoetry() {
 
-  const poetryList =
-    document.getElementById(
-      "poetry-list"
-    );
+  const container =
+    document.getElementById("poetry-list");
+
+  if (!container) return;
 
 
   const { data, error } =
     await supabaseClient
       .from("poems")
-      .select("*")
+      .select("id, title, content, excerpt, created_at, published")
       .eq("published", true)
       .order("created_at", {
         ascending: false
@@ -435,12 +452,20 @@ async function loadPoetry() {
 
   if (error) {
 
-    console.error(error);
+    console.error("Poetry Error:", error);
 
-    poetryList.innerHTML = `
-      <p>
-        কবিতা লোড করা যায়নি।
-      </p>
+    container.innerHTML = `
+      <div>
+        <p class="card-label">POETRY</p>
+
+        <h3>
+          কবিতা লোড করা যায়নি
+        </h3>
+
+        <p>
+          ${escapeHtml(error.message)}
+        </p>
+      </div>
     `;
 
     return;
@@ -449,9 +474,8 @@ async function loadPoetry() {
 
   if (!data || data.length === 0) {
 
-    poetryList.innerHTML = `
+    container.innerHTML = `
       <div>
-
         <p class="card-label">
           POETRY
         </p>
@@ -463,7 +487,6 @@ async function loadPoetry() {
         <p>
           নতুন কবিতা খুব শীঘ্রই প্রকাশিত হবে।
         </p>
-
       </div>
     `;
 
@@ -471,64 +494,42 @@ async function loadPoetry() {
   }
 
 
-  poetryList.innerHTML =
-    data.map((poem, index) => `
+  container.innerHTML = data.map((poem, index) => `
 
-      <div>
+    <div>
 
-        <div class="card-number">
-          ${String(index + 1).padStart(2, "0")}
-        </div>
-
-        <p class="card-label">
-          POETRY
-        </p>
-
-        <h3>
-          ${escapePoetryHtml(poem.title)}
-        </h3>
-
-        <p>
-          ${escapePoetryHtml(
-            poem.excerpt || ""
-          )}
-        </p>
-
-        <a
-          href="#"
-          class="text-link"
-          onclick="openPoem('${poem.id}'); return false;"
-        >
-          কবিতা পড়ুন →
-        </a>
-
+      <div class="card-number">
+        ${String(index + 1).padStart(2, "0")}
       </div>
 
-    `).join("");
+      <p class="card-label">
+        POETRY
+      </p>
 
-}
+      <h3>
+        ${escapeHtml(poem.title)}
+      </h3>
 
+      ${
+        poem.excerpt
+          ? `
+            <p>
+              ${escapeHtml(poem.excerpt)}
+            </p>
+          `
+          : ""
+      }
 
-function escapePoetryHtml(value) {
+      <a
+        href="poem.html?id=${encodeURIComponent(poem.id)}"
+        class="text-link"
+      >
+        কবিতা পড়ুন →
+      </a>
 
-  return String(value || "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+    </div>
 
-}
-
-
-function openPoem(id) {
-
-  const poemUrl =
-    "poem.html?id=" +
-    encodeURIComponent(id);
-
-  window.location.href =
-    poemUrl;
+  `).join("");
 
 }
 
@@ -540,46 +541,41 @@ function openPoem(id) {
 async function loadStories() {
 
   const container =
-    document.getElementById(
-      "stories-container"
-    );
+    document.getElementById("stories-container");
 
-
-  if (!container) {
-    return;
-  }
+  if (!container) return;
 
 
   const { data, error } =
     await supabaseClient
-
       .from("stories")
-
-      .select(
-        "id, title, excerpt, created_at, published"
-      )
-
+      .select("id, title, content, excerpt, created_at, published")
       .eq("published", true)
-
       .order("created_at", {
         ascending: false
-      })
-
-      .limit(4);
+      });
 
 
   if (error) {
 
-    console.error(
-      "Stories Error:",
-      error
-    );
-
+    console.error("Stories Error:", error);
 
     container.innerHTML = `
-      <p>
-        গল্প লোড করা যায়নি।
-      </p>
+      <div class="story-card">
+
+        <span>
+          STORIES
+        </span>
+
+        <h3>
+          গল্প লোড করা যায়নি
+        </h3>
+
+        <p>
+          ${escapeHtml(error.message)}
+        </p>
+
+      </div>
     `;
 
     return;
@@ -589,76 +585,74 @@ async function loadStories() {
   if (!data || data.length === 0) {
 
     container.innerHTML = `
-      <p>
-        বর্তমানে কোনো প্রকাশিত গল্প নেই।
-      </p>
+      <div class="story-card">
+
+        <span>
+          STORIES
+        </span>
+
+        <h3>
+          শীঘ্রই আসছে
+        </h3>
+
+        <p>
+          নতুন গল্প খুব শীঘ্রই প্রকাশিত হবে।
+        </p>
+
+      </div>
     `;
 
     return;
   }
 
 
-  container.innerHTML = data
-    .map((story, index) => `
+  container.innerHTML = data.map((story, index) => `
 
-      <article class="story-card">
+    <article class="story-card">
 
-        <span>
-          STORY ${String(index + 1).padStart(2, "0")}
-        </span>
+      <span>
+        STORY ${String(index + 1).padStart(2, "0")}
+      </span>
 
+      <h3>
+        ${escapeHtml(story.title)}
+      </h3>
 
-        <h3>
-          ${escapeStoryHtml(story.title)}
-        </h3>
+      ${
+        story.excerpt
+          ? `
+            <p>
+              ${escapeHtml(story.excerpt)}
+            </p>
+          `
+          : ""
+      }
 
+      <a
+        href="story.html?id=${encodeURIComponent(story.id)}"
+      >
+        গল্প পড়ুন ↗
+      </a>
 
-        ${
-          story.excerpt
-            ? `
-              <p>
-                ${escapeStoryHtml(
-                  story.excerpt
-                )}
-              </p>
-            `
-            : ""
-        }
+    </article>
 
-
-        <a
-          href="story.html?id=${encodeURIComponent(
-            story.id
-          )}"
-        >
-          গল্প পড়ুন ↗
-        </a>
-
-      </article>
-
-    `)
-    .join("");
+  `).join("");
 
 }
 
 
-/* STORY HTML SECURITY */
+/* =========================
+   START
+========================= */
 
-function escapeStoryHtml(value) {
+document.addEventListener("DOMContentLoaded", function() {
 
-  return String(value || "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+  loadPoetry();
 
-}
+  loadStories();
 
+});
 
-/* LOAD STORIES */
-
-loadStories();
 
 </script>
 
