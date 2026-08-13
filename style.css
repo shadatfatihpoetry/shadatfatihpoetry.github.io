@@ -2636,3 +2636,106 @@ a:focus-visible {
   }
 
 }
+
+/* =====================================================
+   PREMIUM ACTION BUTTONS
+===================================================== */
+
+.writing-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 25px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0,0,0,.12);
+}
+
+
+.action-btn {
+  border: 0;
+  background: transparent;
+  padding: 7px 9px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  opacity: .72;
+
+  transition:
+    opacity .2s ease,
+    transform .2s ease;
+}
+
+
+.action-btn:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+
+.action-btn span {
+  font-size: 17px;
+}
+
+
+.action-btn small {
+  font-size: 11px;
+  letter-spacing: .5px;
+}
+
+
+/* Total views */
+
+.total-views {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 12px;
+
+  letter-spacing: .5px;
+
+  opacity: .7;
+}
+
+
+.writing-card > .total-views,
+.story-card > .total-views,
+.novel-card > .total-views {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+
+/* Make cards positioning reference */
+
+.writing-card,
+.story-card,
+.novel-card {
+  position: relative;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+  .writing-actions {
+    gap: 5px;
+  }
+
+  .action-btn {
+    padding: 6px;
+  }
+
+  .action-btn small {
+    font-size: 10px;
+  }
+
+}
