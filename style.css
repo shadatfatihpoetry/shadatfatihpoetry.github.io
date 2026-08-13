@@ -2299,3 +2299,174 @@ a:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* =====================================================
+   FINAL NAVBAR FIX
+   Logo = Left | Name = Center | 3-Dot = Right
+===================================================== */
+
+.navbar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 76px !important;
+  z-index: 9990 !important;
+}
+
+.nav-inner {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 1200px !important;
+  height: 76px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+/* LOGO — LEFT */
+
+.brand-logo {
+  position: static !important;
+
+  width: 46px !important;
+  height: 46px !important;
+
+  flex: 0 0 46px !important;
+
+  margin: 0 !important;
+}
+
+
+/* WEBSITE NAME — TRUE CENTER */
+
+.site-title {
+  position: absolute !important;
+
+  left: 50% !important;
+  top: 50% !important;
+
+  transform: translate(-50%, -50%) !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  white-space: nowrap !important;
+
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif !important;
+
+  font-size: clamp(25px, 3vw, 40px) !important;
+  font-weight: 700 !important;
+
+  line-height: 1 !important;
+
+  text-align: center !important;
+
+  z-index: 2 !important;
+}
+
+
+/* 3-DOT MENU — FAR RIGHT */
+
+.menu-btn {
+  position: static !important;
+
+  width: 50px !important;
+  height: 50px !important;
+
+  min-width: 50px !important;
+  min-height: 50px !important;
+
+  flex: 0 0 50px !important;
+
+  margin-left: auto !important;
+  margin-right: 0 !important;
+
+  padding: 0 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  z-index: 5 !important;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .navbar {
+    height: 68px !important;
+  }
+
+  .nav-inner {
+    height: 68px !important;
+
+    padding: 0 16px !important;
+  }
+
+  .brand-logo {
+    width: 42px !important;
+    height: 42px !important;
+
+    flex-basis: 42px !important;
+  }
+
+  .site-title {
+    font-size: 27px !important;
+  }
+
+  .menu-btn {
+    width: 46px !important;
+    height: 46px !important;
+
+    min-width: 46px !important;
+    min-height: 46px !important;
+
+    flex-basis: 46px !important;
+  }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+  .nav-inner {
+    padding: 0 12px !important;
+  }
+
+  .brand-logo {
+    width: 40px !important;
+    height: 40px !important;
+
+    flex-basis: 40px !important;
+  }
+
+  .site-title {
+    font-size: 22px !important;
+  }
+
+  .menu-btn {
+    width: 42px !important;
+    height: 42px !important;
+
+    min-width: 42px !important;
+    min-height: 42px !important;
+
+    flex-basis: 42px !important;
+  }
+
+}
