@@ -17,10 +17,7 @@
     content="Shadat Fatih-এর উপন্যাস"
   >
 
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 
   <link
     rel="preconnect"
@@ -29,17 +26,122 @@
   >
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
     rel="stylesheet"
   >
 
   <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    /* =========================
+       NOVEL READING PAGE
+    ========================= */
+
+    .novel-reading-page {
+      min-height: 100vh;
+      padding: 100px 20px 80px;
+    }
+
+    .novel-reading {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .novel-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .novel-header .eyebrow {
+      margin-bottom: 18px;
+    }
+
+    .novel-header h1 {
+      font-family: "Noto Serif Bengali", serif;
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      line-height: 1.25;
+      margin: 0 0 25px;
+    }
+
+    .novel-excerpt {
+      max-width: 650px;
+      margin: 0 auto;
+      font-family: "Noto Serif Bengali", serif;
+      font-size: 1.05rem;
+      line-height: 2;
+      opacity: .7;
+    }
+
+    .novel-divider {
+      width: 70px;
+      height: 1px;
+      margin: 45px auto;
+      background: currentColor;
+      opacity: .3;
+    }
+
+    .novel-body {
+      font-family: "Noto Serif Bengali", serif;
+      font-size: 1.15rem;
+      line-height: 2.15;
+    }
+
+    .novel-body p {
+      margin: 0 0 28px;
+    }
+
+    .novel-footer {
+      text-align: center;
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(0,0,0,.12);
+    }
+
+    .back-novels {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .novel-loading {
+      text-align: center;
+      padding: 100px 20px;
+      font-family: "Noto Serif Bengali", serif;
+    }
+
+    .novel-error {
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    @media (max-width: 600px) {
+
+      .novel-reading-page {
+        padding: 70px 18px 60px;
+      }
+
+      .novel-header {
+        margin-bottom: 45px;
+      }
+
+      .novel-body {
+        font-size: 1.05rem;
+        line-height: 2;
+      }
+
+    }
+
+  </style>
 
 </head>
 
 
 <body>
 
+
+<!-- NAVIGATION -->
 
 <header class="navbar">
 
@@ -78,17 +180,18 @@
 </header>
 
 
+<!-- NOVEL -->
 
 <main>
 
-<section class="content-section light">
+<section class="novel-reading-page">
 
-  <div class="section-container">
+  <div
+    id="novel-container"
+    class="novel-reading"
+  >
 
-    <div
-      id="novel-container"
-      class="novel-reading"
-    >
+    <div class="novel-loading">
 
       <p>
         উপন্যাস লোড হচ্ছে...
@@ -103,6 +206,7 @@
 </main>
 
 
+<!-- SUPABASE -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -122,9 +226,11 @@ const supabaseClient =
     SUPABASE_URL,
     SUPABASE_PUBLISHABLE_KEY
   );
-console.log("Supabase URL:", SUPABASE_URL);
-console.log("Novel URL:", window.location.href);
 
+
+/* =========================
+   SECURITY
+========================= */
 
 function escapeHtml(value) {
 
@@ -138,6 +244,9 @@ function escapeHtml(value) {
 }
 
 
+/* =========================
+   LOAD NOVEL
+========================= */
 
 async function loadNovel() {
 
@@ -156,32 +265,55 @@ async function loadNovel() {
   const id =
     params.get("id");
 
-  const novelId =
-  Number(id);
 
-  if (!id) {
+  const novelId =
+    Number(id);
+
+
+  /* INVALID ID */
+
+  if (
+    !id ||
+    !Number.isInteger(novelId)
+  ) {
 
     container.innerHTML = `
-      <h2>
-        উপন্যাস পাওয়া যায়নি
-      </h2>
 
-      <p>
-        কোনো Novel ID দেওয়া হয়নি।
-      </p>
+      <div class="novel-error">
+
+        <h2>
+          উপন্যাস পাওয়া যায়নি
+        </h2>
+
+        <p>
+          সঠিক Novel ID পাওয়া যায়নি।
+        </p>
+
+      </div>
+
     `;
 
     return;
   }
 
 
+  /* SUPABASE */
+
   const { data, error } =
-  await supabaseClient
-    .from("novels")
-    .select("*")
-    .eq("id", novelId)
-    .eq("published", true)
-    .single();
+    await supabaseClient
+
+      .from("novels")
+
+      .select("*")
+
+      .eq("id", novelId)
+
+      .eq("published", true)
+
+      .single();
+
+
+  /* ERROR */
 
   if (error) {
 
@@ -192,71 +324,144 @@ async function loadNovel() {
 
 
     container.innerHTML = `
-      <h2>
-        উপন্যাস লোড করা যায়নি
-      </h2>
 
-      <p>
-        ${escapeHtml(error.message)}
-      </p>
+      <div class="novel-error">
+
+        <h2>
+          উপন্যাস লোড করা যায়নি
+        </h2>
+
+        <p>
+          ${escapeHtml(error.message)}
+        </p>
+
+      </div>
+
     `;
 
     return;
   }
 
+
+  /* NO DATA */
 
   if (!data) {
 
     container.innerHTML = `
-      <h2>
-        উপন্যাস পাওয়া যায়নি
-      </h2>
+
+      <div class="novel-error">
+
+        <h2>
+          উপন্যাস পাওয়া যায়নি
+        </h2>
+
+      </div>
+
     `;
 
     return;
   }
 
+
+  /* =========================
+     CONTENT
+  ========================= */
+
+
+  let novelContent = "";
+
+
+  if (data.content) {
+
+    novelContent = escapeHtml(
+      data.content
+    )
+    .split(/\n\s*\n/)
+    .map(paragraph => {
+
+      return `
+        <p>
+          ${paragraph.replaceAll(
+            "\n",
+            "<br>"
+          )}
+        </p>
+      `;
+
+    })
+    .join("");
+
+  } else {
+
+    novelContent = `
+
+      <p>
+        এই উপন্যাসের বিষয়বস্তু
+        শীঘ্রই প্রকাশিত হবে।
+      </p>
+
+    `;
+
+  }
+
+
+  /* =========================
+     DISPLAY
+  ========================= */
 
   container.innerHTML = `
 
     <article>
 
-      <p class="eyebrow">
-        NOVEL
-      </p>
+      <header class="novel-header">
+
+        <p class="eyebrow">
+          NOVEL
+        </p>
 
 
-      <h1>
-        ${escapeHtml(data.title)}
-      </h1>
+        <h1>
+          ${escapeHtml(data.title)}
+        </h1>
 
-
-      ${
-        data.excerpt
-          ? `
-            <p>
-              ${escapeHtml(data.excerpt)}
-            </p>
-          `
-          : ""
-      }
-
-
-      <div class="novel-content">
 
         ${
-          data.content
-            ? escapeHtml(data.content)
-                .replaceAll("\n", "<br><br>")
-            : `
-              <p>
-                এই উপন্যাসের বিষয়বস্তু
-                শীঘ্রই প্রকাশিত হবে।
+          data.excerpt
+            ? `
+
+              <p class="novel-excerpt">
+                ${escapeHtml(
+                  data.excerpt
+                )}
               </p>
+
             `
+            : ""
         }
 
+
+        <div class="novel-divider"></div>
+
+      </header>
+
+
+      <div class="novel-body">
+
+        ${novelContent}
+
       </div>
+
+
+      <footer class="novel-footer">
+
+        <a
+          href="index.html#novels"
+          class="hero-button"
+        >
+          ← সব উপন্যাস
+        </a>
+
+      </footer>
 
     </article>
 
@@ -265,6 +470,9 @@ async function loadNovel() {
 }
 
 
+/* =========================
+   START
+========================= */
 
 loadNovel();
 
