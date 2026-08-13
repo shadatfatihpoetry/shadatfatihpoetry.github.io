@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>উপন্যাস — Shadat Fatih</title>
+
+  <meta
+    name="description"
+    content="Shadat Fatih-এর উপন্যাস"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+  <div class="nav-inner">
+
+    <a
+      href="index.html"
+      class="brand-logo"
+    >
+
+      <img
+        src="shadat-fatih.jpg"
+        alt="Shadat Fatih"
+      >
+
+    </a>
+
+
+    <a
+      href="index.html"
+      class="site-title"
+    >
+      Shadat Fatih
+    </a>
+
+
+    <a
+      href="index.html#novels"
+      class="text-link"
+    >
+      ← ফিরে যান
+    </a>
+
+  </div>
+
+</header>
+
+
+
+<main>
+
+<section class="content-section light">
+
+  <div class="section-container">
+
+    <div
+      id="novel-container"
+      class="novel-reading"
+    >
+
+      <p>
+        উপন্যাস লোড হচ্ছে...
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+const SUPABASE_URL =
+  "https://ooxbtwxqumaixvrwsllg.supabase.co";
+
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_dNAV-kJ5rv_-BH6GhYVg_1xbRUNdy";
+
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+
+
+function escapeHtml(value) {
+
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+
+async function loadNovel() {
+
+  const container =
+    document.getElementById(
+      "novel-container"
+    );
+
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+
+  const id =
+    params.get("id");
+
+
+  if (!id) {
+
+    container.innerHTML = `
+      <h2>
+        উপন্যাস পাওয়া যায়নি
+      </h2>
+
+      <p>
+        কোনো Novel ID দেওয়া হয়নি।
+      </p>
+    `;
+
+    return;
+  }
+
+
+  const { data, error } =
+    await supabaseClient
+
+      .from("novels")
+
+      .select(
+        "id, title, content, excerpt, created_at, published"
+      )
+
+      .eq("id", id)
+
+      .eq("published", true)
+
+      .single();
+
+
+  if (error) {
+
+    console.error(
+      "Novel Error:",
+      error
+    );
+
+
+    container.innerHTML = `
+      <h2>
+        উপন্যাস লোড করা যায়নি
+      </h2>
+
+      <p>
+        ${escapeHtml(error.message)}
+      </p>
+    `;
+
+    return;
+  }
+
+
+  if (!data) {
+
+    container.innerHTML = `
+      <h2>
+        উপন্যাস পাওয়া যায়নি
+      </h2>
+    `;
+
+    return;
+  }
+
+
+  container.innerHTML = `
+
+    <article>
+
+      <p class="eyebrow">
+        NOVEL
+      </p>
+
+
+      <h1>
+        ${escapeHtml(data.title)}
+      </h1>
+
+
+      ${
+        data.excerpt
+          ? `
+            <p>
+              ${escapeHtml(data.excerpt)}
+            </p>
+          `
+          : ""
+      }
+
+
+      <div class="novel-content">
+
+        ${
+          data.content
+            ? escapeHtml(data.content)
+                .replaceAll("\n", "<br><br>")
+            : `
+              <p>
+                এই উপন্যাসের বিষয়বস্তু
+                শীঘ্রই প্রকাশিত হবে।
+              </p>
+            `
+        }
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+
+loadNovel();
+
+</script>
+
+
+</body>
+
+</html>
