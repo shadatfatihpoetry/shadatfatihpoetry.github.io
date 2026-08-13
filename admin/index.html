@@ -263,8 +263,12 @@ form.addEventListener("submit", async (e) => {
       return;
     }
 
-    message.style.color = "#7cff9b";
-    message.textContent = "Login successful!";
+message.style.color = "#7cff9b";
+message.textContent = "Login successful!";
+
+setTimeout(() => {
+  window.location.href = "dashboard.html";
+}, 500);
 
   } catch (err) {
     console.error(err);
