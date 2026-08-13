@@ -1,11 +1,5 @@
 /* =====================================================
-   SHADAT FATIH LITERARY ARCHIVE
-   COMPLETE STYLE.CSS
-===================================================== */
-
-
-/* =====================================================
-   RESET
+   SHADAT FATIH — FINAL RESPONSIVE STYLE
 ===================================================== */
 
 * {
@@ -21,15 +15,9 @@ html {
 body {
   background: #f5f5f2;
   color: #111;
-
-  font-family:
-    "Noto Serif Bengali",
-    serif;
-
+  font-family: "Noto Serif Bengali", serif;
   line-height: 1.7;
-
   padding-top: 64px;
-
   overflow-x: hidden;
 }
 
@@ -49,456 +37,166 @@ button {
 
 .navbar {
   position: fixed;
-
   top: 0;
   left: 0;
-
   width: 100%;
   height: 64px;
+  z-index: 99999;
 
-  z-index: 9999;
+  background: rgba(18, 18, 18, 0.88);
 
-  background:
-    rgba(18, 18, 18, .84);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
 
-  backdrop-filter:
-    blur(24px)
-    saturate(180%);
-
-  -webkit-backdrop-filter:
-    blur(24px)
-    saturate(180%);
-
-  border-bottom:
-    1px solid
-    rgba(255,255,255,.12);
-
-  box-shadow:
-    0 4px 25px
-    rgba(0,0,0,.25);
+  border-bottom: 1px solid rgba(255,255,255,.12);
 }
-
 
 .nav-inner {
   position: relative;
-
   width: 100%;
   max-width: 1200px;
-
   height: 64px;
-
   margin: 0 auto;
-
   padding: 0 20px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 }
 
 
-/* =====================================================
-   NAV LOGO
-===================================================== */
+/* LOGO */
 
 .brand-logo {
-  width: 32px !important;
-  height: 32px !important;
-
+  width: 34px !important;
+  height: 34px !important;
   display: block !important;
-
   flex-shrink: 0;
-
   border-radius: 50%;
-
   overflow: hidden;
-
-  border:
-    1px solid
-    rgba(255,255,255,.25);
 }
-
 
 .brand-logo img {
   width: 100% !important;
   height: 100% !important;
-
   max-width: none !important;
-
   object-fit: cover;
-
   display: block;
 }
 
 
-/* =====================================================
-   SITE TITLE
-===================================================== */
+/* TITLE */
 
 .site-title {
   position: absolute;
-
   left: 50%;
+  transform: translateX(-50%);
 
-  transform:
-    translateX(-50%);
-
-  font-family:
-    "Playfair Display",
-    Georgia,
-    serif;
-
+  font-family: "Playfair Display", Georgia, serif;
   font-size: 27px;
-
   font-weight: 600;
-
   letter-spacing: -1px;
 
   color: #fff;
-
   white-space: nowrap;
-
-  transition:
-    opacity .25s ease;
-}
-
-.site-title:hover {
-  opacity: .65;
 }
 
 
 /* =====================================================
-   MENU BUTTON
+   THREE DOT MENU
 ===================================================== */
 
 .menu-btn {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
 
   margin-left: auto;
 
-  padding: 0;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
 
-  border:
-    1px solid
-    rgba(255,255,255,.18);
-
+  border: 1px solid rgba(255,255,255,.18);
   border-radius: 50%;
 
-  background:
-    rgba(255,255,255,.10);
-
+  background: rgba(255,255,255,.10);
   color: #fff;
 
   font-size: 27px;
-
   line-height: 1;
 
   cursor: pointer;
 
-  backdrop-filter:
-    blur(20px);
-
-  -webkit-backdrop-filter:
-    blur(20px);
+  position: relative;
+  z-index: 100001;
 
   transition:
-    transform .25s ease,
-    background .25s ease;
+    transform .2s ease,
+    background .2s ease;
 }
 
 .menu-btn:hover {
-  background:
-    rgba(255,255,255,.18);
-
-  transform:
-    scale(1.08);
+  background: rgba(255,255,255,.18);
 }
 
 .menu-btn:active {
-  transform:
-    scale(.92);
+  transform: scale(.92);
 }
 
 
-/* =====================================================
-   3 DOT MENU
-===================================================== */
+/* MENU */
 
 #mainNav {
   position: absolute;
 
   top: 72px;
-  right: 15px;
+  right: 20px;
 
-  width: 310px;
-  max-height: calc(100vh - 90px);
-
-  overflow-y: auto;
+  width: 210px;
 
   display: none;
-
   flex-direction: column;
+  gap: 4px;
 
-  padding: 20px;
+  padding: 10px;
 
-  background:
-    rgba(20,20,20,.94);
+  background: rgba(20,20,20,.96);
 
-  color: #fff;
-
-  border:
-    1px solid
-    rgba(255,255,255,.13);
-
-  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 18px;
 
   box-shadow:
-    0 20px 60px
-    rgba(0,0,0,.45);
+    0 20px 60px rgba(0,0,0,.35);
 
-  backdrop-filter:
-    blur(28px)
-    saturate(160%);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
 
-  -webkit-backdrop-filter:
-    blur(28px)
-    saturate(160%);
-
-  animation:
-    menuIn .25s ease;
+  z-index: 100000;
 }
 
 #mainNav.active {
   display: flex;
 }
 
-
-@keyframes menuIn {
-
-  from {
-    opacity: 0;
-    transform:
-      translateY(-8px)
-      scale(.97);
-  }
-
-  to {
-    opacity: 1;
-    transform:
-      translateY(0)
-      scale(1);
-  }
-
-}
-
-
-/* =====================================================
-   MENU PROFILE
-===================================================== */
-
-.menu-profile {
-  text-align: center;
-
-  padding:
-    5px 5px 20px;
-
-  margin-bottom: 16px;
-
-  border-bottom:
-    1px solid
-    rgba(255,255,255,.10);
-}
-
-
-.menu-profile-image {
-  width: 78px;
-  height: 78px;
-
-  display: block;
-
-  margin: 0 auto 12px;
-
-  object-fit: cover;
-
-  border-radius: 50%;
-
-  border:
-    2px solid
-    rgba(255,255,255,.55);
-
-  box-shadow:
-    0 8px 30px
-    rgba(0,0,0,.35);
-}
-
-
-.menu-profile-name {
-  font-family:
-    "Playfair Display",
-    serif;
-
-  font-size: 22px;
-
-  font-weight: 600;
-
-  margin-bottom: 5px;
-}
-
-
-.menu-profile-quote {
-  font-size: 13px;
-
-  line-height: 1.7;
-
-  color:
-    rgba(255,255,255,.58);
-
-  padding:
-    0 15px;
-}
-
-
-/* =====================================================
-   MENU LINKS
-===================================================== */
-
-.menu-links {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 3px;
-
-  padding-bottom: 15px;
-
-  border-bottom:
-    1px solid
-    rgba(255,255,255,.10);
-}
-
-
 #mainNav a {
   display: block;
 
+  padding: 12px 14px;
+
   color: #fff;
 
-  font-family:
-    Arial,
-    sans-serif;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
 
-  font-size: 13px;
-
-  padding:
-    9px 10px;
-
-  border-radius: 9px;
+  border-radius: 10px;
 
   transition:
     background .2s ease,
-    opacity .2s ease,
-    transform .2s ease;
+    opacity .2s ease;
 }
-
 
 #mainNav a:hover {
-  background:
-    rgba(255,255,255,.08);
-
-  opacity: 1;
-
-  transform:
-    translateX(3px);
-}
-
-
-/* =====================================================
-   MENU CATEGORY
-===================================================== */
-
-.menu-category {
-  padding:
-    18px 0;
-
-  border-bottom:
-    1px solid
-    rgba(255,255,255,.10);
-}
-
-
-.menu-category:last-child {
-  border-bottom: none;
-
-  padding-bottom: 5px;
-}
-
-
-.menu-category-title {
-  display: block;
-
-  margin-bottom: 7px;
-
-  padding:
-    0 10px;
-
-  color:
-    rgba(255,255,255,.38);
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 9px;
-
-  font-weight: 700;
-
-  letter-spacing: 2.5px;
-}
-
-
-.yearly-list {
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 6px;
-
-  padding:
-    3px 10px;
-}
-
-
-.yearly-list a {
-  display: inline-flex !important;
-
-  width: auto;
-
-  padding:
-    6px 10px !important;
-
-  border:
-    1px solid
-    rgba(255,255,255,.12);
-
-  border-radius: 999px;
-
-  font-size: 11px !important;
-
-  color:
-    rgba(255,255,255,.82) !important;
-}
-
-
-.yearly-list a:hover {
-  background:
-    rgba(255,255,255,.12) !important;
+  background: rgba(255,255,255,.10);
 }
 
 
@@ -507,35 +205,36 @@ button {
 ===================================================== */
 
 .eyebrow {
-  font-family:
-    Arial,
-    sans-serif;
-
+  font-family: Arial, sans-serif;
   font-size: 11px;
-
   letter-spacing: 3px;
-
   font-weight: 700;
-
   margin-bottom: 24px;
 }
 
-
 .text-link {
-  font-family:
-    Arial,
-    sans-serif;
+  display: inline-block;
 
+  font-family: Arial, sans-serif;
   font-size: 13px;
-
   font-weight: 700;
 
-  transition:
-    opacity .2s ease;
+  margin-top: 10px;
 }
 
 .text-link:hover {
   opacity: .5;
+}
+
+.published-date {
+  margin: 8px 0 14px;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+  letter-spacing: 1.8px;
+
+  opacity: .45;
 }
 
 
@@ -544,27 +243,22 @@ button {
 ===================================================== */
 
 .hero {
-  min-height: 100vh;
+  width: 100%;
+  min-height: calc(100vh - 64px);
 
   display: grid;
-
-  grid-template-columns:
-    1fr 1fr;
+  grid-template-columns: 1fr 1fr;
 
   background: #f5f5f2;
 }
 
-
 .hero-content {
   display: flex;
-
   justify-content: center;
-
   flex-direction: column;
 
   padding: 80px;
 }
-
 
 .hero h1 {
   font-family:
@@ -572,94 +266,62 @@ button {
     "Noto Serif Bengali",
     serif;
 
-  font-size:
-    clamp(55px, 7vw, 100px);
-
+  font-size: clamp(55px, 7vw, 100px);
   line-height: 1.02;
 
   font-weight: 500;
-
   letter-spacing: -4px;
 }
-
 
 .hero h1 em,
 .intro h2 em,
 blockquote em {
   font-style: normal;
-
   opacity: .48;
 }
 
-
 .hero-text {
   margin-top: 32px;
-
   font-size: 18px;
-
   opacity: .7;
 }
-
 
 .hero-button {
   width: fit-content;
 
   margin-top: 38px;
-
-  padding:
-    13px 22px;
+  padding: 13px 22px;
 
   border-radius: 30px;
 
   background: #111;
+  color: #fff;
 
-  color: white;
-
-  font-family:
-    Arial,
-    sans-serif;
-
+  font-family: Arial, sans-serif;
   font-size: 13px;
-
-  transition:
-    transform .3s ease;
 }
-
-
-.hero-button:hover {
-  transform:
-    translateY(-2px);
-}
-
 
 .hero-image {
   position: relative;
-
   min-height: 650px;
-
   overflow: hidden;
-
   background: #111;
 }
-
 
 .hero-image img {
   width: 100%;
   height: 650px;
 
   object-fit: cover;
-
   object-position: center;
 
   display: block;
 }
 
-
 .hero-image::after {
   content: "";
 
   position: absolute;
-
   inset: 0;
 
   background:
@@ -672,28 +334,23 @@ blockquote em {
   pointer-events: none;
 }
 
-
 .hero-caption {
   position: absolute;
 
   bottom: 28px;
-
   left: 32px;
   right: 32px;
 
   display: flex;
-
   justify-content: space-between;
 
-  color: white;
+  color: #fff;
 
-  font-family:
-    Arial,
-    sans-serif;
-
+  font-family: Arial, sans-serif;
   font-size: 9px;
-
   letter-spacing: 2px;
+
+  z-index: 2;
 }
 
 
@@ -702,19 +359,14 @@ blockquote em {
 ===================================================== */
 
 .intro {
-  padding:
-    180px 28px;
-
+  padding: 180px 28px;
   background: #fff;
 }
 
-
 .intro-inner {
   max-width: 900px;
-
   margin: auto;
 }
-
 
 .intro h2 {
   font-family:
@@ -722,67 +374,53 @@ blockquote em {
     "Noto Serif Bengali",
     serif;
 
-  font-size:
-    clamp(40px, 6vw, 76px);
-
+  font-size: clamp(40px, 6vw, 76px);
   line-height: 1.15;
 
   font-weight: 500;
-
   letter-spacing: -2px;
 }
 
-
 .intro p:last-child {
   max-width: 600px;
-
   margin-top: 40px;
 
   font-size: 18px;
-
   opacity: .65;
 }
 
 
 /* =====================================================
-   CONTENT SECTIONS
+   CONTENT
 ===================================================== */
 
 .content-section {
-  padding:
-    140px 28px;
+  width: 100%;
+  padding: 140px 28px;
 }
-
 
 .light {
   background: #f5f5f2;
 }
 
-
 .dark {
   background: #111;
-
-  color: white;
+  color: #fff;
 }
-
 
 .section-container {
+  width: 100%;
   max-width: 1120px;
-
-  margin: auto;
+  margin: 0 auto;
 }
-
 
 .section-top {
   display: flex;
-
   justify-content: space-between;
-
   align-items: end;
 
   margin-bottom: 80px;
 }
-
 
 .section-top h2 {
   font-family:
@@ -791,71 +429,77 @@ blockquote em {
     serif;
 
   font-size: 70px;
-
   font-weight: 500;
-
   line-height: 1;
 }
 
-
 .section-top > p {
   max-width: 300px;
-
   opacity: .6;
 }
 
 
 /* =====================================================
-   POETRY CARD
+   POETRY
 ===================================================== */
 
 .writing-card {
+  width: 100%;
   min-height: 350px;
 
   padding: 60px;
 
-  background: white;
+  background: #fff;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+.writing-item {
+  width: 100%;
+
+  padding: 45px 0;
+
+  border-bottom: 1px solid rgba(0,0,0,.10);
 
   display: grid;
 
-  grid-template-columns:
-    160px 1fr;
+  grid-template-columns: 150px minmax(0, 1fr);
 
-  align-items: center;
+  gap: 30px;
 }
 
-
-.writing-card > div {
-  min-width: 0;
+.writing-item:first-child {
+  padding-top: 0;
 }
 
+.writing-item:last-child {
+  border-bottom: 0;
+}
 
 .card-number {
-  font-family:
-    Arial,
-    sans-serif;
+  font-family: Arial, sans-serif;
 
-  font-size: 90px;
-
+  font-size: 80px;
   font-weight: 700;
+
+  line-height: 1;
 
   opacity: .08;
 }
 
-
 .card-label {
-  font-family:
-    Arial,
-    sans-serif;
+  font-family: Arial, sans-serif;
 
   font-size: 10px;
-
   letter-spacing: 3px;
 
   opacity: .55;
 }
 
-
+.writing-item h3,
 .writing-card h3 {
   font-family:
     "Playfair Display",
@@ -863,77 +507,24 @@ blockquote em {
     serif;
 
   font-size: 42px;
-
   font-weight: 500;
+
+  line-height: 1.3;
+
+  margin-bottom: 8px;
 }
 
+.writing-item > div:last-child > p:not(.card-label):not(.published-date) {
+  max-width: 600px;
 
-.writing-card p {
-  max-width: 550px;
-
-  margin: 18px 0;
+  margin: 12px 0;
 
   opacity: .6;
 }
 
 
 /* =====================================================
-   PUBLISHED DATE
-===================================================== */
-
-.published-date {
-  display: flex;
-
-  align-items: center;
-
-  gap: 7px;
-
-  margin-bottom: 12px;
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 9px;
-
-  font-weight: 700;
-
-  letter-spacing: 1.7px;
-
-  text-transform: uppercase;
-
-  color:
-    rgba(0,0,0,.48);
-}
-
-
-.published-date::before {
-  content: "";
-
-  width: 6px;
-  height: 6px;
-
-  border-radius: 50%;
-
-  background: #111;
-
-  opacity: .55;
-}
-
-
-.dark .published-date {
-  color:
-    rgba(255,255,255,.45);
-}
-
-
-.dark .published-date::before {
-  background: #fff;
-}
-
-
-/* =====================================================
-   WRITING ACTIONS
+   ACTION BUTTONS
 ===================================================== */
 
 .writing-actions {
@@ -946,272 +537,65 @@ blockquote em {
   margin-top: 22px;
 }
 
-
 .writing-action {
-  display: inline-flex;
+  border: 1px solid rgba(0,0,0,.12);
 
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 6px;
-
-  min-height: 34px;
-
-  padding:
-    7px 12px;
-
-  border:
-    1px solid
-    rgba(0,0,0,.10);
-
-  border-radius: 999px;
-
-  background:
-    rgba(0,0,0,.025);
+  background: transparent;
 
   color: #111;
 
-  font-family:
-    Arial,
-    sans-serif;
+  padding: 8px 13px;
+
+  border-radius: 999px;
+
+  font-family: Arial, sans-serif;
 
   font-size: 10px;
-
-  font-weight: 700;
+  font-weight: 600;
 
   cursor: pointer;
 
   transition:
     background .2s ease,
-    transform .2s ease,
-    border-color .2s ease;
+    color .2s ease,
+    transform .2s ease;
 }
-
 
 .writing-action:hover {
   background: #111;
-
   color: #fff;
 
-  border-color: #111;
-
-  transform:
-    translateY(-2px);
+  transform: translateY(-2px);
 }
 
 
-.writing-action:active {
-  transform:
-    translateY(0)
-    scale(.97);
-}
+/* DARK SECTION BUTTON */
 
-
-.dark .writing-action,
-.story-card .writing-action {
-  border-color:
-    rgba(255,255,255,.14);
-
-  background:
-    rgba(255,255,255,.05);
-
+.dark .writing-action {
   color: #fff;
+  border-color: rgba(255,255,255,.20);
 }
 
-
-.dark .writing-action:hover,
-.story-card .writing-action:hover {
+.dark .writing-action:hover {
   background: #fff;
-
   color: #111;
-
-  border-color: #fff;
 }
 
 
 /* =====================================================
-   ARCHIVE / MOST VIEWED
-===================================================== */
-
-.archive-section {
-  padding:
-    120px 28px;
-
-  background: #fff;
-}
-
-
-.dark-archive {
-  background: #181818;
-
-  color: #fff;
-}
-
-
-.archive-heading {
-  margin-bottom: 55px;
-}
-
-
-.archive-heading h2 {
-  max-width: 800px;
-
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
-
-  font-size:
-    clamp(40px, 6vw, 70px);
-
-  font-weight: 500;
-
-  line-height: 1.08;
-
-  letter-spacing: -2px;
-}
-
-
-.most-viewed-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  gap: 2px;
-}
-
-
-.most-viewed-card {
-  min-height: 330px;
-
-  padding: 35px;
-
-  background: #f5f5f2;
-
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: space-between;
-
-  transition:
-    transform .25s ease,
-    background .25s ease;
-}
-
-
-.most-viewed-card:hover {
-  transform:
-    translateY(-4px);
-
-  background: #ecece7;
-}
-
-
-.most-viewed-card-number {
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 11px;
-
-  letter-spacing: 2px;
-
-  opacity: .4;
-}
-
-
-.most-viewed-card h3 {
-  margin-top: 20px;
-
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
-
-  font-size: 30px;
-
-  font-weight: 500;
-
-  line-height: 1.3;
-}
-
-
-.most-viewed-card p {
-  margin-top: 15px;
-
-  font-size: 14px;
-
-  opacity: .55;
-}
-
-
-.most-viewed-card-footer {
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 10px;
-
-  margin-top: 25px;
-}
-
-
-.view-count {
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 10px;
-
-  font-weight: 700;
-
-  letter-spacing: 1px;
-
-  opacity: .45;
-}
-
-
-.dark-archive .most-viewed-card {
-  background: #222;
-
-  color: #fff;
-}
-
-
-.dark-archive .most-viewed-card:hover {
-  background: #292929;
-}
-
-
-.dark-archive .published-date {
-  color:
-    rgba(255,255,255,.45);
-}
-
-
-.dark-archive .published-date::before {
-  background: #fff;
-}
-
-
-/* =====================================================
-   STORIES HOME
+   STORIES
 ===================================================== */
 
 .story-grid {
+  width: 100%;
+
   display: grid;
 
   grid-template-columns:
-    repeat(2, 1fr);
+    repeat(2, minmax(0, 1fr));
 
   gap: 2px;
 }
-
 
 .story-grid .story-card {
   min-height: 420px;
@@ -1219,28 +603,14 @@ blockquote em {
   padding: 50px;
 
   background: #1b1b1b;
-
-  color: white;
+  color: #fff;
 
   display: flex;
-
   flex-direction: column;
-
   justify-content: end;
 
-  transition:
-    background .3s ease,
-    transform .3s ease;
+  overflow: hidden;
 }
-
-
-.story-grid .story-card:hover {
-  background: #252525;
-
-  transform:
-    translateY(-3px);
-}
-
 
 .story-grid .story-card h3 {
   font-family:
@@ -1249,27 +619,22 @@ blockquote em {
     serif;
 
   font-size: 40px;
-
   font-weight: 500;
+
+  line-height: 1.3;
 
   margin: 15px 0;
 }
 
-
 .story-grid .story-card p {
   opacity: .55;
-
   max-width: 400px;
 }
 
-
-.story-grid .story-card > a {
+.story-grid .story-card a {
   margin-top: 25px;
 
-  font-family:
-    Arial,
-    sans-serif;
-
+  font-family: Arial, sans-serif;
   font-size: 12px;
 }
 
@@ -1282,81 +647,189 @@ blockquote em {
   background: #e8e7e2;
 }
 
-
 .novel-grid {
+  width: 100%;
+
   display: grid;
 
   grid-template-columns:
-    repeat(2, 1fr);
+    repeat(2, minmax(0, 1fr));
 
   gap: 20px;
 }
 
-
 .novel-card {
-  min-height: 360px;
+  min-height: 350px;
 
   padding: 45px;
 
-  background: #111;
-
-  color: white;
+  background: #fff;
 
   display: flex;
+  align-items: center;
 
-  flex-direction: column;
-
-  justify-content: space-between;
-
-  transition:
-    transform .3s ease;
+  border: 1px solid rgba(0,0,0,.05);
 }
 
-
-.novel-card:hover {
-  transform:
-    translateY(-5px);
+.novel-info {
+  width: 100%;
 }
 
-
-.novel-info h3 {
-  margin-top: 14px;
-
+.novel-card h3 {
   font-family:
     "Playfair Display",
     "Noto Serif Bengali",
     serif;
 
-  font-size: 38px;
-
+  font-size: 40px;
   font-weight: 500;
 
-  line-height: 1.2;
+  line-height: 1.3;
+
+  margin-bottom: 10px;
+}
+
+.novel-card p:not(.card-label):not(.published-date) {
+  opacity: .6;
+  margin: 12px 0;
 }
 
 
-.novel-info > p:not(.card-label) {
-  margin-top: 18px;
+/* =====================================================
+   MOST VIEWED
+===================================================== */
 
-  opacity: .58;
+.most-viewed-section {
+  padding: 130px 28px;
+  background: #111;
+  color: #fff;
+}
+
+.most-viewed-list {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 2px;
+}
+
+.most-viewed-card {
+  min-height: 360px;
+
+  padding: 35px;
+
+  background: #1b1b1b;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.most-viewed-card-number {
+  font-family: Arial, sans-serif;
+
+  font-size: 55px;
+  font-weight: 700;
+
+  opacity: .10;
+
+  margin-bottom: 15px;
+}
+
+.most-viewed-card h3 {
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
+
+  font-size: 30px;
+  font-weight: 500;
+
+  line-height: 1.35;
+
+  margin: 12px 0;
+}
+
+.most-viewed-card p {
+  opacity: .55;
+}
+
+.most-viewed-card-footer {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 25px;
+}
+
+.view-count {
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 2px;
+
+  opacity: .45;
 }
 
 
-.novel-card .published-date {
-  color:
-    rgba(255,255,255,.45);
-}
+/* =====================================================
+   YEARLY ARCHIVE
+===================================================== */
 
-
-.novel-card .published-date::before {
+.archive-section {
+  padding: 120px 28px;
   background: #fff;
 }
 
+.archive-heading {
+  max-width: 1120px;
+  margin: 0 auto 50px;
+}
 
-.novel-card .text-link {
-  display: inline-block;
+.archive-heading h2 {
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
 
-  margin-top: 25px;
+  font-size: 65px;
+  font-weight: 500;
+}
+
+.yearly-list {
+  max-width: 1120px;
+  margin: auto;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+.yearly-list a {
+  padding: 10px 18px;
+
+  border: 1px solid rgba(0,0,0,.12);
+
+  border-radius: 999px;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 12px;
+
+  transition:
+    background .2s ease,
+    color .2s ease;
+}
+
+.yearly-list a:hover {
+  background: #111;
+  color: #fff;
 }
 
 
@@ -1365,32 +838,23 @@ blockquote em {
 ===================================================== */
 
 .quote-section {
-  padding:
-    180px 28px;
-
+  padding: 180px 28px;
   background: #fff;
 }
 
-
 .quote-container {
   max-width: 1000px;
-
   margin: auto;
 }
 
-
 .quote-symbol {
-  font-family:
-    Georgia,
-    serif;
+  font-family: Georgia, serif;
 
   font-size: 100px;
-
   line-height: .5;
 
   opacity: .12;
 }
-
 
 blockquote {
   font-family:
@@ -1398,20 +862,16 @@ blockquote {
     "Noto Serif Bengali",
     serif;
 
-  font-size:
-    clamp(45px, 7vw, 90px);
+  font-size: clamp(45px, 7vw, 90px);
 
   line-height: 1.1;
 
   font-weight: 500;
-
   letter-spacing: -3px;
 }
 
-
 .quote-container p {
   margin-top: 35px;
-
   opacity: .5;
 }
 
@@ -1421,24 +881,20 @@ blockquote {
 ===================================================== */
 
 .author-section {
-  padding:
-    140px 28px;
-
+  padding: 140px 28px;
   background: #f5f5f2;
 }
-
 
 .author-grid {
   display: grid;
 
   grid-template-columns:
-    400px 1fr;
+    400px minmax(0, 1fr);
 
   gap: 100px;
 
   align-items: center;
 }
-
 
 .author-photo {
   height: 500px;
@@ -1448,18 +904,14 @@ blockquote {
   overflow: hidden;
 }
 
-
 .author-photo img {
   width: 100%;
   height: 100%;
 
   object-fit: cover;
 
-  object-position: center;
-
   display: block;
 }
-
 
 .author-info h2 {
   font-family:
@@ -1468,12 +920,10 @@ blockquote {
     serif;
 
   font-size: 70px;
-
   font-weight: 500;
 
   line-height: 1;
 }
-
 
 .author-info > p:not(.eyebrow) {
   max-width: 550px;
@@ -1482,11 +932,6 @@ blockquote {
 
   opacity: .65;
 }
-
-
-/* =====================================================
-   FLOATING SOCIAL
-===================================================== */
 
 .floating-socials {
   display: flex;
@@ -1498,59 +943,22 @@ blockquote {
   margin-top: 35px;
 }
 
-
 .floating-socials a {
-  display: inline-flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  padding:
-    12px 20px;
+  padding: 12px 20px;
 
   border-radius: 999px;
 
-  background:
-    rgba(255,255,255,.72);
+  background: rgba(255,255,255,.72);
 
-  border:
-    1px solid
-    rgba(0,0,0,.08);
+  border: 1px solid rgba(0,0,0,.08);
 
   box-shadow:
-    0 10px 30px
-    rgba(0,0,0,.08);
+    0 10px 30px rgba(0,0,0,.08);
 
-  backdrop-filter:
-    blur(18px);
-
-  -webkit-backdrop-filter:
-    blur(18px);
-
-  font-family:
-    Arial,
-    sans-serif;
+  font-family: Arial, sans-serif;
 
   font-size: 12px;
-
   font-weight: 600;
-
-  transition:
-    transform .3s ease,
-    box-shadow .3s ease;
-}
-
-
-.floating-socials a:hover {
-  transform:
-    translateY(-5px);
-
-  background: #fff;
-
-  box-shadow:
-    0 16px 35px
-    rgba(0,0,0,.14);
 }
 
 
@@ -1560,13 +968,10 @@ blockquote {
 
 footer {
   background: #111;
+  color: #fff;
 
-  color: white;
-
-  padding:
-    45px 28px;
+  padding: 45px 28px;
 }
-
 
 .footer-inner {
   max-width: 1120px;
@@ -1580,7 +985,6 @@ footer {
   align-items: end;
 }
 
-
 .footer-inner strong {
   font-family:
     "Playfair Display",
@@ -1589,11 +993,8 @@ footer {
   font-size: 20px;
 }
 
-
 .footer-inner p {
-  font-family:
-    Arial,
-    sans-serif;
+  font-family: Arial, sans-serif;
 
   font-size: 9px;
 
@@ -1606,147 +1007,21 @@ footer {
 
 
 /* =====================================================
-   READING PAGES
-===================================================== */
-
-.poem-page,
-.story-page {
-  width: 100%;
-
-  min-height: 100vh;
-
-  padding:
-    100px 24px 80px;
-
-  overflow-x: hidden;
-}
-
-
-.poem-reader,
-.story-reader {
-  width: 100%;
-
-  max-width: 800px;
-
-  margin: 0 auto;
-}
-
-
-.poem-reader h1,
-.story-reader h1 {
-  width: 100%;
-
-  max-width: 100%;
-
-  margin:
-    0 0 25px;
-
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
-
-  font-size:
-    clamp(38px, 7vw, 72px);
-
-  font-weight: 500;
-
-  line-height: 1.25;
-
-  letter-spacing: -2px;
-
-  overflow-wrap: break-word;
-}
-
-
-.poem-excerpt,
-.story-reader .story-excerpt {
-  width: 100%;
-
-  max-width: 680px;
-
-  margin:
-    0 0 40px;
-
-  font-size: 17px;
-
-  line-height: 1.9;
-
-  opacity: .6;
-
-  overflow-wrap: break-word;
-}
-
-
-.poem-body,
-.story-body {
-  width: 100%;
-
-  max-width: 720px;
-
-  font-family:
-    "Noto Serif Bengali",
-    serif;
-
-  font-size: 20px;
-
-  line-height: 2.15;
-
-  margin-bottom: 50px;
-
-  overflow-wrap: break-word;
-
-  word-wrap: break-word;
-}
-
-
-/* =====================================================
-   READING PAGE ACTIONS
-===================================================== */
-
-.reading-actions {
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 10px;
-
-  padding:
-    22px 0;
-
-  margin-bottom: 35px;
-
-  border-top:
-    1px solid
-    rgba(0,0,0,.10);
-
-  border-bottom:
-    1px solid
-    rgba(0,0,0,.10);
-}
-
-
-/* =====================================================
-   REVEAL ANIMATION
+   REVEAL
 ===================================================== */
 
 .reveal {
   opacity: 0;
-
-  transform:
-    translateY(35px);
+  transform: translateY(30px);
 
   transition:
-    opacity .8s ease,
-    transform .8s ease;
+    opacity .7s ease,
+    transform .7s ease;
 }
-
 
 .reveal.show {
   opacity: 1;
-
-  transform:
-    translateY(0);
+  transform: translateY(0);
 }
 
 
@@ -1760,128 +1035,87 @@ footer {
     padding-top: 60px;
   }
 
-
-  /* NAV */
-
   .navbar {
     height: 60px;
   }
 
-
   .nav-inner {
     height: 60px;
-
-    padding:
-      0 16px;
+    padding: 0 15px;
   }
-
 
   .brand-logo {
     width: 30px !important;
     height: 30px !important;
   }
 
-
   .site-title {
-    font-size: 22px;
-
-    letter-spacing:
-      -.7px;
+    font-size: 21px;
   }
-
 
   .menu-btn {
     width: 40px;
     height: 40px;
-
     font-size: 24px;
   }
 
-
   #mainNav {
     top: 68px;
-
-    right: 10px;
-    left: 10px;
-
-    width: auto;
-
-    max-height:
-      calc(100vh - 82px);
-
-    border-radius: 20px;
-
-    padding: 17px;
-  }
-
-
-  .menu-profile-image {
-    width: 70px;
-    height: 70px;
+    right: 12px;
+    width: 190px;
   }
 
 
   /* HERO */
 
   .hero {
-    grid-template-columns:
-      1fr;
-  }
+    grid-template-columns: 1fr;
 
+    min-height: auto;
+  }
 
   .hero-content {
-    padding:
-      110px 28px 70px;
+    padding: 100px 25px 65px;
   }
-
 
   .hero h1 {
-    font-size: 55px;
-
-    letter-spacing:
-      -2px;
+    font-size: 54px;
+    letter-spacing: -2px;
   }
 
+  .hero-text {
+    font-size: 16px;
+  }
 
   .hero-image {
-    width: 100%;
-
-    min-height: 450px;
+    min-height: 430px;
   }
-
 
   .hero-image img {
     width: 100%;
+    height: 430px;
 
-    height: 450px;
-
-    object-fit: contain;
-
-    background: #111;
+    object-fit: cover;
   }
 
 
   /* INTRO */
 
   .intro {
-    padding:
-      120px 28px;
+    padding: 110px 25px;
+  }
+
+  .intro h2 {
+    font-size: 43px;
+    letter-spacing: -1px;
   }
 
 
-  /* SECTIONS */
+  /* CONTENT */
 
   .content-section {
-    padding:
-      100px 20px;
+    padding: 90px 20px;
   }
-
-
-  .archive-section {
-    padding:
-      90px 20px;
-  }
-
 
   .section-top {
     display: block;
@@ -1889,225 +1123,150 @@ footer {
     margin-bottom: 50px;
   }
 
+  .section-top h2 {
+    font-size: 54px;
+  }
 
   .section-top > p {
     margin-top: 25px;
   }
 
 
-  .section-top h2,
-  .author-info h2 {
-
-    font-size: 55px;
-  }
-
-
   /* POETRY */
 
   .writing-card {
-    grid-template-columns:
-      1fr;
-
-    padding: 40px;
-
-    min-height: 330px;
+    padding: 25px;
   }
 
+  .writing-item {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+
+    padding: 30px 0;
+  }
+
+  .writing-item:first-child {
+    padding-top: 0;
+  }
 
   .card-number {
-    font-size: 50px;
-
-    margin-bottom: 20px;
-  }
-
-
-  .writing-card h3 {
-    font-size: 34px;
-  }
-
-
-  /* MOST VIEWED */
-
-  .most-viewed-grid {
-    grid-template-columns:
-      1fr;
-  }
-
-
-  .most-viewed-card {
-    min-height: 280px;
-
-    padding: 30px;
-  }
-
-
-  .archive-heading {
-    margin-bottom: 40px;
-  }
-
-
-  .archive-heading h2 {
     font-size: 45px;
+  }
+
+  .writing-item h3,
+  .writing-card h3 {
+    font-size: 32px;
+  }
+
+  .writing-item > div:last-child > p:not(.card-label):not(.published-date) {
+    font-size: 15px;
   }
 
 
   /* STORIES */
 
   .story-grid {
-    grid-template-columns:
-      1fr;
+    grid-template-columns: 1fr;
   }
-
 
   .story-grid .story-card {
-    min-height: 380px;
-
-    padding: 40px;
+    min-height: 360px;
+    padding: 35px;
   }
 
-
   .story-grid .story-card h3 {
-    font-size: 34px;
+    font-size: 32px;
   }
 
 
   /* NOVELS */
 
   .novel-grid {
-    grid-template-columns:
-      1fr;
+    grid-template-columns: 1fr;
   }
-
 
   .novel-card {
-    min-height: 320px;
+    min-height: 300px;
+    padding: 30px;
+  }
 
-    padding: 35px;
+  .novel-card h3 {
+    font-size: 32px;
   }
 
 
-  .novel-info h3 {
-    font-size: 34px;
+  /* MOST VIEWED */
+
+  .most-viewed-section {
+    padding: 90px 20px;
+  }
+
+  .most-viewed-list {
+    grid-template-columns: 1fr;
+  }
+
+  .most-viewed-card {
+    min-height: 300px;
+    padding: 30px;
+  }
+
+
+  /* ARCHIVE */
+
+  .archive-section {
+    padding: 90px 20px;
+  }
+
+  .archive-heading h2 {
+    font-size: 50px;
   }
 
 
   /* QUOTE */
 
   .quote-section {
-    padding:
-      120px 28px;
+    padding: 110px 25px;
   }
 
-
   blockquote {
-    font-size:
-      clamp(40px, 11vw, 60px);
-
-    letter-spacing:
-      -1.5px;
+    font-size: 48px;
+    letter-spacing: -1px;
   }
 
 
   /* AUTHOR */
 
   .author-section {
-    padding:
-      100px 20px;
+    padding: 90px 20px;
   }
-
 
   .author-grid {
-    grid-template-columns:
-      1fr;
-
+    grid-template-columns: 1fr;
     gap: 50px;
   }
-
 
   .author-photo {
     height: 420px;
   }
 
-
-  /* SOCIAL */
-
-  .floating-socials {
-    gap: 8px;
-
-    margin-top: 28px;
-  }
-
-
-  .floating-socials a {
-    padding:
-      10px 15px;
-
-    font-size: 11px;
+  .author-info h2 {
+    font-size: 52px;
   }
 
 
   /* FOOTER */
 
+  footer {
+    padding: 40px 20px;
+  }
+
   .footer-inner {
     display: block;
   }
 
-
   .footer-inner > p {
     margin-top: 30px;
-  }
-
-
-  /* READING */
-
-  .poem-page,
-  .story-page {
-    padding:
-      90px 20px 60px;
-  }
-
-
-  .poem-reader h1,
-  .story-reader h1 {
-    font-size:
-      clamp(32px, 9vw, 48px);
-
-    line-height: 1.3;
-
-    letter-spacing: -1px;
-  }
-
-
-  .poem-excerpt,
-  .story-reader .story-excerpt {
-    font-size: 15px;
-
-    line-height: 1.8;
-  }
-
-
-  .poem-body,
-  .story-body {
-    font-size: 18px;
-
-    line-height: 2.1;
-  }
-
-
-  /* ACTIONS */
-
-  .writing-actions {
-    gap: 6px;
-  }
-
-
-  .writing-action {
-    min-height: 32px;
-
-    padding:
-      6px 10px;
-
-    font-size: 9px;
   }
 
 }
@@ -2120,61 +1279,32 @@ footer {
 @media (max-width: 420px) {
 
   .site-title {
-    font-size: 20px;
+    font-size: 19px;
   }
-
 
   .hero h1 {
+    font-size: 46px;
+  }
+
+  .section-top h2 {
     font-size: 48px;
   }
-
-
-  .hero-content {
-    padding-left: 22px;
-    padding-right: 22px;
-  }
-
-
-  .intro {
-    padding:
-      100px 22px;
-  }
-
 
   .intro h2 {
     font-size: 38px;
   }
 
-
-  .content-section,
-  .archive-section {
-    padding-left: 16px;
-    padding-right: 16px;
+  .writing-item h3,
+  .writing-card h3 {
+    font-size: 29px;
   }
 
-
-  .writing-card {
-    padding: 30px 25px;
+  .story-grid .story-card h3 {
+    font-size: 29px;
   }
 
-
-  .story-grid .story-card {
-    padding: 30px 25px;
-  }
-
-
-  .novel-card {
-    padding: 30px 25px;
-  }
-
-
-  .archive-heading h2 {
-    font-size: 39px;
-  }
-
-
-  .menu-profile-quote {
-    font-size: 12px;
+  .novel-card h3 {
+    font-size: 29px;
   }
 
 }
