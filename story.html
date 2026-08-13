@@ -12,6 +12,32 @@
 
   <title>Shadat Fatih — গল্প</title>
 
+  <meta
+    name="description"
+    content="Shadat Fatih-এর গল্প"
+  >
+
+  <meta
+    name="author"
+    content="Shadat Fatih"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
   <link
     rel="stylesheet"
     href="style.css"
@@ -22,164 +48,272 @@
 
 <body>
 
-  <main class="poem-page">
 
-    <article
-      class="poem-reader"
-      id="story-content"
-    >
+<main class="poem-page">
+
+
+  <article
+    class="poem-reader story-reader"
+    id="story-content"
+  >
+
+    <div class="story-loading">
+
+      <span class="eyebrow">
+        STORIES
+      </span>
 
       <p>
         গল্প লোড হচ্ছে...
       </p>
 
-    </article>
+    </div>
 
-  </main>
-
-
-  <!-- SUPABASE -->
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  </article>
 
 
-  <script>
-
-    const SUPABASE_URL =
-      "https://ooxbtwxqumaixvrwsllg.supabase.co";
-
-    const SUPABASE_PUBLISHABLE_KEY =
-      "sb_publishable_dNAV-kJ5rv_-BH6GhChYVg_1xbRUNdy";
+</main>
 
 
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
+
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+"use strict";
+
+
+/* =====================================================
+   SUPABASE CONFIG
+===================================================== */
+
+const SUPABASE_URL =
+  "https://ooxbtwxqumaixvrwsllg.supabase.co";
+
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_dNAV-kJ5rv_-BH6GhChYVg_1xbRUNdy";
+
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+
+
+/* =====================================================
+   HTML SECURITY
+===================================================== */
+
+function escapeHtml(value) {
+
+  return String(value || "")
+
+    .replaceAll("&", "&amp;")
+
+    .replaceAll("<", "&lt;")
+
+    .replaceAll(">", "&gt;")
+
+    .replaceAll('"', "&quot;")
+
+    .replaceAll("'", "&#039;");
+
+}
+
+
+
+/* =====================================================
+   STORY FORMAT
+===================================================== */
+
+function formatStory(text) {
+
+  if (!text) {
+
+    return "";
+
+  }
+
+
+  return escapeHtml(text)
+
+    .replace(
+      /\r?\n/g,
+      "<br>"
+    );
+
+}
+
+
+
+/* =====================================================
+   DATE FORMAT
+===================================================== */
+
+function formatDate(dateValue) {
+
+  if (!dateValue) {
+
+    return "";
+
+  }
+
+
+  const date =
+    new Date(dateValue);
+
+
+  if (
+    Number.isNaN(
+      date.getTime()
+    )
+  ) {
+
+    return "";
+
+  }
+
+
+  return date.toLocaleDateString(
+    "bn-BD",
+    {
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    }
+  );
+
+}
+
+
+
+/* =====================================================
+   LOAD STORY
+===================================================== */
+
+async function loadStory() {
+
+  const container =
+    document.getElementById(
+      "story-content"
+    );
+
+
+  if (!container) {
+
+    return;
+
+  }
+
+
+  /* -----------------------------------------------
+     GET STORY ID
+  ------------------------------------------------ */
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+
+  const id =
+    params.get("id");
+
+
+  /* -----------------------------------------------
+     NO ID
+  ------------------------------------------------ */
+
+  if (!id) {
+
+    showStoryError(
+      "গল্পের কোনো ID পাওয়া যায়নি।"
+    );
+
+    return;
+
+  }
+
+
+  try {
+
+
+    /* ---------------------------------------------
+       FETCH STORY
+    --------------------------------------------- */
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+
+        .from("stories")
+
+        .select(
+          "id, title, content, excerpt, created_at, published"
+        )
+
+        .eq(
+          "id",
+          id
+        )
+
+        .eq(
+          "published",
+          true
+        )
+
+        .single();
+
+
+    /* ---------------------------------------------
+       DATABASE ERROR
+    --------------------------------------------- */
+
+    if (error) {
+
+      throw error;
+
+    }
+
+
+    if (!data) {
+
+      throw new Error(
+        "Story not found"
       );
 
-
-    async function loadStory() {
-
-      const container =
-        document.getElementById(
-          "story-content"
-        );
+    }
 
 
-      /*
-        URL থেকে ID নেওয়া
-        Example:
-        story.html?id=3
-      */
+    /* ---------------------------------------------
+       PAGE TITLE
+    --------------------------------------------- */
 
-      const params =
-        new URLSearchParams(
-          window.location.search
-        );
+    document.title =
+      `${data.title} — Shadat Fatih`;
 
 
-      const id =
-        params.get("id");
+    /* ---------------------------------------------
+       RENDER STORY
+    --------------------------------------------- */
 
+    container.innerHTML = `
 
-      /* ID না থাকলে */
+      <div class="story-header">
 
-      if (!id) {
-
-        container.innerHTML = `
-
-          <p class="eyebrow">
-            STORIES
-          </p>
-
-          <h1>
-            গল্প পাওয়া যায়নি
-          </h1>
-
-          <p class="poem-excerpt">
-            গল্পটির কোনো ID পাওয়া যায়নি।
-          </p>
-
-          <a
-            href="stories.html"
-            class="text-link"
-          >
-            ← সব গল্প
-          </a>
-
-        `;
-
-        return;
-      }
-
-
-      /*
-        Supabase থেকে গল্প আনা
-      */
-
-      const { data, error } =
-        await supabaseClient
-
-          .from("stories")
-
-          .select(
-            "id, title, content, excerpt, created_at, published"
-          )
-
-          .eq("id", id)
-
-          .eq("published", true)
-
-          .single();
-
-
-      /* Error হলে */
-
-      if (error || !data) {
-
-        console.error(
-          "Story Error:",
-          error
-        );
-
-
-        container.innerHTML = `
-
-          <p class="eyebrow">
-            STORIES
-          </p>
-
-          <h1>
-            গল্প পাওয়া যায়নি
-          </h1>
-
-          <p class="poem-excerpt">
-            এই গল্পটি বর্তমানে প্রকাশিত নয়
-            অথবা পাওয়া যাচ্ছে না।
-          </p>
-
-          <a
-            href="stories.html"
-            class="text-link"
-          >
-            ← সব গল্প
-          </a>
-
-        `;
-
-        return;
-      }
-
-
-      /*
-        গল্প দেখানো
-      */
-
-      container.innerHTML = `
 
         <p class="eyebrow">
-          STORIES
+          02 / STORIES
         </p>
 
 
@@ -189,93 +323,151 @@
 
 
         ${
-          data.excerpt
+          data.created_at
             ? `
-
-              <p class="poem-excerpt">
-                ${escapeHtml(data.excerpt)}
-              </p>
-
+              <div class="published-date">
+                ${formatDate(data.created_at)}
+              </div>
             `
             : ""
         }
 
 
-        <div class="poem-body">
+        ${
+          data.excerpt
+            ? `
+              <p class="poem-excerpt story-excerpt">
+                ${escapeHtml(data.excerpt)}
+              </p>
+            `
+            : ""
+        }
 
-          ${formatStory(data.content)}
 
-        </div>
+      </div>
+
+
+
+      <div class="poem-divider">
+        <span>✦</span>
+      </div>
+
+
+
+      <div class="poem-body story-body">
+
+        ${formatStory(data.content)}
+
+      </div>
+
+
+
+      <div class="story-footer">
+
+
+        <div class="story-footer-line"></div>
+
+
+        <p class="story-author">
+          — Shadat Fatih
+        </p>
 
 
         <a
-          href="stories.html"
+          href="index.html#stories"
           class="text-link"
         >
           ← সব গল্প
         </a>
 
-      `;
 
-    }
+      </div>
 
-
-    /*
-      Story formatting
-    */
-
-    function formatStory(text) {
-
-      return escapeHtml(text)
-        .replace(/\r?\n/g, "<br>");
-
-    }
+    `;
 
 
-    /*
-      Security:
-      HTML code সরাসরি render হতে দেবে না
-    */
-
-    function escapeHtml(value) {
-
-      return String(value || "")
-
-        .replaceAll(
-          "&",
-          "&amp;"
-        )
-
-        .replaceAll(
-          "<",
-          "&lt;"
-        )
-
-        .replaceAll(
-          ">",
-          "&gt;"
-        )
-
-        .replaceAll(
-          '"',
-          "&quot;"
-        )
-
-        .replaceAll(
-          "'",
-          "&#039;"
-        );
-
-    }
+  } catch (error) {
 
 
-    /*
-      Page load
-    */
+    console.error(
+      "Story Loading Error:",
+      error
+    );
 
-    loadStory();
 
-  </script>
+    showStoryError(
+      "এই গল্পটি বর্তমানে প্রকাশিত নয় অথবা খুঁজে পাওয়া যাচ্ছে না।"
+    );
+
+  }
+
+}
+
+
+
+/* =====================================================
+   ERROR VIEW
+===================================================== */
+
+function showStoryError(message) {
+
+  const container =
+    document.getElementById(
+      "story-content"
+    );
+
+
+  if (!container) {
+
+    return;
+
+  }
+
+
+  container.innerHTML = `
+
+    <div class="story-error">
+
+
+      <p class="eyebrow">
+        STORIES
+      </p>
+
+
+      <h1>
+        গল্প পাওয়া যায়নি
+      </h1>
+
+
+      <p class="poem-excerpt">
+        ${escapeHtml(message)}
+      </p>
+
+
+      <a
+        href="index.html#stories"
+        class="text-link"
+      >
+        ← সব গল্প
+      </a>
+
+
+    </div>
+
+  `;
+
+}
+
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadStory();
+
+</script>
+
 
 </body>
 
