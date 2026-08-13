@@ -24,16 +24,13 @@
 
   <main class="poem-page">
 
-    <article
-      class="poem-reader"
-      id="story-content"
-    >
+    <section id="stories-container">
 
       <p>
         গল্প লোড হচ্ছে...
       </p>
 
-    </article>
+    </section>
 
   </main>
 
@@ -47,7 +44,7 @@
       "https://ooxbtwxqumaixvrwsllg.supabase.co";
 
     const SUPABASE_PUBLISHABLE_KEY =
-      "sb_publishable_dNAV-kJ5rv_-BH6GhChYVg_1xbRUNdy";
+      "sb_publishable_dNAV-kJ5rv_-BH6GhYVg_1xbRUNdy";
 
 
     const supabaseClient =
@@ -57,48 +54,32 @@
       );
 
 
-    async function loadStory() {
+    async function loadStories() {
 
-      const params =
-        new URLSearchParams(
-          window.location.search
-        );
-
-      const id =
-        params.get("id");
-
-
-      if (!id) {
-
+      const container =
         document.getElementById(
-          "story-content"
-        ).innerHTML = `
-          <h1>গল্প পাওয়া যায়নি</h1>
-        `;
-
-        return;
-      }
+          "stories-container"
+        );
 
 
       const { data, error } =
         await supabaseClient
           .from("stories")
-          .select("title, content, excerpt, published")
-          .eq("id", id)
+          .select("id, title, excerpt, created_at")
           .eq("published", true)
-          .single();
+          .order("created_at", {
+            ascending: false
+          });
 
 
-      if (error || !data) {
+      if (error) {
 
         console.error(error);
 
-        document.getElementById(
-          "story-content"
-        ).innerHTML = `
-          <h1>গল্প পাওয়া যায়নি</h1>
+        container.innerHTML = `
+          <h1>গল্প লোড করা যায়নি</h1>
           <p>
-            এই গল্পটি বর্তমানে প্রকাশিত নয়।
+            ${escapeHtml(error.message)}
           </p>
         `;
 
@@ -106,46 +87,63 @@
       }
 
 
-      document.getElementById(
-        "story-content"
-      ).innerHTML = `
+      if (!data || data.length === 0) {
+
+        container.innerHTML = `
+          <h1>গল্প</h1>
+          <p>
+            বর্তমানে কোনো প্রকাশিত গল্প নেই।
+          </p>
+        `;
+
+        return;
+      }
+
+
+      container.innerHTML = `
 
         <p class="eyebrow">
-          STORY
+          STORIES
         </p>
 
         <h1>
-          ${escapeHtml(data.title)}
+          গল্প
         </h1>
 
-        ${
-          data.excerpt
-            ? `<p class="poem-excerpt">
-                ${escapeHtml(data.excerpt)}
-              </p>`
-            : ""
-        }
+        <div class="stories-list">
 
-        <div class="poem-body">
-          ${formatStory(data.content)}
+          ${data.map(story => `
+
+            <article class="story-card">
+
+              <h2>
+                ${escapeHtml(story.title)}
+              </h2>
+
+              ${
+                story.excerpt
+                  ? `
+                    <p>
+                      ${escapeHtml(story.excerpt)}
+                    </p>
+                  `
+                  : ""
+              }
+
+              <a
+                href="story.html?id=${encodeURIComponent(story.id)}"
+                class="text-link"
+              >
+                গল্পটি পড়ুন →
+              </a>
+
+            </article>
+
+          `).join("")}
+
         </div>
 
-        <a
-          href="stories.html"
-          class="text-link"
-        >
-          ← সব গল্প
-        </a>
-
       `;
-
-    }
-
-
-    function formatStory(text) {
-
-      return escapeHtml(text)
-        .replace(/\r?\n/g, "<br>");
 
     }
 
@@ -162,7 +160,7 @@
     }
 
 
-    loadStory();
+    loadStories();
 
   </script>
 
