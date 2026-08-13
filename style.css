@@ -2470,3 +2470,169 @@ a:focus-visible {
   }
 
 }
+
+/* =====================================================
+   READER PAGE — CENTERED LAYOUT FIX
+===================================================== */
+
+.poem-page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: 80px 20px;
+}
+
+.poem-reader {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+
+/* Reader title */
+
+.poem-reader h1 {
+  text-align: center;
+  margin: 15px 0 25px;
+}
+
+
+/* Category */
+
+.poem-reader .eyebrow {
+  text-align: center;
+}
+
+
+/* Excerpt */
+
+.poem-reader .poem-excerpt {
+  max-width: 700px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+
+/* Poem / Story text */
+
+.poem-reader .poem-body {
+  width: 100%;
+  max-width: 850px;
+  margin: 40px auto;
+  text-align: left;
+  line-height: 2.1;
+  overflow-wrap: break-word;
+}
+
+
+/* Novel */
+
+.poem-reader .novel-body {
+  width: 100%;
+  max-width: 850px;
+  margin: 40px auto;
+  text-align: left;
+  line-height: 2.1;
+  overflow-wrap: break-word;
+}
+
+
+/* Novel chapters */
+
+.poem-reader .novel-chapters {
+  width: 100%;
+  max-width: 850px;
+  margin: 40px auto;
+}
+
+
+.poem-reader .chapter-card {
+  width: 100%;
+  margin-bottom: 50px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(0,0,0,.15);
+}
+
+
+.poem-reader .chapter-number {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  opacity: .6;
+}
+
+
+.poem-reader .chapter-title {
+  text-align: center;
+  margin: 0 0 30px;
+}
+
+
+.poem-reader .chapter-content {
+  text-align: left;
+  line-height: 2.1;
+  overflow-wrap: break-word;
+}
+
+
+/* Back link */
+
+.poem-reader > .text-link {
+  display: block;
+  width: fit-content;
+  margin: 50px auto 0;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .poem-page {
+    padding: 55px 18px;
+  }
+
+  .poem-reader {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .poem-reader h1 {
+    font-size: clamp(28px, 8vw, 38px);
+  }
+
+  .poem-reader .poem-body,
+  .poem-reader .novel-body,
+  .poem-reader .chapter-content {
+    font-size: 17px;
+    line-height: 2;
+  }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 420px) {
+
+  .poem-page {
+    padding: 45px 15px;
+  }
+
+  .poem-reader .poem-body,
+  .poem-reader .novel-body,
+  .poem-reader .chapter-content {
+    font-size: 16px;
+    line-height: 1.95;
+  }
+
+}
