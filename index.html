@@ -15,13 +15,16 @@
     name="description"
     content="Shadat Fatih-এর কবিতা, গল্প ও উপন্যাসের নিজস্ব সাহিত্যভুবন।"
   >
-<meta name="author" content="Shadat Fatih">
+
+  <meta
+    name="author"
+    content="Shadat Fatih"
+  >
+
   <meta
     name="theme-color"
     content="#111111"
   >
-
-  <!-- GOOGLE FONTS -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -36,12 +39,7 @@
     rel="stylesheet"
   >
 
-  <!-- STYLE -->
-
-  <link
-    rel="stylesheet"
-    href="style.css"
-  >
+  <link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -50,15 +48,12 @@
 
 
 <!-- =====================================================
-     NAVIGATION
+     NAVBAR
 ===================================================== -->
 
 <header class="navbar">
 
   <div class="nav-inner">
-
-
-    <!-- PROFILE IMAGE -->
 
     <a
       href="#home"
@@ -74,8 +69,6 @@
     </a>
 
 
-    <!-- WEBSITE TITLE -->
-
     <a
       href="#home"
       class="site-title"
@@ -84,12 +77,10 @@
     </a>
 
 
-    <!-- THREE DOT BUTTON -->
-
     <button
-      type="button"
       class="menu-btn"
       id="menuToggle"
+      type="button"
       aria-label="Open menu"
       aria-expanded="false"
     >
@@ -97,54 +88,168 @@
     </button>
 
 
-    <!-- DROPDOWN MENU -->
+    <!-- =================================================
+         THREE DOT MENU
+    ================================================== -->
 
-    <nav
+    <aside
       id="mainNav"
-      aria-label="Main Navigation"
+      class="side-menu"
+      aria-hidden="true"
     >
 
-      <!-- MENU PROFILE -->
+      <!-- PROFILE -->
 
       <div class="menu-profile">
 
         <img
           src="shadat-fatih.jpg"
           alt="Shadat Fatih"
+          class="menu-profile-image"
         >
 
-        <div>
+        <h3>
+          Shadat Fatih
+        </h3>
 
-          <strong>
-            Shadat Fatih
-          </strong>
+        <p>
+          “কিছু অনুভূতি শুধু লেখাই যায়।”
+        </p>
+
+      </div>
+
+
+      <div class="menu-divider"></div>
+
+
+      <!-- TOTAL WEBSITE VIEWS -->
+
+      <div class="website-views">
+
+        <span>
+          TOTAL WEBSITE VIEWS
+        </span>
+
+        <strong id="totalWebsiteViews">
+          0
+        </strong>
+
+      </div>
+
+
+      <div class="menu-divider"></div>
+
+
+      <!-- YEARLY ARCHIVE -->
+
+      <div class="menu-group">
+
+        <button
+          class="menu-group-title"
+          type="button"
+          data-toggle="yearArchive"
+        >
 
           <span>
-            Writer · Poet
+            2026
           </span>
+
+          <span class="menu-arrow">
+            +
+          </span>
+
+        </button>
+
+
+        <div
+          class="menu-submenu"
+          id="yearArchive"
+        >
+
+          <a
+            href="#year-poems"
+            class="menu-sub-link"
+          >
+            কবিতা
+          </a>
+
+          <a
+            href="#year-stories"
+            class="menu-sub-link"
+          >
+            গল্প
+          </a>
+
+          <a
+            href="#year-novels"
+            class="menu-sub-link"
+          >
+            উপন্যাস
+          </a>
 
         </div>
 
       </div>
 
 
-      <!-- QUOTE -->
+      <!-- MOST VIEWED -->
 
-      <div class="menu-quote">
+      <div class="menu-group">
 
-        <span>“</span>
+        <button
+          class="menu-group-title"
+          type="button"
+          data-toggle="mostViewedMenu"
+        >
 
-        <p>
-          কিছু অনুভূতি<br>
-          শুধু লেখাই যায়।
-        </p>
+          <span>
+            Most Viewed
+          </span>
+
+          <span class="menu-arrow">
+            +
+          </span>
+
+        </button>
+
+
+        <div
+          class="menu-submenu"
+          id="mostViewedMenu"
+        >
+
+          <a
+            href="#most-poems"
+            class="menu-sub-link"
+          >
+            Most Viewed Poems
+          </a>
+
+          <a
+            href="#most-stories"
+            class="menu-sub-link"
+          >
+            Most Viewed Stories
+          </a>
+
+          <a
+            href="#most-novels"
+            class="menu-sub-link"
+          >
+            Most Viewed Novels
+          </a>
+
+        </div>
 
       </div>
 
 
-      <!-- NAVIGATION LINKS -->
+      <div class="menu-divider"></div>
 
-      <div class="menu-links">
+
+      <!-- MAIN NAVIGATION -->
+
+      <nav class="menu-main-links">
 
         <a href="#home">
           প্রচ্ছদ
@@ -166,40 +271,9 @@
           লেখক
         </a>
 
-      </div>
+      </nav>
 
-
-      <!-- CATEGORIES -->
-
-      <div class="menu-categories">
-
-        <p>
-          CATEGORIES
-        </p>
-
-        <a href="#yearly">
-          Yearly Published
-        </a>
-
-        <a href="#poetry">
-          Poems
-        </a>
-
-        <a href="#stories">
-          Stories
-        </a>
-
-        <a href="#novels">
-          Novels
-        </a>
-
-        <a href="#most-viewed">
-          Most Viewed
-        </a>
-
-      </div>
-
-    </nav>
+    </aside>
 
   </div>
 
@@ -211,7 +285,7 @@
      MAIN
 ===================================================== -->
 
-<main>
+<main id="pageContent">
 
 
 <!-- =====================================================
@@ -223,54 +297,32 @@
   id="home"
 >
 
-
-  <!-- HERO TEXT -->
-
   <div class="hero-content">
 
     <p class="eyebrow">
       SHADAT FATIH
     </p>
 
-
     <h1>
-
       শব্দের ভেতর<br>
-
-      <em>
-        একটি পৃথিবী।
-      </em>
-
+      <em>একটি পৃথিবী।</em>
     </h1>
 
-
     <p class="hero-text">
-
       কবিতা, গল্প ও উপন্যাসের<br>
-
       একটি নিজস্ব সাহিত্যভুবন।
-
     </p>
-
 
     <a
       href="#poetry"
       class="hero-button"
     >
-
       লেখা আবিষ্কার করুন
-
-      <span>
-        ↗
-      </span>
-
+      <span>↗</span>
     </a>
 
   </div>
 
-
-
-  <!-- HERO IMAGE -->
 
   <div class="hero-image">
 
@@ -278,9 +330,6 @@
       src="shadat-fatih.jpg"
       alt="Shadat Fatih"
     >
-
-    <div class="image-overlay"></div>
-
 
     <div class="hero-caption">
 
@@ -312,87 +361,16 @@
       A WORLD OF WORDS
     </p>
 
-
     <h2>
-
       কিছু অনুভূতি বলা যায় না।<br>
-
-      <em>
-        তাই তারা লেখা হয়ে থাকে।
-      </em>
-
+      <em>তাই তারা লেখা হয়ে থাকে।</em>
     </h2>
 
-
     <p>
-
       এই সাহিত্যভুবনে জমা থাকে অনুভূতি,
       স্মৃতি, কল্পনা ও জীবনের গল্প—
       কবিতা, গল্প এবং উপন্যাসের পাতায়।
-
     </p>
-
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     YEARLY PUBLISHED
-===================================================== -->
-
-<section
-  class="content-section yearly-section"
-  id="yearly"
->
-
-  <div class="section-container">
-
-
-    <div class="section-top">
-
-      <div>
-
-        <p class="eyebrow">
-          ARCHIVE / YEARLY
-        </p>
-
-        <h2>
-          প্রকাশনা
-        </h2>
-
-      </div>
-
-
-      <p>
-
-        প্রতি বছরের প্রকাশিত
-        কবিতা, গল্প ও উপন্যাস।
-
-      </p>
-
-    </div>
-
-
-    <div
-      class="yearly-grid"
-      id="yearly-container"
-    >
-
-      <div class="loading-card">
-
-        <span>
-          LOADING
-        </span>
-
-        <p>
-          প্রকাশিত লেখা লোড হচ্ছে...
-        </p>
-
-      </div>
-
-    </div>
 
   </div>
 
@@ -411,7 +389,6 @@
 
   <div class="section-container">
 
-
     <div class="section-top">
 
       <div>
@@ -426,36 +403,21 @@
 
       </div>
 
-
       <p>
-
         কিছু কথা ছন্দে বলা হয়,<br>
-
         কিছু কথা নীরবতায়।
-
       </p>
 
     </div>
 
-
-
-    <!-- POETRY LIST -->
 
     <div
       class="writing-list"
       id="poetry-list"
     >
 
-      <div class="loading-card">
-
-        <span>
-          POETRY
-        </span>
-
-        <p>
-          কবিতা লোড হচ্ছে...
-        </p>
-
+      <div class="loading-state">
+        কবিতা লোড হচ্ছে...
       </div>
 
     </div>
@@ -477,7 +439,6 @@
 
   <div class="section-container">
 
-
     <div class="section-top">
 
       <div>
@@ -492,36 +453,21 @@
 
       </div>
 
-
       <p>
-
         প্রতিটি গল্পের ভেতরে<br>
-
         লুকিয়ে থাকে আরেকটি জীবন।
-
       </p>
 
     </div>
 
-
-
-    <!-- STORIES LIST -->
 
     <div
       class="story-grid"
       id="stories-container"
     >
 
-      <div class="loading-card">
-
-        <span>
-          STORIES
-        </span>
-
-        <p>
-          গল্প লোড হচ্ছে...
-        </p>
-
+      <div class="loading-state">
+        গল্প লোড হচ্ছে...
       </div>
 
     </div>
@@ -543,7 +489,6 @@
 
   <div class="section-container">
 
-
     <div class="section-top">
 
       <div>
@@ -558,36 +503,147 @@
 
       </div>
 
-
       <p>
-
         দীর্ঘ গল্পের জন্য<br>
-
         একটি দীর্ঘ যাত্রা।
-
       </p>
 
     </div>
 
-
-
-    <!-- NOVELS LIST -->
 
     <div
       class="novel-grid"
       id="novels-container"
     >
 
-      <div class="loading-card">
+      <div class="loading-state">
+        উপন্যাস লোড হচ্ছে...
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     2026 YEARLY ARCHIVE
+===================================================== -->
+
+<section
+  class="archive-section"
+  id="year-archive"
+>
+
+  <div class="section-container">
+
+    <div class="archive-heading">
+
+      <p class="eyebrow">
+        YEARLY ARCHIVE
+      </p>
+
+      <h2>
+        ২০২৬
+      </h2>
+
+      <p>
+        ২০২৬ সালে প্রকাশিত সব লেখা।
+      </p>
+
+    </div>
+
+
+    <!-- YEAR POEMS -->
+
+    <div
+      class="archive-block"
+      id="year-poems"
+    >
+
+      <div class="archive-block-heading">
+
+        <h3>
+          কবিতা
+        </h3>
 
         <span>
-          NOVELS
+          2026
         </span>
 
-        <p>
-          উপন্যাস লোড হচ্ছে...
-        </p>
+      </div>
 
+      <div
+        class="archive-list"
+        id="yearPoemsList"
+      >
+        <p>
+          লোড হচ্ছে...
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- YEAR STORIES -->
+
+    <div
+      class="archive-block"
+      id="year-stories"
+    >
+
+      <div class="archive-block-heading">
+
+        <h3>
+          গল্প
+        </h3>
+
+        <span>
+          2026
+        </span>
+
+      </div>
+
+      <div
+        class="archive-list"
+        id="yearStoriesList"
+      >
+        <p>
+          লোড হচ্ছে...
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- YEAR NOVELS -->
+
+    <div
+      class="archive-block"
+      id="year-novels"
+    >
+
+      <div class="archive-block-heading">
+
+        <h3>
+          উপন্যাস
+        </h3>
+
+        <span>
+          2026
+        </span>
+
+      </div>
+
+      <div
+        class="archive-list"
+        id="yearNovelsList"
+      >
+        <p>
+          লোড হচ্ছে...
+        </p>
       </div>
 
     </div>
@@ -603,51 +659,109 @@
 ===================================================== -->
 
 <section
-  class="content-section most-viewed-section"
+  class="most-viewed-section"
   id="most-viewed"
 >
 
   <div class="section-container">
 
+    <div class="archive-heading">
 
-    <div class="section-top">
+      <p class="eyebrow">
+        MOST VIEWED
+      </p>
 
-      <div>
-
-        <p class="eyebrow">
-          MOST VIEWED
-        </p>
-
-        <h2>
-          জনপ্রিয় লেখা
-        </h2>
-
-      </div>
-
+      <h2>
+        জনপ্রিয় লেখা
+      </h2>
 
       <p>
-
-        পাঠকদের সবচেয়ে বেশি দেখা
-        কবিতা, গল্প ও উপন্যাস।
-
+        পাঠকদের সবচেয়ে বেশি দেখা লেখা।
       </p>
 
     </div>
 
 
+    <!-- MOST VIEWED POEMS -->
+
     <div
-      class="most-viewed-grid"
-      id="most-viewed-container"
+      class="most-viewed-block"
+      id="most-poems"
     >
 
-      <div class="loading-card">
+      <div class="archive-block-heading">
 
-        <span>
-          MOST VIEWED
-        </span>
+        <h3>
+          Most Viewed Poems
+        </h3>
+
+      </div>
+
+      <div
+        class="most-viewed-list"
+        id="mostPoemsList"
+      >
 
         <p>
-          জনপ্রিয় লেখা লোড হচ্ছে...
+          লোড হচ্ছে...
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- MOST VIEWED STORIES -->
+
+    <div
+      class="most-viewed-block"
+      id="most-stories"
+    >
+
+      <div class="archive-block-heading">
+
+        <h3>
+          Most Viewed Stories
+        </h3>
+
+      </div>
+
+      <div
+        class="most-viewed-list"
+        id="mostStoriesList"
+      >
+
+        <p>
+          লোড হচ্ছে...
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- MOST VIEWED NOVELS -->
+
+    <div
+      class="most-viewed-block"
+      id="most-novels"
+    >
+
+      <div class="archive-block-heading">
+
+        <h3>
+          Most Viewed Novels
+        </h3>
+
+      </div>
+
+      <div
+        class="most-viewed-list"
+        id="mostNovelsList"
+      >
+
+        <p>
+          লোড হচ্ছে...
         </p>
 
       </div>
@@ -661,7 +775,7 @@
 
 
 <!-- =====================================================
-     FEATURED QUOTE
+     QUOTE
 ===================================================== -->
 
 <section class="quote-section">
@@ -672,17 +786,10 @@
       “
     </span>
 
-
     <blockquote>
-
       কিছু অনুভূতি<br>
-
-      <em>
-        শুধু লেখাই যায়।
-      </em>
-
+      <em>শুধু লেখাই যায়।</em>
     </blockquote>
-
 
     <p>
       — Shadat Fatih
@@ -705,11 +812,7 @@
 
   <div class="section-container">
 
-
     <div class="author-grid">
-
-
-      <!-- AUTHOR PHOTO -->
 
       <div class="author-photo">
 
@@ -721,68 +824,55 @@
       </div>
 
 
-      <!-- AUTHOR INFO -->
-
       <div class="author-info">
 
         <p class="eyebrow">
           THE AUTHOR
         </p>
 
-
         <h2>
           Shadat Fatih
         </h2>
 
-
         <p>
-
           কবিতা, গল্প ও উপন্যাসের মাধ্যমে
           অনুভূতি, মানুষ এবং জীবনের
           বিভিন্ন গল্পকে শব্দে ধরে রাখার
           একটি ব্যক্তিগত সাহিত্যযাত্রা।
-
         </p>
 
 
-        <!-- SOCIAL -->
-
         <div class="floating-socials">
-
 
           <a
             href="https://www.facebook.com/FatihShadatOfficial"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
           >
             Facebook ↗
           </a>
 
-
           <a
             href="https://www.instagram.com/shadatfatih"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
           >
             Instagram ↗
           </a>
 
-
           <a
             href="https://wa.me/8801601800222"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
           >
             WhatsApp ↗
           </a>
-
 
           <a
             href="mailto:helloshadat@hotmail.com"
           >
             Email ↗
           </a>
-
 
         </div>
 
@@ -804,13 +894,11 @@
 
   <div class="footer-inner">
 
-
     <div>
 
       <strong>
         Shadat Fatih
       </strong>
-
 
       <p>
         POETRY · STORIES · NOVELS
@@ -820,11 +908,7 @@
 
 
     <p>
-
-      ©
-      <span id="year"></span>
-      Shadat Fatih
-
+      © <span id="year"></span> Shadat Fatih
     </p>
 
   </div>
@@ -840,40 +924,1706 @@
      SUPABASE
 ===================================================== -->
 
-<script
-  src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
-<!-- =====================================================
-     SUPABASE INITIALIZATION
-===================================================== -->
 
 <script>
 
-  const SUPABASE_URL =
-    "https://ooxbtwxqumaixvrwsllg.supabase.co";
+"use strict";
 
 
-  const SUPABASE_PUBLISHABLE_KEY =
-    "sb_publishable_dNAV-kJ5rv_-BH6GhChYVg_1xbRUNdy";
+/* =====================================================
+   SUPABASE CONFIG
+===================================================== */
+
+const SUPABASE_URL =
+  "https://ooxbtwxqumaixvrwsllg.supabase.co";
 
 
-  window.supabaseClient =
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_PUBLISHABLE_KEY
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_dNAV-kJ5rv_-BH6GhChYVg_1xbRUNdy";
+
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+
+
+/* =====================================================
+   SECURITY
+===================================================== */
+
+function escapeHtml(value) {
+
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+function formatDate(dateValue) {
+
+  if (!dateValue) {
+    return "তারিখ অজানা";
+  }
+
+  const date =
+    new Date(dateValue);
+
+  if (Number.isNaN(date.getTime())) {
+    return "তারিখ অজানা";
+  }
+
+  return new Intl.DateTimeFormat(
+    "bn-BD",
+    {
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    }
+  ).format(date);
+
+}
+
+
+function getYear(dateValue) {
+
+  const date =
+    new Date(dateValue);
+
+  if (Number.isNaN(date.getTime())) {
+    return "";
+  }
+
+  return date.getFullYear();
+
+}
+
+
+
+/* =====================================================
+   URL
+===================================================== */
+
+function getReadingUrl(type, id) {
+
+  const pages = {
+
+    poem: "poem.html",
+
+    story: "story.html",
+
+    novel: "novel.html"
+
+  };
+
+  return (
+    pages[type] +
+    "?id=" +
+    encodeURIComponent(id)
+  );
+
+}
+
+
+
+/* =====================================================
+   COPY LINK
+===================================================== */
+
+async function copyLink(url, button) {
+
+  try {
+
+    await navigator.clipboard.writeText(url);
+
+    const oldText =
+      button.textContent;
+
+    button.textContent =
+      "Copied";
+
+    setTimeout(() => {
+
+      button.textContent =
+        oldText;
+
+    }, 1500);
+
+  } catch (error) {
+
+    window.prompt(
+      "Copy this link:",
+      url
     );
 
+  }
+
+}
+
+
+
+/* =====================================================
+   SHARE
+===================================================== */
+
+async function shareContent(title, url) {
+
+  if (
+    navigator.share
+  ) {
+
+    try {
+
+      await navigator.share({
+
+        title: title,
+
+        url: url
+
+      });
+
+      return;
+
+    } catch (error) {
+
+      if (
+        error.name ===
+        "AbortError"
+      ) {
+        return;
+      }
+
+    }
+
+  }
+
+  await navigator.clipboard.writeText(url);
+
+  alert(
+    "লিংক কপি হয়েছে।"
+  );
+
+}
+
+
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
+function createActions(
+  type,
+  id,
+  title
+) {
+
+  const url =
+    new URL(
+      getReadingUrl(type, id),
+      window.location.href
+    ).href;
+
+
+  return `
+
+    <div
+      class="writing-actions"
+      data-url="${escapeHtml(url)}"
+    >
+
+      <a
+        href="${escapeHtml(url)}#comments"
+        class="action-btn"
+      >
+        Comment
+      </a>
+
+
+      <button
+        type="button"
+        class="action-btn copy-link-btn"
+        data-url="${escapeHtml(url)}"
+      >
+        Copy Link
+      </button>
+
+
+      <button
+        type="button"
+        class="action-btn share-btn"
+        data-title="${escapeHtml(title)}"
+        data-url="${escapeHtml(url)}"
+      >
+        Share
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+
+/* =====================================================
+   VIEWS
+===================================================== */
+
+function getViews(item) {
+
+  if (
+    item &&
+    typeof item.views === "number"
+  ) {
+
+    return item.views;
+
+  }
+
+  return 0;
+
+}
+
+
+function formatViews(value) {
+
+  const number =
+    Number(value) || 0;
+
+  return new Intl.NumberFormat(
+    "en-US"
+  ).format(number);
+
+}
+
+
+function viewsHTML(item) {
+
+  return `
+
+    <div class="view-count">
+
+      <span>
+        ◉
+      </span>
+
+      <strong>
+        ${formatViews(
+          getViews(item)
+        )}
+      </strong>
+
+      <small>
+        views
+      </small>
+
+    </div>
+
+  `;
+
+}
+
+
+
+/* =====================================================
+   POETRY
+===================================================== */
+
+let poemsData = [];
+
+
+async function loadPoetry() {
+
+  const container =
+    document.getElementById(
+      "poetry-list"
+    );
+
+
+  if (!container) {
+    return;
+  }
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("poems")
+      .select(
+        "id, title, content, excerpt, created_at, published"
+      )
+      .eq(
+        "published",
+        true
+      )
+      .order(
+        "created_at",
+        {
+          ascending: false
+        }
+      );
+
+
+  if (error) {
+
+    console.error(
+      "Poetry Error:",
+      error
+    );
+
+
+    container.innerHTML = `
+
+      <div class="error-state">
+
+        <strong>
+          কবিতা লোড করা যায়নি
+        </strong>
+
+        <p>
+          ${escapeHtml(
+            error.message
+          )}
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  poemsData =
+    data || [];
+
+
+  if (
+    poemsData.length === 0
+  ) {
+
+    container.innerHTML = `
+
+      <div class="empty-state">
+
+        <strong>
+          কোনো প্রকাশিত কবিতা নেই
+        </strong>
+
+        <p>
+          নতুন কবিতা খুব শীঘ্রই প্রকাশিত হবে।
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    poemsData
+      .map(
+        (poem, index) => {
+
+          return `
+
+            <article
+              class="writing-card reveal"
+            >
+
+              <div class="card-number">
+                ${String(
+                  index + 1
+                ).padStart(
+                  2,
+                  "0"
+                )}
+              </div>
+
+
+              <div class="writing-card-content">
+
+                <div class="published-date">
+
+                  PUBLISHED ·
+
+                  ${formatDate(
+                    poem.created_at
+                  )}
+
+                </div>
+
+
+                <p class="card-label">
+                  POETRY
+                </p>
+
+
+                <h3>
+                  ${escapeHtml(
+                    poem.title
+                  )}
+                </h3>
+
+
+                ${
+                  poem.excerpt
+                    ? `
+                      <p class="writing-excerpt">
+                        ${escapeHtml(
+                          poem.excerpt
+                        )}
+                      </p>
+                    `
+                    : ""
+                }
+
+
+                <div class="card-bottom">
+
+                  <a
+                    href="${escapeHtml(
+                      getReadingUrl(
+                        "poem",
+                        poem.id
+                      )
+                    )}"
+                    class="text-link"
+                  >
+                    কবিতা পড়ুন →
+                  </a>
+
+
+                  ${viewsHTML(
+                    poem
+                  )}
+
+                </div>
+
+
+                ${createActions(
+                  "poem",
+                  poem.id,
+                  poem.title
+                )}
+
+              </div>
+
+            </article>
+
+          `;
+
+        }
+      )
+      .join("");
+
+
+
+  renderYearArchive();
+
+  renderMostViewed();
+
+  setupActionButtons();
+
+}
+
+
+
+/* =====================================================
+   STORIES
+===================================================== */
+
+let storiesData = [];
+
+
+async function loadStories() {
+
+  const container =
+    document.getElementById(
+      "stories-container"
+    );
+
+
+  if (!container) {
+    return;
+  }
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("stories")
+      .select(
+        "id, title, excerpt, created_at, published"
+      )
+      .eq(
+        "published",
+        true
+      )
+      .order(
+        "created_at",
+        {
+          ascending: false
+        }
+      );
+
+
+  if (error) {
+
+    console.error(
+      "Stories Error:",
+      error
+    );
+
+
+    container.innerHTML = `
+
+      <div class="story-card error-state">
+
+        <strong>
+          গল্প লোড করা যায়নি
+        </strong>
+
+        <p>
+          ${escapeHtml(
+            error.message
+          )}
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  storiesData =
+    data || [];
+
+
+  if (
+    storiesData.length === 0
+  ) {
+
+    container.innerHTML = `
+
+      <div class="story-card">
+
+        <span>
+          STORIES
+        </span>
+
+        <h3>
+          কোনো প্রকাশিত গল্প নেই
+        </h3>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    storiesData
+      .map(
+        (story, index) => {
+
+          return `
+
+            <article
+              class="story-card reveal"
+            >
+
+              <div class="published-date">
+
+                PUBLISHED ·
+
+                ${formatDate(
+                  story.created_at
+                )}
+
+              </div>
+
+
+              <span>
+                STORY
+                ${String(
+                  index + 1
+                ).padStart(
+                  2,
+                  "0"
+                )}
+              </span>
+
+
+              <h3>
+                ${escapeHtml(
+                  story.title
+                )}
+              </h3>
+
+
+              ${
+                story.excerpt
+                  ? `
+                    <p>
+                      ${escapeHtml(
+                        story.excerpt
+                      )}
+                    </p>
+                  `
+                  : ""
+              }
+
+
+              <div class="card-bottom">
+
+                <a
+                  href="${escapeHtml(
+                    getReadingUrl(
+                      "story",
+                      story.id
+                    )
+                  )}"
+                >
+                  গল্প পড়ুন ↗
+                </a>
+
+
+                ${viewsHTML(
+                  story
+                )}
+
+              </div>
+
+
+              ${createActions(
+                "story",
+                story.id,
+                story.title
+              )}
+
+            </article>
+
+          `;
+
+        }
+      )
+      .join("");
+
+
+  renderYearArchive();
+
+  renderMostViewed();
+
+  setupActionButtons();
+
+}
+
+
+
+/* =====================================================
+   NOVELS
+===================================================== */
+
+let novelsData = [];
+
+
+async function loadNovels() {
+
+  const container =
+    document.getElementById(
+      "novels-container"
+    );
+
+
+  if (!container) {
+    return;
+  }
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("novels")
+      .select(
+        "id, title, content, excerpt, created_at, published"
+      )
+      .eq(
+        "published",
+        true
+      )
+      .order(
+        "created_at",
+        {
+          ascending: false
+        }
+      );
+
+
+  if (error) {
+
+    console.error(
+      "Novels Error:",
+      error
+    );
+
+
+    container.innerHTML = `
+
+      <div class="novel-card error-state">
+
+        <strong>
+          উপন্যাস লোড করা যায়নি
+        </strong>
+
+        <p>
+          ${escapeHtml(
+            error.message
+          )}
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  novelsData =
+    data || [];
+
+
+  if (
+    novelsData.length === 0
+  ) {
+
+    container.innerHTML = `
+
+      <div class="novel-card">
+
+        <p class="card-label">
+          NOVELS
+        </p>
+
+        <h3>
+          কোনো প্রকাশিত উপন্যাস নেই
+        </h3>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    novelsData
+      .map(
+        (novel, index) => {
+
+          return `
+
+            <article
+              class="novel-card reveal"
+            >
+
+              <div class="novel-info">
+
+                <div class="published-date">
+
+                  PUBLISHED ·
+
+                  ${formatDate(
+                    novel.created_at
+                  )}
+
+                </div>
+
+
+                <p class="card-label">
+                  NOVEL
+                  ${String(
+                    index + 1
+                  ).padStart(
+                    2,
+                    "0"
+                  )}
+                </p>
+
+
+                <h3>
+                  ${escapeHtml(
+                    novel.title
+                  )}
+                </h3>
+
+
+                ${
+                  novel.excerpt
+                    ? `
+                      <p>
+                        ${escapeHtml(
+                          novel.excerpt
+                        )}
+                      </p>
+                    `
+                    : ""
+                }
+
+
+                <div class="card-bottom">
+
+                  <a
+                    href="${escapeHtml(
+                      getReadingUrl(
+                        "novel",
+                        novel.id
+                      )
+                    )}"
+                    class="text-link"
+                  >
+                    উপন্যাস পড়ুন →
+                  </a>
+
+
+                  ${viewsHTML(
+                    novel
+                  )}
+
+                </div>
+
+
+                ${createActions(
+                  "novel",
+                  novel.id,
+                  novel.title
+                )}
+
+              </div>
+
+            </article>
+
+          `;
+
+        }
+      )
+      .join("");
+
+
+  renderYearArchive();
+
+  renderMostViewed();
+
+  setupActionButtons();
+
+}
+
+
+
+/* =====================================================
+   YEARLY ARCHIVE
+===================================================== */
+
+function getCurrentYear() {
+
+  return new Date()
+    .getFullYear();
+
+}
+
+
+function renderArchiveList(
+  containerId,
+  data,
+  type,
+  emptyText
+) {
+
+  const container =
+    document.getElementById(
+      containerId
+    );
+
+
+  if (!container) {
+    return;
+  }
+
+
+  const currentYear =
+    getCurrentYear();
+
+
+  const filtered =
+    data.filter(
+      item =>
+        getYear(
+          item.created_at
+        ) === currentYear
+    );
+
+
+  if (
+    filtered.length === 0
+  ) {
+
+    container.innerHTML = `
+
+      <p class="archive-empty">
+        ${emptyText}
+      </p>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    filtered
+      .map(
+        item => {
+
+          return `
+
+            <a
+              href="${escapeHtml(
+                getReadingUrl(
+                  type,
+                  item.id
+                )
+              )}"
+              class="archive-item"
+            >
+
+              <div>
+
+                <span class="archive-date">
+                  ${formatDate(
+                    item.created_at
+                  )}
+                </span>
+
+                <strong>
+                  ${escapeHtml(
+                    item.title
+                  )}
+                </strong>
+
+              </div>
+
+
+              ${viewsHTML(
+                item
+              )}
+
+            </a>
+
+          `;
+
+        }
+      )
+      .join("");
+
+}
+
+
+function renderYearArchive() {
+
+  renderArchiveList(
+    "yearPoemsList",
+    poemsData,
+    "poem",
+    "২০২৬ সালে কোনো কবিতা প্রকাশিত হয়নি।"
+  );
+
+
+  renderArchiveList(
+    "yearStoriesList",
+    storiesData,
+    "story",
+    "২০২৬ সালে কোনো গল্প প্রকাশিত হয়নি।"
+  );
+
+
+  renderArchiveList(
+    "yearNovelsList",
+    novelsData,
+    "novel",
+    "২০২৬ সালে কোনো উপন্যাস প্রকাশিত হয়নি।"
+  );
+
+}
+
+
+
+/* =====================================================
+   MOST VIEWED
+===================================================== */
+
+function renderMostViewedList(
+  containerId,
+  data,
+  type,
+  emptyText
+) {
+
+  const container =
+    document.getElementById(
+      containerId
+    );
+
+
+  if (!container) {
+    return;
+  }
+
+
+  if (
+    !data ||
+    data.length === 0
+  ) {
+
+    container.innerHTML = `
+
+      <p class="archive-empty">
+        ${emptyText}
+      </p>
+
+    `;
+
+    return;
+
+  }
+
+
+  const sorted =
+    [...data]
+      .sort(
+        (a, b) =>
+          getViews(b) -
+          getViews(a)
+      )
+      .slice(
+        0,
+        5
+      );
+
+
+  container.innerHTML =
+    sorted
+      .map(
+        (item, index) => {
+
+          return `
+
+            <a
+              href="${escapeHtml(
+                getReadingUrl(
+                  type,
+                  item.id
+                )
+              )}"
+              class="most-viewed-item"
+            >
+
+              <span class="most-rank">
+
+                ${String(
+                  index + 1
+                ).padStart(
+                  2,
+                  "0"
+                )}
+
+              </span>
+
+
+              <div class="most-title">
+
+                <span>
+                  ${escapeHtml(
+                    item.title
+                  )}
+                </span>
+
+                <small>
+                  ${formatDate(
+                    item.created_at
+                  )}
+                </small>
+
+              </div>
+
+
+              ${viewsHTML(
+                item
+              )}
+
+            </a>
+
+          `;
+
+        }
+      )
+      .join("");
+
+}
+
+
+function renderMostViewed() {
+
+  renderMostViewedList(
+    "mostPoemsList",
+    poemsData,
+    "poem",
+    "কোনো কবিতা নেই।"
+  );
+
+
+  renderMostViewedList(
+    "mostStoriesList",
+    storiesData,
+    "story",
+    "কোনো গল্প নেই।"
+  );
+
+
+  renderMostViewedList(
+    "mostNovelsList",
+    novelsData,
+    "novel",
+    "কোনো উপন্যাস নেই।"
+  );
+
+}
+
+
+
+/* =====================================================
+   ACTION BUTTONS
+===================================================== */
+
+function setupActionButtons() {
+
+  document
+    .querySelectorAll(
+      ".copy-link-btn"
+    )
+    .forEach(
+      button => {
+
+        button.onclick =
+          async function() {
+
+            await copyLink(
+              button.dataset.url,
+              button
+            );
+
+          };
+
+      }
+    );
+
+
+  document
+    .querySelectorAll(
+      ".share-btn"
+    )
+    .forEach(
+      button => {
+
+        button.onclick =
+          async function() {
+
+            await shareContent(
+              button.dataset.title,
+              button.dataset.url
+            );
+
+          };
+
+      }
+    );
+
+}
+
+
+
+/* =====================================================
+   WEBSITE VIEW COUNTER
+===================================================== */
+
+/*
+  Temporary frontend counter.
+
+  Real permanent website views will be connected
+  to Supabase in the next database step.
+*/
+
+function loadWebsiteViews() {
+
+  const key =
+    "shadat_fatih_total_website_views";
+
+
+  let views =
+    Number(
+      localStorage.getItem(
+        key
+      )
+    ) || 0;
+
+
+  views += 1;
+
+
+  localStorage.setItem(
+    key,
+    String(views)
+  );
+
+
+  const element =
+    document.getElementById(
+      "totalWebsiteViews"
+    );
+
+
+  if (element) {
+
+    element.textContent =
+      formatViews(
+        views
+      );
+
+  }
+
+}
+
+
+
+/* =====================================================
+   MENU
+===================================================== */
+
+function setupMenu() {
+
+  const menuToggle =
+    document.getElementById(
+      "menuToggle"
+    );
+
+
+  const mainNav =
+    document.getElementById(
+      "mainNav"
+    );
+
+
+  if (
+    !menuToggle ||
+    !mainNav
+  ) {
+    return;
+  }
+
+
+  menuToggle.addEventListener(
+    "click",
+    function(event) {
+
+      event.stopPropagation();
+
+
+      const active =
+        mainNav.classList.toggle(
+          "active"
+        );
+
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        active
+          ? "true"
+          : "false"
+      );
+
+
+      mainNav.setAttribute(
+        "aria-hidden",
+        active
+          ? "false"
+          : "true"
+      );
+
+    }
+  );
+
+
+  document.addEventListener(
+    "click",
+    function(event) {
+
+      if (
+        mainNav.classList.contains(
+          "active"
+        ) &&
+        !mainNav.contains(
+          event.target
+        ) &&
+        !menuToggle.contains(
+          event.target
+        )
+      ) {
+
+        mainNav.classList.remove(
+          "active"
+        );
+
+        menuToggle.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+        mainNav.setAttribute(
+          "aria-hidden",
+          "true"
+        );
+
+      }
+
+    }
+  );
+
+
+  document
+    .querySelectorAll(
+      ".menu-main-links a, .menu-sub-link"
+    )
+    .forEach(
+      link => {
+
+        link.addEventListener(
+          "click",
+          function() {
+
+            mainNav.classList.remove(
+              "active"
+            );
+
+            menuToggle.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+            mainNav.setAttribute(
+              "aria-hidden",
+              "true"
+            );
+
+          }
+        );
+
+      }
+    );
+
+}
+
+
+
+/* =====================================================
+   MENU SUB GROUPS
+===================================================== */
+
+function setupMenuGroups() {
+
+  document
+    .querySelectorAll(
+      ".menu-group-title"
+    )
+    .forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          function() {
+
+            const targetId =
+              button.dataset.toggle;
+
+
+            const target =
+              document.getElementById(
+                targetId
+              );
+
+
+            if (!target) {
+              return;
+            }
+
+
+            target.classList.toggle(
+              "open"
+            );
+
+
+            const arrow =
+              button.querySelector(
+                ".menu-arrow"
+              );
+
+
+            if (arrow) {
+
+              arrow.textContent =
+                target.classList.contains(
+                  "open"
+                )
+                  ? "−"
+                  : "+";
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+}
+
+
+
+/* =====================================================
+   SMOOTH ANCHOR
+===================================================== */
+
+function setupSmoothAnchors() {
+
+  document
+    .querySelectorAll(
+      'a[href^="#"]'
+    )
+    .forEach(
+      link => {
+
+        link.addEventListener(
+          "click",
+          function(event) {
+
+            const targetId =
+              link.getAttribute(
+                "href"
+              );
+
+
+            if (
+              !targetId ||
+              targetId === "#"
+            ) {
+              return;
+            }
+
+
+            const target =
+              document.querySelector(
+                targetId
+              );
+
+
+            if (!target) {
+              return;
+            }
+
+
+            event.preventDefault();
+
+
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+
+          }
+        );
+
+      }
+    );
+
+}
+
+
+
+/* =====================================================
+   REVEAL
+===================================================== */
+
+function setupReveal() {
+
+  const elements =
+    document.querySelectorAll(
+      ".intro-inner, .writing-card, .story-card, .novel-card, .quote-container, .author-grid, .archive-block, .most-viewed-block"
+    );
+
+
+  if (
+    !("IntersectionObserver" in window)
+  ) {
+
+    elements.forEach(
+      element => {
+
+        element.classList.add(
+          "show"
+        );
+
+      }
+    );
+
+    return;
+
+  }
+
+
+  const observer =
+    new IntersectionObserver(
+      entries => {
+
+        entries.forEach(
+          entry => {
+
+            if (
+              entry.isIntersecting
+            ) {
+
+              entry.target.classList.add(
+                "show"
+              );
+
+              observer.unobserve(
+                entry.target
+              );
+
+            }
+
+          }
+        );
+
+      },
+      {
+        threshold: 0.08
+      }
+    );
+
+
+  elements.forEach(
+    element => {
+
+      element.classList.add(
+        "reveal"
+      );
+
+      observer.observe(
+        element
+      );
+
+    }
+  );
+
+}
+
+
+
+/* =====================================================
+   START
+===================================================== */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  async function() {
+
+    const yearElement =
+      document.getElementById(
+        "year"
+      );
+
+
+    if (yearElement) {
+
+      yearElement.textContent =
+        getCurrentYear();
+
+    }
+
+
+    setupMenu();
+
+    setupMenuGroups();
+
+    setupSmoothAnchors();
+
+    loadWebsiteViews();
+
+
+    /*
+      Load independently.
+      One failed table will not stop the others.
+    */
+
+    await Promise.allSettled([
+
+      loadPoetry(),
+
+      loadStories(),
+
+      loadNovels()
+
+    ]);
+
+
+    setupReveal();
+
+  }
+);
+
 </script>
-
-
-
-<!-- =====================================================
-     MAIN JAVASCRIPT
-===================================================== -->
-
-<script src="script.js"></script>
 
 
 </body>
