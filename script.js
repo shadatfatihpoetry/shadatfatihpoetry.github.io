@@ -258,8 +258,6 @@ async function copyLink(url) {
     );
 
 
-    /* Fallback */
-
     const textarea =
       document.createElement("textarea");
 
@@ -302,10 +300,7 @@ async function shareContent(
 
     } catch (error) {
 
-      /*
-       User cancelled share.
-       No action required.
-      */
+      /* User cancelled share */
 
     }
 
@@ -400,8 +395,8 @@ function totalViews(item) {
       <strong>${views.toLocaleString("en-US")}</strong>
     </div>
   `;
-}
 
+}
 
 
 /* =====================================================
@@ -434,8 +429,8 @@ async function loadPoetry() {
         .from("poems")
 
         .select(
-  "id, title, content, excerpt, created_at, published, views"
-)
+          "id, title, content, excerpt, created_at, published, views"
+        )
 
         .eq(
           "published",
@@ -495,7 +490,9 @@ async function loadPoetry() {
             return `
 
               <article class="writing-card">
-${totalViews(poem)}
+
+                ${totalViews(poem)}
+
                 <div class="card-number">
                   ${String(index + 1).padStart(2, "0")}
                 </div>
@@ -521,7 +518,7 @@ ${totalViews(poem)}
                   ${
                     poem.excerpt
                       ? `
-                        <p>
+                        <p class="writing-excerpt">
                           ${escapeHtml(poem.excerpt)}
                         </p>
                       `
@@ -535,8 +532,6 @@ ${totalViews(poem)}
                   >
                     কবিতা পড়ুন →
                   </a>
-
-                  )}
 
                 </div>
 
@@ -611,8 +606,8 @@ async function loadStories() {
         .from("stories")
 
         .select(
-  "id, title, excerpt, content, created_at, published, views"
-)
+          "id, title, excerpt, content, created_at, published, views"
+        )
 
         .eq(
           "published",
@@ -672,7 +667,9 @@ async function loadStories() {
             return `
 
               <article class="story-card">
-${totalViews(story)}
+
+                ${totalViews(story)}
+
                 <div class="published-date">
                   ${formatDate(story.created_at)}
                 </div>
@@ -705,8 +702,6 @@ ${totalViews(story)}
                 >
                   গল্প পড়ুন ↗
                 </a>
-
-                )}
 
               </article>
 
@@ -779,8 +774,9 @@ async function loadNovels() {
         .from("novels")
 
         .select(
-  "id, title, content, excerpt, created_at, published, views"
-)
+          "id, title, content, excerpt, created_at, published, views"
+        )
+
         .eq(
           "published",
           true
@@ -839,9 +835,10 @@ async function loadNovels() {
             return `
 
               <article class="novel-card">
-${totalViews(novel)}
-                <div class="novel-info">
 
+                ${totalViews(novel)}
+
+                <div class="novel-info">
 
                   <div class="published-date">
                     ${formatDate(novel.created_at)}
@@ -948,41 +945,30 @@ async function loadYearlyPublished() {
       await Promise.all([
 
         window.supabaseClient
-
           .from("poems")
-
           .select(
             "id, title, created_at, published"
           )
-
           .eq(
             "published",
             true
           ),
 
-
         window.supabaseClient
-
           .from("stories")
-
           .select(
             "id, title, created_at, published"
           )
-
           .eq(
             "published",
             true
           ),
 
-
         window.supabaseClient
-
           .from("novels")
-
           .select(
             "id, title, created_at, published"
           )
-
           .eq(
             "published",
             true
@@ -991,55 +977,48 @@ async function loadYearlyPublished() {
       ]);
 
 
-    if (
-      poemsResult.error
-    ) {
+    if (poemsResult.error) {
 
       throw poemsResult.error;
 
     }
 
 
-    if (
-      storiesResult.error
-    ) {
+    if (storiesResult.error) {
 
       throw storiesResult.error;
 
     }
 
 
-    if (
-      novelsResult.error
-    ) {
+    if (novelsResult.error) {
 
       throw novelsResult.error;
 
     }
 
 
-    const all =
-      [
+    const all = [
 
-        ...(poemsResult.data || [])
-          .map(item => ({
-            ...item,
-            type: "poem"
-          })),
+      ...(poemsResult.data || [])
+        .map(item => ({
+          ...item,
+          type: "poem"
+        })),
 
-        ...(storiesResult.data || [])
-          .map(item => ({
-            ...item,
-            type: "story"
-          })),
+      ...(storiesResult.data || [])
+        .map(item => ({
+          ...item,
+          type: "story"
+        })),
 
-        ...(novelsResult.data || [])
-          .map(item => ({
-            ...item,
-            type: "novel"
-          }))
+      ...(novelsResult.data || [])
+        .map(item => ({
+          ...item,
+          type: "novel"
+        }))
 
-      ];
+    ];
 
 
     if (all.length === 0) {
@@ -1061,9 +1040,8 @@ async function loadYearlyPublished() {
     }
 
 
-    /* Group by year */
-
     const years = {};
+
 
     all.forEach(item => {
 
@@ -1198,15 +1176,6 @@ async function loadMostViewed() {
 
   try {
 
-    /*
-      প্রথমে poems/stories/novels থেকে
-      published content নেওয়া হচ্ছে।
-
-      যদি database-এ views column থাকে,
-      তাহলে views অনুযায়ী sort করার চেষ্টা করা হবে।
-    */
-
-
     const [
       poemsResult,
       storiesResult,
@@ -1215,61 +1184,39 @@ async function loadMostViewed() {
       await Promise.all([
 
         window.supabaseClient
-
           .from("poems")
-
           .select(
             "id, title, excerpt, created_at, published, views"
           )
-
           .eq(
             "published",
             true
           )
-
-
           .limit(10),
 
-
         window.supabaseClient
-
           .from("stories")
-
           .select(
             "id, title, excerpt, created_at, published, views"
           )
-
           .eq(
             "published",
             true
           )
-
           .limit(10),
 
-
         window.supabaseClient
-
           .from("novels")
-
           .select(
             "id, title, excerpt, created_at, published, views"
           )
-
           .eq(
             "published",
             true
           )
-
           .limit(10)
 
       ]);
-
-
-    /*
-      views column না থাকলে
-      Supabase error দিতে পারে।
-      তখন fallback query করা হবে।
-    */
 
 
     let poems =
@@ -1296,10 +1243,7 @@ async function loadMostViewed() {
         );
 
 
-    /*
-      Fallback:
-      যদি views column না থাকে
-    */
+    /* Fallback if views column is unavailable */
 
     if (poemsResult.error) {
 
@@ -1379,25 +1323,24 @@ async function loadMostViewed() {
     }
 
 
-    const all =
-      [
+    const all = [
 
-        ...poems.map(item => ({
-          ...item,
-          type: "poem"
-        })),
+      ...poems.map(item => ({
+        ...item,
+        type: "poem"
+      })),
 
-        ...stories.map(item => ({
-          ...item,
-          type: "story"
-        })),
+      ...stories.map(item => ({
+        ...item,
+        type: "story"
+      })),
 
-        ...novels.map(item => ({
-          ...item,
-          type: "novel"
-        }))
+      ...novels.map(item => ({
+        ...item,
+        type: "novel"
+      }))
 
-      ];
+    ];
 
 
     if (all.length === 0) {
@@ -1418,11 +1361,6 @@ async function loadMostViewed() {
 
     }
 
-
-    /*
-      views থাকলে views অনুযায়ী।
-      না থাকলে newest first.
-    */
 
     all.sort(
       (a, b) => {
@@ -1465,7 +1403,6 @@ async function loadMostViewed() {
 
               <article class="most-viewed-card">
 
-
                 <div class="most-viewed-rank">
 
                   ${String(index + 1).padStart(2, "0")}
@@ -1474,7 +1411,6 @@ async function loadMostViewed() {
 
 
                 <div class="most-viewed-content">
-
 
                   <div class="published-date">
 
