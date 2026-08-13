@@ -1219,8 +1219,18 @@ function renderContent() {
           >
             Edit
           </button>
-
-
+${
+  currentType === "novels"
+    ? `
+      <button
+        type="button"
+        onclick="manageChapters('${item.id}')"
+      >
+        Chapters
+      </button>
+    `
+    : ""
+}
           <button
             type="button"
             onclick="togglePublish(
