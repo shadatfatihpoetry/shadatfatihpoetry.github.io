@@ -27,6 +27,8 @@
     content="#111111"
   >
 
+  <!-- GOOGLE FONTS -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
   <link
@@ -39,6 +41,8 @@
     href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
     rel="stylesheet"
   >
+
+  <!-- MAIN CSS -->
 
   <link
     rel="stylesheet"
@@ -59,7 +63,8 @@
 
   <div class="nav-inner">
 
-    <!-- BRAND -->
+
+    <!-- LEFT LOGO -->
 
     <a
       href="#home"
@@ -75,6 +80,8 @@
     </a>
 
 
+    <!-- CENTER TITLE -->
+
     <a
       href="#home"
       class="site-title"
@@ -83,22 +90,26 @@
     </a>
 
 
- <!-- PREMIUM MENU BUTTON -->
+    <!-- RIGHT PREMIUM MENU -->
 
-<button
-  id="menuToggle"
-  class="menu-btn premium-menu-btn"
-  type="button"
-  aria-label="Premium Menu"
-  aria-expanded="false"
-  aria-controls="mainNav"
->
-  <span class="premium-crown">♛</span>
-</button>
+    <button
+      id="menuToggle"
+      class="menu-btn premium-menu-btn"
+      type="button"
+      aria-label="Open Premium Menu"
+      aria-expanded="false"
+      aria-controls="mainNav"
+    >
+
+      <span class="premium-icon">
+        ✦
+      </span>
+
+    </button>
 
 
     <!-- =================================================
-         RIGHT SIDE MENU
+         SIDE MENU
     ================================================== -->
 
     <aside
@@ -107,36 +118,16 @@
       aria-hidden="true"
     >
 
-      <!-- MENU HEADER -->
-
-      <div class="menu-header">
-
-        <button
-          id="menuClose"
-          class="menu-close"
-          type="button"
-          aria-label="Close menu"
-        >
-          ×
-        </button>
-
-      </div>
-
 
       <!-- PROFILE -->
 
       <div class="menu-profile">
 
-        <div class="menu-profile-image-wrap">
-
-          <img
-            src="shadat-fatih.jpg"
-            alt="Shadat Fatih"
-            class="menu-profile-image"
-          >
-
-        </div>
-
+        <img
+          src="shadat-fatih.jpg"
+          alt="Shadat Fatih"
+          class="menu-profile-image"
+        >
 
         <h3>
           Shadat Fatih
@@ -152,13 +143,13 @@
       <div class="menu-divider"></div>
 
 
-      <!-- TOTAL WEBSITE VIEWS -->
+      <!-- WEBSITE VIEWS -->
 
       <div class="website-views">
 
-        <div class="website-views-label">
+        <span>
           TOTAL WEBSITE VIEWS
-        </div>
+        </span>
 
         <strong id="totalWebsiteViews">
           0
@@ -170,9 +161,7 @@
       <div class="menu-divider"></div>
 
 
-      <!-- =================================================
-           2026 ARCHIVE
-      ================================================== -->
+      <!-- 2026 ARCHIVE -->
 
       <div class="menu-group">
 
@@ -180,7 +169,6 @@
           class="menu-group-title"
           type="button"
           data-toggle="yearArchive"
-          aria-expanded="false"
         >
 
           <span>
@@ -195,31 +183,29 @@
 
 
         <div
-          id="yearArchive"
           class="menu-submenu"
+          id="yearArchive"
         >
 
           <a
             href="#year-poems"
             class="menu-sub-link"
           >
-            <span>কবিতা</span>
+            কবিতা
           </a>
-
 
           <a
             href="#year-stories"
             class="menu-sub-link"
           >
-            <span>গল্প</span>
+            গল্প
           </a>
-
 
           <a
             href="#year-novels"
             class="menu-sub-link"
           >
-            <span>উপন্যাস</span>
+            উপন্যাস
           </a>
 
         </div>
@@ -227,9 +213,7 @@
       </div>
 
 
-      <!-- =================================================
-           MOST VIEWED
-      ================================================== -->
+      <!-- MOST VIEWED -->
 
       <div class="menu-group">
 
@@ -237,7 +221,6 @@
           class="menu-group-title"
           type="button"
           data-toggle="mostViewedMenu"
-          aria-expanded="false"
         >
 
           <span>
@@ -252,8 +235,8 @@
 
 
         <div
-          id="mostViewedMenu"
           class="menu-submenu"
+          id="mostViewedMenu"
         >
 
           <a
@@ -263,14 +246,12 @@
             Most Viewed Poems
           </a>
 
-
           <a
             href="#most-stories"
             class="menu-sub-link"
           >
             Most Viewed Stories
           </a>
-
 
           <a
             href="#most-novels"
@@ -314,32 +295,11 @@
       </nav>
 
 
-      <div class="menu-footer">
-
-        <span>
-          SHADAT FATIH
-        </span>
-
-        <small>
-          LITERARY ARCHIVE
-        </small>
-
-      </div>
-
     </aside>
 
   </div>
 
 </header>
-
-
-<!-- MENU OVERLAY -->
-
-<div
-  id="menuOverlay"
-  class="menu-overlay"
-  aria-hidden="true"
-></div>
 
 
 
@@ -355,9 +315,12 @@
 ===================================================== -->
 
 <section
-  id="home"
   class="hero"
+  id="home"
 >
+
+
+  <!-- LEFT -->
 
   <div class="hero-content">
 
@@ -382,12 +345,19 @@
       href="#poetry"
       class="hero-button"
     >
+
       লেখা আবিষ্কার করুন
-      <span>↗</span>
+
+      <span>
+        ↗
+      </span>
+
     </a>
 
   </div>
 
+
+  <!-- RIGHT -->
 
   <div class="hero-image">
 
@@ -409,6 +379,7 @@
     </div>
 
   </div>
+
 
 </section>
 
@@ -450,11 +421,12 @@
 ===================================================== -->
 
 <section
-  id="poetry"
   class="content-section light"
+  id="poetry"
 >
 
   <div class="section-container">
+
 
     <div class="section-top">
 
@@ -480,8 +452,8 @@
 
 
     <div
-      id="poetry-list"
       class="writing-list"
+      id="poetry-list"
     >
 
       <div class="loading-state">
@@ -489,6 +461,7 @@
       </div>
 
     </div>
+
 
   </div>
 
@@ -501,11 +474,12 @@
 ===================================================== -->
 
 <section
-  id="stories"
   class="content-section dark"
+  id="stories"
 >
 
   <div class="section-container">
+
 
     <div class="section-top">
 
@@ -531,8 +505,8 @@
 
 
     <div
-      id="stories-container"
       class="story-grid"
+      id="stories-container"
     >
 
       <div class="loading-state">
@@ -540,6 +514,7 @@
       </div>
 
     </div>
+
 
   </div>
 
@@ -552,11 +527,12 @@
 ===================================================== -->
 
 <section
-  id="novels"
   class="content-section novel-section"
+  id="novels"
 >
 
   <div class="section-container">
+
 
     <div class="section-top">
 
@@ -582,8 +558,8 @@
 
 
     <div
-      id="novels-container"
       class="novel-grid"
+      id="novels-container"
     >
 
       <div class="loading-state">
@@ -591,6 +567,7 @@
       </div>
 
     </div>
+
 
   </div>
 
@@ -603,11 +580,12 @@
 ===================================================== -->
 
 <section
-  id="year-archive"
   class="archive-section"
+  id="year-archive"
 >
 
   <div class="section-container">
+
 
     <div class="archive-heading">
 
@@ -615,11 +593,9 @@
         YEARLY ARCHIVE
       </p>
 
-
       <h2>
         ২০২৬
       </h2>
-
 
       <p>
         ২০২৬ সালে প্রকাশিত সব লেখা।
@@ -628,12 +604,11 @@
     </div>
 
 
-
-    <!-- YEAR POEMS -->
+    <!-- POEMS -->
 
     <div
-      id="year-poems"
       class="archive-block"
+      id="year-poems"
     >
 
       <div class="archive-block-heading">
@@ -650,8 +625,8 @@
 
 
       <div
-        id="yearPoemsList"
         class="archive-list"
+        id="yearPoemsList"
       >
 
         <p>
@@ -663,12 +638,11 @@
     </div>
 
 
-
-    <!-- YEAR STORIES -->
+    <!-- STORIES -->
 
     <div
-      id="year-stories"
       class="archive-block"
+      id="year-stories"
     >
 
       <div class="archive-block-heading">
@@ -685,8 +659,8 @@
 
 
       <div
-        id="yearStoriesList"
         class="archive-list"
+        id="yearStoriesList"
       >
 
         <p>
@@ -698,12 +672,11 @@
     </div>
 
 
-
-    <!-- YEAR NOVELS -->
+    <!-- NOVELS -->
 
     <div
-      id="year-novels"
       class="archive-block"
+      id="year-novels"
     >
 
       <div class="archive-block-heading">
@@ -720,8 +693,8 @@
 
 
       <div
-        id="yearNovelsList"
         class="archive-list"
+        id="yearNovelsList"
       >
 
         <p>
@@ -731,6 +704,7 @@
       </div>
 
     </div>
+
 
   </div>
 
@@ -743,11 +717,12 @@
 ===================================================== -->
 
 <section
-  id="most-viewed"
   class="most-viewed-section"
+  id="most-viewed"
 >
 
   <div class="section-container">
+
 
     <div class="archive-heading">
 
@@ -755,11 +730,9 @@
         MOST VIEWED
       </p>
 
-
       <h2>
         জনপ্রিয় লেখা
       </h2>
-
 
       <p>
         পাঠকদের সবচেয়ে বেশি দেখা লেখা।
@@ -768,12 +741,11 @@
     </div>
 
 
-
-    <!-- MOST VIEWED POEMS -->
+    <!-- POEMS -->
 
     <div
-      id="most-poems"
       class="most-viewed-block"
+      id="most-poems"
     >
 
       <div class="archive-block-heading">
@@ -786,8 +758,8 @@
 
 
       <div
-        id="mostPoemsList"
         class="most-viewed-list"
+        id="mostPoemsList"
       >
 
         <p>
@@ -799,12 +771,11 @@
     </div>
 
 
-
-    <!-- MOST VIEWED STORIES -->
+    <!-- STORIES -->
 
     <div
-      id="most-stories"
       class="most-viewed-block"
+      id="most-stories"
     >
 
       <div class="archive-block-heading">
@@ -817,8 +788,8 @@
 
 
       <div
-        id="mostStoriesList"
         class="most-viewed-list"
+        id="mostStoriesList"
       >
 
         <p>
@@ -830,12 +801,11 @@
     </div>
 
 
-
-    <!-- MOST VIEWED NOVELS -->
+    <!-- NOVELS -->
 
     <div
-      id="most-novels"
       class="most-viewed-block"
+      id="most-novels"
     >
 
       <div class="archive-block-heading">
@@ -848,8 +818,8 @@
 
 
       <div
-        id="mostNovelsList"
         class="most-viewed-list"
+        id="mostNovelsList"
       >
 
         <p>
@@ -859,6 +829,7 @@
       </div>
 
     </div>
+
 
   </div>
 
@@ -900,8 +871,8 @@
 ===================================================== -->
 
 <section
-  id="author"
   class="author-section"
+  id="author"
 >
 
   <div class="section-container">
@@ -944,7 +915,7 @@
           <a
             href="https://www.facebook.com/FatihShadatOfficial"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
           >
             Facebook ↗
           </a>
@@ -953,7 +924,7 @@
           <a
             href="https://www.instagram.com/shadatfatih"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
           >
             Instagram ↗
           </a>
@@ -962,7 +933,7 @@
           <a
             href="https://wa.me/8801601800222"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
           >
             WhatsApp ↗
           </a>
@@ -977,6 +948,7 @@
         </div>
 
       </div>
+
 
     </div>
 
@@ -994,12 +966,12 @@
 
   <div class="footer-inner">
 
+
     <div>
 
       <strong>
         Shadat Fatih
       </strong>
-
 
       <p>
         POETRY · STORIES · NOVELS
@@ -1014,6 +986,7 @@
       Shadat Fatih
     </p>
 
+
   </div>
 
 </footer>
@@ -1027,20 +1000,36 @@
      SUPABASE
 ===================================================== -->
 
-<script
-  src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
-<!-- =====================================================
-     MAIN JAVASCRIPT
-===================================================== -->
+<script>
 
-<script
-  src="script.js"
-  defer
-></script>
+"use strict";
+
+
+const SUPABASE_URL =
+  "https://ooxbtwxqumaixvrwsllg.supabase.co";
+
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_dNAV-kJ5rv_-BH6GhChYVg_1xbRUNdy";
+
+
+window.supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+</script>
+
+
+<!-- MAIN JAVASCRIPT -->
+
+<script src="script.js"></script>
 
 
 </body>
+
 </html>
