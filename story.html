@@ -12,35 +12,345 @@
 
   <title>Shadat Fatih — গল্প</title>
 
-  <meta
-    name="description"
-    content="Shadat Fatih-এর গল্প"
-  >
-
-  <meta
-    name="author"
-    content="Shadat Fatih"
-  >
-
   <link
     rel="stylesheet"
     href="style.css"
   >
 
-  <!-- GOOGLE FONTS -->
+  <style>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+    /* =================================================
+       PREMIUM READER
+    ================================================= */
 
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
+    .reader-top {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-bottom: 22px;
+    }
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
-    rel="stylesheet"
-  >
+
+    /* =================================================
+       VIEW COUNTER
+    ================================================= */
+
+    .view-counter {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      font-family:
+        "Playfair Display",
+        serif;
+
+      font-size: 14px;
+
+      letter-spacing: 1.5px;
+
+      color: #8f7540;
+
+      padding: 8px 14px;
+
+      border:
+        1px solid
+        rgba(143,117,64,.35);
+
+      border-radius: 30px;
+
+      background:
+        rgba(255,255,255,.45);
+
+    }
+
+
+    .view-icon {
+
+      font-size: 16px;
+
+      line-height: 1;
+
+    }
+
+
+    /* =================================================
+       BOTTOM ACTIONS
+    ================================================= */
+
+    .reader-actions {
+
+      display: flex;
+
+      align-items: center;
+
+      flex-wrap: wrap;
+
+      gap: 10px;
+
+      margin-top: 35px;
+
+      padding-top: 20px;
+
+      border-top:
+        1px solid
+        rgba(0,0,0,.10);
+
+    }
+
+
+    .reader-action {
+
+      appearance: none;
+
+      background: transparent;
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 7px;
+
+      padding: 9px 13px;
+
+      color: #292929;
+
+      font-family:
+        "Noto Serif Bengali",
+        serif;
+
+      font-size: 14px;
+
+      cursor: pointer;
+
+      border:
+        1px solid
+        rgba(0,0,0,.13);
+
+      border-radius: 25px;
+
+      transition:
+        transform .2s ease,
+        border-color .2s ease,
+        color .2s ease,
+        background .2s ease;
+
+    }
+
+
+    .reader-action:hover {
+
+      transform:
+        translateY(-2px);
+
+      border-color:
+        #9c8147;
+
+      color:
+        #9c8147;
+
+      background:
+        rgba(156,129,71,.05);
+
+    }
+
+
+    .action-icon {
+
+      font-family: Arial, sans-serif;
+
+      font-size: 16px;
+
+      color:
+        #9c8147;
+
+    }
+
+
+    /* =================================================
+       AUTHOR
+    ================================================= */
+
+    .reader-author {
+
+      margin-top: 28px;
+
+      font-family:
+        "Playfair Display",
+        serif;
+
+      font-size: 17px;
+
+    }
+
+
+    /* =================================================
+       COMMENTS
+    ================================================= */
+
+    .comments-area {
+
+      margin-top: 45px;
+
+      padding-top: 25px;
+
+      border-top:
+        1px solid
+        rgba(0,0,0,.10);
+
+    }
+
+
+    .comments-heading {
+
+      font-family:
+        "Playfair Display",
+        serif;
+
+      letter-spacing: 3px;
+
+      color:
+        #9c8147;
+
+      font-size: 13px;
+
+      margin-bottom: 25px;
+
+    }
+
+
+    .comment-box {
+
+      padding: 22px 0;
+
+    }
+
+
+    .comment-box h2 {
+
+      margin-bottom: 12px;
+
+    }
+
+
+    .comment-box p {
+
+      line-height: 1.9;
+
+    }
+
+
+    .comment-notice {
+
+      margin-top: 10px;
+
+      opacity: .65;
+
+      font-size: 14px;
+
+    }
+
+
+    /* =================================================
+       TOAST
+    ================================================= */
+
+    #sf-toast {
+
+      position: fixed;
+
+      left: 50%;
+
+      bottom: 25px;
+
+      transform:
+        translateX(-50%)
+        translateY(20px);
+
+      padding:
+        11px 18px;
+
+      background:
+        #171717;
+
+      color:
+        #fff;
+
+      border-radius:
+        30px;
+
+      font-size:
+        14px;
+
+      opacity: 0;
+
+      pointer-events:
+        none;
+
+      transition:
+        .25s ease;
+
+      z-index:
+        9999;
+
+    }
+
+
+    #sf-toast.show {
+
+      opacity: 1;
+
+      transform:
+        translateX(-50%)
+        translateY(0);
+
+    }
+
+
+    /* =================================================
+       MOBILE
+    ================================================= */
+
+    @media (max-width: 600px) {
+
+      .reader-top {
+
+        margin-bottom: 18px;
+
+      }
+
+
+      .view-counter {
+
+        font-size: 13px;
+
+        padding:
+          7px 12px;
+
+      }
+
+
+      .reader-actions {
+
+        gap: 7px;
+
+      }
+
+
+      .reader-action {
+
+        padding:
+          8px 11px;
+
+        font-size: 13px;
+
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -48,36 +358,26 @@
 <body>
 
 
-<!-- =====================================================
-     STORY PAGE
-===================================================== -->
-
 <main class="poem-page">
-
 
   <article
     class="poem-reader"
     id="story-content"
   >
 
-    <div class="reader-loading">
-
-      <p>
-        গল্প লোড হচ্ছে...
-      </p>
-
-    </div>
+    <p>
+      গল্প লোড হচ্ছে...
+    </p>
 
   </article>
-
 
 </main>
 
 
 
-<!-- =====================================================
+<!-- =================================================
      SUPABASE
-===================================================== -->
+================================================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -87,9 +387,9 @@
 "use strict";
 
 
-/* =====================================================
+/* =================================================
    SUPABASE CONFIG
-===================================================== */
+================================================= */
 
 const SUPABASE_URL =
   "https://ooxbtwxqumaixvrwsllg.supabase.co";
@@ -107,45 +407,67 @@ const supabaseClient =
 
 
 
-/* =====================================================
-   HTML SECURITY
-===================================================== */
+/* =================================================
+   ESCAPE HTML
+================================================= */
 
 function escapeHtml(value) {
 
-  if (
-    value === null ||
-    value === undefined
-  ) {
+  return String(value || "")
 
-    return "";
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
 
-  }
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
 
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
 
-  return String(value)
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
 
-    .replaceAll("&", "&amp;")
-
-    .replaceAll("<", "&lt;")
-
-    .replaceAll(">", "&gt;")
-
-    .replaceAll('"', "&quot;")
-
-    .replaceAll("'", "&#039;");
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
 
 }
 
 
 
-/* =====================================================
+/* =================================================
+   STORY FORMAT
+================================================= */
+
+function formatStory(text) {
+
+  return escapeHtml(text)
+
+    .replace(
+      /\r?\n/g,
+      "<br>"
+    );
+
+}
+
+
+
+/* =================================================
    DATE FORMAT
-===================================================== */
+================================================= */
 
-function formatDate(dateValue) {
+function formatDate(value) {
 
-  if (!dateValue) {
+  if (!value) {
 
     return "";
 
@@ -153,7 +475,7 @@ function formatDate(dateValue) {
 
 
   const date =
-    new Date(dateValue);
+    new Date(value);
 
 
   if (
@@ -180,29 +502,9 @@ function formatDate(dateValue) {
 
 
 
-/* =====================================================
-   STORY FORMAT
-===================================================== */
-
-function formatStory(text) {
-
-  if (!text) {
-
-    return "";
-
-  }
-
-
-  return escapeHtml(text)
-    .replace(/\r?\n/g, "<br>");
-
-}
-
-
-
-/* =====================================================
+/* =================================================
    TOAST
-===================================================== */
+================================================= */
 
 function showToast(message) {
 
@@ -220,9 +522,6 @@ function showToast(message) {
       );
 
     toast.id =
-      "sf-toast";
-
-    toast.className =
       "sf-toast";
 
     document.body.appendChild(
@@ -247,40 +546,41 @@ function showToast(message) {
 
 
   window.sfToastTimer =
-    setTimeout(() => {
+    setTimeout(
+      () => {
 
-      toast.classList.remove(
-        "show"
-      );
+        toast.classList.remove(
+          "show"
+        );
 
-    }, 2200);
+      },
+      2200
+    );
 
 }
 
 
 
-/* =====================================================
+/* =================================================
    COPY LINK
-===================================================== */
+================================================= */
 
-async function copyStoryLink() {
-
-  const url =
-    window.location.href;
-
+async function copyCurrentLink() {
 
   try {
 
     await navigator.clipboard.writeText(
-      url
+      window.location.href
     );
 
 
     showToast(
-      "গল্পের লিংক কপি হয়েছে"
+      "লিংক কপি হয়েছে"
     );
 
-  } catch (error) {
+  }
+
+  catch (error) {
 
     const textarea =
       document.createElement(
@@ -289,7 +589,7 @@ async function copyStoryLink() {
 
 
     textarea.value =
-      url;
+      window.location.href;
 
 
     document.body.appendChild(
@@ -309,7 +609,7 @@ async function copyStoryLink() {
 
 
     showToast(
-      "গল্পের লিংক কপি হয়েছে"
+      "লিংক কপি হয়েছে"
     );
 
   }
@@ -318,11 +618,11 @@ async function copyStoryLink() {
 
 
 
-/* =====================================================
+/* =================================================
    SHARE
-===================================================== */
+================================================= */
 
-async function shareStory(
+async function shareCurrentPage(
   title
 ) {
 
@@ -342,16 +642,18 @@ async function shareStory(
           title,
 
         text:
-          "Shadat Fatih-এর গল্প — " + title,
+          title,
 
         url:
           url
 
       });
 
-    } catch (error) {
+    }
 
-      /* User cancelled share */
+    catch (error) {
+
+      /* User cancelled */
 
     }
 
@@ -360,15 +662,15 @@ async function shareStory(
   }
 
 
-  await copyStoryLink();
+  await copyCurrentLink();
 
 }
 
 
 
-/* =====================================================
+/* =================================================
    COMMENT
-===================================================== */
+================================================= */
 
 function openComments() {
 
@@ -382,46 +684,96 @@ function openComments() {
 
     comments.scrollIntoView({
 
-      behavior: "smooth",
+      behavior:
+        "smooth",
 
-      block: "start"
+      block:
+        "start"
 
     });
 
-
-    setTimeout(() => {
-
-      const input =
-        comments.querySelector(
-          "textarea, input"
-        );
-
-
-      if (input) {
-
-        input.focus();
-
-      }
-
-    }, 500);
-
-
-    return;
-
   }
-
-
-  showToast(
-    "কমেন্ট সেকশন শীঘ্রই আসছে"
-  );
 
 }
 
 
 
-/* =====================================================
+/* =================================================
+   LOCAL VIEW COUNTER
+=================================================
+
+   stories.views column ব্যবহার করা হচ্ছে না।
+
+   তাই Supabase-এর:
+
+   "column stories.views does not exist"
+
+   error হবে না।
+
+================================================= */
+
+function getViewKey(id) {
+
+  return (
+    "shadat_story_views_" +
+    id
+  );
+
+}
+
+
+function increaseView(id) {
+
+  const key =
+    getViewKey(id);
+
+
+  let value =
+    Number(
+      localStorage.getItem(key) || 0
+    );
+
+
+  const sessionKey =
+    key + "_counted";
+
+
+  /*
+    একই browser session-এ
+    একই story বারবার refresh করলে
+    নতুন view যোগ হবে না।
+  */
+
+  if (
+    !sessionStorage.getItem(
+      sessionKey
+    )
+  ) {
+
+    value++;
+
+    localStorage.setItem(
+      key,
+      value
+    );
+
+    sessionStorage.setItem(
+      sessionKey,
+      "1"
+    );
+
+  }
+
+
+  return value;
+
+}
+
+
+
+/* =================================================
    LOAD STORY
-===================================================== */
+================================================= */
 
 async function loadStory() {
 
@@ -430,17 +782,6 @@ async function loadStory() {
       "story-content"
     );
 
-
-  if (!container) {
-
-    return;
-
-  }
-
-
-  /* ---------------------------------------------
-     GET ID FROM URL
-  --------------------------------------------- */
 
   const params =
     new URLSearchParams(
@@ -452,175 +793,233 @@ async function loadStory() {
     params.get("id");
 
 
-  /* ---------------------------------------------
+  /* =================================================
      NO ID
-  --------------------------------------------- */
+  ================================================= */
 
   if (!id) {
 
     container.innerHTML = `
-
-      <div class="reader-error">
-
-        <p class="eyebrow">
-          STORIES
-        </p>
-
-        <h1>
-          গল্প পাওয়া যায়নি
-        </h1>
-
-        <p>
-          গল্পটির কোনো ID পাওয়া যায়নি।
-        </p>
-
-        <a
-          href="index.html#stories"
-          class="text-link"
-        >
-          ← সব গল্প
-        </a>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-
-  /* ---------------------------------------------
-     LOAD FROM SUPABASE
-     
-     IMPORTANT:
-     views column ব্যবহার করা হচ্ছে না।
-  --------------------------------------------- */
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-
-      .from("stories")
-
-      .select(
-        "id, title, content, excerpt, created_at, published"
-      )
-
-      .eq(
-        "id",
-        id
-      )
-
-      .eq(
-        "published",
-        true
-      )
-
-      .single();
-
-
-
-  /* ---------------------------------------------
-     ERROR
-  --------------------------------------------- */
-
-  if (
-    error ||
-    !data
-  ) {
-
-    console.error(
-      "Story Error:",
-      error
-    );
-
-
-    container.innerHTML = `
-
-      <div class="reader-error">
-
-        <p class="eyebrow">
-          STORIES
-        </p>
-
-        <h1>
-          গল্প পাওয়া যায়নি
-        </h1>
-
-        <p>
-          এই গল্পটি বর্তমানে প্রকাশিত নয়
-          অথবা পাওয়া যাচ্ছে না।
-        </p>
-
-        <a
-          href="index.html#stories"
-          class="text-link"
-        >
-          ← সব গল্প
-        </a>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-
-  /* ---------------------------------------------
-     PAGE TITLE
-  --------------------------------------------- */
-
-  document.title =
-    `${data.title} — Shadat Fatih`;
-
-
-
-  /* ---------------------------------------------
-     RENDER STORY
-  --------------------------------------------- */
-
-  container.innerHTML = `
-
-    <!-- =========================================
-         TOP
-    ========================================== -->
-
-    <div class="reader-top">
 
       <p class="eyebrow">
         STORIES
       </p>
 
 
-      <div class="reader-actions">
+      <h1>
+        গল্প পাওয়া যায়নি
+      </h1>
 
 
-        <!-- TOTAL VIEWS -->
+      <p class="poem-excerpt">
+        গল্পটির কোনো ID পাওয়া যায়নি।
+      </p>
 
-        <button
-          type="button"
-          class="reader-action"
-          aria-label="Total Views"
-          title="Total Views"
+
+      <a
+        href="index.html#stories"
+        class="text-link"
+      >
+        ← সব গল্প
+      </a>
+
+    `;
+
+    return;
+
+  }
+
+
+
+  try {
+
+    /* =================================================
+       FETCH STORY
+    ================================================= */
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+
+        .from("stories")
+
+        .select(
+          "id, title, content, excerpt, created_at, published"
+        )
+
+        .eq(
+          "id",
+          id
+        )
+
+        .eq(
+          "published",
+          true
+        )
+
+        .single();
+
+
+    if (
+      error ||
+      !data
+    ) {
+
+      throw (
+        error ||
+        new Error(
+          "Story not found"
+        )
+      );
+
+    }
+
+
+
+    /* =================================================
+       VIEW
+    ================================================= */
+
+    const views =
+      increaseView(
+        data.id
+      );
+
+
+
+    /* =================================================
+       RENDER
+    ================================================= */
+
+    container.innerHTML = `
+
+      <!-- =========================================
+           TOP RIGHT VIEW
+      ========================================== -->
+
+      <div class="reader-top">
+
+        <div
+          class="view-counter"
+          title="Views"
         >
 
-          <span class="action-icon">
+          <span class="view-icon">
             ◉
           </span>
 
+
           <span>
+            ${views.toLocaleString("en-US")}
             Views
           </span>
 
-        </button>
+        </div>
 
+      </div>
+
+
+
+      <!-- =========================================
+           CATEGORY
+      ========================================== -->
+
+      <p class="eyebrow">
+        STORIES
+      </p>
+
+
+
+      <!-- =========================================
+           DATE
+      ========================================== -->
+
+      <div class="published-date">
+
+        ${formatDate(
+          data.created_at
+        )}
+
+      </div>
+
+
+
+      <!-- =========================================
+           TITLE
+      ========================================== -->
+
+      <h1>
+
+        ${escapeHtml(
+          data.title
+        )}
+
+      </h1>
+
+
+
+      <!-- =========================================
+           EXCERPT
+      ========================================== -->
+
+      ${
+        data.excerpt
+
+          ? `
+
+            <p class="poem-excerpt">
+
+              ${escapeHtml(
+                data.excerpt
+              )}
+
+            </p>
+
+          `
+
+          : ""
+      }
+
+
+
+      <!-- =========================================
+           STORY BODY
+      ========================================== -->
+
+      <div class="poem-body">
+
+        ${formatStory(
+          data.content
+        )}
+
+      </div>
+
+
+
+      <!-- =========================================
+           AUTHOR
+      ========================================== -->
+
+      <div class="reader-author">
+
+        Written by
+
+        <strong>
+          Shadat Fatih
+        </strong>
+
+      </div>
+
+
+
+      <!-- =========================================
+           BOTTOM ACTIONS
+           ONLY HERE
+      ========================================== -->
+
+      <div class="reader-actions">
 
 
         <!-- COMMENT -->
@@ -629,12 +1028,10 @@ async function loadStory() {
           type="button"
           class="reader-action"
           onclick="openComments()"
-          aria-label="Comment"
-          title="Comment"
         >
 
           <span class="action-icon">
-            ◌
+            ✦
           </span>
 
           <span>
@@ -650,9 +1047,7 @@ async function loadStory() {
         <button
           type="button"
           class="reader-action"
-          onclick='shareStory(${JSON.stringify(data.title)})'
-          aria-label="Share"
-          title="Share"
+          onclick='shareCurrentPage(${JSON.stringify(data.title)})'
         >
 
           <span class="action-icon">
@@ -667,14 +1062,12 @@ async function loadStory() {
 
 
 
-        <!-- COPY LINK -->
+        <!-- COPY -->
 
         <button
           type="button"
           class="reader-action"
-          onclick="copyStoryLink()"
-          aria-label="Copy Link"
-          title="Copy Link"
+          onclick="copyCurrentLink()"
         >
 
           <span class="action-icon">
@@ -690,209 +1083,114 @@ async function loadStory() {
 
       </div>
 
-    </div>
 
 
+      <!-- =========================================
+           COMMENTS
+      ========================================== -->
 
-    <!-- =========================================
-         STORY HEADER
-    ========================================== -->
-
-    <header class="reader-header">
-
-      <p class="reader-date">
-        ${formatDate(data.created_at)}
-      </p>
-
-
-      <h1>
-        ${escapeHtml(data.title)}
-      </h1>
-
-
-      ${
-        data.excerpt
-          ? `
-
-            <p class="poem-excerpt">
-              ${escapeHtml(data.excerpt)}
-            </p>
-
-          `
-          : ""
-      }
-
-    </header>
-
-
-
-    <!-- =========================================
-         STORY BODY
-    ========================================== -->
-
-    <div class="poem-body">
-
-      ${formatStory(data.content)}
-
-    </div>
-
-
-
-    <!-- =========================================
-         AUTHOR
-    ========================================== -->
-
-    <div class="reader-author">
-
-      <span>
-        Written by
-      </span>
-
-      <strong>
-        Shadat Fatih
-      </strong>
-
-    </div>
-
-
-
-    <!-- =========================================
-         BOTTOM ACTIONS
-    ========================================== -->
-
-    <div class="reader-bottom-actions">
-
-
-      <!-- COMMENT -->
-
-      <button
-        type="button"
-        class="premium-action"
-        onclick="openComments()"
+      <section
+        class="comments-area"
+        id="comments"
       >
 
-        <span>
-          ◌
-        </span>
 
-        Comment
+        <div class="comments-heading">
 
-      </button>
-
-
-
-      <!-- SHARE -->
-
-      <button
-        type="button"
-        class="premium-action"
-        onclick='shareStory(${JSON.stringify(data.title)})'
-      >
-
-        <span>
-          ↗
-        </span>
-
-        Share
-
-      </button>
-
-
-
-      <!-- COPY LINK -->
-
-      <button
-        type="button"
-        class="premium-action"
-        onclick="copyStoryLink()"
-      >
-
-        <span>
-          ⛓
-        </span>
-
-        Copy Link
-
-      </button>
-
-
-    </div>
-
-
-
-    <!-- =========================================
-         COMMENTS
-    ========================================== -->
-
-    <section
-      id="comments"
-      class="comments-section"
-    >
-
-      <div class="comments-header">
-
-        <p class="eyebrow">
           COMMENTS
-        </p>
 
-
-        <h2>
-          আপনার মতামত
-        </h2>
-
-
-        <p>
-          এই গল্প সম্পর্কে আপনার অনুভূতি
-          লিখুন।
-        </p>
-
-      </div>
+        </div>
 
 
 
-      <div class="comment-placeholder">
+        <div class="comment-box">
 
-        <p>
-          কমেন্ট সিস্টেম প্রস্তুত হচ্ছে।
-        </p>
-
-
-        <small>
-          আপনার মন্তব্য এখানে সংযুক্ত হবে।
-        </small>
-
-      </div>
+          <h2>
+            আপনার মতামত
+          </h2>
 
 
-    </section>
+          <p>
+            এই গল্প সম্পর্কে আপনার অনুভূতি লিখুন।
+          </p>
+
+
+          <p class="comment-notice">
+            কমেন্ট সিস্টেম এখানে যুক্ত করা হবে।
+          </p>
+
+        </div>
+
+
+      </section>
 
 
 
-    <!-- =========================================
-         BACK
-    ========================================== -->
-
-    <div class="reader-footer">
+      <!-- =========================================
+           BACK
+      ========================================== -->
 
       <a
         href="index.html#stories"
         class="text-link"
       >
+
         ← সব গল্প
+
       </a>
 
-    </div>
+    `;
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "Story Error:",
+      error
+    );
 
 
-  `;
+    container.innerHTML = `
+
+      <p class="eyebrow">
+        STORIES
+      </p>
+
+
+      <h1>
+        গল্প পাওয়া যায়নি
+      </h1>
+
+
+      <p class="poem-excerpt">
+
+        এই গল্পটি বর্তমানে প্রকাশিত নয়
+        অথবা পাওয়া যাচ্ছে না।
+
+      </p>
+
+
+      <a
+        href="index.html#stories"
+        class="text-link"
+      >
+
+        ← সব গল্প
+
+      </a>
+
+    `;
+
+  }
 
 }
 
 
 
-/* =====================================================
+/* =================================================
    START
-===================================================== */
+================================================= */
 
 loadStory();
 
