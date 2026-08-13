@@ -14,6 +14,7 @@
   --line: #dedad2;
   --gold: #b08a45;
   --shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+
   --menu-width: 360px;
   --max-width: 1180px;
 }
@@ -34,12 +35,19 @@ html {
   scroll-padding-top: 80px;
 }
 
+html,
 body {
   width: 100%;
-  min-height: 100vh;
+  max-width: 100%;
   overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+
   background: var(--paper);
   color: var(--text);
+
   font-family: "Noto Serif Bengali", serif;
   line-height: 1.8;
 }
@@ -68,77 +76,161 @@ a {
 
 /* =====================================================
    NAVBAR
+   LOGO LEFT | TITLE CENTER | 3-DOT RIGHT
 ===================================================== */
 
 .navbar {
   position: fixed;
+
   top: 0;
   left: 0;
+
   width: 100%;
   height: 76px;
+
   z-index: 9990;
+
   background: rgba(255, 255, 255, 0.94);
+
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
 
-.nav-inner {
-  width: min(100% - 40px, var(--max-width));
-  height: 100%;
-  margin: auto;
 
-  display: flex;
+/* NAV INNER */
+
+.nav-inner {
+  position: relative;
+
+  width: min(100% - 40px, 1200px);
+  height: 100%;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns: 1fr auto 1fr;
+
   align-items: center;
+
+  column-gap: 20px;
 }
 
+
+/* =====================================================
+   LEFT LOGO
+===================================================== */
+
 .brand-logo {
-  width: 42px;
-  height: 42px;
-  flex: 0 0 42px;
+  justify-self: start;
+
+  width: 46px;
+  height: 46px;
+
+  flex-shrink: 0;
+
   border-radius: 50%;
   overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+
+  display: block;
+
+  margin: 0;
+  padding: 0;
+
+  position: relative;
+
+  z-index: 5;
 }
 
 .brand-logo img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-}
 
-.site-title {
-  margin-left: 13px;
-  font-family: "Playfair Display", serif;
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: 0.2px;
+  object-fit: cover;
+
+  display: block;
 }
 
 
 /* =====================================================
-   THREE DOT BUTTON
+   CENTER WEBSITE TITLE
+===================================================== */
+
+.site-title {
+  justify-self: center;
+
+  position: relative;
+
+  margin: 0 !important;
+  padding: 0;
+
+  max-width: calc(100vw - 170px);
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
+
+  font-size: clamp(25px, 3vw, 40px);
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  letter-spacing: 0.3px;
+
+  text-align: center;
+
+  z-index: 4;
+}
+
+
+/* =====================================================
+   RIGHT THREE DOT BUTTON
 ===================================================== */
 
 .menu-btn {
-  margin-left: auto;
+  justify-self: end;
+
+  position: relative;
 
   width: 46px;
   height: 46px;
 
-  display: flex;
+  min-width: 46px;
+  min-height: 46px;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  display: flex !important;
+
   align-items: center;
   justify-content: center;
 
   border: 0;
+
   border-radius: 50%;
 
   background: transparent;
+
   color: var(--black);
 
   font-family: Arial, sans-serif;
+
   font-size: 30px;
+
   line-height: 1;
+
+  z-index: 10;
 
   transition:
     background 0.25s ease,
@@ -155,6 +247,64 @@ a {
 
 
 /* =====================================================
+   IF PREMIUM MENU BUTTON IS USED
+===================================================== */
+
+.premium-menu-btn {
+  width: 46px !important;
+  height: 46px !important;
+
+  min-width: 46px !important;
+  min-height: 46px !important;
+
+  padding: 0 !important;
+
+  display: flex !important;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50% !important;
+
+  background: transparent;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+
+  color: var(--black);
+
+  position: relative;
+
+  z-index: 10;
+
+  flex-shrink: 0;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.premium-menu-btn:hover {
+  background: #eeeeee;
+
+  border-color: rgba(0, 0, 0, 0.2);
+
+  transform: scale(1.04);
+}
+
+.premium-crown,
+.premium-icon {
+  display: block;
+
+  font-size: 25px;
+
+  line-height: 1;
+
+  pointer-events: none;
+}
+
+
+/* =====================================================
    RIGHT SIDE MENU
 ===================================================== */
 
@@ -165,7 +315,9 @@ a {
   right: 0;
 
   width: var(--menu-width);
+
   max-width: calc(100vw - 18px);
+
   height: calc(100vh - 76px);
 
   padding: 28px 24px 40px;
@@ -177,10 +329,13 @@ a {
 
   border-left: 1px solid rgba(0, 0, 0, 0.08);
 
-  box-shadow: -20px 0 50px rgba(0, 0, 0, 0.12);
+  box-shadow:
+    -20px 0 50px rgba(0, 0, 0, 0.12);
 
   transform: translateX(105%);
+
   visibility: hidden;
+
   opacity: 0;
 
   transition:
@@ -193,12 +348,14 @@ a {
 
 .side-menu.active {
   transform: translateX(0);
+
   visibility: visible;
+
   opacity: 1;
 }
 
 
-/* scrollbar */
+/* SCROLLBAR */
 
 .side-menu::-webkit-scrollbar {
   width: 5px;
@@ -210,6 +367,7 @@ a {
 
 .side-menu::-webkit-scrollbar-thumb {
   background: #c8c8c8;
+
   border-radius: 20px;
 }
 
@@ -220,6 +378,7 @@ a {
 
 .menu-profile {
   text-align: center;
+
   padding: 5px 0 18px;
 }
 
@@ -242,9 +401,15 @@ a {
 }
 
 .menu-profile h3 {
-  font-family: "Playfair Display", "Noto Serif Bengali", serif;
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
+
   font-size: 21px;
+
   font-weight: 600;
+
   line-height: 1.4;
 }
 
@@ -254,18 +419,21 @@ a {
   color: var(--muted);
 
   font-size: 13px;
+
   line-height: 1.7;
 }
 
 
 /* =====================================================
-   DIVIDER
+   MENU DIVIDER
 ===================================================== */
 
 .menu-divider {
   width: 100%;
   height: 1px;
+
   background: var(--line);
+
   margin: 18px 0;
 }
 
@@ -278,8 +446,10 @@ a {
   padding: 8px 0;
 
   display: flex;
+
   align-items: center;
   justify-content: space-between;
+
   gap: 15px;
 }
 
@@ -287,7 +457,9 @@ a {
   color: var(--muted);
 
   font-family: Arial, sans-serif;
+
   font-size: 10px;
+
   font-weight: 600;
 
   letter-spacing: 1.2px;
@@ -297,6 +469,7 @@ a {
   font-family: "Playfair Display", serif;
 
   font-size: 21px;
+
   font-weight: 600;
 
   color: var(--black);
@@ -317,15 +490,18 @@ a {
   padding: 13px 2px;
 
   display: flex;
+
   align-items: center;
   justify-content: space-between;
 
   border: 0;
+
   background: transparent;
 
   color: var(--black);
 
   font-size: 16px;
+
   font-weight: 600;
 
   text-align: left;
@@ -342,14 +518,18 @@ a {
   height: 28px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
   border: 1px solid var(--line);
+
   border-radius: 50%;
 
   font-family: Arial, sans-serif;
+
   font-size: 16px;
+
   line-height: 1;
 }
 
@@ -360,6 +540,7 @@ a {
 
 .menu-submenu {
   max-height: 0;
+
   overflow: hidden;
 
   padding-left: 10px;
@@ -373,6 +554,7 @@ a {
 
 .menu-submenu.open {
   max-height: 250px;
+
   opacity: 1;
 }
 
@@ -395,7 +577,9 @@ a {
 
 .menu-sub-link:hover {
   color: var(--black);
+
   border-color: var(--gold);
+
   padding-left: 17px;
 }
 
@@ -406,6 +590,7 @@ a {
 
 .menu-main-links {
   display: flex;
+
   flex-direction: column;
 }
 
@@ -423,6 +608,7 @@ a {
 
 .menu-main-links a:hover {
   color: var(--gold);
+
   padding-left: 7px;
 }
 
@@ -433,6 +619,9 @@ a {
 
 main {
   width: 100%;
+
+  max-width: 100%;
+
   overflow-x: hidden;
 }
 
@@ -443,19 +632,35 @@ main {
 
 .hero {
   width: 100%;
+
+  max-width: 1400px;
+
   min-height: 100vh;
 
-  padding: 120px max(20px, calc((100% - var(--max-width)) / 2));
+  margin: 0 auto;
+
+  padding:
+    120px
+    max(20px, calc((100% - var(--max-width)) / 2));
 
   display: grid;
-  grid-template-columns: 1fr 0.85fr;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 0.85fr);
+
   align-items: center;
+
   gap: 70px;
 
   background: var(--cream);
 }
 
 .hero-content {
+  min-width: 0;
+
+  width: 100%;
+
   max-width: 650px;
 }
 
@@ -465,16 +670,22 @@ main {
   color: var(--gold);
 
   font-family: Arial, sans-serif;
+
   font-size: 11px;
+
   font-weight: 700;
 
   letter-spacing: 2.2px;
 }
 
 .hero h1 {
-  font-family: "Playfair Display", "Noto Serif Bengali", serif;
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
 
   font-size: clamp(48px, 7vw, 88px);
+
   font-weight: 600;
 
   line-height: 1.08;
@@ -484,6 +695,7 @@ main {
 
 .hero h1 em {
   font-style: italic;
+
   font-weight: 500;
 }
 
@@ -493,12 +705,15 @@ main {
   color: #686868;
 
   font-size: 17px;
+
   line-height: 2;
 }
 
 .hero-button {
   display: inline-flex;
+
   align-items: center;
+
   gap: 15px;
 
   margin-top: 30px;
@@ -516,6 +731,7 @@ main {
 
 .hero-button:hover {
   background: var(--black);
+
   color: var(--white);
 }
 
@@ -523,6 +739,7 @@ main {
   position: relative;
 
   width: 100%;
+
   max-width: 470px;
 
   margin-left: auto;
@@ -530,6 +747,7 @@ main {
 
 .hero-image img {
   width: 100%;
+
   aspect-ratio: 4 / 5;
 
   object-fit: cover;
@@ -537,21 +755,28 @@ main {
 
 .hero-caption {
   position: absolute;
+
   bottom: 15px;
+
   left: 15px;
   right: 15px;
 
   display: flex;
+
   justify-content: space-between;
+
   gap: 15px;
 
   padding: 12px 14px;
 
   background: rgba(0, 0, 0, 0.65);
+
   color: white;
 
   font-family: Arial, sans-serif;
+
   font-size: 9px;
+
   letter-spacing: 1.3px;
 }
 
@@ -564,6 +789,7 @@ main {
   padding: 130px 20px;
 
   background: var(--black);
+
   color: var(--white);
 
   text-align: center;
@@ -571,23 +797,30 @@ main {
 
 .intro-inner {
   width: min(100%, 800px);
+
   margin: auto;
 }
 
 .intro h2 {
-  font-family: "Playfair Display", "Noto Serif Bengali", serif;
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
 
   font-size: clamp(34px, 5vw, 58px);
+
   line-height: 1.35;
 }
 
 .intro h2 em {
   color: #c5b99e;
+
   font-style: italic;
 }
 
 .intro p:last-child {
   max-width: 620px;
+
   margin: 25px auto 0;
 
   color: #aaaaaa;
@@ -602,28 +835,35 @@ main {
 
 .content-section {
   width: 100%;
+
   padding: 110px 20px;
 }
 
 .content-section.light {
   background: var(--paper);
+
   color: var(--text);
 }
 
 .content-section.dark {
   background: var(--dark);
+
   color: var(--white);
 }
 
 .section-container {
   width: min(100%, var(--max-width));
+
   margin: auto;
 }
 
 .section-top {
   display: flex;
+
   align-items: flex-end;
+
   justify-content: space-between;
+
   gap: 40px;
 
   margin-bottom: 60px;
@@ -632,7 +872,10 @@ main {
 .section-top h2,
 .archive-heading h2,
 .author-info h2 {
-  font-family: "Playfair Display", "Noto Serif Bengali", serif;
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
 
   font-size: clamp(38px, 5vw, 64px);
 
@@ -657,10 +900,14 @@ main {
 }
 
 .writing-card {
+  position: relative;
+
   width: 100%;
 
   display: grid;
+
   grid-template-columns: 80px 1fr;
+
   gap: 30px;
 
   padding: 42px 0;
@@ -672,11 +919,15 @@ main {
   color: #b5b5b5;
 
   font-family: Arial, sans-serif;
+
   font-size: 13px;
+
   letter-spacing: 1px;
 }
 
 .writing-card-content {
+  position: relative;
+
   min-width: 0;
 }
 
@@ -686,8 +937,11 @@ main {
   color: var(--muted);
 
   font-family: Arial, sans-serif;
+
   font-size: 10px;
+
   letter-spacing: 1px;
+
   text-transform: uppercase;
 }
 
@@ -695,7 +949,9 @@ main {
   color: var(--gold);
 
   font-family: Arial, sans-serif;
+
   font-size: 10px;
+
   font-weight: 700;
 
   letter-spacing: 1.8px;
@@ -706,9 +962,13 @@ main {
 .novel-card h3 {
   margin-top: 5px;
 
-  font-family: "Playfair Display", "Noto Serif Bengali", serif;
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
 
   font-size: clamp(25px, 3vw, 36px);
+
   line-height: 1.4;
 }
 
@@ -733,8 +993,11 @@ main {
   margin-top: 20px;
 
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
   gap: 20px;
 }
 
@@ -742,6 +1005,7 @@ main {
   display: inline-block;
 
   font-size: 14px;
+
   font-weight: 600;
 
   border-bottom: 1px solid currentColor;
@@ -762,8 +1026,11 @@ main {
 
 .view-count {
   display: inline-flex;
+
   align-items: center;
+
   justify-content: flex-end;
+
   gap: 6px;
 
   color: #777777;
@@ -775,18 +1042,70 @@ main {
 
 .view-count span {
   font-size: 10px;
+
   opacity: 0.8;
 }
 
 .view-count strong {
   font-size: 12px;
+
   font-weight: 600;
 }
 
 .view-count small {
   font-size: 10px;
+
   text-transform: uppercase;
+
   letter-spacing: 0.5px;
+}
+
+
+/* =====================================================
+   TOP RIGHT TOTAL VIEWS
+===================================================== */
+
+.writing-card-content > .view-count,
+.story-card > .view-count,
+.novel-info > .view-count,
+.total-views {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  color: #777777;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 10px;
+
+  white-space: nowrap;
+}
+
+.writing-card-content > .view-count strong,
+.story-card > .view-count strong,
+.novel-info > .view-count strong,
+.total-views strong {
+  font-size: 11px;
+
+  font-weight: 600;
+}
+
+.dark .view-count,
+.dark .total-views {
+  color: #999999;
+}
+
+.dark .view-count strong,
+.dark .total-views strong {
+  color: #dddddd;
 }
 
 
@@ -795,58 +1114,43 @@ main {
 ===================================================== */
 
 .writing-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-
-  margin-top: 20px;
+  display: none !important;
 }
 
 .action-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  min-height: 36px;
 
-  min-height: 32px;
+  padding: 7px 14px;
 
-  padding: 5px 11px;
+  border: 1px solid rgba(176, 138, 69, 0.45);
 
-  border: 1px solid #d6d2cb;
-  border-radius: 3px;
+  border-radius: 20px;
 
   background: transparent;
+
   color: #666666;
 
   font-family: Arial, sans-serif;
+
   font-size: 10px;
 
-  cursor: pointer;
+  font-weight: 600;
 
   transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    border-color 0.2s ease;
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.2s ease;
 }
 
 .action-btn:hover {
   background: var(--black);
+
   border-color: var(--black);
+
   color: white;
-}
 
-
-/* dark section buttons */
-
-.dark .action-btn {
-  border-color: #444444;
-  color: #bbbbbb;
-}
-
-.dark .action-btn:hover {
-  background: white;
-  border-color: white;
-  color: black;
+  transform: translateY(-1px);
 }
 
 
@@ -856,13 +1160,18 @@ main {
 
 .story-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
   gap: 1px;
 
   background: #3b3b3b;
 }
 
 .story-card {
+  position: relative;
+
   min-width: 0;
 
   padding: 42px;
@@ -882,7 +1191,9 @@ main {
   color: var(--gold);
 
   font-family: Arial, sans-serif;
+
   font-size: 10px;
+
   letter-spacing: 1.5px;
 }
 
@@ -899,13 +1210,30 @@ main {
   background: #e9e4da;
 }
 
+.novel-section .section-container {
+  width: min(1200px, calc(100% - 40px));
+
+  margin: 0 auto;
+}
+
 .novel-grid {
+  width: 100%;
+
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 25px;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 28px;
+
+  margin: 0 auto;
 }
 
 .novel-card {
+  position: relative;
+
+  width: 100%;
+
   min-width: 0;
 
   padding: 42px;
@@ -921,11 +1249,16 @@ main {
 
 .novel-card:hover {
   transform: translateY(-4px);
+
   box-shadow: var(--shadow);
 }
 
 .novel-info {
+  position: relative;
+
   min-width: 0;
+
+  width: 100%;
 }
 
 
@@ -945,6 +1278,7 @@ main {
 
 .archive-heading > p:last-child {
   margin-top: 10px;
+
   color: var(--muted);
 }
 
@@ -960,8 +1294,11 @@ main {
 
 .archive-block-heading {
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
   gap: 20px;
 
   padding-bottom: 17px;
@@ -971,6 +1308,7 @@ main {
 
 .archive-block-heading h3 {
   font-size: 20px;
+
   font-weight: 600;
 }
 
@@ -978,7 +1316,9 @@ main {
   color: var(--muted);
 
   font-family: Arial, sans-serif;
+
   font-size: 11px;
+
   letter-spacing: 1px;
 }
 
@@ -988,8 +1328,11 @@ main {
 
 .archive-item {
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
   gap: 20px;
 
   padding: 14px 0;
@@ -1019,6 +1362,7 @@ main {
   color: var(--muted);
 
   font-family: Arial, sans-serif;
+
   font-size: 10px;
 }
 
@@ -1028,7 +1372,9 @@ main {
   font-size: 15px;
 
   white-space: nowrap;
+
   overflow: hidden;
+
   text-overflow: ellipsis;
 }
 
@@ -1049,6 +1395,7 @@ main {
   padding: 110px 20px;
 
   background: var(--black);
+
   color: white;
 }
 
@@ -1071,7 +1418,11 @@ main {
 }
 
 .most-viewed-block .archive-block-heading h3 {
-  font-family: "Playfair Display", "Noto Serif Bengali", serif;
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
+
   font-size: 23px;
 }
 
@@ -1081,8 +1432,12 @@ main {
 
 .most-viewed-item {
   display: grid;
-  grid-template-columns: 45px 1fr auto;
+
+  grid-template-columns:
+    45px 1fr auto;
+
   align-items: center;
+
   gap: 20px;
 
   padding: 17px 0;
@@ -1098,6 +1453,7 @@ main {
   color: #666666;
 
   font-family: Arial, sans-serif;
+
   font-size: 11px;
 }
 
@@ -1109,7 +1465,9 @@ main {
   display: block;
 
   overflow: hidden;
+
   text-overflow: ellipsis;
+
   white-space: nowrap;
 
   font-size: 15px;
@@ -1119,6 +1477,7 @@ main {
   color: #777777;
 
   font-family: Arial, sans-serif;
+
   font-size: 9px;
 }
 
@@ -1141,6 +1500,7 @@ main {
 
 .quote-container {
   width: min(100%, 800px);
+
   margin: auto;
 }
 
@@ -1150,6 +1510,7 @@ main {
   color: var(--gold);
 
   font-family: Georgia, serif;
+
   font-size: 75px;
 
   line-height: 0.7;
@@ -1158,7 +1519,10 @@ main {
 .quote-container blockquote {
   margin-top: 25px;
 
-  font-family: "Playfair Display", "Noto Serif Bengali", serif;
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
 
   font-size: clamp(32px, 5vw, 58px);
 
@@ -1190,14 +1554,20 @@ main {
 
 .author-grid {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
+
+  grid-template-columns:
+    0.8fr 1.2fr;
+
   gap: 70px;
+
   align-items: center;
 }
 
 .author-photo img {
   width: 100%;
+
   max-width: 430px;
+
   aspect-ratio: 4 / 5;
 
   object-fit: cover;
@@ -1217,7 +1587,9 @@ main {
 
 .floating-socials {
   display: flex;
+
   flex-wrap: wrap;
+
   gap: 10px;
 
   margin-top: 30px;
@@ -1229,6 +1601,7 @@ main {
   border: 1px solid var(--line);
 
   font-family: Arial, sans-serif;
+
   font-size: 10px;
 
   transition:
@@ -1238,6 +1611,7 @@ main {
 
 .floating-socials a:hover {
   background: var(--black);
+
   color: white;
 }
 
@@ -1250,21 +1624,27 @@ footer {
   padding: 35px 20px;
 
   background: #0d0d0d;
+
   color: white;
 }
 
 .footer-inner {
   width: min(100%, var(--max-width));
+
   margin: auto;
 
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
   gap: 30px;
 }
 
 .footer-inner strong {
   font-family: "Playfair Display", serif;
+
   font-size: 18px;
 }
 
@@ -1272,7 +1652,9 @@ footer {
   color: #777777;
 
   font-family: Arial, sans-serif;
+
   font-size: 9px;
+
   letter-spacing: 1px;
 }
 
@@ -1301,1067 +1683,10 @@ footer {
 
 .error-state p {
   margin-top: 5px;
+
   font-family: Arial, sans-serif;
+
   font-size: 11px;
-}
-
-
-/* =====================================================
-   REVEAL ANIMATION
-===================================================== */
-
-.reveal {
-  opacity: 0;
-
-  transform: translateY(30px);
-
-  transition:
-    opacity 0.7s ease,
-    transform 0.7s ease;
-}
-
-.reveal.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 768px) {
-
-  .navbar {
-    height: 68px;
-  }
-
-  .nav-inner {
-    width: calc(100% - 24px);
-  }
-
-  .brand-logo {
-    width: 38px;
-    height: 38px;
-    flex-basis: 38px;
-  }
-
-  .site-title {
-    font-size: 18px;
-  }
-
-  .menu-btn {
-    width: 43px;
-    height: 43px;
-    font-size: 28px;
-  }
-
-
-  /* mobile menu */
-
-  .side-menu {
-    top: 68px;
-
-    width: min(350px, 90vw);
-
-    height: calc(100vh - 68px);
-
-    padding: 25px 20px 35px;
-  }
-
-
-  /* hero */
-
-  .hero {
-    min-height: auto;
-
-    padding: 120px 20px 70px;
-
-    display: flex;
-    flex-direction: column;
-
-    align-items: stretch;
-
-    gap: 45px;
-  }
-
-  .hero h1 {
-    font-size: clamp(42px, 12vw, 65px);
-    letter-spacing: -1px;
-  }
-
-  .hero-text {
-    font-size: 15px;
-  }
-
-  .hero-image {
-    width: 100%;
-    max-width: 100%;
-  }
-
-
-  /* intro */
-
-  .intro {
-    padding: 90px 20px;
-  }
-
-  .intro h2 {
-    font-size: clamp(30px, 8vw, 45px);
-  }
-
-
-  /* sections */
-
-  .content-section,
-  .archive-section,
-  .most-viewed-section,
-  .author-section {
-    padding: 80px 20px;
-  }
-
-  .section-top {
-    display: block;
-
-    margin-bottom: 40px;
-  }
-
-  .section-top > p {
-    margin-top: 15px;
-  }
-
-
-  /* poetry */
-
-  .writing-card {
-    grid-template-columns: 35px 1fr;
-
-    gap: 15px;
-
-    padding: 32px 0;
-  }
-
-  .writing-card h3,
-  .story-card h3,
-  .novel-card h3 {
-    font-size: 25px;
-  }
-
-
-  /* stories */
-
-  .story-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .story-card {
-    padding: 30px 24px;
-  }
-
-
-  /* novels */
-
-  .novel-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .novel-card {
-    padding: 30px 24px;
-  }
-
-
-  /* archive */
-
-  .archive-block {
-    padding: 20px;
-  }
-
-  .archive-item {
-    gap: 10px;
-  }
-
-  .archive-item strong {
-    max-width: 210px;
-  }
-
-
-  /* most viewed */
-
-  .most-viewed-block {
-    padding: 18px;
-  }
-
-  .most-viewed-item {
-    grid-template-columns: 30px 1fr auto;
-    gap: 10px;
-  }
-
-  .most-title span {
-    font-size: 13px;
-  }
-
-
-  /* author */
-
-  .author-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .author-photo img {
-    max-width: 100%;
-  }
-
-
-  /* quote */
-
-  .quote-section {
-    padding: 100px 20px;
-  }
-
-
-  /* footer */
-
-  .footer-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-}
-
-
-/* =====================================================
-   SMALL MOBILE
-===================================================== */
-
-@media (max-width: 480px) {
-
-  .site-title {
-    font-size: 16px;
-  }
-
-  .hero {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .content-section,
-  .archive-section,
-  .most-viewed-section,
-  .author-section {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .writing-card {
-    grid-template-columns: 28px 1fr;
-    gap: 10px;
-  }
-
-  .card-bottom {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .view-count {
-    justify-content: flex-start;
-  }
-
-  .writing-actions {
-    gap: 6px;
-  }
-
-  .action-btn {
-    font-size: 9px;
-    padding: 5px 8px;
-  }
-
-  .archive-item {
-    align-items: flex-start;
-  }
-
-  .archive-item .view-count {
-    margin-top: 5px;
-  }
-
-  .most-viewed-item {
-    grid-template-columns: 25px 1fr;
-  }
-
-  .most-viewed-item .view-count {
-    grid-column: 2;
-    justify-content: flex-start;
-  }
-
-  .hero-caption {
-    font-size: 8px;
-  }
-
-}
-
-
-/* =====================================================
-   ACCESSIBILITY
-===================================================== */
-
-button:focus-visible,
-a:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 3px;
-}
-
-
-/* =====================================================
-   REDUCE MOTION
-===================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-}
-
-/* =====================================================
-   NOVEL LAYOUT FIX
-===================================================== */
-
-.novel-section .section-container {
-  width: min(1200px, calc(100% - 40px));
-  margin: 0 auto;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.novel-grid {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px;
-  margin: 0 auto;
-}
-
-.novel-card {
-  width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
-}
-
-.novel-info {
-  width: 100%;
-  box-sizing: border-box;
-}
-
-
-/* Mobile */
-
-@media (max-width: 768px) {
-
-  .novel-section .section-container {
-    width: calc(100% - 30px);
-    margin: 0 auto;
-  }
-
-  .novel-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .novel-card {
-    width: 100%;
-  }
-
-}
-
-/* =====================================================
-   PREMIUM MENU BUTTON
-===================================================== */
-
-.premium-menu-btn {
-  width: 54px !important;
-  height: 54px !important;
-
-  min-width: 54px !important;
-  min-height: 54px !important;
-
-  padding: 0 !important;
-
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50% !important;
-
-  background: rgba(255, 255, 255, 0.08);
-
-  border: 1px solid rgba(255, 255, 255, 0.28);
-
-  color: #d4a84f;
-
-  cursor: pointer;
-
-  box-sizing: border-box;
-
-  position: relative;
-  z-index: 1002;
-
-  flex-shrink: 0;
-
-  transition: 0.25s ease;
-}
-
-.premium-menu-btn:hover {
-  background: rgba(212, 168, 79, 0.15);
-  border-color: #d4a84f;
-  transform: scale(1.05);
-}
-
-.premium-crown {
-  display: block;
-
-  font-size: 28px;
-
-  line-height: 1;
-
-  color: #d4a84f;
-
-  pointer-events: none;
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 768px) {
-
-  .premium-menu-btn {
-    width: 50px !important;
-    height: 50px !important;
-
-    min-width: 50px !important;
-    min-height: 50px !important;
-  }
-
-  .premium-crown {
-    font-size: 26px;
-  }
-
-}
-
-
-/* =====================================================
-   PREVENT CONTENT FROM MOVING LEFT
-===================================================== */
-
-html,
-body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-main {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-section {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.section-container {
-  box-sizing: border-box;
-  max-width: 1200px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-@media (max-width: 768px) {
-
-  .section-container {
-    width: 100%;
-    max-width: 100%;
-
-    padding-left: 18px;
-    padding-right: 18px;
-
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .archive-section,
-  .most-viewed-section,
-  .novel-section {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-
-  .archive-block,
-  .most-viewed-block,
-  .novel-grid,
-  .story-grid,
-  .writing-list {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-
-}
-
-/* =====================================================
-   FINAL RESPONSIVE LAYOUT FIX
-===================================================== */
-
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-body {
-  margin: 0;
-}
-
-
-/* =====================================================
-   NAVBAR
-===================================================== */
-
-.navbar {
-  width: 100%;
-  position: relative;
-  z-index: 1000;
-}
-
-.nav-inner {
-  width: 100%;
-  min-height: 82px;
-
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-
-  padding: 12px 24px;
-
-  position: relative;
-}
-
-
-/* LEFT LOGO */
-
-.brand-logo {
-  justify-self: start;
-
-  width: 52px;
-  height: 52px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-  overflow: hidden;
-
-  text-decoration: none;
-}
-
-.brand-logo img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-
-  display: block;
-}
-
-
-/* CENTER TITLE */
-
-.site-title {
-  justify-self: center;
-
-  display: block;
-
-  margin: 0;
-  padding: 0;
-
-  color: inherit;
-  text-decoration: none;
-
-  white-space: nowrap;
-
-  font-family:
-    "Playfair Display",
-    serif;
-
-  font-size: clamp(28px, 3vw, 42px);
-
-  font-weight: 700;
-
-  line-height: 1;
-
-  text-align: center;
-}
-
-
-/* RIGHT BUTTON */
-
-.menu-btn {
-  justify-self: end;
-
-  width: 54px;
-  height: 54px;
-
-  padding: 0;
-
-  border: 0;
-
-  border-radius: 50%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  cursor: pointer;
-
-  position: relative;
-
-  z-index: 1100;
-}
-
-
-/* PREMIUM ICON */
-
-.premium-menu-btn {
-  background: rgba(255, 255, 255, 0.08);
-
-  border: 1px solid rgba(255, 255, 255, 0.18);
-
-  color: #d6b36a;
-
-  transition:
-    transform 0.25s ease,
-    background 0.25s ease;
-}
-
-.premium-menu-btn:hover {
-  transform: scale(1.05);
-}
-
-.premium-icon {
-  font-size: 25px;
-
-  line-height: 1;
-
-  font-family:
-    "Playfair Display",
-    serif;
-}
-
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero {
-  width: 100%;
-  max-width: 1400px;
-
-  margin: 0 auto;
-
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1fr)
-    minmax(0, 1fr);
-
-  align-items: center;
-
-  gap: clamp(30px, 6vw, 100px);
-
-  padding:
-    clamp(50px, 8vw, 110px)
-    clamp(24px, 6vw, 90px);
-}
-
-
-/* LEFT TEXT */
-
-.hero-content {
-  min-width: 0;
-
-  width: 100%;
-
-  text-align: left;
-
-  order: 1;
-}
-
-
-/* RIGHT IMAGE */
-
-.hero-image {
-  min-width: 0;
-
-  width: 100%;
-
-  order: 2;
-
-  display: flex;
-
-  justify-content: flex-end;
-
-  align-items: center;
-}
-
-.hero-image img {
-  width: min(100%, 560px);
-
-  height: auto;
-
-  max-height: 700px;
-
-  object-fit: cover;
-
-  display: block;
-}
-
-
-/* =====================================================
-   PREVENT DESKTOP CONTENT FROM SHIFTING LEFT
-===================================================== */
-
-.section-container,
-.intro-inner,
-.archive-heading,
-.author-grid,
-.quote-container,
-.footer-inner {
-  width: min(
-    calc(100% - 48px),
-    1200px
-  );
-
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-/* =====================================================
-   WRITING CARDS
-===================================================== */
-
-.writing-list,
-.story-grid,
-.novel-grid {
-  width: 100%;
-  max-width: 1200px;
-
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 768px) {
-
-  .nav-inner {
-    min-height: 72px;
-
-    grid-template-columns:
-      1fr auto 1fr;
-
-    padding:
-      10px 16px;
-  }
-
-
-  .brand-logo {
-    width: 48px;
-    height: 48px;
-  }
-
-
-  .site-title {
-    font-size: 29px;
-  }
-
-
-  .menu-btn {
-    width: 48px;
-    height: 48px;
-  }
-
-
-  .premium-icon {
-    font-size: 22px;
-  }
-
-
-  /* SAME HERO STRUCTURE */
-
-  .hero {
-    grid-template-columns:
-      minmax(0, 1fr)
-      minmax(0, 1fr);
-
-    gap: 18px;
-
-    padding:
-      55px 18px
-      60px;
-  }
-
-
-  .hero-content {
-    order: 1;
-
-    text-align: left;
-  }
-
-
-  .hero-image {
-    order: 2;
-
-    justify-content: flex-end;
-  }
-
-
-  .hero-image img {
-    width: 100%;
-
-    max-height: 520px;
-
-    object-fit: cover;
-  }
-
-
-  .section-container,
-  .intro-inner,
-  .archive-heading,
-  .author-grid,
-  .quote-container,
-  .footer-inner {
-    width: calc(100% - 32px);
-  }
-
-}
-
-
-/* =====================================================
-   SMALL MOBILE
-===================================================== */
-
-@media (max-width: 480px) {
-
-  .nav-inner {
-    padding:
-      9px 12px;
-  }
-
-
-  .brand-logo {
-    width: 44px;
-    height: 44px;
-  }
-
-
-  .site-title {
-    font-size: 25px;
-  }
-
-
-  .menu-btn {
-    width: 44px;
-    height: 44px;
-  }
-
-
-  .premium-icon {
-    font-size: 20px;
-  }
-
-
-  .hero {
-    gap: 12px;
-
-    padding:
-      45px 12px
-      50px;
-  }
-
-}
-
-/* =====================================================
-   REQUESTED FINAL FIXES ONLY
-   Shadat Fatih
-===================================================== */
-
-/* CENTER TITLE — MOBILE + DESKTOP */
-
-.nav-inner {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.brand-logo {
-  position: relative;
-  z-index: 2;
-}
-
-.site-title {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-  margin: 0;
-
-  font-family: "Playfair Display", serif;
-  font-size: clamp(22px, 3vw, 38px);
-  font-weight: 700;
-  letter-spacing: 0.5px;
-
-  white-space: nowrap;
-  text-align: center;
-
-  z-index: 2;
-}
-
-.menu-btn {
-  margin-left: auto;
-  position: relative;
-  z-index: 3;
-}
-
-
-/* =====================================================
-   SAME MAIN CONTENT LAYOUT ON DESKTOP + MOBILE
-===================================================== */
-
-.hero {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-}
-
-
-/* =====================================================
-   VIEW COUNT — TOP RIGHT
-===================================================== */
-
-.writing-card-content,
-.story-card,
-.novel-info {
-  position: relative;
-}
-
-.writing-card-content > .view-count,
-.story-card > .view-count,
-.novel-info > .view-count {
-  position: absolute;
-  top: 0;
-  right: 0;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-
-  color: #777;
-
-  font-family: Arial, sans-serif;
-  font-size: 10px;
-  white-space: nowrap;
-}
-
-.writing-card-content > .view-count strong,
-.story-card > .view-count strong,
-.novel-info > .view-count strong {
-  font-size: 11px;
-  font-weight: 600;
-}
-
-
-/* =====================================================
-   PREMIUM ACTION BAR
-===================================================== */
-
-.writing-actions {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-
-  margin-top: 22px;
-}
-
-.action-btn {
-  min-height: 36px;
-
-  padding: 7px 14px;
-
-  border: 1px solid rgba(176, 138, 69, 0.45);
-  border-radius: 20px;
-
-  background: transparent;
-  color: #666;
-
-  font-family: Arial, sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-
-  transition:
-    background 0.25s ease,
-    color 0.25s ease,
-    border-color 0.25s ease,
-    transform 0.2s ease;
-}
-
-.action-btn:hover {
-  background: var(--black);
-  border-color: var(--black);
-  color: #fff;
-
-  transform: translateY(-1px);
-}
-
-
-/* DARK SECTION */
-
-.dark .action-btn {
-  border-color: rgba(212, 168, 79, 0.45);
-  color: #ccc;
-}
-
-.dark .action-btn:hover {
-  background: #fff;
-  border-color: #fff;
-  color: #111;
 }
 
 
@@ -2371,9 +1696,11 @@ body {
 
 .comment-overlay {
   position: fixed;
+
   inset: 0;
 
   display: none;
+
   align-items: center;
   justify-content: center;
 
@@ -2398,15 +1725,18 @@ body {
   background: #fff;
 
   border: 1px solid #ddd;
+
   border-radius: 14px;
 
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.25);
 }
 
 .comment-box h3 {
   margin-bottom: 5px;
 
   font-family: "Playfair Display", serif;
+
   font-size: 27px;
 }
 
@@ -2430,8 +1760,11 @@ body {
   color: #555;
 
   font-family: Arial, sans-serif;
+
   font-size: 10px;
+
   font-weight: 600;
+
   letter-spacing: 0.5px;
 }
 
@@ -2442,6 +1775,7 @@ body {
   padding: 11px 13px;
 
   border: 1px solid #ddd;
+
   border-radius: 7px;
 
   background: #fafafa;
@@ -2453,18 +1787,22 @@ body {
 
 .comment-form-group textarea {
   min-height: 120px;
+
   resize: vertical;
 }
 
 .comment-form-group input:focus,
 .comment-form-group textarea:focus {
   border-color: var(--gold);
+
   background: #fff;
 }
 
 .comment-submit-row {
   display: flex;
+
   justify-content: flex-end;
+
   gap: 10px;
 
   margin-top: 20px;
@@ -2477,7 +1815,9 @@ body {
   border-radius: 20px;
 
   font-family: Arial, sans-serif;
+
   font-size: 10px;
+
   font-weight: 600;
 
   cursor: pointer;
@@ -2485,245 +1825,39 @@ body {
 
 .comment-cancel {
   border: 1px solid #ddd;
+
   background: #fff;
+
   color: #666;
 }
 
 .comment-submit {
   border: 1px solid #111;
+
   background: #111;
+
   color: #fff;
 }
 
 
-/* MOBILE */
-
-@media (max-width: 768px) {
-
-  .site-title {
-    font-size: 24px;
-  }
-
-  .writing-card-content > .view-count,
-  .story-card > .view-count,
-  .novel-info > .view-count {
-    position: static;
-
-    justify-content: flex-end;
-
-    margin-bottom: 8px;
-  }
-
-  .comment-box {
-    padding: 24px 20px;
-  }
-
-}
-
-@media (max-width: 480px) {
-
-  .site-title {
-    font-size: 20px;
-  }
-
-}
-
 /* =====================================================
-   FINAL SHADAT FATIH LAYOUT
-   DO NOT CHANGE OTHER SECTIONS
+   REVEAL ANIMATION
 ===================================================== */
 
-/* ---------- TOP NAVBAR ---------- */
+.reveal {
+  opacity: 0;
 
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 76px;
-  z-index: 9990;
-  background: rgba(255, 255, 255, 0.94);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  transform: translateY(30px);
+
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
 }
 
-.nav-inner {
-  width: 100%;
-  max-width: 1200px;
-  height: 76px;
-  margin: 0 auto;
+.reveal.show {
+  opacity: 1;
 
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-
-  padding: 0 24px;
-}
-
-/* LEFT LOGO */
-
-.brand-logo {
-  justify-self: start;
-
-  width: 46px;
-  height: 46px;
-
-  margin: 0;
-
-  border-radius: 50%;
-  overflow: hidden;
-
-  display: block;
-}
-
-/* CENTER TITLE */
-
-.site-title {
-  justify-self: center;
-
-  margin: 0 !important;
-  padding: 0;
-
-  white-space: nowrap;
-
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
-
-  font-size: clamp(26px, 3vw, 40px);
-  font-weight: 700;
-
-  line-height: 1;
-
-  letter-spacing: 0.3px;
-
-  text-align: center;
-}
-
-/* RIGHT MENU */
-
-.menu-btn {
-  justify-self: end;
-
-  margin: 0 !important;
-
-  width: 50px;
-  height: 50px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-/* =====================================================
-   DESKTOP = SAME STRUCTURE AS MOBILE
-===================================================== */
-
-.hero {
-  width: 100%;
-  max-width: 1200px;
-
-  margin: 0 auto;
-
-  min-height: auto;
-
-  padding:
-    110px 24px 70px;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: stretch;
-
-  gap: 40px;
-}
-
-.hero-content {
-  width: 100%;
-  max-width: 100%;
-
-  order: 1;
-
-  text-align: left;
-}
-
-.hero-image {
-  width: 100%;
-  max-width: 100%;
-
-  order: 2;
-
-  display: flex;
-  justify-content: flex-start;
-}
-
-.hero-image img {
-  width: 100%;
-  max-width: 100%;
-
-  height: auto;
-  max-height: none;
-
-  object-fit: cover;
-}
-
-
-/* =====================================================
-   TOTAL VIEWS — TOP RIGHT
-===================================================== */
-
-.writing-card,
-.story-card,
-.novel-card {
-  position: relative;
-}
-
-.total-views {
-  position: absolute;
-
-  top: 28px;
-  right: 0;
-
-  display: inline-flex;
-  align-items: center;
-
-  gap: 6px;
-
-  color: #777;
-
-  font-family: Arial, sans-serif;
-  font-size: 10px;
-
-  white-space: nowrap;
-}
-
-.total-views strong {
-  font-size: 12px;
-  font-weight: 600;
-
-  color: #333;
-}
-
-.dark .total-views,
-.story-card .total-views {
-  color: #999;
-}
-
-.dark .total-views strong,
-.story-card .total-views strong {
-  color: #ddd;
-}
-
-
-/* =====================================================
-   REMOVE WRITING ACTION BUTTONS
-===================================================== */
-
-.writing-actions {
-  display: none !important;
+  transform: translateY(0);
 }
 
 
@@ -2733,15 +1867,21 @@ body {
 
 @media (max-width: 768px) {
 
+  /* ---------------- NAVBAR ---------------- */
+
   .navbar {
     height: 68px;
   }
 
   .nav-inner {
-    width: 100%;
+    width: calc(100% - 24px);
+
     height: 68px;
 
-    padding: 0 16px;
+    grid-template-columns:
+      1fr auto 1fr;
+
+    column-gap: 10px;
   }
 
   .brand-logo {
@@ -2750,51 +1890,262 @@ body {
   }
 
   .site-title {
-    font-size: 27px;
+    font-size: 26px;
+
+    max-width: calc(100vw - 150px);
   }
 
-  .menu-btn {
-    width: 46px;
-    height: 46px;
+  .menu-btn,
+  .premium-menu-btn {
+    width: 43px !important;
+    height: 43px !important;
+
+    min-width: 43px !important;
+    min-height: 43px !important;
   }
 
+  .premium-icon,
+  .premium-crown {
+    font-size: 22px;
+  }
+
+
+  /* ---------------- SIDE MENU ---------------- */
+
+  .side-menu {
+    top: 68px;
+
+    width: min(350px, 90vw);
+
+    height: calc(100vh - 68px);
+
+    padding: 25px 20px 35px;
+  }
+
+
+  /* ---------------- HERO ---------------- */
 
   .hero {
-    width: 100%;
+    min-height: auto;
 
     padding:
       105px 18px 60px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
 
     gap: 35px;
   }
 
   .hero-content {
+    width: 100%;
+
+    max-width: 100%;
+
     order: 1;
   }
 
+  .hero h1 {
+    font-size: clamp(42px, 12vw, 65px);
+
+    letter-spacing: -1px;
+  }
+
+  .hero-text {
+    font-size: 15px;
+  }
+
   .hero-image {
+    width: 100%;
+
+    max-width: 100%;
+
     order: 2;
+
+    margin-left: 0;
 
     justify-content: flex-start;
   }
 
   .hero-image img {
     width: 100%;
+
     max-width: 100%;
+
+    max-height: 520px;
+
+    object-fit: cover;
   }
 
 
+  /* ---------------- INTRO ---------------- */
+
+  .intro {
+    padding: 90px 20px;
+  }
+
+  .intro h2 {
+    font-size: clamp(30px, 8vw, 45px);
+  }
+
+
+  /* ---------------- SECTIONS ---------------- */
+
+  .content-section,
+  .archive-section,
+  .most-viewed-section,
+  .author-section {
+    padding: 80px 18px;
+  }
+
+  .section-container {
+    width: 100%;
+  }
+
+  .section-top {
+    display: block;
+
+    margin-bottom: 40px;
+  }
+
+  .section-top > p {
+    margin-top: 15px;
+  }
+
+
+  /* ---------------- WRITING ---------------- */
+
+  .writing-card {
+    grid-template-columns: 35px 1fr;
+
+    gap: 15px;
+
+    padding: 32px 0;
+  }
+
+  .writing-card h3,
+  .story-card h3,
+  .novel-card h3 {
+    font-size: 25px;
+  }
+
+  .writing-card-content > .view-count,
+  .story-card > .view-count,
+  .novel-info > .view-count,
   .total-views {
-    top: 22px;
+    top: 0;
+
     right: 0;
 
     font-size: 9px;
   }
 
+  .writing-card-content > .view-count strong,
+  .story-card > .view-count strong,
+  .novel-info > .view-count strong,
   .total-views strong {
-    font-size: 11px;
+    font-size: 10px;
   }
 
+
+  /* ---------------- STORIES ---------------- */
+
+  .story-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .story-card {
+    padding: 30px 24px;
+  }
+
+
+  /* ---------------- NOVELS ---------------- */
+
+  .novel-section .section-container {
+    width: calc(100% - 4px);
+  }
+
+  .novel-grid {
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+  }
+
+  .novel-card {
+    padding: 30px 24px;
+  }
+
+
+  /* ---------------- ARCHIVE ---------------- */
+
+  .archive-block {
+    padding: 20px;
+  }
+
+  .archive-item {
+    gap: 10px;
+  }
+
+  .archive-item strong {
+    max-width: 210px;
+  }
+
+
+  /* ---------------- MOST VIEWED ---------------- */
+
+  .most-viewed-block {
+    padding: 18px;
+  }
+
+  .most-viewed-item {
+    grid-template-columns:
+      30px 1fr auto;
+
+    gap: 10px;
+  }
+
+  .most-title span {
+    font-size: 13px;
+  }
+
+
+  /* ---------------- AUTHOR ---------------- */
+
+  .author-grid {
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+  }
+
+  .author-photo img {
+    max-width: 100%;
+  }
+
+
+  /* ---------------- QUOTE ---------------- */
+
+  .quote-section {
+    padding: 100px 20px;
+  }
+
+
+  /* ---------------- COMMENT ---------------- */
+
+  .comment-box {
+    padding: 24px 20px;
+  }
+
+
+  /* ---------------- FOOTER ---------------- */
+
+  .footer-inner {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
 }
 
 
@@ -2804,175 +2155,147 @@ body {
 
 @media (max-width: 480px) {
 
+  /* NAVBAR */
+
   .nav-inner {
-    padding: 0 12px;
+    width: calc(100% - 20px);
+
+    column-gap: 6px;
   }
 
   .brand-logo {
-    width: 40px;
-    height: 40px;
-  }
-
-  .site-title {
-    font-size: 23px;
-  }
-
-  .menu-btn {
-    width: 43px;
-    height: 43px;
-  }
-
-  .hero {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-
-}
-
-/* =====================================================
-   FINAL NAVBAR POSITION
-   Logo Left | Name Center | 3-Dot Right
-===================================================== */
-
-.navbar {
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 76px;
-  z-index: 9990;
-}
-
-.nav-inner {
-  position: relative !important;
-
-  width: min(100% - 40px, var(--max-width));
-  height: 100%;
-
-  margin: 0 auto;
-
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Logo — Left */
-
-.brand-logo {
-  position: absolute !important;
-  left: 0;
-
-  margin: 0 !important;
-
-  width: 42px;
-  height: 42px;
-}
-
-/* Website Name — Center */
-
-.site-title {
-  position: absolute !important;
-
-  left: 50%;
-  transform: translateX(-50%);
-
-  margin: 0 !important;
-  padding: 0 !important;
-
-  white-space: nowrap;
-
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
-
-  font-size: clamp(25px, 3vw, 40px);
-
-  font-weight: 700;
-
-  line-height: 1;
-
-  text-align: center;
-}
-
-/* 3-Dot Menu — Right */
-
-.menu-btn {
-  position: absolute !important;
-
-  right: 0;
-
-  margin: 0 !important;
-  padding: 0 !important;
-
-  width: 46px;
-  height: 46px;
-
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-
-  z-index: 1100;
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 768px) {
-
-  .navbar {
-    height: 68px;
-  }
-
-  .nav-inner {
-    width: calc(100% - 24px);
-  }
-
-  .brand-logo {
-    left: 0;
-
     width: 38px;
     height: 38px;
   }
 
   .site-title {
-    font-size: 26px;
+    font-size: 21px;
+
+    max-width: calc(100vw - 130px);
   }
 
-  .menu-btn {
-    right: 0;
+  .menu-btn,
+  .premium-menu-btn {
+    width: 40px !important;
+    height: 40px !important;
 
-    width: 43px;
-    height: 43px;
+    min-width: 40px !important;
+    min-height: 40px !important;
   }
 
+  .premium-icon,
+  .premium-crown {
+    font-size: 20px;
+  }
+
+
+  /* HERO */
+
+  .hero {
+    padding-left: 12px;
+
+    padding-right: 12px;
+
+    gap: 30px;
+  }
+
+
+  /* SECTIONS */
+
+  .content-section,
+  .archive-section,
+  .most-viewed-section,
+  .author-section {
+    padding-left: 16px;
+
+    padding-right: 16px;
+  }
+
+
+  /* WRITING */
+
+  .writing-card {
+    grid-template-columns:
+      28px 1fr;
+
+    gap: 10px;
+  }
+
+  .card-bottom {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 12px;
+  }
+
+  .view-count {
+    justify-content: flex-start;
+  }
+
+
+  /* ARCHIVE */
+
+  .archive-item {
+    align-items: flex-start;
+  }
+
+  .archive-item .view-count {
+    margin-top: 5px;
+  }
+
+
+  /* MOST VIEWED */
+
+  .most-viewed-item {
+    grid-template-columns:
+      25px 1fr;
+  }
+
+  .most-viewed-item .view-count {
+    grid-column: 2;
+
+    justify-content: flex-start;
+  }
+
+
+  /* HERO CAPTION */
+
+  .hero-caption {
+    font-size: 8px;
+  }
 }
 
 
 /* =====================================================
-   SMALL MOBILE
+   ACCESSIBILITY
 ===================================================== */
 
-@media (max-width: 480px) {
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--gold);
 
-  .nav-inner {
-    width: calc(100% - 20px);
+  outline-offset: 3px;
+}
+
+
+/* =====================================================
+   REDUCE MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
   }
 
-  .brand-logo {
-    width: 36px;
-    height: 36px;
-  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
 
-  .site-title {
-    font-size: 22px;
-  }
+    animation-iteration-count: 1 !important;
 
-  .menu-btn {
-    width: 40px;
-    height: 40px;
+    transition-duration: 0.01ms !important;
   }
-
 }
