@@ -1632,6 +1632,84 @@ form.addEventListener(
   }
 );
 
+/* =========================
+   MANAGE CHAPTERS
+========================= */
+
+window.manageChapters = async function(novelId) {
+
+  const novel =
+    contents.find(
+      item =>
+        String(item.id) === String(novelId)
+    );
+
+  if (!novel) {
+    alert("উপন্যাস পাওয়া যায়নি।");
+    return;
+  }
+
+  const { data, error } =
+    await supabaseClient
+      .from("chapters")
+      .select(
+        "id, novel_id, chapter_number, title, content, published, created_at"
+      )
+      .eq("novel_id", novelId)
+      .order("chapter_number", {
+        ascending: true
+      });
+
+  if (error) {
+
+    console.error(
+      "Chapters Error:",
+      error
+    );
+
+    alert(
+      "Chapter লোড করা যায়নি:\n" +
+      error.message
+    );
+
+    return;
+  }
+
+  let chapterText = "";
+
+  if (!data || data.length === 0) {
+
+    chapterText =
+      "এই উপন্যাসে এখনো কোনো Chapter নেই।";
+
+  } else {
+
+    chapterText =
+      data.map(chapter => {
+
+        return (
+          String(chapter.chapter_number) +
+          ". " +
+          chapter.title +
+          (
+            chapter.published
+              ? " — Published"
+              : " — Draft"
+          )
+        );
+
+      }).join("\n");
+
+  }
+
+  alert(
+    "উপন্যাস: " +
+    novel.title +
+    "\n\n" +
+    chapterText
+  );
+
+};  
 
 /* =========================
    DELETE CONTENT
