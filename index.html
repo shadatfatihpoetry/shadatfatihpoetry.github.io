@@ -230,7 +230,7 @@
 
   <div class="section-container">
 
-    <div class="novel-content">
+    <div class="section-top">
 
       <div>
 
@@ -242,40 +242,26 @@
           উপন্যাস
         </h2>
 
-        <p class="novel-description">
-          দীর্ঘ গল্পের জন্য একটি দীর্ঘ যাত্রা।
-          এখানে আপনার উপন্যাসের প্রচ্ছদ,
-          পরিচিতি এবং অধ্যায়গুলো সাজানো থাকবে।
-        </p>
-
-        <a href="#" class="hero-button dark-button">
-          উপন্যাস দেখুন
-          <span>↗</span>
-        </a>
-
       </div>
 
+      <p>
+        দীর্ঘ গল্পের জন্য<br>
+        একটি দীর্ঘ যাত্রা।
+      </p>
 
-      <div class="book">
+    </div>
 
-        <div class="book-inner">
 
-          <span class="book-small">
-            A NOVEL BY
-          </span>
+    <!-- DYNAMIC NOVELS -->
 
-          <strong>
-            SHADAT<br>
-            FATIH
-          </strong>
+    <div
+      class="novel-grid"
+      id="novels-container"
+    >
 
-          <span class="book-bottom">
-            NOVEL
-          </span>
-
-        </div>
-
-      </div>
+      <p>
+        উপন্যাস লোড হচ্ছে...
+      </p>
 
     </div>
 
@@ -640,6 +626,129 @@ async function loadStories() {
 
 }
 
+/* =========================
+   NOVELS
+========================= */
+
+async function loadNovels() {
+
+  const container =
+    document.getElementById("novels-container");
+
+  if (!container) return;
+
+
+  const { data, error } =
+    await supabaseClient
+      .from("novels")
+      .select("id, title, content, excerpt, cover_image, created_at, published")
+      .eq("published", true)
+      .order("created_at", {
+        ascending: false
+      });
+
+
+  if (error) {
+
+    console.error("Novels Error:", error);
+
+    container.innerHTML = `
+      <div class="novel-card">
+
+        <p class="card-label">
+          NOVELS
+        </p>
+
+        <h3>
+          উপন্যাস লোড করা যায়নি
+        </h3>
+
+        <p>
+          ${escapeHtml(error.message)}
+        </p>
+
+      </div>
+    `;
+
+    return;
+  }
+
+
+  if (!data || data.length === 0) {
+
+    container.innerHTML = `
+      <div class="novel-card">
+
+        <p class="card-label">
+          NOVELS
+        </p>
+
+        <h3>
+          শীঘ্রই আসছে
+        </h3>
+
+        <p>
+          নতুন উপন্যাস খুব শীঘ্রই প্রকাশিত হবে।
+        </p>
+
+      </div>
+    `;
+
+    return;
+  }
+
+
+  container.innerHTML = data.map((novel, index) => `
+
+    <article class="novel-card">
+
+      ${
+        novel.cover_image
+          ? `
+            <div class="novel-cover">
+              <img
+                src="${escapeHtml(novel.cover_image)}"
+                alt="${escapeHtml(novel.title)}"
+              >
+            </div>
+          `
+          : ""
+      }
+
+      <div class="novel-info">
+
+        <p class="card-label">
+          NOVEL ${String(index + 1).padStart(2, "0")}
+        </p>
+
+        <h3>
+          ${escapeHtml(novel.title)}
+        </h3>
+
+        ${
+          novel.excerpt
+            ? `
+              <p>
+                ${escapeHtml(novel.excerpt)}
+              </p>
+            `
+            : ""
+        }
+
+        <a
+          href="novel.html?id=${encodeURIComponent(novel.id)}"
+          class="text-link"
+        >
+          উপন্যাস পড়ুন →
+        </a>
+
+      </div>
+
+    </article>
+
+  `).join("");
+
+}
 
 /* =========================
    START
@@ -651,8 +760,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
   loadStories();
 
-});
+  loadNovels();
 
+});
 
 </script>
 
