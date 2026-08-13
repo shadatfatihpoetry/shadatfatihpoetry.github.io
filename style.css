@@ -1,7 +1,22 @@
 /* =====================================================
-   SHADAT FATIH — COMPLETE STYLE.CSS
-   Responsive: Mobile + Desktop
+   SHADAT FATIH — COMPLETE RESPONSIVE STYLE
 ===================================================== */
+
+:root {
+  --black: #111111;
+  --dark: #181818;
+  --dark-2: #222222;
+  --white: #ffffff;
+  --cream: #f7f4ee;
+  --paper: #fbfaf7;
+  --text: #202020;
+  --muted: #777777;
+  --line: #dedad2;
+  --gold: #b08a45;
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+  --menu-width: 360px;
+  --max-width: 1180px;
+}
 
 
 /* =====================================================
@@ -16,37 +31,38 @@
 
 html {
   scroll-behavior: smooth;
-  width: 100%;
-  overflow-x: hidden;
+  scroll-padding-top: 80px;
 }
 
 body {
   width: 100%;
-  min-width: 0;
-  background: #f5f5f2;
-  color: #111;
-
-  font-family:
-    "Noto Serif Bengali",
-    serif;
-
-  line-height: 1.7;
-  padding-top: 64px;
-
+  min-height: 100vh;
   overflow-x: hidden;
+  background: var(--paper);
+  color: var(--text);
+  font-family: "Noto Serif Bengali", serif;
+  line-height: 1.8;
 }
 
 img {
   max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-}
-
-button {
-  font-family: inherit;
 }
 
 
@@ -58,105 +74,45 @@ button {
   position: fixed;
   top: 0;
   left: 0;
-
   width: 100%;
-  height: 64px;
-
-  z-index: 9999;
-
-  background: rgba(18, 18, 18, .86);
-
-  backdrop-filter:
-    blur(24px)
-    saturate(180%);
-
-  -webkit-backdrop-filter:
-    blur(24px)
-    saturate(180%);
-
-  border-bottom:
-    1px solid rgba(255,255,255,.12);
-
-  box-shadow:
-    0 4px 25px rgba(0,0,0,.25);
+  height: 76px;
+  z-index: 9990;
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .nav-inner {
-  position: relative;
-
-  width: 100%;
-  max-width: 1200px;
-
-  height: 64px;
-
-  margin: 0 auto;
-  padding: 0 20px;
+  width: min(100% - 40px, var(--max-width));
+  height: 100%;
+  margin: auto;
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
-
-/* =====================================================
-   NAV LOGO
-===================================================== */
-
 .brand-logo {
-  width: 32px !important;
-  height: 32px !important;
-
-  display: block !important;
-
-  flex-shrink: 0;
-
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
   border-radius: 50%;
   overflow: hidden;
-
-  border: 1px solid rgba(255,255,255,.2);
+  border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .brand-logo img {
-  width: 100% !important;
-  height: 100% !important;
-
-  max-width: none !important;
-
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  display: block;
 }
-
-
-/* =====================================================
-   SITE TITLE
-===================================================== */
 
 .site-title {
-  position: absolute;
-
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  font-family:
-    "Playfair Display",
-    Georgia,
-    serif;
-
-  font-size: 27px;
+  margin-left: 13px;
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
   font-weight: 600;
-
-  letter-spacing: -1px;
-
-  color: #fff;
-
-  white-space: nowrap;
-
-  transition: opacity .25s ease;
-}
-
-.site-title:hover {
-  opacity: .65;
+  letter-spacing: 0.2px;
 }
 
 
@@ -165,365 +121,319 @@ button {
 ===================================================== */
 
 .menu-btn {
-  width: 44px;
-  height: 44px;
-
   margin-left: auto;
-  padding: 0;
+
+  width: 46px;
+  height: 46px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border:
-    1px solid rgba(255,255,255,.18);
-
+  border: 0;
   border-radius: 50%;
 
-  background:
-    rgba(255,255,255,.10);
+  background: transparent;
+  color: var(--black);
 
-  color: #fff;
-
-  font-size: 27px;
+  font-family: Arial, sans-serif;
+  font-size: 30px;
   line-height: 1;
 
-  cursor: pointer;
-
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-
   transition:
-    transform .25s ease,
-    background .25s ease;
+    background 0.25s ease,
+    transform 0.25s ease;
 }
 
 .menu-btn:hover {
-  background:
-    rgba(255,255,255,.18);
-
-  transform: scale(1.06);
+  background: #eeeeee;
 }
 
 .menu-btn:active {
-  transform: scale(.92);
+  transform: scale(0.92);
 }
 
 
 /* =====================================================
-   THREE DOT MENU
+   RIGHT SIDE MENU
 ===================================================== */
 
-#mainNav {
-  position: absolute;
+.side-menu {
+  position: fixed;
 
-  top: 72px;
-  right: 15px;
+  top: 76px;
+  right: 0;
 
-  width: 320px;
-  max-width: calc(100vw - 30px);
+  width: var(--menu-width);
+  max-width: calc(100vw - 18px);
+  height: calc(100vh - 76px);
 
-  display: none;
-  flex-direction: column;
+  padding: 28px 24px 40px;
 
-  padding: 22px;
+  overflow-y: auto;
+  overflow-x: hidden;
 
-  background:
-    rgba(20,20,20,.96);
+  background: #ffffff;
 
-  color: #fff;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
 
-  border:
-    1px solid rgba(255,255,255,.12);
+  box-shadow: -20px 0 50px rgba(0, 0, 0, 0.12);
 
-  border-radius: 22px;
+  transform: translateX(105%);
+  visibility: hidden;
+  opacity: 0;
 
-  box-shadow:
-    0 20px 60px rgba(0,0,0,.45);
-
-  backdrop-filter:
-    blur(28px);
-
-  -webkit-backdrop-filter:
-    blur(28px);
+  transition:
+    transform 0.35s cubic-bezier(.22,.61,.36,1),
+    opacity 0.25s ease,
+    visibility 0.35s ease;
 
   z-index: 10000;
-
-  overflow: hidden;
 }
 
-#mainNav.active {
-  display: flex;
+.side-menu.active {
+  transform: translateX(0);
+  visibility: visible;
+  opacity: 1;
+}
+
+
+/* scrollbar */
+
+.side-menu::-webkit-scrollbar {
+  width: 5px;
+}
+
+.side-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.side-menu::-webkit-scrollbar-thumb {
+  background: #c8c8c8;
+  border-radius: 20px;
 }
 
 
 /* =====================================================
-   PROFILE AREA INSIDE 3 DOT MENU
+   MENU PROFILE
 ===================================================== */
 
 .menu-profile {
-  width: 100%;
-
-  padding-bottom: 20px;
-  margin-bottom: 16px;
-
   text-align: center;
-
-  border-bottom:
-    1px solid rgba(255,255,255,.10);
+  padding: 5px 0 18px;
 }
 
-.menu-profile img {
-  width: 82px;
-  height: 82px;
+.menu-profile-image {
+  width: 92px;
+  height: 92px;
 
-  display: block;
-
-  margin: 0 auto 14px;
+  margin: 0 auto 12px;
 
   border-radius: 50%;
 
   object-fit: cover;
 
-  border:
-    2px solid rgba(255,255,255,.25);
+  border: 3px solid #ffffff;
 
   box-shadow:
-    0 10px 30px rgba(0,0,0,.35);
+    0 5px 20px rgba(0, 0, 0, 0.15);
+
+  background: #eeeeee;
 }
 
 .menu-profile h3 {
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
-
+  font-family: "Playfair Display", "Noto Serif Bengali", serif;
   font-size: 21px;
-  font-weight: 500;
-
-  color: #fff;
-
-  margin-bottom: 6px;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 .menu-profile p {
+  margin-top: 4px;
+
+  color: var(--muted);
+
   font-size: 13px;
   line-height: 1.7;
-
-  color: rgba(255,255,255,.62);
-
-  margin: 0 auto;
-
-  max-width: 250px;
 }
 
 
 /* =====================================================
-   MENU YEARLY
+   DIVIDER
 ===================================================== */
 
-.menu-yearly {
+.menu-divider {
   width: 100%;
-
-  margin-bottom: 14px;
+  height: 1px;
+  background: var(--line);
+  margin: 18px 0;
 }
 
-.menu-yearly-title {
-  display: flex;
 
+/* =====================================================
+   TOTAL WEBSITE VIEWS
+===================================================== */
+
+.website-views {
+  padding: 8px 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.website-views span {
+  color: var(--muted);
+
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 1.2px;
+}
+
+.website-views strong {
+  font-family: "Playfair Display", serif;
+
+  font-size: 21px;
+  font-weight: 600;
+
+  color: var(--black);
+}
+
+
+/* =====================================================
+   MENU GROUP
+===================================================== */
+
+.menu-group {
+  margin-bottom: 7px;
+}
+
+.menu-group-title {
+  width: 100%;
+
+  padding: 13px 2px;
+
+  display: flex;
   align-items: center;
   justify-content: space-between;
 
-  width: 100%;
+  border: 0;
+  background: transparent;
 
-  padding: 12px 14px;
+  color: var(--black);
 
-  background:
-    rgba(255,255,255,.07);
-
-  border:
-    1px solid rgba(255,255,255,.08);
-
-  border-radius: 12px;
-
-  color: #fff;
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 12px;
-  font-weight: 700;
-
-  letter-spacing: 1px;
-}
-
-.menu-year {
   font-size: 16px;
+  font-weight: 600;
 
-  color: #fff;
+  text-align: left;
+
+  transition: color 0.2s ease;
 }
 
-.menu-year-items {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  gap: 7px;
-
-  margin-top: 8px;
+.menu-group-title:hover {
+  color: var(--gold);
 }
 
-.menu-year-items a {
-  padding: 10px 5px;
+.menu-arrow {
+  width: 28px;
+  height: 28px;
 
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  border-radius: 10px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
 
-  background:
-    rgba(255,255,255,.05);
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1;
+}
 
-  color:
-    rgba(255,255,255,.78);
 
-  font-family:
-    Arial,
-    sans-serif;
+/* =====================================================
+   SUB MENU
+===================================================== */
 
-  font-size: 10px;
+.menu-submenu {
+  max-height: 0;
+  overflow: hidden;
+
+  padding-left: 10px;
+
+  opacity: 0;
 
   transition:
-    background .2s ease,
-    color .2s ease,
-    transform .2s ease;
+    max-height 0.3s ease,
+    opacity 0.25s ease;
 }
 
-.menu-year-items a:hover {
-  background:
-    rgba(255,255,255,.14);
-
-  color: #fff;
-
-  transform: translateY(-1px);
+.menu-submenu.open {
+  max-height: 250px;
+  opacity: 1;
 }
 
-
-/* =====================================================
-   MENU VISITS
-===================================================== */
-
-.menu-visits {
-  margin-top: 15px;
-
-  padding: 14px;
-
-  border-radius: 13px;
-
-  background:
-    rgba(255,255,255,.06);
-
-  border:
-    1px solid rgba(255,255,255,.08);
-
-  text-align: center;
-}
-
-.menu-visits-label {
+.menu-sub-link {
   display: block;
 
-  font-family:
-    Arial,
-    sans-serif;
+  padding: 8px 12px;
 
-  font-size: 9px;
+  color: #666666;
 
-  letter-spacing: 2px;
+  font-size: 14px;
 
-  color:
-    rgba(255,255,255,.45);
+  border-left: 1px solid #dddddd;
 
-  margin-bottom: 3px;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    padding-left 0.2s ease;
 }
 
-.menu-visits-count {
-  display: block;
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 22px;
-
-  font-weight: 700;
-
-  color: #fff;
+.menu-sub-link:hover {
+  color: var(--black);
+  border-color: var(--gold);
+  padding-left: 17px;
 }
 
 
 /* =====================================================
-   MENU LINKS
+   MAIN MENU LINKS
 ===================================================== */
 
-#mainNav > a {
-  padding: 10px 4px;
-
-  color: #fff;
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 13px;
-
-  border-bottom:
-    1px solid rgba(255,255,255,.07);
-
-  transition: opacity .2s ease;
+.menu-main-links {
+  display: flex;
+  flex-direction: column;
 }
 
-#mainNav > a:last-child {
-  border-bottom: none;
+.menu-main-links a {
+  padding: 11px 2px;
+
+  border-bottom: 1px solid #eeeeee;
+
+  font-size: 15px;
+
+  transition:
+    color 0.2s ease,
+    padding-left 0.2s ease;
 }
 
-#mainNav > a:hover {
-  opacity: .55;
+.menu-main-links a:hover {
+  color: var(--gold);
+  padding-left: 7px;
 }
 
 
 /* =====================================================
-   GENERAL
+   MAIN
 ===================================================== */
 
-.eyebrow {
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 11px;
-
-  letter-spacing: 3px;
-
-  font-weight: 700;
-
-  margin-bottom: 24px;
-}
-
-.text-link {
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 13px;
-
-  font-weight: 700;
-
-  transition: opacity .2s ease;
-}
-
-.text-link:hover {
-  opacity: .5;
+main {
+  width: 100%;
+  overflow-x: hidden;
 }
 
 
@@ -535,143 +445,114 @@ button {
   width: 100%;
   min-height: 100vh;
 
+  padding: 120px max(20px, calc((100% - var(--max-width)) / 2));
+
   display: grid;
+  grid-template-columns: 1fr 0.85fr;
+  align-items: center;
+  gap: 70px;
 
-  grid-template-columns:
-    minmax(0, 1fr)
-    minmax(0, 1fr);
-
-  background: #f5f5f2;
+  background: var(--cream);
 }
 
 .hero-content {
-  display: flex;
+  max-width: 650px;
+}
 
-  justify-content: center;
+.eyebrow {
+  margin-bottom: 14px;
 
-  flex-direction: column;
+  color: var(--gold);
 
-  padding: 80px;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 2.2px;
 }
 
 .hero h1 {
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
+  font-family: "Playfair Display", "Noto Serif Bengali", serif;
 
-  font-size:
-    clamp(55px, 7vw, 100px);
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 600;
 
-  line-height: 1.02;
+  line-height: 1.08;
 
-  font-weight: 500;
-
-  letter-spacing: -4px;
+  letter-spacing: -2px;
 }
 
-.hero h1 em,
-.intro h2 em,
-blockquote em {
-  font-style: normal;
-  opacity: .48;
+.hero h1 em {
+  font-style: italic;
+  font-weight: 500;
 }
 
 .hero-text {
-  margin-top: 32px;
+  margin-top: 26px;
 
-  font-size: 18px;
+  color: #686868;
 
-  opacity: .7;
+  font-size: 17px;
+  line-height: 2;
 }
 
 .hero-button {
-  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
 
-  margin-top: 38px;
+  margin-top: 30px;
 
-  padding: 13px 22px;
+  padding: 13px 20px;
 
-  border-radius: 30px;
+  border: 1px solid var(--black);
 
-  background: #111;
-  color: white;
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 13px;
+  font-size: 14px;
 
   transition:
-    transform .3s ease;
+    background 0.25s ease,
+    color 0.25s ease;
 }
 
 .hero-button:hover {
-  transform: translateY(-2px);
+  background: var(--black);
+  color: var(--white);
 }
 
 .hero-image {
   position: relative;
 
   width: 100%;
-  min-height: 650px;
+  max-width: 470px;
 
-  overflow: hidden;
-
-  background: #111;
+  margin-left: auto;
 }
 
 .hero-image img {
   width: 100%;
-  height: 650px;
+  aspect-ratio: 4 / 5;
 
   object-fit: cover;
-  object-position: center;
-
-  display: block;
-}
-
-.hero-image::after {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  background:
-    linear-gradient(
-      to top,
-      rgba(0,0,0,.55),
-      rgba(0,0,0,.05) 65%
-    );
-
-  pointer-events: none;
 }
 
 .hero-caption {
   position: absolute;
-
-  bottom: 28px;
-
-  left: 32px;
-  right: 32px;
+  bottom: 15px;
+  left: 15px;
+  right: 15px;
 
   display: flex;
-
   justify-content: space-between;
+  gap: 15px;
 
+  padding: 12px 14px;
+
+  background: rgba(0, 0, 0, 0.65);
   color: white;
 
-  font-family:
-    Arial,
-    sans-serif;
-
+  font-family: Arial, sans-serif;
   font-size: 9px;
-
-  letter-spacing: 2px;
-
-  z-index: 2;
+  letter-spacing: 1.3px;
 }
 
 
@@ -680,632 +561,333 @@ blockquote em {
 ===================================================== */
 
 .intro {
-  width: 100%;
+  padding: 130px 20px;
 
-  padding: 180px 28px;
+  background: var(--black);
+  color: var(--white);
 
-  background: #fff;
+  text-align: center;
 }
 
 .intro-inner {
-  width: 100%;
-  max-width: 900px;
-
+  width: min(100%, 800px);
   margin: auto;
 }
 
 .intro h2 {
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
+  font-family: "Playfair Display", "Noto Serif Bengali", serif;
 
-  font-size:
-    clamp(40px, 6vw, 76px);
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 1.35;
+}
 
-  line-height: 1.15;
-
-  font-weight: 500;
-
-  letter-spacing: -2px;
+.intro h2 em {
+  color: #c5b99e;
+  font-style: italic;
 }
 
 .intro p:last-child {
-  max-width: 600px;
+  max-width: 620px;
+  margin: 25px auto 0;
 
-  margin-top: 40px;
+  color: #aaaaaa;
 
-  font-size: 18px;
-
-  opacity: .65;
+  font-size: 15px;
 }
 
 
 /* =====================================================
-   CONTENT SECTIONS
+   SECTIONS
 ===================================================== */
 
 .content-section {
   width: 100%;
-
-  padding: 140px 28px;
+  padding: 110px 20px;
 }
 
-.light {
-  background: #f5f5f2;
+.content-section.light {
+  background: var(--paper);
+  color: var(--text);
 }
 
-.dark {
-  background: #111;
-  color: white;
+.content-section.dark {
+  background: var(--dark);
+  color: var(--white);
 }
 
 .section-container {
-  width: 100%;
-  max-width: 1120px;
-
+  width: min(100%, var(--max-width));
   margin: auto;
 }
 
 .section-top {
   display: flex;
-
+  align-items: flex-end;
   justify-content: space-between;
+  gap: 40px;
 
-  align-items: end;
-
-  margin-bottom: 80px;
+  margin-bottom: 60px;
 }
 
-.section-top h2 {
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
+.section-top h2,
+.archive-heading h2,
+.author-info h2 {
+  font-family: "Playfair Display", "Noto Serif Bengali", serif;
 
-  font-size: 70px;
+  font-size: clamp(38px, 5vw, 64px);
 
-  font-weight: 500;
-
-  line-height: 1;
+  line-height: 1.2;
 }
 
 .section-top > p {
-  max-width: 300px;
+  max-width: 310px;
 
-  opacity: .6;
+  color: var(--muted);
+
+  font-size: 14px;
 }
 
 
 /* =====================================================
-   POETRY CARD
+   WRITING LIST
 ===================================================== */
+
+.writing-list {
+  width: 100%;
+}
 
 .writing-card {
   width: 100%;
-  min-height: 350px;
-
-  padding: 60px;
-
-  background: white;
 
   display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 30px;
 
-  grid-template-columns:
-    160px minmax(0, 1fr);
+  padding: 42px 0;
 
-  align-items: center;
+  border-top: 1px solid var(--line);
 }
 
 .card-number {
-  font-family:
-    Arial,
-    sans-serif;
+  color: #b5b5b5;
 
-  font-size: 90px;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
 
-  font-weight: 700;
+.writing-card-content {
+  min-width: 0;
+}
 
-  opacity: .08;
+.published-date {
+  margin-bottom: 7px;
+
+  color: var(--muted);
+
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .card-label {
-  font-family:
-    Arial,
-    sans-serif;
+  color: var(--gold);
 
+  font-family: Arial, sans-serif;
   font-size: 10px;
+  font-weight: 700;
 
-  letter-spacing: 3px;
-
-  opacity: .55;
+  letter-spacing: 1.8px;
 }
 
-.writing-card h3 {
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
+.writing-card h3,
+.story-card h3,
+.novel-card h3 {
+  margin-top: 5px;
 
-  font-size: 42px;
+  font-family: "Playfair Display", "Noto Serif Bengali", serif;
 
-  font-weight: 500;
-
-  overflow-wrap: anywhere;
+  font-size: clamp(25px, 3vw, 36px);
+  line-height: 1.4;
 }
 
-.writing-card p {
-  max-width: 550px;
+.writing-excerpt,
+.story-card > p,
+.novel-card p {
+  max-width: 700px;
 
-  margin: 18px 0;
+  margin-top: 10px;
 
-  opacity: .6;
+  color: var(--muted);
+
+  font-size: 14px;
 }
 
 
 /* =====================================================
-   WRITING ACTIONS
+   CARD BOTTOM
 ===================================================== */
 
-.writing-actions,
-.story-actions,
-.novel-actions {
-  width: 100%;
-
-  margin-top: 24px;
-
-  padding-top: 16px;
-
-  border-top:
-    1px solid rgba(0,0,0,.08);
+.card-bottom {
+  margin-top: 20px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
-  gap: 10px;
-
-  flex-wrap: wrap;
+  gap: 20px;
 }
 
-.dark .writing-actions,
-.dark .story-actions {
-  border-top-color:
-    rgba(255,255,255,.10);
+.text-link {
+  display: inline-block;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  border-bottom: 1px solid currentColor;
+
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
-.action-buttons {
-  display: flex;
+.text-link:hover {
+  color: var(--gold);
+}
 
+
+/* =====================================================
+   VIEW COUNT
+===================================================== */
+
+.view-count {
+  display: inline-flex;
   align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
 
+  color: #777777;
+
+  white-space: nowrap;
+
+  font-family: Arial, sans-serif;
+}
+
+.view-count span {
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+.view-count strong {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.view-count small {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+
+/* =====================================================
+   ACTION BUTTONS
+===================================================== */
+
+.writing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 8px;
 
-  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 .action-btn {
-  border: 1px solid rgba(0,0,0,.10);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-  background: #f8f8f6;
+  min-height: 32px;
 
-  color: #111;
+  padding: 5px 11px;
 
-  padding: 8px 12px;
+  border: 1px solid #d6d2cb;
+  border-radius: 3px;
 
-  border-radius: 999px;
+  background: transparent;
+  color: #666666;
 
-  font-family:
-    Arial,
-    sans-serif;
-
+  font-family: Arial, sans-serif;
   font-size: 10px;
 
   cursor: pointer;
 
   transition:
-    transform .2s ease,
-    background .2s ease;
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .action-btn:hover {
-  transform: translateY(-2px);
-
-  background: #eee;
+  background: var(--black);
+  border-color: var(--black);
+  color: white;
 }
 
-.total-views {
-  margin-left: auto;
 
-  font-family:
-    Arial,
-    sans-serif;
+/* dark section buttons */
 
-  font-size: 10px;
+.dark .action-btn {
+  border-color: #444444;
+  color: #bbbbbb;
+}
 
-  letter-spacing: 1px;
-
-  opacity: .55;
-
-  white-space: nowrap;
+.dark .action-btn:hover {
+  background: white;
+  border-color: white;
+  color: black;
 }
 
 
 /* =====================================================
-   STORIES HOME
+   STORIES
 ===================================================== */
 
 .story-grid {
-  width: 100%;
-
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
 
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
-
-  gap: 2px;
+  background: #3b3b3b;
 }
 
-.story-grid .story-card {
-  min-height: 420px;
-
-  padding: 50px;
-
-  background: #1b1b1b;
-
-  color: white;
-
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: end;
-
-  transition:
-    background .3s ease;
-
+.story-card {
   min-width: 0;
-}
 
-.story-grid .story-card:hover {
-  background: #252525;
-}
+  padding: 42px;
 
-.story-grid .story-card h3 {
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
-
-  font-size: 40px;
-
-  font-weight: 500;
-
-  margin: 15px 0;
-
-  overflow-wrap: anywhere;
-}
-
-.story-grid .story-card p {
-  opacity: .55;
-
-  max-width: 400px;
-}
-
-.story-grid .story-card a {
-  margin-top: 25px;
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 12px;
-}
-
-
-/* =====================================================
-   STORIES PAGE
-===================================================== */
-
-.stories-page {
-  width: 100%;
-  min-height: 100vh;
-
-  padding:
-    100px 24px 90px;
-
-  background: #f5f5f2;
-  color: #111;
-
-  overflow-x: hidden;
-}
-
-.stories-content {
-  width: 100%;
-  max-width: 900px;
-
-  margin: 0 auto;
-}
-
-.stories-header {
-  margin-bottom: 55px;
-}
-
-.stories-header .eyebrow {
-  margin-bottom: 18px;
-}
-
-.stories-header h1 {
-  margin: 0;
-
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
-
-  font-size:
-    clamp(45px, 8vw, 78px);
-
-  font-weight: 500;
-
-  line-height: 1.15;
-
-  letter-spacing: -2px;
-}
-
-.stories-intro {
-  max-width: 600px;
-
-  margin-top: 20px;
-
-  font-size: 16px;
-
-  line-height: 1.9;
-
-  opacity: .58;
-}
-
-.stories-list {
-  width: 100%;
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 18px;
-}
-
-.stories-list .story-card {
-  width: 100%;
-
-  min-height: auto;
-
-  padding: 32px;
-
-  background: #fff;
-
-  color: #111;
-
-  border:
-    1px solid rgba(0,0,0,.07);
-
-  border-radius: 18px;
-
-  display: block;
+  background: var(--dark);
 
   transition:
-    transform .25s ease,
-    box-shadow .25s ease;
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
-.stories-list .story-card:hover {
-  background: #fff;
-
-  transform: translateY(-3px);
-
-  box-shadow:
-    0 15px 40px rgba(0,0,0,.08);
+.story-card:hover {
+  background: #202020;
 }
 
-.stories-list .story-card h2 {
-  margin: 0 0 14px;
+.story-card > span {
+  color: var(--gold);
 
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
-
-  font-size:
-    clamp(26px, 4vw, 38px);
-
-  font-weight: 500;
-
-  line-height: 1.35;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
 }
 
-.stories-list .story-card .story-excerpt {
-  margin: 0 0 22px;
-
-  max-width: 720px;
-
-  font-size: 16px;
-
-  line-height: 1.9;
-
-  opacity: .62;
-}
-
-.stories-list .story-card .text-link {
-  display: inline-block;
-
-  color: #111;
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 13px;
-
-  font-weight: 700;
-}
-
-
-/* =====================================================
-   STORY READING PAGE
-===================================================== */
-
-.story-page {
-  width: 100%;
-
-  min-height: 100vh;
-
-  padding:
-    100px 24px 80px;
-
-  overflow-x: hidden;
-}
-
-.story-reader {
-  width: 100%;
-  max-width: 800px;
-
-  margin: 0 auto;
-}
-
-.story-reader h1 {
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
-
-  font-size:
-    clamp(38px, 7vw, 72px);
-
-  font-weight: 500;
-
-  line-height: 1.25;
-
-  letter-spacing: -2px;
-
-  margin-bottom: 25px;
-
-  overflow-wrap: anywhere;
-}
-
-.story-reader .story-excerpt {
-  max-width: 680px;
-
-  font-size: 17px;
-
-  line-height: 1.9;
-
-  opacity: .6;
-
-  margin-bottom: 45px;
-}
-
-.story-body {
-  max-width: 720px;
-
-  font-family:
-    "Noto Serif Bengali",
-    serif;
-
-  font-size: 19px;
-
-  line-height: 2;
-
-  margin-bottom: 50px;
-
-  overflow-wrap: break-word;
-}
-
-
-/* =====================================================
-   POEM READING PAGE
-===================================================== */
-
-.poem-page {
-  width: 100%;
-
-  min-height: 100vh;
-
-  padding:
-    100px 24px 80px;
-
-  overflow-x: hidden;
-}
-
-.poem-reader {
-  width: 100%;
-
-  max-width: 760px;
-
-  margin: 0 auto;
-
-  padding: 20px 0;
-
-  overflow-wrap: break-word;
-}
-
-.poem-reader h1 {
-  width: 100%;
-
-  margin: 0 0 25px;
-
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
-
-  font-size:
-    clamp(38px, 7vw, 72px);
-
-  font-weight: 500;
-
-  line-height: 1.25;
-
-  letter-spacing: -2px;
-
-  overflow-wrap: anywhere;
-}
-
-.poem-excerpt {
-  width: 100%;
-  max-width: 650px;
-
-  margin: 0 0 40px;
-
-  font-size: 17px;
-
-  line-height: 1.9;
-
-  opacity: .6;
-
-  overflow-wrap: break-word;
-}
-
-.poem-body {
-  width: 100%;
-  max-width: 680px;
-
-  font-family:
-    "Noto Serif Bengali",
-    serif;
-
-  font-size: 20px;
-
-  line-height: 2.15;
-
-  margin-bottom: 50px;
-
-  overflow-wrap: break-word;
-}
-
-.poem-body br {
-  line-height: 2.15;
+.story-card h3 {
+  margin-top: 12px;
 }
 
 
@@ -1314,146 +896,234 @@ blockquote em {
 ===================================================== */
 
 .novel-section {
-  background: #e8e7e2;
+  background: #e9e4da;
 }
 
 .novel-grid {
-  width: 100%;
-
   display: grid;
-
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
-
-  gap: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
 }
 
 .novel-card {
-  width: 100%;
-
-  padding: 45px;
-
-  background: #fff;
-
   min-width: 0;
 
-  border:
-    1px solid rgba(0,0,0,.06);
+  padding: 42px;
 
-  border-radius: 4px;
+  background: #f8f5ef;
+
+  border: 1px solid #ded8ce;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.novel-card h3 {
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
-
-  font-size: 38px;
-
-  font-weight: 500;
-
-  margin: 12px 0;
-
-  overflow-wrap: anywhere;
+.novel-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
 }
 
-.novel-card p {
-  opacity: .62;
+.novel-info {
+  min-width: 0;
 }
 
-.novel-content {
-  display: grid;
 
-  grid-template-columns:
-    minmax(0, 1fr)
-    400px;
+/* =====================================================
+   ARCHIVE
+===================================================== */
 
-  gap: 100px;
+.archive-section {
+  padding: 110px 20px;
 
-  align-items: center;
+  background: #f1eee8;
 }
 
-.novel-content h2 {
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
-
-  font-size: 80px;
-
-  font-weight: 500;
-
-  line-height: 1;
+.archive-heading {
+  margin-bottom: 55px;
 }
 
-.novel-description {
-  max-width: 500px;
-
-  margin: 30px 0;
-
-  opacity: .65;
+.archive-heading > p:last-child {
+  margin-top: 10px;
+  color: var(--muted);
 }
 
-.dark-button {
-  background: #111;
+.archive-block {
+  margin-bottom: 25px;
+
+  padding: 28px;
+
+  background: #ffffff;
+
+  border: 1px solid var(--line);
 }
 
-.book {
-  height: 540px;
-
-  background: #111;
-
-  padding: 15px;
-
-  box-shadow:
-    25px 25px 50px rgba(0,0,0,.2);
-
-  transform: rotate(3deg);
-}
-
-.book-inner {
-  height: 100%;
-
-  border:
-    1px solid rgba(255,255,255,.3);
-
-  color: white;
-
+.archive-block-heading {
   display: flex;
-
-  flex-direction: column;
-
   align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 
-  justify-content: center;
+  padding-bottom: 17px;
 
-  text-align: center;
+  border-bottom: 1px solid var(--line);
 }
 
-.book-inner strong {
-  font-family:
-    "Playfair Display",
-    serif;
-
-  font-size: 48px;
-
-  line-height: 1;
-
-  margin: 30px 0;
+.archive-block-heading h3 {
+  font-size: 20px;
+  font-weight: 600;
 }
 
-.book-small,
-.book-bottom {
-  font-family:
-    Arial,
-    sans-serif;
+.archive-block-heading span {
+  color: var(--muted);
 
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.archive-list {
+  margin-top: 8px;
+}
+
+.archive-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 14px 0;
+
+  border-bottom: 1px solid #eeeeee;
+
+  transition: padding-left 0.2s ease;
+}
+
+.archive-item:last-child {
+  border-bottom: 0;
+}
+
+.archive-item:hover {
+  padding-left: 7px;
+}
+
+.archive-item > div {
+  min-width: 0;
+}
+
+.archive-date {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: var(--muted);
+
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+}
+
+.archive-item strong {
+  display: block;
+
+  font-size: 15px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.archive-empty {
+  padding: 15px 0;
+
+  color: var(--muted);
+
+  font-size: 13px;
+}
+
+
+/* =====================================================
+   MOST VIEWED
+===================================================== */
+
+.most-viewed-section {
+  padding: 110px 20px;
+
+  background: var(--black);
+  color: white;
+}
+
+.most-viewed-section .archive-heading > p:last-child {
+  color: #999999;
+}
+
+.most-viewed-block {
+  margin-bottom: 25px;
+
+  padding: 25px;
+
+  background: #191919;
+
+  border: 1px solid #303030;
+}
+
+.most-viewed-block .archive-block-heading {
+  border-color: #333333;
+}
+
+.most-viewed-block .archive-block-heading h3 {
+  font-family: "Playfair Display", "Noto Serif Bengali", serif;
+  font-size: 23px;
+}
+
+.most-viewed-list {
+  margin-top: 5px;
+}
+
+.most-viewed-item {
+  display: grid;
+  grid-template-columns: 45px 1fr auto;
+  align-items: center;
+  gap: 20px;
+
+  padding: 17px 0;
+
+  border-bottom: 1px solid #303030;
+}
+
+.most-viewed-item:last-child {
+  border-bottom: 0;
+}
+
+.most-rank {
+  color: #666666;
+
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+}
+
+.most-title {
+  min-width: 0;
+}
+
+.most-title span {
+  display: block;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  font-size: 15px;
+}
+
+.most-title small {
+  color: #777777;
+
+  font-family: Arial, sans-serif;
   font-size: 9px;
+}
 
-  letter-spacing: 3px;
-
-  opacity: .6;
+.most-viewed-section .view-count {
+  color: #999999;
 }
 
 
@@ -1462,51 +1132,49 @@ blockquote em {
 ===================================================== */
 
 .quote-section {
-  width: 100%;
+  padding: 150px 20px;
 
-  padding: 180px 28px;
+  background: var(--cream);
 
-  background: #fff;
+  text-align: center;
 }
 
 .quote-container {
-  max-width: 1000px;
-
+  width: min(100%, 800px);
   margin: auto;
 }
 
 .quote-symbol {
-  font-family:
-    Georgia,
-    serif;
+  display: block;
 
-  font-size: 100px;
+  color: var(--gold);
 
-  line-height: .5;
+  font-family: Georgia, serif;
+  font-size: 75px;
 
-  opacity: .12;
+  line-height: 0.7;
 }
 
-blockquote {
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
+.quote-container blockquote {
+  margin-top: 25px;
 
-  font-size:
-    clamp(45px, 7vw, 90px);
+  font-family: "Playfair Display", "Noto Serif Bengali", serif;
 
-  line-height: 1.1;
+  font-size: clamp(32px, 5vw, 58px);
 
-  font-weight: 500;
-
-  letter-spacing: -3px;
+  line-height: 1.35;
 }
 
-.quote-container p {
-  margin-top: 35px;
+.quote-container blockquote em {
+  font-style: italic;
+}
 
-  opacity: .5;
+.quote-container > p {
+  margin-top: 22px;
+
+  color: var(--muted);
+
+  font-size: 13px;
 }
 
 
@@ -1515,120 +1183,62 @@ blockquote {
 ===================================================== */
 
 .author-section {
-  padding: 140px 28px;
+  padding: 110px 20px;
 
-  background: #f5f5f2;
+  background: var(--paper);
 }
 
 .author-grid {
   display: grid;
-
-  grid-template-columns:
-    400px minmax(0, 1fr);
-
-  gap: 100px;
-
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 70px;
   align-items: center;
-}
-
-.author-photo {
-  height: 500px;
-
-  background: #222;
-
-  overflow: hidden;
 }
 
 .author-photo img {
   width: 100%;
-  height: 100%;
+  max-width: 430px;
+  aspect-ratio: 4 / 5;
 
   object-fit: cover;
-  object-position: center;
-
-  display: block;
 }
 
 .author-info h2 {
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
-
-  font-size: 70px;
-
-  font-weight: 500;
-
-  line-height: 1;
+  margin-bottom: 22px;
 }
 
 .author-info > p:not(.eyebrow) {
-  max-width: 550px;
+  max-width: 600px;
 
-  margin-top: 30px;
+  color: var(--muted);
 
-  opacity: .65;
+  font-size: 15px;
 }
-
-
-/* =====================================================
-   SOCIAL
-===================================================== */
 
 .floating-socials {
   display: flex;
-
   flex-wrap: wrap;
+  gap: 10px;
 
-  gap: 12px;
-
-  margin-top: 35px;
+  margin-top: 30px;
 }
 
 .floating-socials a {
-  display: inline-flex;
+  padding: 7px 12px;
 
-  align-items: center;
-  justify-content: center;
+  border: 1px solid var(--line);
 
-  padding: 12px 20px;
-
-  border-radius: 999px;
-
-  background:
-    rgba(255,255,255,.72);
-
-  border:
-    1px solid rgba(0,0,0,.08);
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,.08);
-
-  backdrop-filter:
-    blur(18px);
-
-  -webkit-backdrop-filter:
-    blur(18px);
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 12px;
-  font-weight: 600;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
 
   transition:
-    transform .3s ease,
-    box-shadow .3s ease;
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 .floating-socials a:hover {
-  transform: translateY(-5px);
-
-  background: #fff;
-
-  box-shadow:
-    0 16px 35px rgba(0,0,0,.14);
+  background: var(--black);
+  color: white;
 }
 
 
@@ -1637,47 +1247,62 @@ blockquote {
 ===================================================== */
 
 footer {
-  width: 100%;
+  padding: 35px 20px;
 
-  background: #111;
-
+  background: #0d0d0d;
   color: white;
-
-  padding: 45px 28px;
 }
 
 .footer-inner {
-  max-width: 1120px;
-
+  width: min(100%, var(--max-width));
   margin: auto;
 
   display: flex;
-
+  align-items: center;
   justify-content: space-between;
-
-  align-items: end;
+  gap: 30px;
 }
 
 .footer-inner strong {
-  font-family:
-    "Playfair Display",
-    serif;
-
-  font-size: 20px;
+  font-family: "Playfair Display", serif;
+  font-size: 18px;
 }
 
 .footer-inner p {
-  font-family:
-    Arial,
-    sans-serif;
+  color: #777777;
 
+  font-family: Arial, sans-serif;
   font-size: 9px;
+  letter-spacing: 1px;
+}
 
-  letter-spacing: 2px;
 
-  opacity: .45;
+/* =====================================================
+   LOADING / EMPTY / ERROR
+===================================================== */
 
-  margin-top: 8px;
+.loading-state,
+.empty-state,
+.error-state {
+  width: 100%;
+
+  padding: 40px 20px;
+
+  text-align: center;
+
+  color: var(--muted);
+
+  border: 1px dashed var(--line);
+}
+
+.error-state {
+  color: #9b4444;
+}
+
+.error-state p {
+  margin-top: 5px;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
 }
 
 
@@ -1688,19 +1313,16 @@ footer {
 .reveal {
   opacity: 0;
 
-  transform:
-    translateY(35px);
+  transform: translateY(30px);
 
   transition:
-    opacity .8s ease,
-    transform .8s ease;
+    opacity 0.7s ease,
+    transform 0.7s ease;
 }
 
 .reveal.show {
   opacity: 1;
-
-  transform:
-    translateY(0);
+  transform: translateY(0);
 }
 
 
@@ -1708,443 +1330,201 @@ footer {
    MOBILE
 ===================================================== */
 
-@media (max-width: 800px) {
-
-  html,
-  body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-
-  body {
-    padding-top: 60px;
-  }
-
-
-  /* NAV */
+@media (max-width: 768px) {
 
   .navbar {
-    height: 60px;
+    height: 68px;
   }
 
   .nav-inner {
-    width: 100%;
-    height: 60px;
-
-    padding:
-      0 16px;
+    width: calc(100% - 24px);
   }
 
   .brand-logo {
-    width: 30px !important;
-    height: 30px !important;
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
   }
 
   .site-title {
-    font-size: 22px;
-
-    letter-spacing: -.7px;
+    font-size: 18px;
   }
 
   .menu-btn {
-    width: 40px;
-    height: 40px;
-
-    font-size: 24px;
+    width: 43px;
+    height: 43px;
+    font-size: 28px;
   }
 
 
-  /* 3 DOT MENU */
+  /* mobile menu */
 
-  #mainNav {
+  .side-menu {
     top: 68px;
-    right: 10px;
 
-    width: 300px;
+    width: min(350px, 90vw);
 
-    max-width:
-      calc(100vw - 20px);
+    height: calc(100vh - 68px);
 
-    padding: 18px;
-
-    border-radius: 20px;
-  }
-
-  .menu-profile img {
-    width: 74px;
-    height: 74px;
-  }
-
-  .menu-profile h3 {
-    font-size: 19px;
-  }
-
-  .menu-profile p {
-    font-size: 12px;
-  }
-
-  .menu-year-items {
-    gap: 6px;
+    padding: 25px 20px 35px;
   }
 
 
-  /* HERO */
+  /* hero */
 
   .hero {
-    width: 100%;
-
-    grid-template-columns: 1fr;
-
     min-height: auto;
-  }
 
-  .hero-content {
-    width: 100%;
+    padding: 120px 20px 70px;
 
-    padding:
-      110px 28px 70px;
+    display: flex;
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 45px;
   }
 
   .hero h1 {
-    font-size: 55px;
+    font-size: clamp(42px, 12vw, 65px);
+    letter-spacing: -1px;
+  }
 
-    letter-spacing: -2px;
+  .hero-text {
+    font-size: 15px;
   }
 
   .hero-image {
     width: 100%;
-
-    min-height: 450px;
-  }
-
-  .hero-image img {
-    width: 100%;
-    height: 450px;
-
-    object-fit: contain;
-
-    background: #111;
+    max-width: 100%;
   }
 
 
-  /* INTRO */
+  /* intro */
 
   .intro {
-    width: 100%;
+    padding: 90px 20px;
+  }
 
-    padding:
-      120px 28px;
+  .intro h2 {
+    font-size: clamp(30px, 8vw, 45px);
   }
 
 
-  /* SECTIONS */
+  /* sections */
 
-  .content-section {
-    width: 100%;
-
-    padding:
-      100px 20px;
-  }
-
-  .section-container {
-    width: 100%;
+  .content-section,
+  .archive-section,
+  .most-viewed-section,
+  .author-section {
+    padding: 80px 20px;
   }
 
   .section-top {
     display: block;
 
-    margin-bottom: 55px;
+    margin-bottom: 40px;
   }
 
   .section-top > p {
-    margin-top: 25px;
-  }
-
-  .section-top h2,
-  .novel-content h2,
-  .author-info h2 {
-
-    font-size: 55px;
+    margin-top: 15px;
   }
 
 
-  /* POETRY */
+  /* poetry */
 
   .writing-card {
-    width: 100%;
+    grid-template-columns: 35px 1fr;
 
-    grid-template-columns: 1fr;
+    gap: 15px;
 
-    padding: 40px 25px;
-
-    min-height: 0;
+    padding: 32px 0;
   }
 
-  .card-number {
-    font-size: 50px;
-
-    margin-bottom: 20px;
-  }
-
-  .writing-card h3 {
-    font-size: 32px;
+  .writing-card h3,
+  .story-card h3,
+  .novel-card h3 {
+    font-size: 25px;
   }
 
 
-  /* ACTIONS */
-
-  .writing-actions,
-  .story-actions,
-  .novel-actions {
-    align-items: flex-start;
-
-    flex-direction: column;
-  }
-
-  .total-views {
-    margin-left: 0;
-
-    width: 100%;
-
-    text-align: right;
-  }
-
-  .action-buttons {
-    width: 100%;
-  }
-
-  .action-btn {
-    padding:
-      8px 10px;
-  }
-
-
-  /* STORIES HOME */
+  /* stories */
 
   .story-grid {
-    width: 100%;
-
     grid-template-columns: 1fr;
   }
 
-  .story-grid .story-card {
-    width: 100%;
-
-    min-height: 380px;
-
-    padding: 40px 25px;
-  }
-
-  .story-grid .story-card h3 {
-    font-size: 32px;
+  .story-card {
+    padding: 30px 24px;
   }
 
 
-  /* NOVELS */
+  /* novels */
 
   .novel-grid {
     grid-template-columns: 1fr;
-
-    gap: 15px;
   }
 
   .novel-card {
-    padding: 30px 25px;
-  }
-
-  .novel-card h3 {
-    font-size: 32px;
+    padding: 30px 24px;
   }
 
 
-  .novel-content {
-    width: 100%;
+  /* archive */
 
-    grid-template-columns: 1fr;
-
-    gap: 60px;
+  .archive-block {
+    padding: 20px;
   }
 
-  .book {
-    max-width: 330px;
-
-    margin: auto;
-
-    width: 100%;
+  .archive-item {
+    gap: 10px;
   }
 
-
-  /* POEM */
-
-  .poem-page {
-    width: 100%;
-
-    padding:
-      90px 20px 60px;
-  }
-
-  .poem-reader {
-    width: 100%;
-
-    max-width: 100%;
-  }
-
-  .poem-reader h1 {
-    font-size:
-      clamp(32px, 9vw, 48px);
-
-    line-height: 1.3;
-
-    letter-spacing: -1px;
-  }
-
-  .poem-excerpt {
-    font-size: 15px;
-
-    line-height: 1.8;
-  }
-
-  .poem-body {
-    font-size: 18px;
-
-    line-height: 2.1;
+  .archive-item strong {
+    max-width: 210px;
   }
 
 
-  /* STORIES PAGE */
+  /* most viewed */
 
-  .stories-page {
-    width: 100%;
-
-    padding:
-      90px 20px 60px;
+  .most-viewed-block {
+    padding: 18px;
   }
 
-  .stories-header {
-    margin-bottom: 38px;
+  .most-viewed-item {
+    grid-template-columns: 30px 1fr auto;
+    gap: 10px;
   }
 
-  .stories-header h1 {
-    font-size: 48px;
-
-    letter-spacing: -1px;
-  }
-
-  .stories-intro {
-    font-size: 15px;
-
-    line-height: 1.8;
-  }
-
-  .stories-list {
-    gap: 14px;
-  }
-
-  .stories-list .story-card {
-    padding: 24px;
-
-    border-radius: 15px;
+  .most-title span {
+    font-size: 13px;
   }
 
 
-  /* STORY */
-
-  .story-page {
-    width: 100%;
-
-    padding:
-      90px 20px 60px;
-  }
-
-  .story-reader {
-    width: 100%;
-  }
-
-  .story-reader h1 {
-    font-size:
-      clamp(32px, 9vw, 48px);
-
-    line-height: 1.3;
-
-    letter-spacing: -1px;
-  }
-
-  .story-reader .story-excerpt {
-    font-size: 15px;
-
-    line-height: 1.8;
-  }
-
-  .story-body {
-    font-size: 18px;
-
-    line-height: 2.05;
-  }
-
-
-  /* QUOTE */
-
-  .quote-section {
-    padding:
-      120px 25px;
-  }
-
-  blockquote {
-    font-size:
-      clamp(40px, 10vw, 60px);
-
-    letter-spacing: -1px;
-  }
-
-
-  /* AUTHOR */
-
-  .author-section {
-    padding:
-      100px 20px;
-  }
+  /* author */
 
   .author-grid {
     grid-template-columns: 1fr;
-
-    gap: 50px;
+    gap: 40px;
   }
 
-  .author-photo {
-    height: 420px;
-  }
-
-
-  /* SOCIAL */
-
-  .floating-socials {
-    gap: 8px;
-
-    margin-top: 28px;
-  }
-
-  .floating-socials a {
-    padding:
-      10px 15px;
-
-    font-size: 11px;
+  .author-photo img {
+    max-width: 100%;
   }
 
 
-  /* FOOTER */
+  /* quote */
 
-  footer {
-    padding:
-      40px 20px;
+  .quote-section {
+    padding: 100px 20px;
   }
+
+
+  /* footer */
 
   .footer-inner {
-    display: block;
-  }
-
-  .footer-inner > p {
-    margin-top: 30px;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
 }
@@ -2154,35 +1534,100 @@ footer {
    SMALL MOBILE
 ===================================================== */
 
-@media (max-width: 380px) {
+@media (max-width: 480px) {
 
   .site-title {
-    font-size: 19px;
+    font-size: 16px;
   }
 
-  .hero h1 {
-    font-size: 48px;
+  .hero {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
-  .section-top h2,
-  .novel-content h2,
-  .author-info h2 {
-    font-size: 48px;
+  .content-section,
+  .archive-section,
+  .most-viewed-section,
+  .author-section {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
-  #mainNav {
-    width:
-      calc(100vw - 20px);
+  .writing-card {
+    grid-template-columns: 28px 1fr;
+    gap: 10px;
   }
 
-  .menu-profile img {
-    width: 68px;
-    height: 68px;
+  .card-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .view-count {
+    justify-content: flex-start;
+  }
+
+  .writing-actions {
+    gap: 6px;
   }
 
   .action-btn {
     font-size: 9px;
-    padding:
-      7px 9px;
+    padding: 5px 8px;
   }
+
+  .archive-item {
+    align-items: flex-start;
+  }
+
+  .archive-item .view-count {
+    margin-top: 5px;
+  }
+
+  .most-viewed-item {
+    grid-template-columns: 25px 1fr;
+  }
+
+  .most-viewed-item .view-count {
+    grid-column: 2;
+    justify-content: flex-start;
+  }
+
+  .hero-caption {
+    font-size: 8px;
+  }
+
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+===================================================== */
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+
+/* =====================================================
+   REDUCE MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
 }
