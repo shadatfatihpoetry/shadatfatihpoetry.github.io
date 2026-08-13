@@ -208,53 +208,17 @@
     </div>
 
 
-    <div class="story-grid">
+<div
+  class="story-grid"
+  id="stories-container"
+>
 
-      <article class="story-card">
+  <p>
+    গল্প লোড হচ্ছে...
+  </p>
 
-        <span>
-          STORY 01
-        </span>
-
-        <h3>
-          আপনার গল্পের নাম
-        </h3>
-
-        <p>
-          গল্পের সংক্ষিপ্ত পরিচিতি এখানে
-          লেখা যাবে।
-        </p>
-
-        <a href="#">
-          গল্প পড়ুন ↗
-        </a>
-
-      </article>
-
-
-      <article class="story-card">
-
-        <span>
-          STORY 02
-        </span>
-
-        <h3>
-          আরেকটি গল্প
-        </h3>
-
-        <p>
-          নতুন গল্প প্রকাশিত হলে এখানে
-          যুক্ত করা যাবে।
-        </p>
-
-        <a href="#">
-          গল্প পড়ুন ↗
-        </a>
-
-      </article>
-
-    </div>
-
+</div>
+    
   </div>
 
 </section>
@@ -569,8 +533,134 @@ function openPoem(id) {
 }
 
 
-loadPoetry();
+/* =========================
+   STORIES
+========================= */
+
+async function loadStories() {
+
+  const container =
+    document.getElementById(
+      "stories-container"
+    );
+
+
+  if (!container) {
+    return;
+  }
+
+
+  const { data, error } =
+    await supabaseClient
+
+      .from("stories")
+
+      .select(
+        "id, title, excerpt, created_at, published"
+      )
+
+      .eq("published", true)
+
+      .order("created_at", {
+        ascending: false
+      })
+
+      .limit(4);
+
+
+  if (error) {
+
+    console.error(
+      "Stories Error:",
+      error
+    );
+
+
+    container.innerHTML = `
+      <p>
+        গল্প লোড করা যায়নি।
+      </p>
+    `;
+
+    return;
+  }
+
+
+  if (!data || data.length === 0) {
+
+    container.innerHTML = `
+      <p>
+        বর্তমানে কোনো প্রকাশিত গল্প নেই।
+      </p>
+    `;
+
+    return;
+  }
+
+
+  container.innerHTML = data
+    .map((story, index) => `
+
+      <article class="story-card">
+
+        <span>
+          STORY ${String(index + 1).padStart(2, "0")}
+        </span>
+
+
+        <h3>
+          ${escapeStoryHtml(story.title)}
+        </h3>
+
+
+        ${
+          story.excerpt
+            ? `
+              <p>
+                ${escapeStoryHtml(
+                  story.excerpt
+                )}
+              </p>
+            `
+            : ""
+        }
+
+
+        <a
+          href="story.html?id=${encodeURIComponent(
+            story.id
+          )}"
+        >
+          গল্প পড়ুন ↗
+        </a>
+
+      </article>
+
+    `)
+    .join("");
+
+}
+
+
+/* STORY HTML SECURITY */
+
+function escapeStoryHtml(value) {
+
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+/* LOAD STORIES */
+
+loadStories();
 
 </script>
+
 </body>
 </html>
