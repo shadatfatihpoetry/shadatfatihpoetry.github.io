@@ -1,6 +1,6 @@
 /* =====================================================
-   SHADAT FATIH POETRY
-   FINAL STYLE.CSS
+   SHADAT FATIH LITERARY ARCHIVE
+   COMPLETE STYLE.CSS
 ===================================================== */
 
 
@@ -14,11 +14,9 @@
   box-sizing: border-box;
 }
 
-
 html {
   scroll-behavior: smooth;
 }
-
 
 body {
   background: #f5f5f2;
@@ -35,12 +33,10 @@ body {
   overflow-x: hidden;
 }
 
-
 a {
   color: inherit;
   text-decoration: none;
 }
-
 
 button {
   font-family: inherit;
@@ -63,7 +59,7 @@ button {
   z-index: 9999;
 
   background:
-    rgba(18, 18, 18, .82);
+    rgba(18, 18, 18, .84);
 
   backdrop-filter:
     blur(24px)
@@ -103,7 +99,9 @@ button {
 }
 
 
-/* LOGO */
+/* =====================================================
+   NAV LOGO
+===================================================== */
 
 .brand-logo {
   width: 32px !important;
@@ -116,6 +114,10 @@ button {
   border-radius: 50%;
 
   overflow: hidden;
+
+  border:
+    1px solid
+    rgba(255,255,255,.25);
 }
 
 
@@ -131,7 +133,9 @@ button {
 }
 
 
-/* SITE TITLE */
+/* =====================================================
+   SITE TITLE
+===================================================== */
 
 .site-title {
   position: absolute;
@@ -160,13 +164,14 @@ button {
     opacity .25s ease;
 }
 
-
 .site-title:hover {
   opacity: .65;
 }
 
 
-/* MENU BUTTON */
+/* =====================================================
+   MENU BUTTON
+===================================================== */
 
 .menu-btn {
   width: 44px;
@@ -209,7 +214,6 @@ button {
     background .25s ease;
 }
 
-
 .menu-btn:hover {
   background:
     rgba(255,255,255,.18);
@@ -218,73 +222,283 @@ button {
     scale(1.08);
 }
 
-
 .menu-btn:active {
   transform:
     scale(.92);
 }
 
 
-/* NAV MENU */
+/* =====================================================
+   3 DOT MENU
+===================================================== */
 
 #mainNav {
   position: absolute;
 
-  top: 64px;
+  top: 72px;
   right: 15px;
+
+  width: 310px;
+  max-height: calc(100vh - 90px);
+
+  overflow-y: auto;
 
   display: none;
 
   flex-direction: column;
 
-  gap: 16px;
-
-  min-width: 180px;
-
   padding: 20px;
 
   background:
-    rgba(20,20,20,.92);
+    rgba(20,20,20,.94);
+
+  color: #fff;
 
   border:
     1px solid
-    rgba(255,255,255,.12);
+    rgba(255,255,255,.13);
 
-  border-radius: 18px;
+  border-radius: 22px;
 
   box-shadow:
-    0 15px 45px
-    rgba(0,0,0,.4);
+    0 20px 60px
+    rgba(0,0,0,.45);
 
   backdrop-filter:
-    blur(24px);
+    blur(28px)
+    saturate(160%);
 
   -webkit-backdrop-filter:
-    blur(24px);
-}
+    blur(28px)
+    saturate(160%);
 
+  animation:
+    menuIn .25s ease;
+}
 
 #mainNav.active {
   display: flex;
 }
 
 
+@keyframes menuIn {
+
+  from {
+    opacity: 0;
+    transform:
+      translateY(-8px)
+      scale(.97);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* =====================================================
+   MENU PROFILE
+===================================================== */
+
+.menu-profile {
+  text-align: center;
+
+  padding:
+    5px 5px 20px;
+
+  margin-bottom: 16px;
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.10);
+}
+
+
+.menu-profile-image {
+  width: 78px;
+  height: 78px;
+
+  display: block;
+
+  margin: 0 auto 12px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  border:
+    2px solid
+    rgba(255,255,255,.55);
+
+  box-shadow:
+    0 8px 30px
+    rgba(0,0,0,.35);
+}
+
+
+.menu-profile-name {
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size: 22px;
+
+  font-weight: 600;
+
+  margin-bottom: 5px;
+}
+
+
+.menu-profile-quote {
+  font-size: 13px;
+
+  line-height: 1.7;
+
+  color:
+    rgba(255,255,255,.58);
+
+  padding:
+    0 15px;
+}
+
+
+/* =====================================================
+   MENU LINKS
+===================================================== */
+
+.menu-links {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+
+  padding-bottom: 15px;
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.10);
+}
+
+
 #mainNav a {
+  display: block;
+
   color: #fff;
 
   font-family:
     Arial,
     sans-serif;
 
-  font-size: 14px;
+  font-size: 13px;
+
+  padding:
+    9px 10px;
+
+  border-radius: 9px;
 
   transition:
-    opacity .2s ease;
+    background .2s ease,
+    opacity .2s ease,
+    transform .2s ease;
 }
 
 
 #mainNav a:hover {
-  opacity: .55;
+  background:
+    rgba(255,255,255,.08);
+
+  opacity: 1;
+
+  transform:
+    translateX(3px);
+}
+
+
+/* =====================================================
+   MENU CATEGORY
+===================================================== */
+
+.menu-category {
+  padding:
+    18px 0;
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.10);
+}
+
+
+.menu-category:last-child {
+  border-bottom: none;
+
+  padding-bottom: 5px;
+}
+
+
+.menu-category-title {
+  display: block;
+
+  margin-bottom: 7px;
+
+  padding:
+    0 10px;
+
+  color:
+    rgba(255,255,255,.38);
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 2.5px;
+}
+
+
+.yearly-list {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 6px;
+
+  padding:
+    3px 10px;
+}
+
+
+.yearly-list a {
+  display: inline-flex !important;
+
+  width: auto;
+
+  padding:
+    6px 10px !important;
+
+  border:
+    1px solid
+    rgba(255,255,255,.12);
+
+  border-radius: 999px;
+
+  font-size: 11px !important;
+
+  color:
+    rgba(255,255,255,.82) !important;
+}
+
+
+.yearly-list a:hover {
+  background:
+    rgba(255,255,255,.12) !important;
 }
 
 
@@ -319,7 +533,6 @@ button {
   transition:
     opacity .2s ease;
 }
-
 
 .text-link:hover {
   opacity: .5;
@@ -393,7 +606,8 @@ blockquote em {
 
   margin-top: 38px;
 
-  padding: 13px 22px;
+  padding:
+    13px 22px;
 
   border-radius: 30px;
 
@@ -488,7 +702,8 @@ blockquote em {
 ===================================================== */
 
 .intro {
-  padding: 180px 28px;
+  padding:
+    180px 28px;
 
   background: #fff;
 }
@@ -534,7 +749,8 @@ blockquote em {
 ===================================================== */
 
 .content-section {
-  padding: 140px 28px;
+  padding:
+    140px 28px;
 }
 
 
@@ -609,6 +825,11 @@ blockquote em {
 }
 
 
+.writing-card > div {
+  min-width: 0;
+}
+
+
 .card-number {
   font-family:
     Arial,
@@ -657,47 +878,184 @@ blockquote em {
 
 
 /* =====================================================
-   POEM READING PAGE
+   PUBLISHED DATE
 ===================================================== */
 
-.poem-page {
-  width: 100%;
+.published-date {
+  display: flex;
 
-  min-height: 100vh;
+  align-items: center;
+
+  gap: 7px;
+
+  margin-bottom: 12px;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.7px;
+
+  text-transform: uppercase;
+
+  color:
+    rgba(0,0,0,.48);
+}
+
+
+.published-date::before {
+  content: "";
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #111;
+
+  opacity: .55;
+}
+
+
+.dark .published-date {
+  color:
+    rgba(255,255,255,.45);
+}
+
+
+.dark .published-date::before {
+  background: #fff;
+}
+
+
+/* =====================================================
+   WRITING ACTIONS
+===================================================== */
+
+.writing-actions {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 22px;
+}
+
+
+.writing-action {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 6px;
+
+  min-height: 34px;
 
   padding:
-    100px 24px 80px;
+    7px 12px;
 
-  overflow-x: hidden;
+  border:
+    1px solid
+    rgba(0,0,0,.10);
+
+  border-radius: 999px;
+
+  background:
+    rgba(0,0,0,.025);
+
+  color: #111;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background .2s ease,
+    transform .2s ease,
+    border-color .2s ease;
 }
 
 
-.poem-reader {
-  width: 100%;
+.writing-action:hover {
+  background: #111;
 
-  max-width: 760px;
+  color: #fff;
 
-  margin: 0 auto;
+  border-color: #111;
 
-  padding: 20px 0;
-
-  overflow-wrap: break-word;
-
-  word-wrap: break-word;
+  transform:
+    translateY(-2px);
 }
 
 
-.poem-reader .eyebrow {
-  margin-bottom: 25px;
+.writing-action:active {
+  transform:
+    translateY(0)
+    scale(.97);
 }
 
 
-.poem-reader h1 {
-  width: 100%;
+.dark .writing-action,
+.story-card .writing-action {
+  border-color:
+    rgba(255,255,255,.14);
 
-  max-width: 100%;
+  background:
+    rgba(255,255,255,.05);
 
-  margin: 0 0 25px;
+  color: #fff;
+}
+
+
+.dark .writing-action:hover,
+.story-card .writing-action:hover {
+  background: #fff;
+
+  color: #111;
+
+  border-color: #fff;
+}
+
+
+/* =====================================================
+   ARCHIVE / MOST VIEWED
+===================================================== */
+
+.archive-section {
+  padding:
+    120px 28px;
+
+  background: #fff;
+}
+
+
+.dark-archive {
+  background: #181818;
+
+  color: #fff;
+}
+
+
+.archive-heading {
+  margin-bottom: 55px;
+}
+
+
+.archive-heading h2 {
+  max-width: 800px;
 
   font-family:
     "Playfair Display",
@@ -705,63 +1063,144 @@ blockquote em {
     serif;
 
   font-size:
-    clamp(38px, 7vw, 72px);
+    clamp(40px, 6vw, 70px);
 
   font-weight: 500;
 
-  line-height: 1.25;
+  line-height: 1.08;
 
   letter-spacing: -2px;
-
-  overflow-wrap: break-word;
 }
 
 
-.poem-excerpt {
-  width: 100%;
+.most-viewed-grid {
+  display: grid;
 
-  max-width: 650px;
+  grid-template-columns:
+    repeat(3, 1fr);
 
-  margin: 0 0 40px;
-
-  font-size: 17px;
-
-  line-height: 1.9;
-
-  opacity: .6;
-
-  overflow-wrap: break-word;
+  gap: 2px;
 }
 
 
-.poem-body {
-  width: 100%;
+.most-viewed-card {
+  min-height: 330px;
 
-  max-width: 680px;
+  padding: 35px;
+
+  background: #f5f5f2;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  transition:
+    transform .25s ease,
+    background .25s ease;
+}
+
+
+.most-viewed-card:hover {
+  transform:
+    translateY(-4px);
+
+  background: #ecece7;
+}
+
+
+.most-viewed-card-number {
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 11px;
+
+  letter-spacing: 2px;
+
+  opacity: .4;
+}
+
+
+.most-viewed-card h3 {
+  margin-top: 20px;
 
   font-family:
+    "Playfair Display",
     "Noto Serif Bengali",
     serif;
 
-  font-size: 20px;
+  font-size: 30px;
 
-  line-height: 2.15;
+  font-weight: 500;
 
-  margin-bottom: 50px;
-
-  overflow-wrap: break-word;
-
-  word-wrap: break-word;
+  line-height: 1.3;
 }
 
 
-.poem-body br {
-  line-height: 2.15;
+.most-viewed-card p {
+  margin-top: 15px;
+
+  font-size: 14px;
+
+  opacity: .55;
+}
+
+
+.most-viewed-card-footer {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-top: 25px;
+}
+
+
+.view-count {
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  opacity: .45;
+}
+
+
+.dark-archive .most-viewed-card {
+  background: #222;
+
+  color: #fff;
+}
+
+
+.dark-archive .most-viewed-card:hover {
+  background: #292929;
+}
+
+
+.dark-archive .published-date {
+  color:
+    rgba(255,255,255,.45);
+}
+
+
+.dark-archive .published-date::before {
+  background: #fff;
 }
 
 
 /* =====================================================
-   STORIES SECTION — HOME
+   STORIES HOME
 ===================================================== */
 
 .story-grid {
@@ -790,12 +1229,16 @@ blockquote em {
   justify-content: end;
 
   transition:
-    background .3s ease;
+    background .3s ease,
+    transform .3s ease;
 }
 
 
 .story-grid .story-card:hover {
   background: #252525;
+
+  transform:
+    translateY(-3px);
 }
 
 
@@ -820,7 +1263,7 @@ blockquote em {
 }
 
 
-.story-grid .story-card a {
+.story-grid .story-card > a {
   margin-top: 25px;
 
   font-family:
@@ -828,266 +1271,6 @@ blockquote em {
     sans-serif;
 
   font-size: 12px;
-}
-
-
-/* =====================================================
-   STORIES PAGE
-===================================================== */
-
-.stories-page {
-  width: 100%;
-
-  min-height: 100vh;
-
-  padding:
-    100px 24px 90px;
-
-  background: #f5f5f2;
-
-  color: #111;
-
-  overflow-x: hidden;
-}
-
-
-.stories-content {
-  width: 100%;
-
-  max-width: 900px;
-
-  margin: 0 auto;
-}
-
-
-.stories-header {
-  margin-bottom: 55px;
-}
-
-
-.stories-header .eyebrow {
-  margin-bottom: 18px;
-}
-
-
-.stories-header h1 {
-  margin: 0;
-
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
-
-  font-size:
-    clamp(45px, 8vw, 78px);
-
-  font-weight: 500;
-
-  line-height: 1.15;
-
-  letter-spacing: -2px;
-}
-
-
-.stories-intro {
-  max-width: 600px;
-
-  margin-top: 20px;
-
-  font-size: 16px;
-
-  line-height: 1.9;
-
-  opacity: .58;
-}
-
-
-.stories-list {
-  width: 100%;
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 18px;
-}
-
-
-.stories-list .story-card {
-  width: 100%;
-
-  min-height: auto;
-
-  padding: 32px;
-
-  background: #fff;
-
-  color: #111;
-
-  border:
-    1px solid
-    rgba(0,0,0,.07);
-
-  border-radius: 18px;
-
-  display: block;
-
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease;
-}
-
-
-.stories-list .story-card:hover {
-  background: #fff;
-
-  transform:
-    translateY(-3px);
-
-  box-shadow:
-    0 15px 40px
-    rgba(0,0,0,.08);
-}
-
-
-.stories-list .story-card h2 {
-  margin: 0 0 14px;
-
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
-
-  font-size:
-    clamp(26px, 4vw, 38px);
-
-  font-weight: 500;
-
-  line-height: 1.35;
-}
-
-
-.stories-list .story-card .story-excerpt {
-  margin: 0 0 22px;
-
-  max-width: 720px;
-
-  font-size: 16px;
-
-  line-height: 1.9;
-
-  opacity: .62;
-}
-
-
-.stories-list .story-card .text-link {
-  display: inline-block;
-
-  color: #111;
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 13px;
-
-  font-weight: 700;
-}
-
-
-.stories-error {
-  padding: 25px;
-
-  background: white;
-
-  border-radius: 15px;
-
-  border:
-    1px solid
-    rgba(0,0,0,.08);
-}
-
-
-.stories-empty {
-  padding: 40px 0;
-
-  font-size: 17px;
-
-  opacity: .6;
-}
-
-
-/* =====================================================
-   STORY READING PAGE
-===================================================== */
-
-.story-page {
-  width: 100%;
-
-  min-height: 100vh;
-
-  padding:
-    100px 24px 80px;
-
-  overflow-x: hidden;
-}
-
-
-.story-reader {
-  width: 100%;
-
-  max-width: 800px;
-
-  margin: 0 auto;
-}
-
-
-.story-reader h1 {
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
-
-  font-size:
-    clamp(38px, 7vw, 72px);
-
-  font-weight: 500;
-
-  line-height: 1.25;
-
-  letter-spacing: -2px;
-
-  margin-bottom: 25px;
-}
-
-
-.story-reader .story-excerpt {
-  max-width: 680px;
-
-  font-size: 17px;
-
-  line-height: 1.9;
-
-  opacity: .6;
-
-  margin-bottom: 45px;
-}
-
-
-.story-body {
-  max-width: 720px;
-
-  font-family:
-    "Noto Serif Bengali",
-    serif;
-
-  font-size: 19px;
-
-  line-height: 2;
-
-  margin-bottom: 50px;
-
-  overflow-wrap: break-word;
 }
 
 
@@ -1100,68 +1283,22 @@ blockquote em {
 }
 
 
-.novel-content {
+.novel-grid {
   display: grid;
 
   grid-template-columns:
-    1fr 400px;
+    repeat(2, 1fr);
 
-  gap: 100px;
-
-  align-items: center;
+  gap: 20px;
 }
 
 
-.novel-content h2 {
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
+.novel-card {
+  min-height: 360px;
 
-  font-size: 80px;
-
-  font-weight: 500;
-
-  line-height: 1;
-}
-
-
-.novel-description {
-  max-width: 500px;
-
-  margin: 30px 0;
-
-  opacity: .65;
-}
-
-
-.dark-button {
-  background: #111;
-}
-
-
-.book {
-  height: 540px;
+  padding: 45px;
 
   background: #111;
-
-  padding: 15px;
-
-  box-shadow:
-    25px 25px 50px
-    rgba(0,0,0,.2);
-
-  transform:
-    rotate(3deg);
-}
-
-
-.book-inner {
-  height: 100%;
-
-  border:
-    1px solid
-    rgba(255,255,255,.3);
 
   color: white;
 
@@ -1169,38 +1306,57 @@ blockquote em {
 
   flex-direction: column;
 
-  align-items: center;
+  justify-content: space-between;
 
-  justify-content: center;
-
-  text-align: center;
+  transition:
+    transform .3s ease;
 }
 
 
-.book-inner strong {
+.novel-card:hover {
+  transform:
+    translateY(-5px);
+}
+
+
+.novel-info h3 {
+  margin-top: 14px;
+
   font-family:
     "Playfair Display",
+    "Noto Serif Bengali",
     serif;
 
-  font-size: 48px;
+  font-size: 38px;
 
-  line-height: 1;
+  font-weight: 500;
 
-  margin: 30px 0;
+  line-height: 1.2;
 }
 
 
-.book-small,
-.book-bottom {
-  font-family:
-    Arial,
-    sans-serif;
+.novel-info > p:not(.card-label) {
+  margin-top: 18px;
 
-  font-size: 9px;
+  opacity: .58;
+}
 
-  letter-spacing: 3px;
 
-  opacity: .6;
+.novel-card .published-date {
+  color:
+    rgba(255,255,255,.45);
+}
+
+
+.novel-card .published-date::before {
+  background: #fff;
+}
+
+
+.novel-card .text-link {
+  display: inline-block;
+
+  margin-top: 25px;
 }
 
 
@@ -1209,7 +1365,8 @@ blockquote em {
 ===================================================== */
 
 .quote-section {
-  padding: 180px 28px;
+  padding:
+    180px 28px;
 
   background: #fff;
 }
@@ -1264,7 +1421,8 @@ blockquote {
 ===================================================== */
 
 .author-section {
-  padding: 140px 28px;
+  padding:
+    140px 28px;
 
   background: #f5f5f2;
 }
@@ -1323,21 +1481,6 @@ blockquote {
   margin-top: 30px;
 
   opacity: .65;
-}
-
-
-.social-links {
-  display: flex;
-
-  gap: 25px;
-
-  margin-top: 35px;
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 12px;
 }
 
 
@@ -1420,7 +1563,8 @@ footer {
 
   color: white;
 
-  padding: 45px 28px;
+  padding:
+    45px 28px;
 }
 
 
@@ -1462,11 +1606,155 @@ footer {
 
 
 /* =====================================================
+   READING PAGES
+===================================================== */
+
+.poem-page,
+.story-page {
+  width: 100%;
+
+  min-height: 100vh;
+
+  padding:
+    100px 24px 80px;
+
+  overflow-x: hidden;
+}
+
+
+.poem-reader,
+.story-reader {
+  width: 100%;
+
+  max-width: 800px;
+
+  margin: 0 auto;
+}
+
+
+.poem-reader h1,
+.story-reader h1 {
+  width: 100%;
+
+  max-width: 100%;
+
+  margin:
+    0 0 25px;
+
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
+
+  font-size:
+    clamp(38px, 7vw, 72px);
+
+  font-weight: 500;
+
+  line-height: 1.25;
+
+  letter-spacing: -2px;
+
+  overflow-wrap: break-word;
+}
+
+
+.poem-excerpt,
+.story-reader .story-excerpt {
+  width: 100%;
+
+  max-width: 680px;
+
+  margin:
+    0 0 40px;
+
+  font-size: 17px;
+
+  line-height: 1.9;
+
+  opacity: .6;
+
+  overflow-wrap: break-word;
+}
+
+
+.poem-body,
+.story-body {
+  width: 100%;
+
+  max-width: 720px;
+
+  font-family:
+    "Noto Serif Bengali",
+    serif;
+
+  font-size: 20px;
+
+  line-height: 2.15;
+
+  margin-bottom: 50px;
+
+  overflow-wrap: break-word;
+
+  word-wrap: break-word;
+}
+
+
+/* =====================================================
+   READING PAGE ACTIONS
+===================================================== */
+
+.reading-actions {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  padding:
+    22px 0;
+
+  margin-bottom: 35px;
+
+  border-top:
+    1px solid
+    rgba(0,0,0,.10);
+
+  border-bottom:
+    1px solid
+    rgba(0,0,0,.10);
+}
+
+
+/* =====================================================
+   REVEAL ANIMATION
+===================================================== */
+
+.reveal {
+  opacity: 0;
+
+  transform:
+    translateY(35px);
+
+  transition:
+    opacity .8s ease,
+    transform .8s ease;
+}
+
+
+.reveal.show {
+  opacity: 1;
+
+  transform:
+    translateY(0);
+}
+
+
+/* =====================================================
    MOBILE
 ===================================================== */
 
 @media (max-width: 800px) {
-
 
   body {
     padding-top: 60px;
@@ -1511,9 +1799,25 @@ footer {
 
 
   #mainNav {
-    top: 60px;
+    top: 68px;
 
-    right: 12px;
+    right: 10px;
+    left: 10px;
+
+    width: auto;
+
+    max-height:
+      calc(100vh - 82px);
+
+    border-radius: 20px;
+
+    padding: 17px;
+  }
+
+
+  .menu-profile-image {
+    width: 70px;
+    height: 70px;
   }
 
 
@@ -1567,8 +1871,22 @@ footer {
 
   /* SECTIONS */
 
+  .content-section {
+    padding:
+      100px 20px;
+  }
+
+
+  .archive-section {
+    padding:
+      90px 20px;
+  }
+
+
   .section-top {
     display: block;
+
+    margin-bottom: 50px;
   }
 
 
@@ -1578,7 +1896,6 @@ footer {
 
 
   .section-top h2,
-  .novel-content h2,
   .author-info h2 {
 
     font-size: 55px;
@@ -1592,6 +1909,8 @@ footer {
       1fr;
 
     padding: 40px;
+
+    min-height: 330px;
   }
 
 
@@ -1602,7 +1921,37 @@ footer {
   }
 
 
-  /* STORIES HOME */
+  .writing-card h3 {
+    font-size: 34px;
+  }
+
+
+  /* MOST VIEWED */
+
+  .most-viewed-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .most-viewed-card {
+    min-height: 280px;
+
+    padding: 30px;
+  }
+
+
+  .archive-heading {
+    margin-bottom: 40px;
+  }
+
+
+  .archive-heading h2 {
+    font-size: 45px;
+  }
+
+
+  /* STORIES */
 
   .story-grid {
     grid-template-columns:
@@ -1617,150 +1966,55 @@ footer {
   }
 
 
-  /* POEM */
-
-  .poem-page {
-    padding:
-      90px 20px 60px;
+  .story-grid .story-card h3 {
+    font-size: 34px;
   }
 
 
-  .poem-reader {
-    width: 100%;
+  /* NOVELS */
 
-    max-width: 100%;
-  }
-
-
-  .poem-reader h1 {
-    font-size:
-      clamp(32px, 9vw, 48px);
-
-    line-height: 1.3;
-
-    letter-spacing: -1px;
-  }
-
-
-  .poem-excerpt {
-    font-size: 15px;
-
-    line-height: 1.8;
-  }
-
-
-  .poem-body {
-    font-size: 18px;
-
-    line-height: 2.1;
-  }
-
-
-  /* STORIES PAGE */
-
-  .stories-page {
-    padding:
-      90px 20px 60px;
-  }
-
-
-  .stories-header {
-    margin-bottom: 38px;
-  }
-
-
-  .stories-header h1 {
-    font-size: 48px;
-
-    letter-spacing: -1px;
-  }
-
-
-  .stories-intro {
-    font-size: 15px;
-
-    line-height: 1.8;
-  }
-
-
-  .stories-list {
-    gap: 14px;
-  }
-
-
-  .stories-list .story-card {
-    padding: 24px;
-
-    border-radius: 15px;
-  }
-
-
-  .stories-list .story-card h2 {
-    font-size: 28px;
-
-    line-height: 1.4;
-  }
-
-
-  .stories-list .story-card .story-excerpt {
-    font-size: 15px;
-
-    line-height: 1.85;
-  }
-
-
-  /* STORY */
-
-  .story-page {
-    padding:
-      90px 20px 60px;
-  }
-
-
-  .story-reader h1 {
-    font-size:
-      clamp(32px, 9vw, 48px);
-
-    line-height: 1.3;
-
-    letter-spacing: -1px;
-  }
-
-
-  .story-reader .story-excerpt {
-    font-size: 15px;
-
-    line-height: 1.8;
-  }
-
-
-  .story-body {
-    font-size: 18px;
-
-    line-height: 2.05;
-  }
-
-
-  /* NOVEL */
-
-  .novel-content {
+  .novel-grid {
     grid-template-columns:
       1fr;
-
-    gap: 60px;
   }
 
 
-  .book {
-    max-width: 330px;
+  .novel-card {
+    min-height: 320px;
 
-    margin: auto;
+    padding: 35px;
+  }
 
-    width: 100%;
+
+  .novel-info h3 {
+    font-size: 34px;
+  }
+
+
+  /* QUOTE */
+
+  .quote-section {
+    padding:
+      120px 28px;
+  }
+
+
+  blockquote {
+    font-size:
+      clamp(40px, 11vw, 60px);
+
+    letter-spacing:
+      -1.5px;
   }
 
 
   /* AUTHOR */
+
+  .author-section {
+    padding:
+      100px 20px;
+  }
+
 
   .author-grid {
     grid-template-columns:
@@ -1801,6 +2055,126 @@ footer {
 
   .footer-inner > p {
     margin-top: 30px;
+  }
+
+
+  /* READING */
+
+  .poem-page,
+  .story-page {
+    padding:
+      90px 20px 60px;
+  }
+
+
+  .poem-reader h1,
+  .story-reader h1 {
+    font-size:
+      clamp(32px, 9vw, 48px);
+
+    line-height: 1.3;
+
+    letter-spacing: -1px;
+  }
+
+
+  .poem-excerpt,
+  .story-reader .story-excerpt {
+    font-size: 15px;
+
+    line-height: 1.8;
+  }
+
+
+  .poem-body,
+  .story-body {
+    font-size: 18px;
+
+    line-height: 2.1;
+  }
+
+
+  /* ACTIONS */
+
+  .writing-actions {
+    gap: 6px;
+  }
+
+
+  .writing-action {
+    min-height: 32px;
+
+    padding:
+      6px 10px;
+
+    font-size: 9px;
+  }
+
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media (max-width: 420px) {
+
+  .site-title {
+    font-size: 20px;
+  }
+
+
+  .hero h1 {
+    font-size: 48px;
+  }
+
+
+  .hero-content {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+
+  .intro {
+    padding:
+      100px 22px;
+  }
+
+
+  .intro h2 {
+    font-size: 38px;
+  }
+
+
+  .content-section,
+  .archive-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+
+  .writing-card {
+    padding: 30px 25px;
+  }
+
+
+  .story-grid .story-card {
+    padding: 30px 25px;
+  }
+
+
+  .novel-card {
+    padding: 30px 25px;
+  }
+
+
+  .archive-heading h2 {
+    font-size: 39px;
+  }
+
+
+  .menu-profile-quote {
+    font-size: 12px;
   }
 
 }
