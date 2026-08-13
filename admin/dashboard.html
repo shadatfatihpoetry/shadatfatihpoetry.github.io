@@ -281,17 +281,26 @@
       border-radius: 18px;
     }
 
+    .content-info {
+      min-width: 0;
+      flex: 1;
+    }
+
     .content-info h3 {
       margin-bottom: 6px;
 
       font-family: Georgia, serif;
 
       font-size: 22px;
+
+      word-break: break-word;
     }
 
     .content-info p {
       color: #777;
       font-size: 13px;
+
+      word-break: break-word;
     }
 
     .status {
@@ -787,6 +796,7 @@
         <button
           type="submit"
           class="save"
+          id="saveBtn"
         >
           Save
         </button>
@@ -820,7 +830,9 @@ const supabaseClient =
   );
 
 
-/* STATE */
+/* =========================
+   STATE
+========================= */
 
 let currentType = "poems";
 
@@ -829,7 +841,9 @@ let contents = [];
 let editingId = null;
 
 
-/* TYPE SETTINGS */
+/* =========================
+   TYPE SETTINGS
+========================= */
 
 const typeSettings = {
 
@@ -898,7 +912,9 @@ const typeSettings = {
 };
 
 
-/* ELEMENTS */
+/* =========================
+   ELEMENTS
+========================= */
 
 const contentList =
   document.getElementById(
@@ -915,31 +931,73 @@ const form =
     "contentForm"
   );
 
+const message =
+  document.getElementById(
+    "message"
+  );
 
-/* CHECK LOGIN */
+const saveBtn =
+  document.getElementById(
+    "saveBtn"
+  );
+
+
+/* =========================
+   CHECK LOGIN
+========================= */
 
 async function checkUser() {
 
-  const {
-    data: { session }
-  } =
-    await supabaseClient.auth.getSession();
+  try {
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient.auth.getSession();
 
 
-  if (!session) {
+    if (error) {
+
+      console.error(error);
+
+      window.location.href =
+        "./index.html";
+
+      return false;
+    }
+
+
+    if (!data.session) {
+
+      window.location.href =
+        "./index.html";
+
+      return false;
+    }
+
+
+    return true;
+
+  }
+
+  catch (error) {
+
+    console.error(error);
 
     window.location.href =
       "./index.html";
 
     return false;
+
   }
 
-
-  return true;
 }
 
 
-/* LOAD CONTENT */
+/* =========================
+   LOAD CONTENT
+========================= */
 
 async function loadContent() {
 
@@ -958,29 +1016,58 @@ async function loadContent() {
     error
   } =
     await supabaseClient
+
       .from(settings.table)
-      .select("*")
-      .order("created_at", {
-        ascending: false
-      });
+
+      .select(
+        "id,title,excerpt,cover_url,content,published,created_at"
+      )
+
+      .order(
+        "created_at",
+        {
+          ascending: false
+        }
+      );
 
 
   if (error) {
 
-    console.error(error);
+    console.error(
+      "Load error:",
+      error
+    );
+
+
+    contents = [];
+
+    updateStats();
+
 
     contentList.innerHTML =
       `<div class="empty">
-        ${settings.title} load করা যায়নি।
+
+        <strong>
+          ${escapeHtml(settings.title)}
+          load করা যায়নি।
+        </strong>
+
         <br><br>
-        ${escapeHtml(error.message)}
+
+        ${escapeHtml(
+          error.message
+        )}
+
       </div>`;
 
     return;
   }
 
 
-  contents = data || [];
+  contents =
+    Array.isArray(data)
+      ? data
+      : [];
 
 
   renderContent();
@@ -990,13 +1077,16 @@ async function loadContent() {
 }
 
 
-/* STATS */
+/* =========================
+   UPDATE STATS
+========================= */
 
 function updateStats() {
 
   const published =
     contents.filter(
-      item => item.published === true
+      item =>
+        item.published === true
     ).length;
 
 
@@ -1020,7 +1110,9 @@ function updateStats() {
 }
 
 
-/* RENDER */
+/* =========================
+   RENDER CONTENT
+========================= */
 
 function renderContent() {
 
@@ -1028,28 +1120,48 @@ function renderContent() {
     typeSettings[currentType];
 
 
+  const searchInput =
+    document.getElementById(
+      "search"
+    );
+
+
   const search =
-    document
-      .getElementById("search")
-      .value
+    searchInput.value
+      .trim()
       .toLowerCase();
 
 
   const filtered =
-    contents.filter(item =>
+    contents.filter(item => {
 
-      (item.title || "")
-        .toLowerCase()
-        .includes(search)
+      const title =
+        String(
+          item.title || ""
+        ).toLowerCase();
 
-    );
+
+      const excerpt =
+        String(
+          item.excerpt || ""
+        ).toLowerCase();
+
+
+      return (
+        title.includes(search) ||
+        excerpt.includes(search)
+      );
+
+    });
 
 
   if (!filtered.length) {
 
     contentList.innerHTML =
       `<div class="empty">
-        ${settings.empty}
+        ${escapeHtml(
+          settings.empty
+        )}
       </div>`;
 
     return;
@@ -1066,7 +1178,8 @@ function renderContent() {
 
           <h3>
             ${escapeHtml(
-              item.title || "Untitled"
+              item.title ||
+              "Untitled"
             )}
           </h3>
 
@@ -1101,6 +1214,7 @@ function renderContent() {
         <div class="actions">
 
           <button
+            type="button"
             onclick="editContent('${item.id}')"
           >
             Edit
@@ -1108,9 +1222,10 @@ function renderContent() {
 
 
           <button
+            type="button"
             onclick="togglePublish(
               '${item.id}',
-              ${item.published}
+              ${item.published === true}
             )"
           >
 
@@ -1124,6 +1239,7 @@ function renderContent() {
 
 
           <button
+            type="button"
             class="delete"
             onclick="deleteContent('${item.id}')"
           >
@@ -1139,7 +1255,9 @@ function renderContent() {
 }
 
 
-/* ESCAPE */
+/* =========================
+   ESCAPE HTML
+========================= */
 
 function escapeHtml(value) {
 
@@ -1173,7 +1291,9 @@ function escapeHtml(value) {
 }
 
 
-/* OPEN ADD */
+/* =========================
+   OPEN ADD MODAL
+========================= */
 
 document
   .getElementById(
@@ -1184,6 +1304,7 @@ document
     () => {
 
       editingId = null;
+
 
       const settings =
         typeSettings[currentType];
@@ -1204,10 +1325,14 @@ document
       form.reset();
 
 
-      document.getElementById(
-        "message"
-      ).textContent =
-        "";
+      message.textContent = "";
+
+      message.style.color =
+        "#777";
+
+
+      saveBtn.textContent =
+        "Save";
 
 
       modal.classList.add(
@@ -1218,10 +1343,12 @@ document
   );
 
 
-/* EDIT */
+/* =========================
+   EDIT CONTENT
+========================= */
 
 window.editContent =
-async function(id) {
+function(id) {
 
   const item =
     contents.find(
@@ -1231,7 +1358,15 @@ async function(id) {
     );
 
 
-  if (!item) return;
+  if (!item) {
+
+    console.error(
+      "Content not found:",
+      id
+    );
+
+    return;
+  }
 
 
   const settings =
@@ -1277,10 +1412,14 @@ async function(id) {
     item.content || "";
 
 
-  document.getElementById(
-    "message"
-  ).textContent =
-    "";
+  message.textContent = "";
+
+  message.style.color =
+    "#777";
+
+
+  saveBtn.textContent =
+    "Update";
 
 
   modal.classList.add(
@@ -1290,13 +1429,15 @@ async function(id) {
 };
 
 
-/* SAVE */
+/* =========================
+   SAVE / UPDATE
+========================= */
 
 form.addEventListener(
   "submit",
-  async e => {
+  async event => {
 
-    e.preventDefault();
+    event.preventDefault();
 
 
     const settings =
@@ -1327,10 +1468,28 @@ form.addEventListener(
       ).value.trim();
 
 
-    const message =
-      document.getElementById(
-        "message"
-      );
+    if (!title) {
+
+      message.style.color =
+        "#d00";
+
+      message.textContent =
+        "Title দিতে হবে।";
+
+      return;
+    }
+
+
+    if (!content) {
+
+      message.style.color =
+        "#d00";
+
+      message.textContent =
+        `${settings.label} দিতে হবে।`;
+
+      return;
+    }
 
 
     message.style.color =
@@ -1340,11 +1499,20 @@ form.addEventListener(
       "Saving...";
 
 
+    saveBtn.disabled = true;
+
+    saveBtn.style.opacity =
+      "0.6";
+
+
     const payload = {
 
       title,
+
       excerpt,
+
       cover_url,
+
       content
 
     };
@@ -1353,7 +1521,9 @@ form.addEventListener(
     let result;
 
 
-    if (editingId) {
+    /* UPDATE */
+
+    if (editingId !== null) {
 
       result =
         await supabaseClient
@@ -1368,6 +1538,9 @@ form.addEventListener(
           );
 
     }
+
+
+    /* INSERT */
 
     else {
 
@@ -1387,9 +1560,19 @@ form.addEventListener(
     }
 
 
+    saveBtn.disabled =
+      false;
+
+    saveBtn.style.opacity =
+      "1";
+
+
+    /* ERROR */
+
     if (result.error) {
 
       console.error(
+        "Save error:",
         result.error
       );
 
@@ -1407,32 +1590,42 @@ form.addEventListener(
     }
 
 
+    /* SUCCESS */
+
     message.style.color =
       "#16803c";
 
 
     message.textContent =
-      "Saved successfully";
+      editingId !== null
+        ? "Updated successfully!"
+        : "Saved successfully!";
 
 
     setTimeout(
-      () => {
+      async () => {
 
         modal.classList.remove(
           "active"
         );
 
-        loadContent();
+
+        editingId = null;
+
+
+        await loadContent();
 
       },
-      500
+      600
     );
 
   }
 );
 
 
-/* DELETE */
+/* =========================
+   DELETE CONTENT
+========================= */
 
 window.deleteContent =
 async function(id) {
@@ -1441,13 +1634,28 @@ async function(id) {
     typeSettings[currentType];
 
 
-  const confirmed =
-    confirm(
-      `এই ${settings.title} item-টি কি সত্যিই মুছে ফেলতে চান?`
+  const item =
+    contents.find(
+      content =>
+        String(content.id) ===
+        String(id)
     );
 
 
-  if (!confirmed) return;
+  const title =
+    item?.title ||
+    settings.title;
+
+
+  const confirmed =
+    confirm(
+      `"${title}" মুছে ফেলতে চান?`
+    );
+
+
+  if (!confirmed) {
+    return;
+  }
 
 
   const { error } =
@@ -1465,19 +1673,28 @@ async function(id) {
 
   if (error) {
 
-    alert(error.message);
+    console.error(
+      "Delete error:",
+      error
+    );
+
+
+    alert(
+      error.message
+    );
 
     return;
-
   }
 
 
-  loadContent();
+  await loadContent();
 
 };
 
 
-/* PUBLISH */
+/* =========================
+   PUBLISH / UNPUBLISH
+========================= */
 
 window.togglePublish =
 async function(
@@ -1509,19 +1726,28 @@ async function(
 
   if (error) {
 
-    alert(error.message);
+    console.error(
+      "Publish error:",
+      error
+    );
+
+
+    alert(
+      error.message
+    );
 
     return;
-
   }
 
 
-  loadContent();
+  await loadContent();
 
 };
 
 
-/* SEARCH */
+/* =========================
+   SEARCH
+========================= */
 
 document
   .getElementById(
@@ -1529,29 +1755,39 @@ document
   )
   .addEventListener(
     "input",
-    renderContent
+    () => {
+
+      renderContent();
+
+    }
   );
 
 
-/* TABS */
+/* =========================
+   TABS
+========================= */
 
 document
-  .querySelectorAll(".tab")
+  .querySelectorAll(
+    ".tab"
+  )
   .forEach(tab => {
 
     tab.addEventListener(
       "click",
-      () => {
+      async () => {
 
         document
           .querySelectorAll(
             ".tab"
           )
-          .forEach(item =>
+          .forEach(item => {
+
             item.classList.remove(
               "active"
-            )
-          );
+            );
+
+          });
 
 
         tab.classList.add(
@@ -1561,6 +1797,9 @@ document
 
         currentType =
           tab.dataset.type;
+
+
+        editingId = null;
 
 
         const settings =
@@ -1587,7 +1826,13 @@ document
           settings.search;
 
 
-        loadContent();
+        document.getElementById(
+          "search"
+        ).value =
+          "";
+
+
+        await loadContent();
 
       }
     );
@@ -1595,7 +1840,9 @@ document
   });
 
 
-/* CANCEL */
+/* =========================
+   CANCEL MODAL
+========================= */
 
 document
   .getElementById(
@@ -1609,11 +1856,49 @@ document
         "active"
       );
 
+
+      editingId = null;
+
+
+      form.reset();
+
+
+      message.textContent =
+        "";
+
     }
   );
 
 
-/* LOGOUT */
+/* =========================
+   CLOSE MODAL
+   OUTSIDE CLICK
+========================= */
+
+modal.addEventListener(
+  "click",
+  event => {
+
+    if (
+      event.target === modal
+    ) {
+
+      modal.classList.remove(
+        "active"
+      );
+
+
+      editingId = null;
+
+    }
+
+  }
+);
+
+
+/* =========================
+   LOGOUT
+========================= */
 
 document
   .getElementById(
@@ -1635,7 +1920,9 @@ document
   );
 
 
-/* START */
+/* =========================
+   START DASHBOARD
+========================= */
 
 (async () => {
 
@@ -1643,11 +1930,12 @@ document
     await checkUser();
 
 
-  if (loggedIn) {
-
-    loadContent();
-
+  if (!loggedIn) {
+    return;
   }
+
+
+  await loadContent();
 
 })();
 
