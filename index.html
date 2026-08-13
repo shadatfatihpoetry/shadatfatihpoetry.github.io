@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="bn">
-
 <head>
 
   <meta charset="UTF-8">
@@ -17,6 +16,13 @@
     content="Shadat Fatih-এর কবিতা, গল্প ও উপন্যাসের নিজস্ব সাহিত্যভুবন।"
   >
 
+  <meta
+    name="theme-color"
+    content="#111111"
+  >
+
+  <!-- GOOGLE FONTS -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
   <link
@@ -30,6 +36,8 @@
     rel="stylesheet"
   >
 
+  <!-- STYLE -->
+
   <link
     rel="stylesheet"
     href="style.css"
@@ -40,6 +48,7 @@
 
 <body>
 
+
 <!-- =====================================================
      NAVIGATION
 ===================================================== -->
@@ -48,12 +57,13 @@
 
   <div class="nav-inner">
 
-    <!-- PROFILE LOGO -->
+
+    <!-- PROFILE IMAGE -->
 
     <a
       href="#home"
       class="brand-logo"
-      aria-label="Shadat Fatih"
+      aria-label="Shadat Fatih Home"
     >
 
       <img
@@ -64,7 +74,7 @@
     </a>
 
 
-    <!-- SITE TITLE -->
+    <!-- WEBSITE TITLE -->
 
     <a
       href="#home"
@@ -74,50 +84,65 @@
     </a>
 
 
-    <!-- 3 DOT MENU -->
+    <!-- THREE DOT BUTTON -->
 
     <button
+      type="button"
       class="menu-btn"
       id="menuToggle"
       aria-label="Open menu"
       aria-expanded="false"
-      type="button"
     >
       ⋮
     </button>
 
 
-    <!-- =================================================
-         MAIN MENU
-    ================================================= -->
+    <!-- DROPDOWN MENU -->
 
     <nav
       id="mainNav"
-      aria-label="Main navigation"
+      aria-label="Main Navigation"
     >
 
-      <!-- PROFILE -->
+      <!-- MENU PROFILE -->
 
       <div class="menu-profile">
 
         <img
           src="shadat-fatih.jpg"
           alt="Shadat Fatih"
-          class="menu-profile-image"
         >
 
-        <div class="menu-profile-name">
-          Shadat Fatih
+        <div>
+
+          <strong>
+            Shadat Fatih
+          </strong>
+
+          <span>
+            Writer · Poet
+          </span>
+
         </div>
 
-        <p class="menu-profile-quote">
-          “কিছু অনুভূতি শুধু লেখাই যায়।”
+      </div>
+
+
+      <!-- QUOTE -->
+
+      <div class="menu-quote">
+
+        <span>“</span>
+
+        <p>
+          কিছু অনুভূতি<br>
+          শুধু লেখাই যায়।
         </p>
 
       </div>
 
 
-      <!-- BASIC NAVIGATION -->
+      <!-- NAVIGATION LINKS -->
 
       <div class="menu-links">
 
@@ -144,15 +169,15 @@
       </div>
 
 
-      <!-- ARCHIVE -->
+      <!-- CATEGORIES -->
 
-      <div class="menu-category">
+      <div class="menu-categories">
 
-        <span class="menu-category-title">
-          ARCHIVE
-        </span>
+        <p>
+          CATEGORIES
+        </p>
 
-        <a href="#yearly-published">
+        <a href="#yearly">
           Yearly Published
         </a>
 
@@ -168,52 +193,8 @@
           Novels
         </a>
 
-      </div>
-
-
-      <!-- YEARLY -->
-
-      <div
-        class="menu-category"
-        id="yearly-published"
-      >
-
-        <span class="menu-category-title">
-          YEARLY PUBLISHED
-        </span>
-
-        <div
-          id="yearly-list"
-          class="yearly-list"
-        >
-
-          <span>
-            Loading...
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <!-- MOST VIEWED -->
-
-      <div class="menu-category">
-
-        <span class="menu-category-title">
-          MOST VIEWED
-        </span>
-
-        <a href="#most-viewed-poems">
-          Most Viewed Poems
-        </a>
-
-        <a href="#most-viewed-stories">
-          Most Viewed Stories
-        </a>
-
-        <a href="#most-viewed-novels">
-          Most Viewed Novels
+        <a href="#most-viewed">
+          Most Viewed
         </a>
 
       </div>
@@ -223,6 +204,7 @@
   </div>
 
 </header>
+
 
 
 <!-- =====================================================
@@ -241,32 +223,54 @@
   id="home"
 >
 
+
+  <!-- HERO TEXT -->
+
   <div class="hero-content">
 
     <p class="eyebrow">
       SHADAT FATIH
     </p>
 
+
     <h1>
+
       শব্দের ভেতর<br>
-      <em>একটি পৃথিবী।</em>
+
+      <em>
+        একটি পৃথিবী।
+      </em>
+
     </h1>
 
+
     <p class="hero-text">
+
       কবিতা, গল্প ও উপন্যাসের<br>
+
       একটি নিজস্ব সাহিত্যভুবন।
+
     </p>
+
 
     <a
       href="#poetry"
       class="hero-button"
     >
+
       লেখা আবিষ্কার করুন
-      <span>↗</span>
+
+      <span>
+        ↗
+      </span>
+
     </a>
 
   </div>
 
+
+
+  <!-- HERO IMAGE -->
 
   <div class="hero-image">
 
@@ -276,6 +280,7 @@
     >
 
     <div class="image-overlay"></div>
+
 
     <div class="hero-caption">
 
@@ -294,6 +299,7 @@
 </section>
 
 
+
 <!-- =====================================================
      INTRO
 ===================================================== -->
@@ -306,20 +312,92 @@
       A WORLD OF WORDS
     </p>
 
+
     <h2>
+
       কিছু অনুভূতি বলা যায় না।<br>
-      <em>তাই তারা লেখা হয়ে থাকে।</em>
+
+      <em>
+        তাই তারা লেখা হয়ে থাকে।
+      </em>
+
     </h2>
 
+
     <p>
+
       এই সাহিত্যভুবনে জমা থাকে অনুভূতি,
       স্মৃতি, কল্পনা ও জীবনের গল্প—
       কবিতা, গল্প এবং উপন্যাসের পাতায়।
+
     </p>
 
   </div>
 
 </section>
+
+
+
+<!-- =====================================================
+     YEARLY PUBLISHED
+===================================================== -->
+
+<section
+  class="content-section yearly-section"
+  id="yearly"
+>
+
+  <div class="section-container">
+
+
+    <div class="section-top">
+
+      <div>
+
+        <p class="eyebrow">
+          ARCHIVE / YEARLY
+        </p>
+
+        <h2>
+          প্রকাশনা
+        </h2>
+
+      </div>
+
+
+      <p>
+
+        প্রতি বছরের প্রকাশিত
+        কবিতা, গল্প ও উপন্যাস।
+
+      </p>
+
+    </div>
+
+
+    <div
+      class="yearly-grid"
+      id="yearly-container"
+    >
+
+      <div class="loading-card">
+
+        <span>
+          LOADING
+        </span>
+
+        <p>
+          প্রকাশিত লেখা লোড হচ্ছে...
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
 
 
 <!-- =====================================================
@@ -332,6 +410,7 @@
 >
 
   <div class="section-container">
+
 
     <div class="section-top">
 
@@ -347,24 +426,37 @@
 
       </div>
 
+
       <p>
+
         কিছু কথা ছন্দে বলা হয়,<br>
+
         কিছু কথা নীরবতায়।
+
       </p>
 
     </div>
 
 
-    <!-- DYNAMIC POETRY -->
+
+    <!-- POETRY LIST -->
 
     <div
-      class="writing-card"
+      class="writing-list"
       id="poetry-list"
     >
 
-      <p>
-        কবিতা লোড হচ্ছে...
-      </p>
+      <div class="loading-card">
+
+        <span>
+          POETRY
+        </span>
+
+        <p>
+          কবিতা লোড হচ্ছে...
+        </p>
+
+      </div>
 
     </div>
 
@@ -372,45 +464,6 @@
 
 </section>
 
-
-<!-- =====================================================
-     MOST VIEWED POEMS
-===================================================== -->
-
-<section
-  class="archive-section"
-  id="most-viewed-poems"
->
-
-  <div class="section-container">
-
-    <div class="archive-heading">
-
-      <p class="eyebrow">
-        MOST VIEWED / POEMS
-      </p>
-
-      <h2>
-        সবচেয়ে বেশি পঠিত কবিতা
-      </h2>
-
-    </div>
-
-
-    <div
-      class="most-viewed-grid"
-      id="most-viewed-poems-list"
-    >
-
-      <p>
-        লোড হচ্ছে...
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
 
 
 <!-- =====================================================
@@ -423,6 +476,7 @@
 >
 
   <div class="section-container">
+
 
     <div class="section-top">
 
@@ -438,22 +492,37 @@
 
       </div>
 
+
       <p>
+
         প্রতিটি গল্পের ভেতরে<br>
+
         লুকিয়ে থাকে আরেকটি জীবন।
+
       </p>
 
     </div>
 
+
+
+    <!-- STORIES LIST -->
 
     <div
       class="story-grid"
       id="stories-container"
     >
 
-      <p>
-        গল্প লোড হচ্ছে...
-      </p>
+      <div class="loading-card">
+
+        <span>
+          STORIES
+        </span>
+
+        <p>
+          গল্প লোড হচ্ছে...
+        </p>
+
+      </div>
 
     </div>
 
@@ -461,45 +530,6 @@
 
 </section>
 
-
-<!-- =====================================================
-     MOST VIEWED STORIES
-===================================================== -->
-
-<section
-  class="archive-section dark-archive"
-  id="most-viewed-stories"
->
-
-  <div class="section-container">
-
-    <div class="archive-heading">
-
-      <p class="eyebrow">
-        MOST VIEWED / STORIES
-      </p>
-
-      <h2>
-        সবচেয়ে বেশি পঠিত গল্প
-      </h2>
-
-    </div>
-
-
-    <div
-      class="most-viewed-grid"
-      id="most-viewed-stories-list"
-    >
-
-      <p>
-        লোড হচ্ছে...
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
 
 
 <!-- =====================================================
@@ -512,6 +542,7 @@
 >
 
   <div class="section-container">
+
 
     <div class="section-top">
 
@@ -527,24 +558,37 @@
 
       </div>
 
+
       <p>
+
         দীর্ঘ গল্পের জন্য<br>
+
         একটি দীর্ঘ যাত্রা।
+
       </p>
 
     </div>
 
 
-    <!-- DYNAMIC NOVELS -->
+
+    <!-- NOVELS LIST -->
 
     <div
       class="novel-grid"
       id="novels-container"
     >
 
-      <p>
-        উপন্যাস লোড হচ্ছে...
-      </p>
+      <div class="loading-card">
+
+        <span>
+          NOVELS
+        </span>
+
+        <p>
+          উপন্যাস লোড হচ্ছে...
+        </p>
+
+      </div>
 
     </div>
 
@@ -553,44 +597,67 @@
 </section>
 
 
+
 <!-- =====================================================
-     MOST VIEWED NOVELS
+     MOST VIEWED
 ===================================================== -->
 
 <section
-  class="archive-section"
-  id="most-viewed-novels"
+  class="content-section most-viewed-section"
+  id="most-viewed"
 >
 
   <div class="section-container">
 
-    <div class="archive-heading">
 
-      <p class="eyebrow">
-        MOST VIEWED / NOVELS
+    <div class="section-top">
+
+      <div>
+
+        <p class="eyebrow">
+          MOST VIEWED
+        </p>
+
+        <h2>
+          জনপ্রিয় লেখা
+        </h2>
+
+      </div>
+
+
+      <p>
+
+        পাঠকদের সবচেয়ে বেশি দেখা
+        কবিতা, গল্প ও উপন্যাস।
+
       </p>
-
-      <h2>
-        সবচেয়ে বেশি পঠিত উপন্যাস
-      </h2>
 
     </div>
 
 
     <div
       class="most-viewed-grid"
-      id="most-viewed-novels-list"
+      id="most-viewed-container"
     >
 
-      <p>
-        লোড হচ্ছে...
-      </p>
+      <div class="loading-card">
+
+        <span>
+          MOST VIEWED
+        </span>
+
+        <p>
+          জনপ্রিয় লেখা লোড হচ্ছে...
+        </p>
+
+      </div>
 
     </div>
 
   </div>
 
 </section>
+
 
 
 <!-- =====================================================
@@ -605,10 +672,17 @@
       “
     </span>
 
+
     <blockquote>
+
       কিছু অনুভূতি<br>
-      <em>শুধু লেখাই যায়।</em>
+
+      <em>
+        শুধু লেখাই যায়।
+      </em>
+
     </blockquote>
+
 
     <p>
       — Shadat Fatih
@@ -617,6 +691,7 @@
   </div>
 
 </section>
+
 
 
 <!-- =====================================================
@@ -630,7 +705,11 @@
 
   <div class="section-container">
 
+
     <div class="author-grid">
+
+
+      <!-- AUTHOR PHOTO -->
 
       <div class="author-photo">
 
@@ -642,53 +721,68 @@
       </div>
 
 
+      <!-- AUTHOR INFO -->
+
       <div class="author-info">
 
         <p class="eyebrow">
           THE AUTHOR
         </p>
 
+
         <h2>
           Shadat Fatih
         </h2>
 
+
         <p>
+
           কবিতা, গল্প ও উপন্যাসের মাধ্যমে
           অনুভূতি, মানুষ এবং জীবনের
           বিভিন্ন গল্পকে শব্দে ধরে রাখার
           একটি ব্যক্তিগত সাহিত্যযাত্রা।
+
         </p>
 
 
+        <!-- SOCIAL -->
+
         <div class="floating-socials">
+
 
           <a
             href="https://www.facebook.com/FatihShadatOfficial"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             Facebook ↗
           </a>
 
+
           <a
             href="https://www.instagram.com/shadatfatih"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             Instagram ↗
           </a>
 
+
           <a
             href="https://wa.me/8801601800222"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             WhatsApp ↗
           </a>
 
-          <a href="mailto:helloshadat@hotmail.com">
+
+          <a
+            href="mailto:helloshadat@hotmail.com"
+          >
             Email ↗
           </a>
+
 
         </div>
 
@@ -701,6 +795,7 @@
 </section>
 
 
+
 <!-- =====================================================
      FOOTER
 ===================================================== -->
@@ -709,11 +804,13 @@
 
   <div class="footer-inner">
 
+
     <div>
 
       <strong>
         Shadat Fatih
       </strong>
+
 
       <p>
         POETRY · STORIES · NOVELS
@@ -721,8 +818,13 @@
 
     </div>
 
+
     <p>
-      © <span id="year"></span> Shadat Fatih
+
+      ©
+      <span id="year"></span>
+      Shadat Fatih
+
     </p>
 
   </div>
@@ -733,22 +835,46 @@
 </main>
 
 
+
 <!-- =====================================================
      SUPABASE
 ===================================================== -->
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
+
+
+<!-- =====================================================
+     SUPABASE INITIALIZATION
+===================================================== -->
+
+<script>
+
+  const SUPABASE_URL =
+    "https://ooxbtwxqumaixvrwsllg.supabase.co";
+
+
+  const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_dNAV-kJ5rv_-BH6GhYVg_1xbRUNdy";
+
+
+  window.supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+</script>
+
 
 
 <!-- =====================================================
      MAIN JAVASCRIPT
-     
-     IMPORTANT:
-     This file will be replaced in the next step.
 ===================================================== -->
 
 <script src="script.js"></script>
 
-</body>
 
+</body>
 </html>
