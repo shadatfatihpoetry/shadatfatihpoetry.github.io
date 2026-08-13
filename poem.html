@@ -12,6 +12,11 @@
 
   <title>Shadat Fatih — কবিতা</title>
 
+  <meta
+    name="description"
+    content="Shadat Fatih-এর কবিতা"
+  >
+
   <link
     rel="stylesheet"
     href="style.css"
@@ -38,13 +43,23 @@
   </main>
 
 
+  <!-- SUPABASE -->
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
   <script>
 
+    "use strict";
+
+
+    /* =====================================================
+       SUPABASE
+    ===================================================== */
+
     const SUPABASE_URL =
       "https://ooxbtwxqumaixvrwsllg.supabase.co";
+
 
     const SUPABASE_PUBLISHABLE_KEY =
       "sb_publishable_dNAV-kJ5rv_-BH6GhChYVg_1xbRUNdy";
@@ -57,6 +72,10 @@
       );
 
 
+    /* =====================================================
+       LOAD POEM
+    ===================================================== */
+
     async function loadPoem() {
 
       const params =
@@ -64,103 +83,945 @@
           window.location.search
         );
 
+
       const id =
         params.get("id");
 
 
-      if (!id) {
-
+      const container =
         document.getElementById(
           "poem-content"
-        ).innerHTML = `
+        );
+
+
+      if (!id) {
+
+        container.innerHTML = `
           <h1>কবিতা পাওয়া যায়নি</h1>
         `;
 
         return;
+
       }
 
 
-      const { data, error } =
+      try {
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient
+
+            .from("poems")
+
+            .select(
+              "id, title, content, excerpt, published, created_at, views"
+            )
+
+            .eq(
+              "id",
+              id
+            )
+
+            .eq(
+              "published",
+              true
+            )
+
+            .single();
+
+
+        if (error) {
+
+          throw error;
+
+        }
+
+
+        if (!data) {
+
+          container.innerHTML = `
+            <h1>কবিতা পাওয়া যায়নি</h1>
+            <p>
+              এই কবিতাটি বর্তমানে প্রকাশিত নয়।
+            </p>
+          `;
+
+          return;
+
+        }
+
+
+        /* =================================================
+           INCREASE VIEW
+        ================================================= */
+
+        const currentViews =
+          Number(data.views || 0);
+
+
         await supabaseClient
+
           .from("poems")
-          .select("title, content, excerpt, published")
-          .eq("id", id)
-          .eq("published", true)
-          .single();
+
+          .update({
+            views: currentViews + 1
+          })
+
+          .eq(
+            "id",
+            id
+          );
 
 
-      if (error || !data) {
+        const newViews =
+          currentViews + 1;
 
-        console.error(error);
 
-        document.getElementById(
-          "poem-content"
-        ).innerHTML = `
-          <h1>কবিতা পাওয়া যায়নি</h1>
+        /* =================================================
+           PAGE URL
+        ================================================= */
+
+        const poemUrl =
+          window.location.href;
+
+
+        /* =================================================
+           RENDER
+        ================================================= */
+
+        container.innerHTML = `
+
+          <div class="poem-header">
+
+            <div class="poem-header-main">
+
+              <p class="eyebrow">
+                POETRY
+              </p>
+
+
+              <h1>
+                ${escapeHtml(data.title)}
+              </h1>
+
+
+              ${
+                data.created_at
+                  ? `
+                    <div class="published-date">
+                      ${formatDate(data.created_at)}
+                    </div>
+                  `
+                  : ""
+              }
+
+            </div>
+
+
+            <div class="poem-total-views">
+
+              <span>
+                TOTAL VIEWS
+              </span>
+
+              <strong id="poemViews">
+                ${newViews.toLocaleString("en-US")}
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          ${
+            data.excerpt
+              ? `
+                <p class="poem-excerpt">
+                  ${escapeHtml(data.excerpt)}
+                </p>
+              `
+              : ""
+          }
+
+
+          <div class="poem-body">
+            ${formatPoem(data.content)}
+          </div>
+
+
+          <!-- =================================================
+               PREMIUM ACTIONS
+          ================================================== -->
+
+          <div class="writing-actions">
+
+
+            <button
+              type="button"
+              class="writing-action"
+              onclick="openComments('${escapeJs(id)}')"
+              aria-label="Comment"
+            >
+
+              <span class="action-icon">
+                ◌
+              </span>
+
+              <span>
+                Comment
+              </span>
+
+            </button>
+
+
+            <button
+              type="button"
+              class="writing-action"
+              onclick="sharePoem('${escapeJs(data.title)}', '${escapeJs(poemUrl)}')"
+              aria-label="Share"
+            >
+
+              <span class="action-icon">
+                ↗
+              </span>
+
+              <span>
+                Share
+              </span>
+
+            </button>
+
+
+            <button
+              type="button"
+              class="writing-action"
+              onclick="copyPoemLink('${escapeJs(poemUrl)}')"
+              aria-label="Copy link"
+            >
+
+              <span class="action-icon">
+                ⧉
+              </span>
+
+              <span>
+                Copy Link
+              </span>
+
+            </button>
+
+
+          </div>
+
+
+          <!-- =================================================
+               COMMENTS
+          ================================================== -->
+
+          <section
+            class="comments-section"
+            id="comments"
+          >
+
+            <div class="comments-heading">
+
+              <p class="eyebrow">
+                READER COMMENTS
+              </p>
+
+              <h2>
+                মতামত
+              </h2>
+
+            </div>
+
+
+            <form
+              id="commentForm"
+              class="comment-form"
+            >
+
+              <input
+                type="text"
+                id="commentName"
+                placeholder="আপনার নাম"
+                maxlength="80"
+                required
+              >
+
+
+              <textarea
+                id="commentText"
+                placeholder="এই কবিতা সম্পর্কে আপনার অনুভূতি লিখুন..."
+                maxlength="1000"
+                rows="5"
+                required
+              ></textarea>
+
+
+              <button
+                type="submit"
+                class="comment-submit"
+              >
+                মন্তব্য প্রকাশ করুন →
+              </button>
+
+            </form>
+
+
+            <div
+              id="commentsList"
+              class="comments-list"
+            >
+
+              <p>
+                মন্তব্য লোড হচ্ছে...
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <a
+            href="index.html#poetry"
+            class="text-link"
+          >
+            ← সব কবিতা
+          </a>
+
+        `;
+
+
+        loadComments(id);
+
+
+        const commentForm =
+          document.getElementById(
+            "commentForm"
+          );
+
+
+        commentForm.addEventListener(
+          "submit",
+          async function(event) {
+
+            event.preventDefault();
+
+            await submitComment(id);
+
+          }
+        );
+
+
+        /* Auto open comments */
+
+        if (
+          window.location.hash === "#comments"
+        ) {
+
+          setTimeout(() => {
+
+            document
+              .getElementById("comments")
+              ?.scrollIntoView({
+                behavior: "smooth"
+              });
+
+          }, 300);
+
+        }
+
+
+      } catch (error) {
+
+        console.error(
+          "Poem Error:",
+          error
+        );
+
+
+        container.innerHTML = `
+
+          <h1>
+            কবিতা লোড করা যায়নি
+          </h1>
+
           <p>
-            এই কবিতাটি বর্তমানে প্রকাশিত নয়।
+            ${escapeHtml(error.message)}
+          </p>
+
+          <a
+            href="index.html#poetry"
+            class="text-link"
+          >
+            ← সব কবিতা
+          </a>
+
+        `;
+
+      }
+
+    }
+
+
+    /* =====================================================
+       COMMENTS
+    ===================================================== */
+
+    async function loadComments(poemId) {
+
+      const container =
+        document.getElementById(
+          "commentsList"
+        );
+
+
+      if (!container) {
+
+        return;
+
+      }
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+
+          .from("comments")
+
+          .select(
+            "id, name, comment, created_at"
+          )
+
+          .eq(
+            "poem_id",
+            poemId
+          )
+
+          .eq(
+            "approved",
+            true
+          )
+
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          );
+
+
+      if (error) {
+
+        console.error(
+          "Comment Load Error:",
+          error
+        );
+
+
+        container.innerHTML = `
+          <p>
+            মন্তব্য লোড করা যায়নি।
           </p>
         `;
 
         return;
+
       }
 
 
-      document.getElementById(
-        "poem-content"
-      ).innerHTML = `
+      if (
+        !data ||
+        data.length === 0
+      ) {
 
-        <p class="eyebrow">
-          POETRY
-        </p>
+        container.innerHTML = `
+          <p class="no-comments">
+            এখনো কোনো মন্তব্য নেই।
+            প্রথম মন্তব্যটি আপনিই করুন।
+          </p>
+        `;
 
-        <h1>
-          ${escapeHtml(data.title)}
-        </h1>
+        return;
 
-        ${
-          data.excerpt
-            ? `<p class="poem-excerpt">
-                ${escapeHtml(data.excerpt)}
-              </p>`
-            : ""
-        }
+      }
 
-        <div class="poem-body">
-          ${formatPoem(data.content)}
-        </div>
 
-        <a
-          href="index.html#poetry"
-          class="text-link"
-        >
-          ← সব কবিতা
-        </a>
+      container.innerHTML =
+        data
+          .map(comment => `
 
-      `;
+            <article class="comment-card">
+
+              <div class="comment-author">
+
+                ${escapeHtml(comment.name)}
+
+              </div>
+
+              <div class="comment-date">
+
+                ${formatDate(comment.created_at)}
+
+              </div>
+
+              <p>
+
+                ${escapeHtml(comment.comment)}
+
+              </p>
+
+            </article>
+
+          `)
+          .join("");
 
     }
 
+
+    /* =====================================================
+       SUBMIT COMMENT
+    ===================================================== */
+
+    async function submitComment(poemId) {
+
+      const nameInput =
+        document.getElementById(
+          "commentName"
+        );
+
+
+      const commentInput =
+        document.getElementById(
+          "commentText"
+        );
+
+
+      const button =
+        document.querySelector(
+          ".comment-submit"
+        );
+
+
+      const name =
+        nameInput.value.trim();
+
+
+      const comment =
+        commentInput.value.trim();
+
+
+      if (
+        !name ||
+        !comment
+      ) {
+
+        return;
+
+      }
+
+
+      button.disabled =
+        true;
+
+
+      button.textContent =
+        "প্রকাশ করা হচ্ছে...";
+
+
+      try {
+
+        const {
+          error
+        } =
+          await supabaseClient
+
+            .from("comments")
+
+            .insert({
+
+              poem_id: poemId,
+
+              name: name,
+
+              comment: comment,
+
+              approved: false
+
+            });
+
+
+        if (error) {
+
+          throw error;
+
+        }
+
+
+        nameInput.value =
+          "";
+
+
+        commentInput.value =
+          "";
+
+
+        showToast(
+          "মন্তব্য পাঠানো হয়েছে। অনুমোদনের পর প্রকাশিত হবে।"
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "Comment Error:",
+          error
+        );
+
+
+        showToast(
+          "মন্তব্য পাঠানো যায়নি।"
+        );
+
+      }
+
+
+      button.disabled =
+        false;
+
+
+      button.textContent =
+        "মন্তব্য প্রকাশ করুন →";
+
+    }
+
+
+    /* =====================================================
+       SHARE
+    ===================================================== */
+
+    async function sharePoem(
+      title,
+      url
+    ) {
+
+      if (
+        navigator.share
+      ) {
+
+        try {
+
+          await navigator.share({
+
+            title: title,
+
+            text:
+              `Shadat Fatih — ${title}`,
+
+            url: url
+
+          });
+
+        } catch (error) {
+
+          /* User cancelled */
+
+        }
+
+        return;
+
+      }
+
+
+      await copyPoemLink(url);
+
+    }
+
+
+    /* =====================================================
+       COPY LINK
+    ===================================================== */
+
+    async function copyPoemLink(url) {
+
+      try {
+
+        await navigator.clipboard.writeText(
+          url
+        );
+
+
+        showToast(
+          "লিংক কপি হয়েছে"
+        );
+
+
+      } catch (error) {
+
+        const textarea =
+          document.createElement(
+            "textarea"
+          );
+
+
+        textarea.value =
+          url;
+
+
+        document.body.appendChild(
+          textarea
+        );
+
+
+        textarea.select();
+
+
+        document.execCommand(
+          "copy"
+        );
+
+
+        textarea.remove();
+
+
+        showToast(
+          "লিংক কপি হয়েছে"
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       OPEN COMMENTS
+    ===================================================== */
+
+    function openComments(id) {
+
+      const section =
+        document.getElementById(
+          "comments"
+        );
+
+
+      if (!section) {
+
+        return;
+
+      }
+
+
+      section.scrollIntoView({
+        behavior: "smooth"
+      });
+
+
+      window.history.replaceState(
+        null,
+        "",
+        `poem.html?id=${encodeURIComponent(id)}#comments`
+      );
+
+    }
+
+
+    /* =====================================================
+       DATE
+    ===================================================== */
+
+    function formatDate(dateValue) {
+
+      if (!dateValue) {
+
+        return "";
+
+      }
+
+
+      const date =
+        new Date(dateValue);
+
+
+      if (
+        Number.isNaN(
+          date.getTime()
+        )
+      ) {
+
+        return "";
+
+      }
+
+
+      return date.toLocaleDateString(
+        "bn-BD",
+        {
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        }
+      );
+
+    }
+
+
+    /* =====================================================
+       POEM FORMAT
+    ===================================================== */
 
     function formatPoem(text) {
 
-      return escapeHtml(text)
-        .replace(/\r?\n/g, "<br>");
+      return escapeHtml(
+        text || ""
+      )
+        .replace(
+          /\r?\n/g,
+          "<br>"
+        );
 
     }
 
+
+    /* =====================================================
+       HTML ESCAPE
+    ===================================================== */
 
     function escapeHtml(value) {
 
-      return String(value || "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+      return String(
+        value || ""
+      )
+
+        .replaceAll(
+          "&",
+          "&amp;"
+        )
+
+        .replaceAll(
+          "<",
+          "&lt;"
+        )
+
+        .replaceAll(
+          ">",
+          "&gt;"
+        )
+
+        .replaceAll(
+          '"',
+          "&quot;"
+        )
+
+        .replaceAll(
+          "'",
+          "&#039;"
+        );
 
     }
 
+
+    /* =====================================================
+       JAVASCRIPT ESCAPE
+    ===================================================== */
+
+    function escapeJs(value) {
+
+      return String(
+        value || ""
+      )
+
+        .replaceAll(
+          "\\",
+          "\\\\"
+        )
+
+        .replaceAll(
+          "'",
+          "\\'"
+        )
+
+        .replaceAll(
+          "\n",
+          "\\n"
+        )
+
+        .replaceAll(
+          "\r",
+          "\\r"
+        );
+
+    }
+
+
+    /* =====================================================
+       TOAST
+    ===================================================== */
+
+    function showToast(message) {
+
+      let toast =
+        document.getElementById(
+          "sf-toast"
+        );
+
+
+      if (!toast) {
+
+        toast =
+          document.createElement(
+            "div"
+          );
+
+
+        toast.id =
+          "sf-toast";
+
+
+        toast.className =
+          "sf-toast";
+
+
+        document.body.appendChild(
+          toast
+        );
+
+      }
+
+
+      toast.textContent =
+        message;
+
+
+      toast.classList.add(
+        "show"
+      );
+
+
+      clearTimeout(
+        window.sfToastTimer
+      );
+
+
+      window.sfToastTimer =
+        setTimeout(() => {
+
+          toast.classList.remove(
+            "show"
+          );
+
+        }, 2500);
+
+    }
+
+
+    /* =====================================================
+       START
+    ===================================================== */
 
     loadPoem();
 
