@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Shadat Fatih — গল্প</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+</head>
+
+
+<body>
+
+  <main class="poem-page">
+
+    <article
+      class="poem-reader"
+      id="story-content"
+    >
+
+      <p>
+        গল্প লোড হচ্ছে...
+      </p>
+
+    </article>
+
+  </main>
+
+
+  <!-- SUPABASE -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+  <script>
+
+    const SUPABASE_URL =
+      "https://ooxbtwxqumaixvrwsllg.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_dNAV-kJ5rv_-BH6GhChYVg_1xbRUNdy";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+
+
+    async function loadStory() {
+
+      const container =
+        document.getElementById(
+          "story-content"
+        );
+
+
+      /*
+        URL থেকে ID নেওয়া
+        Example:
+        story.html?id=3
+      */
+
+      const params =
+        new URLSearchParams(
+          window.location.search
+        );
+
+
+      const id =
+        params.get("id");
+
+
+      /* ID না থাকলে */
+
+      if (!id) {
+
+        container.innerHTML = `
+
+          <p class="eyebrow">
+            STORIES
+          </p>
+
+          <h1>
+            গল্প পাওয়া যায়নি
+          </h1>
+
+          <p class="poem-excerpt">
+            গল্পটির কোনো ID পাওয়া যায়নি।
+          </p>
+
+          <a
+            href="stories.html"
+            class="text-link"
+          >
+            ← সব গল্প
+          </a>
+
+        `;
+
+        return;
+      }
+
+
+      /*
+        Supabase থেকে গল্প আনা
+      */
+
+      const { data, error } =
+        await supabaseClient
+
+          .from("stories")
+
+          .select(
+            "id, title, content, excerpt, created_at, published"
+          )
+
+          .eq("id", id)
+
+          .eq("published", true)
+
+          .single();
+
+
+      /* Error হলে */
+
+      if (error || !data) {
+
+        console.error(
+          "Story Error:",
+          error
+        );
+
+
+        container.innerHTML = `
+
+          <p class="eyebrow">
+            STORIES
+          </p>
+
+          <h1>
+            গল্প পাওয়া যায়নি
+          </h1>
+
+          <p class="poem-excerpt">
+            এই গল্পটি বর্তমানে প্রকাশিত নয়
+            অথবা পাওয়া যাচ্ছে না।
+          </p>
+
+          <a
+            href="stories.html"
+            class="text-link"
+          >
+            ← সব গল্প
+          </a>
+
+        `;
+
+        return;
+      }
+
+
+      /*
+        গল্প দেখানো
+      */
+
+      container.innerHTML = `
+
+        <p class="eyebrow">
+          STORIES
+        </p>
+
+
+        <h1>
+          ${escapeHtml(data.title)}
+        </h1>
+
+
+        ${
+          data.excerpt
+            ? `
+
+              <p class="poem-excerpt">
+                ${escapeHtml(data.excerpt)}
+              </p>
+
+            `
+            : ""
+        }
+
+
+        <div class="poem-body">
+
+          ${formatStory(data.content)}
+
+        </div>
+
+
+        <a
+          href="stories.html"
+          class="text-link"
+        >
+          ← সব গল্প
+        </a>
+
+      `;
+
+    }
+
+
+    /*
+      Story formatting
+    */
+
+    function formatStory(text) {
+
+      return escapeHtml(text)
+        .replace(/\r?\n/g, "<br>");
+
+    }
+
+
+    /*
+      Security:
+      HTML code সরাসরি render হতে দেবে না
+    */
+
+    function escapeHtml(value) {
+
+      return String(value || "")
+
+        .replaceAll(
+          "&",
+          "&amp;"
+        )
+
+        .replaceAll(
+          "<",
+          "&lt;"
+        )
+
+        .replaceAll(
+          ">",
+          "&gt;"
+        )
+
+        .replaceAll(
+          '"',
+          "&quot;"
+        )
+
+        .replaceAll(
+          "'",
+          "&#039;"
+        );
+
+    }
+
+
+    /*
+      Page load
+    */
+
+    loadStory();
+
+  </script>
+
+</body>
+
+</html>
