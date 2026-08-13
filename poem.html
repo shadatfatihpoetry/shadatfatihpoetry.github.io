@@ -12,30 +12,217 @@
 
   <title>Shadat Fatih — কবিতা</title>
 
-  <meta
-    name="description"
-    content="Shadat Fatih-এর কবিতা"
-  >
-
   <link
     rel="stylesheet"
     href="style.css"
   >
 
-  <!-- GOOGLE FONT -->
+  <style>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+    /* =================================================
+       PREMIUM READER ACTIONS
+    ================================================= */
 
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
+    .reader-top {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-bottom: 22px;
+    }
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
-    rel="stylesheet"
-  >
+    .view-counter {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      font-family: "Playfair Display", serif;
+      font-size: 14px;
+      letter-spacing: 1.5px;
+
+      color: #8f7540;
+
+      padding: 8px 14px;
+
+      border: 1px solid rgba(143,117,64,.35);
+      border-radius: 30px;
+
+      background: rgba(255,255,255,.45);
+    }
+
+    .view-icon {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+
+    /* =================================================
+       BOTTOM ACTIONS
+    ================================================= */
+
+    .reader-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      margin-top: 35px;
+      padding-top: 20px;
+
+      border-top: 1px solid rgba(0,0,0,.10);
+    }
+
+    .reader-action {
+      appearance: none;
+      border: 0;
+      background: transparent;
+
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
+      padding: 9px 13px;
+
+      color: #292929;
+
+      font-family: "Noto Serif Bengali", serif;
+      font-size: 14px;
+
+      cursor: pointer;
+
+      border: 1px solid rgba(0,0,0,.13);
+      border-radius: 25px;
+
+      transition:
+        transform .2s ease,
+        border-color .2s ease,
+        color .2s ease,
+        background .2s ease;
+    }
+
+    .reader-action:hover {
+      transform: translateY(-2px);
+      border-color: #9c8147;
+      color: #9c8147;
+      background: rgba(156,129,71,.05);
+    }
+
+    .action-icon {
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      color: #9c8147;
+    }
+
+
+    /* =================================================
+       AUTHOR
+    ================================================= */
+
+    .reader-author {
+      margin-top: 28px;
+      font-family: "Playfair Display", serif;
+      font-size: 17px;
+    }
+
+
+    /* =================================================
+       COMMENTS
+    ================================================= */
+
+    .comments-area {
+      margin-top: 45px;
+      padding-top: 25px;
+
+      border-top: 1px solid rgba(0,0,0,.10);
+    }
+
+    .comments-heading {
+      font-family: "Playfair Display", serif;
+      letter-spacing: 3px;
+      color: #9c8147;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    .comment-box {
+      padding: 22px 0;
+    }
+
+    .comment-box h2 {
+      margin-bottom: 12px;
+    }
+
+    .comment-box p {
+      line-height: 1.9;
+    }
+
+    .comment-notice {
+      margin-top: 10px;
+      opacity: .65;
+      font-size: 14px;
+    }
+
+
+    /* =================================================
+       TOAST
+    ================================================= */
+
+    #sf-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 25px;
+
+      transform: translateX(-50%) translateY(20px);
+
+      padding: 11px 18px;
+
+      background: #171717;
+      color: #fff;
+
+      border-radius: 30px;
+
+      font-size: 14px;
+
+      opacity: 0;
+      pointer-events: none;
+
+      transition: .25s ease;
+
+      z-index: 9999;
+    }
+
+    #sf-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+
+    /* =================================================
+       MOBILE
+    ================================================= */
+
+    @media (max-width: 600px) {
+
+      .reader-top {
+        margin-bottom: 18px;
+      }
+
+      .view-counter {
+        font-size: 13px;
+        padding: 7px 12px;
+      }
+
+      .reader-actions {
+        gap: 7px;
+      }
+
+      .reader-action {
+        padding: 8px 11px;
+        font-size: 13px;
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -43,36 +230,24 @@
 <body>
 
 
-<!-- =====================================================
-     POEM PAGE
-===================================================== -->
-
 <main class="poem-page">
-
 
   <article
     class="poem-reader"
     id="poem-content"
   >
 
-    <div class="reader-loading">
-
-      <p>
-        কবিতা লোড হচ্ছে...
-      </p>
-
-    </div>
+    <p>
+      কবিতা লোড হচ্ছে...
+    </p>
 
   </article>
-
 
 </main>
 
 
 
-<!-- =====================================================
-     SUPABASE
-===================================================== -->
+<!-- SUPABASE -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -82,17 +257,15 @@
 "use strict";
 
 
-/* =====================================================
-   SUPABASE CONFIG
-===================================================== */
+/* =================================================
+   SUPABASE
+================================================= */
 
 const SUPABASE_URL =
   "https://ooxbtwxqumaixvrwsllg.supabase.co";
 
-
 const SUPABASE_PUBLISHABLE_KEY =
   "sb_publishable_dNAV-kJ5rv_-BH6GhChYVg_1xbRUNdy";
-
 
 const supabaseClient =
   window.supabase.createClient(
@@ -102,65 +275,50 @@ const supabaseClient =
 
 
 
-/* =====================================================
-   HTML SECURITY
-===================================================== */
+/* =================================================
+   ESCAPE HTML
+================================================= */
 
 function escapeHtml(value) {
 
-  if (
-    value === null ||
-    value === undefined
-  ) {
-
-    return "";
-
-  }
-
-
-  return String(value)
+  return String(value || "")
 
     .replaceAll("&", "&amp;")
-
     .replaceAll("<", "&lt;")
-
     .replaceAll(">", "&gt;")
-
     .replaceAll('"', "&quot;")
-
     .replaceAll("'", "&#039;");
 
 }
 
 
 
-/* =====================================================
-   DATE FORMAT
-===================================================== */
+/* =================================================
+   POEM FORMAT
+================================================= */
 
-function formatDate(dateValue) {
+function formatPoem(text) {
 
-  if (!dateValue) {
+  return escapeHtml(text)
+    .replace(/\r?\n/g, "<br>");
 
+}
+
+
+
+/* =================================================
+   DATE
+================================================= */
+
+function formatDate(value) {
+
+  if (!value) return "";
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
     return "";
-
   }
-
-
-  const date =
-    new Date(dateValue);
-
-
-  if (
-    Number.isNaN(
-      date.getTime()
-    )
-  ) {
-
-    return "";
-
-  }
-
 
   return date.toLocaleDateString(
     "bn-BD",
@@ -175,78 +333,36 @@ function formatDate(dateValue) {
 
 
 
-/* =====================================================
-   POEM FORMAT
-===================================================== */
-
-function formatPoem(text) {
-
-  if (!text) {
-
-    return "";
-
-  }
-
-
-  return escapeHtml(text)
-    .replace(/\r?\n/g, "<br>");
-
-}
-
-
-
-/* =====================================================
+/* =================================================
    TOAST
-===================================================== */
+================================================= */
 
 function showToast(message) {
 
   let toast =
-    document.getElementById(
-      "sf-toast"
-    );
-
+    document.getElementById("sf-toast");
 
   if (!toast) {
 
     toast =
-      document.createElement(
-        "div"
-      );
+      document.createElement("div");
 
-    toast.id =
-      "sf-toast";
+    toast.id = "sf-toast";
 
-    toast.className =
-      "sf-toast";
-
-    document.body.appendChild(
-      toast
-    );
+    document.body.appendChild(toast);
 
   }
 
+  toast.textContent = message;
 
-  toast.textContent =
-    message;
+  toast.classList.add("show");
 
-
-  toast.classList.add(
-    "show"
-  );
-
-
-  clearTimeout(
-    window.sfToastTimer
-  );
-
+  clearTimeout(window.sfToastTimer);
 
   window.sfToastTimer =
     setTimeout(() => {
 
-      toast.classList.remove(
-        "show"
-      );
+      toast.classList.remove("show");
 
     }, 2200);
 
@@ -254,58 +370,37 @@ function showToast(message) {
 
 
 
-/* =====================================================
+/* =================================================
    COPY LINK
-===================================================== */
+================================================= */
 
-async function copyPoemLink() {
-
-  const url =
-    window.location.href;
-
+async function copyCurrentLink() {
 
   try {
 
     await navigator.clipboard.writeText(
-      url
+      window.location.href
     );
 
-
-    showToast(
-      "কবিতার লিংক কপি হয়েছে"
-    );
+    showToast("লিংক কপি হয়েছে");
 
   } catch (error) {
 
     const textarea =
-      document.createElement(
-        "textarea"
-      );
-
+      document.createElement("textarea");
 
     textarea.value =
-      url;
+      window.location.href;
 
-
-    document.body.appendChild(
-      textarea
-    );
-
+    document.body.appendChild(textarea);
 
     textarea.select();
 
-
-    document.execCommand(
-      "copy"
-    );
-
+    document.execCommand("copy");
 
     textarea.remove();
 
-
-    showToast(
-      "কবিতার লিংক কপি হয়েছে"
-    );
+    showToast("লিংক কপি হয়েছে");
 
   }
 
@@ -313,35 +408,23 @@ async function copyPoemLink() {
 
 
 
-/* =====================================================
+/* =================================================
    SHARE
-===================================================== */
+================================================= */
 
-async function sharePoem(
-  title
-) {
+async function shareCurrentPage(title) {
 
   const url =
     window.location.href;
 
-
-  if (
-    navigator.share
-  ) {
+  if (navigator.share) {
 
     try {
 
       await navigator.share({
-
-        title:
-          title,
-
-        text:
-          "Shadat Fatih-এর কবিতা — " + title,
-
-        url:
-          url
-
+        title: title,
+        text: title,
+        url: url
       });
 
     } catch (error) {
@@ -351,27 +434,22 @@ async function sharePoem(
     }
 
     return;
-
   }
 
-
-  await copyPoemLink();
+  await copyCurrentLink();
 
 }
 
 
 
-/* =====================================================
+/* =================================================
    COMMENT
-===================================================== */
+================================================= */
 
 function openComments() {
 
   const comments =
-    document.getElementById(
-      "comments"
-    );
-
+    document.getElementById("comments");
 
   if (comments) {
 
@@ -380,40 +458,89 @@ function openComments() {
       block: "start"
     });
 
-
-    setTimeout(() => {
-
-      const input =
-        comments.querySelector(
-          "textarea, input"
-        );
-
-
-      if (input) {
-
-        input.focus();
-
-      }
-
-    }, 500);
-
-
-    return;
-
   }
-
-
-  showToast(
-    "কমেন্ট সেকশন শীঘ্রই আসছে"
-  );
 
 }
 
 
 
-/* =====================================================
+/* =================================================
+   VIEW COUNTER
+=================================================
+
+   IMPORTANT:
+
+   এখানে poems.views ব্যবহার করা হচ্ছে না।
+   তাই "column poems.views does not exist"
+   error হবে না।
+
+   আপাতত browser-based counter রাখা হচ্ছে।
+   পরে Supabase view counter যুক্ত করা যাবে।
+================================================= */
+
+function getLocalViewKey(id) {
+
+  return "shadat_poem_views_" + id;
+
+}
+
+
+function getViewCount(id) {
+
+  const key =
+    getLocalViewKey(id);
+
+  const value =
+    Number(localStorage.getItem(key) || 0);
+
+  return value;
+
+}
+
+
+function increaseView(id) {
+
+  const key =
+    getLocalViewKey(id);
+
+  let value =
+    Number(localStorage.getItem(key) || 0);
+
+  /*
+    একই browser-এ একই poem বারবার
+    refresh করলে বারবার count হবে না।
+  */
+
+  const sessionKey =
+    key + "_counted";
+
+  if (
+    !sessionStorage.getItem(sessionKey)
+  ) {
+
+    value++;
+
+    localStorage.setItem(
+      key,
+      value
+    );
+
+    sessionStorage.setItem(
+      sessionKey,
+      "1"
+    );
+
+  }
+
+  return value;
+
+}
+
+
+
+/* =================================================
    LOAD POEM
-===================================================== */
+================================================= */
 
 async function loadPoem() {
 
@@ -422,23 +549,10 @@ async function loadPoem() {
       "poem-content"
     );
 
-
-  if (!container) {
-
-    return;
-
-  }
-
-
-  /* ---------------------------------------------
-     GET ID FROM URL
-  --------------------------------------------- */
-
   const params =
     new URLSearchParams(
       window.location.search
     );
-
 
   const id =
     params.get("id");
@@ -448,28 +562,20 @@ async function loadPoem() {
 
     container.innerHTML = `
 
-      <div class="reader-error">
+      <p class="eyebrow">
+        POETRY
+      </p>
 
-        <p class="eyebrow">
-          POETRY
-        </p>
+      <h1>
+        কবিতা পাওয়া যায়নি
+      </h1>
 
-        <h1>
-          কবিতা পাওয়া যায়নি
-        </h1>
-
-        <p>
-          কবিতাটির কোনো ID পাওয়া যায়নি।
-        </p>
-
-        <a
-          href="index.html#poetry"
-          class="text-link"
-        >
-          ← সব কবিতা
-        </a>
-
-      </div>
+      <a
+        href="index.html#poetry"
+        class="text-link"
+      >
+        ← সব কবিতা
+      </a>
 
     `;
 
@@ -479,159 +585,148 @@ async function loadPoem() {
 
 
 
-  /* ---------------------------------------------
-     LOAD POEM
-  --------------------------------------------- */
+  try {
 
-  let data = null;
-
-  let error = null;
-
-
-  /*
-    প্রথমে views ছাড়া data নেওয়া হচ্ছে।
-    কারণ poems টেবিলে views column নেই।
-  */
-
-  const result =
-    await supabaseClient
-
-      .from("poems")
-
-      .select(
-        "id, title, content, excerpt, created_at, published"
-      )
-
-      .eq(
-        "id",
-        id
-      )
-
-      .eq(
-        "published",
-        true
-      )
-
-      .single();
-
-
-  data =
-    result.data;
-
-  error =
-    result.error;
-
-
-
-  /* ---------------------------------------------
-     ERROR
-  --------------------------------------------- */
-
-  if (
-    error ||
-    !data
-  ) {
-
-    console.error(
-      "Poem Error:",
+    const {
+      data,
       error
-    );
+    } =
+      await supabaseClient
 
+        .from("poems")
+
+        .select(
+          "id, title, content, excerpt, created_at, published"
+        )
+
+        .eq("id", id)
+
+        .eq("published", true)
+
+        .single();
+
+
+    if (error || !data) {
+
+      throw error ||
+        new Error("Poem not found");
+
+    }
+
+
+
+    /* Increase view */
+
+    const views =
+      increaseView(data.id);
+
+
+
+    /* =================================================
+       RENDER
+    ================================================= */
 
     container.innerHTML = `
 
-      <div class="reader-error">
+      <!-- TOP VIEW ONLY -->
 
-        <p class="eyebrow">
-          POETRY
-        </p>
+      <div class="reader-top">
 
-        <h1>
-          কবিতা পাওয়া যায়নি
-        </h1>
-
-        <p>
-          এই কবিতাটি বর্তমানে প্রকাশিত নয়
-          অথবা পাওয়া যাচ্ছে না।
-        </p>
-
-        <a
-          href="index.html#poetry"
-          class="text-link"
+        <div
+          class="view-counter"
+          title="Views"
         >
-          ← সব কবিতা
-        </a>
+
+          <span class="view-icon">
+            ◉
+          </span>
+
+          <span>
+            ${views.toLocaleString("en-US")}
+            Views
+          </span>
+
+        </div>
 
       </div>
 
-    `;
-
-    return;
-
-  }
 
 
-
-  /* ---------------------------------------------
-     PAGE TITLE
-  --------------------------------------------- */
-
-  document.title =
-    `${data.title} — Shadat Fatih`;
-
-
-
-  /* ---------------------------------------------
-     RENDER
-  --------------------------------------------- */
-
-  container.innerHTML = `
-
-    <!-- =========================================
-         TOP META
-    ========================================== -->
-
-    <div class="reader-top">
+      <!-- CATEGORY -->
 
       <p class="eyebrow">
         POETRY
       </p>
 
 
+
+      <!-- DATE -->
+
+      <div class="published-date">
+        ${formatDate(data.created_at)}
+      </div>
+
+
+
+      <!-- TITLE -->
+
+      <h1>
+        ${escapeHtml(data.title)}
+      </h1>
+
+
+
+      <!-- EXCERPT -->
+
+      ${
+        data.excerpt
+          ? `
+
+            <p class="poem-excerpt">
+              ${escapeHtml(data.excerpt)}
+            </p>
+
+          `
+          : ""
+      }
+
+
+
+      <!-- POEM -->
+
+      <div class="poem-body">
+
+        ${formatPoem(data.content)}
+
+      </div>
+
+
+
+      <!-- AUTHOR -->
+
+      <div class="reader-author">
+
+        Written by
+        <strong>
+          Shadat Fatih
+        </strong>
+
+      </div>
+
+
+
+      <!-- BOTTOM ACTIONS ONLY -->
+
       <div class="reader-actions">
-
-        <!-- TOTAL VIEWS -->
-
-        <button
-          type="button"
-          class="reader-action"
-          aria-label="Total Views"
-          title="Total Views"
-        >
-
-          <span class="action-icon">
-            ◉
-          </span>
-
-          <span>
-            Views
-          </span>
-
-        </button>
-
-
-        <!-- COMMENT -->
 
         <button
           type="button"
           class="reader-action"
           onclick="openComments()"
-          aria-label="Comment"
-          title="Comment"
         >
 
           <span class="action-icon">
-            ◌
+            ✦
           </span>
 
           <span>
@@ -641,14 +736,11 @@ async function loadPoem() {
         </button>
 
 
-        <!-- SHARE -->
 
         <button
           type="button"
           class="reader-action"
-          onclick='sharePoem(${JSON.stringify(data.title)})'
-          aria-label="Share"
-          title="Share"
+          onclick="shareCurrentPage(${JSON.stringify(data.title)})"
         >
 
           <span class="action-icon">
@@ -662,14 +754,11 @@ async function loadPoem() {
         </button>
 
 
-        <!-- COPY LINK -->
 
         <button
           type="button"
           class="reader-action"
-          onclick="copyPoemLink()"
-          aria-label="Copy Link"
-          title="Copy Link"
+          onclick="copyCurrentLink()"
         >
 
           <span class="action-icon">
@@ -684,174 +773,41 @@ async function loadPoem() {
 
       </div>
 
-    </div>
 
 
+      <!-- COMMENTS -->
 
-    <!-- =========================================
-         TITLE
-    ========================================== -->
-
-    <header class="reader-header">
-
-      <p class="reader-date">
-        ${formatDate(data.created_at)}
-      </p>
-
-
-      <h1>
-        ${escapeHtml(data.title)}
-      </h1>
-
-
-      ${
-        data.excerpt
-          ? `
-
-            <p class="poem-excerpt">
-              ${escapeHtml(data.excerpt)}
-            </p>
-
-          `
-          : ""
-      }
-
-    </header>
-
-
-
-    <!-- =========================================
-         POEM BODY
-    ========================================== -->
-
-    <div class="poem-body">
-
-      ${formatPoem(data.content)}
-
-    </div>
-
-
-
-    <!-- =========================================
-         AUTHOR
-    ========================================== -->
-
-    <div class="reader-author">
-
-      <span>
-        Written by
-      </span>
-
-      <strong>
-        Shadat Fatih
-      </strong>
-
-    </div>
-
-
-
-    <!-- =========================================
-         ACTION BAR
-    ========================================== -->
-
-    <div class="reader-bottom-actions">
-
-      <button
-        type="button"
-        class="premium-action"
-        onclick="openComments()"
+      <section
+        class="comments-area"
+        id="comments"
       >
 
-        <span>
-          ◌
-        </span>
-
-        Comment
-
-      </button>
-
-
-      <button
-        type="button"
-        class="premium-action"
-        onclick='sharePoem(${JSON.stringify(data.title)})'
-      >
-
-        <span>
-          ↗
-        </span>
-
-        Share
-
-      </button>
-
-
-      <button
-        type="button"
-        class="premium-action"
-        onclick="copyPoemLink()"
-      >
-
-        <span>
-          ⛓
-        </span>
-
-        Copy Link
-
-      </button>
-
-    </div>
-
-
-
-    <!-- =========================================
-         COMMENTS
-    ========================================== -->
-
-    <section
-      id="comments"
-      class="comments-section"
-    >
-
-      <div class="comments-header">
-
-        <p class="eyebrow">
+        <div class="comments-heading">
           COMMENTS
-        </p>
-
-        <h2>
-          আপনার মতামত
-        </h2>
-
-        <p>
-          এই কবিতা সম্পর্কে আপনার অনুভূতি
-          লিখুন।
-        </p>
-
-      </div>
+        </div>
 
 
-      <div class="comment-placeholder">
+        <div class="comment-box">
 
-        <p>
-          কমেন্ট সিস্টেম প্রস্তুত হচ্ছে।
-        </p>
+          <h2>
+            আপনার মতামত
+          </h2>
 
-        <small>
-          আপনার মন্তব্য এখানে সংযুক্ত হবে।
-        </small>
+          <p>
+            এই কবিতা সম্পর্কে আপনার অনুভূতি লিখুন।
+          </p>
 
-      </div>
+          <p class="comment-notice">
+            কমেন্ট সিস্টেম এখানে যুক্ত করা হবে।
+          </p>
 
-    </section>
+        </div>
+
+      </section>
 
 
 
-    <!-- =========================================
-         BACK
-    ========================================== -->
-
-    <div class="reader-footer">
+      <!-- BACK -->
 
       <a
         href="index.html#poetry"
@@ -860,17 +816,49 @@ async function loadPoem() {
         ← সব কবিতা
       </a>
 
-    </div>
+    `;
 
-  `;
+  } catch (error) {
+
+    console.error(
+      "Poem Error:",
+      error
+    );
+
+
+    container.innerHTML = `
+
+      <p class="eyebrow">
+        POETRY
+      </p>
+
+      <h1>
+        কবিতা পাওয়া যায়নি
+      </h1>
+
+      <p class="poem-excerpt">
+        এই কবিতাটি বর্তমানে প্রকাশিত নয়
+        অথবা পাওয়া যাচ্ছে না।
+      </p>
+
+      <a
+        href="index.html#poetry"
+        class="text-link"
+      >
+        ← সব কবিতা
+      </a>
+
+    `;
+
+  }
 
 }
 
 
 
-/* =====================================================
+/* =================================================
    START
-===================================================== */
+================================================= */
 
 loadPoem();
 
