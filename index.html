@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="bn">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Shadat Fatih — কবিতা, গল্প ও উপন্যাস</title>
 
@@ -12,46 +18,206 @@
   >
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
 
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
 </head>
+
 
 <body>
 
-<!-- NAVIGATION -->
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
 
 <header class="navbar">
 
   <div class="nav-inner">
 
-    <!-- LEFT LOGO -->
-    <a href="#home" class="brand-logo">
-      <img src="shadat-fatih.jpg" alt="Shadat Fatih">
+    <!-- PROFILE LOGO -->
+
+    <a
+      href="#home"
+      class="brand-logo"
+      aria-label="Shadat Fatih"
+    >
+
+      <img
+        src="shadat-fatih.jpg"
+        alt="Shadat Fatih"
+      >
+
     </a>
 
-    <!-- CENTER TITLE -->
-    <a href="#home" class="site-title">
+
+    <!-- SITE TITLE -->
+
+    <a
+      href="#home"
+      class="site-title"
+    >
       Shadat Fatih
     </a>
 
-    <!-- RIGHT MENU -->
-    <button class="menu-btn" id="menuToggle" aria-label="Menu">
+
+    <!-- 3 DOT MENU -->
+
+    <button
+      class="menu-btn"
+      id="menuToggle"
+      aria-label="Open menu"
+      aria-expanded="false"
+      type="button"
+    >
       ⋮
     </button>
 
-    <!-- MENU -->
-    <nav id="mainNav">
-      <a href="#home">প্রচ্ছদ</a>
-      <a href="#poetry">কবিতা</a>
-      <a href="#stories">গল্প</a>
-      <a href="#novels">উপন্যাস</a>
-      <a href="#author">লেখক</a>
+
+    <!-- =================================================
+         MAIN MENU
+    ================================================= -->
+
+    <nav
+      id="mainNav"
+      aria-label="Main navigation"
+    >
+
+      <!-- PROFILE -->
+
+      <div class="menu-profile">
+
+        <img
+          src="shadat-fatih.jpg"
+          alt="Shadat Fatih"
+          class="menu-profile-image"
+        >
+
+        <div class="menu-profile-name">
+          Shadat Fatih
+        </div>
+
+        <p class="menu-profile-quote">
+          “কিছু অনুভূতি শুধু লেখাই যায়।”
+        </p>
+
+      </div>
+
+
+      <!-- BASIC NAVIGATION -->
+
+      <div class="menu-links">
+
+        <a href="#home">
+          প্রচ্ছদ
+        </a>
+
+        <a href="#poetry">
+          কবিতা
+        </a>
+
+        <a href="#stories">
+          গল্প
+        </a>
+
+        <a href="#novels">
+          উপন্যাস
+        </a>
+
+        <a href="#author">
+          লেখক
+        </a>
+
+      </div>
+
+
+      <!-- ARCHIVE -->
+
+      <div class="menu-category">
+
+        <span class="menu-category-title">
+          ARCHIVE
+        </span>
+
+        <a href="#yearly-published">
+          Yearly Published
+        </a>
+
+        <a href="#poetry">
+          Poems
+        </a>
+
+        <a href="#stories">
+          Stories
+        </a>
+
+        <a href="#novels">
+          Novels
+        </a>
+
+      </div>
+
+
+      <!-- YEARLY -->
+
+      <div
+        class="menu-category"
+        id="yearly-published"
+      >
+
+        <span class="menu-category-title">
+          YEARLY PUBLISHED
+        </span>
+
+        <div
+          id="yearly-list"
+          class="yearly-list"
+        >
+
+          <span>
+            Loading...
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- MOST VIEWED -->
+
+      <div class="menu-category">
+
+        <span class="menu-category-title">
+          MOST VIEWED
+        </span>
+
+        <a href="#most-viewed-poems">
+          Most Viewed Poems
+        </a>
+
+        <a href="#most-viewed-stories">
+          Most Viewed Stories
+        </a>
+
+        <a href="#most-viewed-novels">
+          Most Viewed Novels
+        </a>
+
+      </div>
+
     </nav>
 
   </div>
@@ -59,11 +225,21 @@
 </header>
 
 
-<!-- HERO -->
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <main>
 
-<section class="hero" id="home">
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section
+  class="hero"
+  id="home"
+>
 
   <div class="hero-content">
 
@@ -81,33 +257,46 @@
       একটি নিজস্ব সাহিত্যভুবন।
     </p>
 
-    <a href="#poetry" class="hero-button">
+    <a
+      href="#poetry"
+      class="hero-button"
+    >
       লেখা আবিষ্কার করুন
       <span>↗</span>
     </a>
 
   </div>
 
+
   <div class="hero-image">
 
-  <img
-    src="shadat-fatih.jpg"
-    alt="Shadat Fatih"
-  >
+    <img
+      src="shadat-fatih.jpg"
+      alt="Shadat Fatih"
+    >
 
-  <div class="image-overlay"></div>
+    <div class="image-overlay"></div>
 
-  <div class="hero-caption">
-    <span>SHADAT FATIH</span>
-    <span>LITERARY ARCHIVE</span>
-  </div>
+    <div class="hero-caption">
+
+      <span>
+        SHADAT FATIH
+      </span>
+
+      <span>
+        LITERARY ARCHIVE
+      </span>
+
+    </div>
 
   </div>
 
 </section>
 
 
-<!-- INTRO -->
+<!-- =====================================================
+     INTRO
+===================================================== -->
 
 <section class="intro">
 
@@ -133,9 +322,14 @@
 </section>
 
 
-<!-- POETRY -->
+<!-- =====================================================
+     POETRY
+===================================================== -->
 
-<section class="content-section light" id="poetry">
+<section
+  class="content-section light"
+  id="poetry"
+>
 
   <div class="section-container">
 
@@ -174,15 +368,59 @@
 
     </div>
 
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     MOST VIEWED POEMS
+===================================================== -->
+
+<section
+  class="archive-section"
+  id="most-viewed-poems"
+>
+
+  <div class="section-container">
+
+    <div class="archive-heading">
+
+      <p class="eyebrow">
+        MOST VIEWED / POEMS
+      </p>
+
+      <h2>
+        সবচেয়ে বেশি পঠিত কবিতা
+      </h2>
+
+    </div>
+
+
+    <div
+      class="most-viewed-grid"
+      id="most-viewed-poems-list"
+    >
+
+      <p>
+        লোড হচ্ছে...
+      </p>
+
+    </div>
 
   </div>
 
 </section>
 
 
-<!-- STORIES -->
+<!-- =====================================================
+     STORIES
+===================================================== -->
 
-<section class="content-section dark" id="stories">
+<section
+  class="content-section dark"
+  id="stories"
+>
 
   <div class="section-container">
 
@@ -208,25 +446,70 @@
     </div>
 
 
-<div
-  class="story-grid"
-  id="stories-container"
->
+    <div
+      class="story-grid"
+      id="stories-container"
+    >
 
-  <p>
-    গল্প লোড হচ্ছে...
-  </p>
+      <p>
+        গল্প লোড হচ্ছে...
+      </p>
 
-</div>
-    
+    </div>
+
   </div>
 
 </section>
 
 
-<!-- NOVELS -->
+<!-- =====================================================
+     MOST VIEWED STORIES
+===================================================== -->
 
-<section class="content-section novel-section" id="novels">
+<section
+  class="archive-section dark-archive"
+  id="most-viewed-stories"
+>
+
+  <div class="section-container">
+
+    <div class="archive-heading">
+
+      <p class="eyebrow">
+        MOST VIEWED / STORIES
+      </p>
+
+      <h2>
+        সবচেয়ে বেশি পঠিত গল্প
+      </h2>
+
+    </div>
+
+
+    <div
+      class="most-viewed-grid"
+      id="most-viewed-stories-list"
+    >
+
+      <p>
+        লোড হচ্ছে...
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     NOVELS
+===================================================== -->
+
+<section
+  class="content-section novel-section"
+  id="novels"
+>
 
   <div class="section-container">
 
@@ -270,7 +553,49 @@
 </section>
 
 
-<!-- FEATURED QUOTE -->
+<!-- =====================================================
+     MOST VIEWED NOVELS
+===================================================== -->
+
+<section
+  class="archive-section"
+  id="most-viewed-novels"
+>
+
+  <div class="section-container">
+
+    <div class="archive-heading">
+
+      <p class="eyebrow">
+        MOST VIEWED / NOVELS
+      </p>
+
+      <h2>
+        সবচেয়ে বেশি পঠিত উপন্যাস
+      </h2>
+
+    </div>
+
+
+    <div
+      class="most-viewed-grid"
+      id="most-viewed-novels-list"
+    >
+
+      <p>
+        লোড হচ্ছে...
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     FEATURED QUOTE
+===================================================== -->
 
 <section class="quote-section">
 
@@ -294,16 +619,26 @@
 </section>
 
 
-<!-- AUTHOR -->
+<!-- =====================================================
+     AUTHOR
+===================================================== -->
 
-<section class="author-section" id="author">
+<section
+  class="author-section"
+  id="author"
+>
 
   <div class="section-container">
 
     <div class="author-grid">
 
       <div class="author-photo">
-  <img src="hero.jpg" alt="Shadat Fatih">
+
+        <img
+          src="hero.jpg"
+          alt="Shadat Fatih"
+        >
+
       </div>
 
 
@@ -324,25 +659,38 @@
           একটি ব্যক্তিগত সাহিত্যযাত্রা।
         </p>
 
+
         <div class="floating-socials">
 
-  <a href="https://www.facebook.com/FatihShadatOfficial" target="_blank" rel="noopener">
-    Facebook ↗
-  </a>
+          <a
+            href="https://www.facebook.com/FatihShadatOfficial"
+            target="_blank"
+            rel="noopener"
+          >
+            Facebook ↗
+          </a>
 
-  <a href="https://www.instagram.com/shadatfatih" target="_blank" rel="noopener">
-    Instagram ↗
-  </a>
+          <a
+            href="https://www.instagram.com/shadatfatih"
+            target="_blank"
+            rel="noopener"
+          >
+            Instagram ↗
+          </a>
 
-  <a href="https://wa.me/8801601800222" target="_blank" rel="noopener">
-    WhatsApp ↗
-  </a>
+          <a
+            href="https://wa.me/8801601800222"
+            target="_blank"
+            rel="noopener"
+          >
+            WhatsApp ↗
+          </a>
 
-  <a href="mailto:helloshadat@hotmail.com">
-    Email ↗
-  </a>
+          <a href="mailto:helloshadat@hotmail.com">
+            Email ↗
+          </a>
 
-</div>
+        </div>
 
       </div>
 
@@ -353,7 +701,9 @@
 </section>
 
 
-<!-- FOOTER -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
@@ -379,376 +729,26 @@
 
 </footer>
 
+
 </main>
+
+
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script>
 
-const SUPABASE_URL =
-  "https://ooxbtwxqumaixvrwsllg.supabase.co";
-
-const SUPABASE_PUBLISHABLE_KEY =
-  "sb_publishable_dNAV-kJ5rv_-BH6GhChYVg_1xbRUNdy";
-
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
-
-
-/* =========================
-   HTML SECURITY
-========================= */
-
-function escapeHtml(value) {
-
-  return String(value || "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-
-}
-
-
-/* =========================
-   POETRY
-========================= */
-
-async function loadPoetry() {
-
-  const container =
-    document.getElementById("poetry-list");
-
-  if (!container) return;
-
-
-  const { data, error } =
-    await supabaseClient
-      .from("poems")
-      .select("id, title, content, excerpt, created_at, published")
-      .eq("published", true)
-      .order("created_at", {
-        ascending: false
-      });
-
-
-  if (error) {
-
-    console.error("Poetry Error:", error);
-
-    container.innerHTML = `
-      <div>
-        <p class="card-label">POETRY</p>
-
-        <h3>
-          কবিতা লোড করা যায়নি
-        </h3>
-
-        <p>
-          ${escapeHtml(error.message)}
-        </p>
-      </div>
-    `;
-
-    return;
-  }
-
-
-  if (!data || data.length === 0) {
-
-    container.innerHTML = `
-      <div>
-        <p class="card-label">
-          POETRY
-        </p>
-
-        <h3>
-          শীঘ্রই আসছে
-        </h3>
-
-        <p>
-          নতুন কবিতা খুব শীঘ্রই প্রকাশিত হবে।
-        </p>
-      </div>
-    `;
-
-    return;
-  }
-
-
-  container.innerHTML = data.map((poem, index) => `
-
-    <div>
-
-      <div class="card-number">
-        ${String(index + 1).padStart(2, "0")}
-      </div>
-
-      <p class="card-label">
-        POETRY
-      </p>
-
-      <h3>
-        ${escapeHtml(poem.title)}
-      </h3>
-
-      ${
-        poem.excerpt
-          ? `
-            <p>
-              ${escapeHtml(poem.excerpt)}
-            </p>
-          `
-          : ""
-      }
-
-      <a
-        href="poem.html?id=${encodeURIComponent(poem.id)}"
-        class="text-link"
-      >
-        কবিতা পড়ুন →
-      </a>
-
-    </div>
-
-  `).join("");
-
-}
-
-
-/* =========================
-   STORIES
-========================= */
-
-async function loadStories() {
-
-  const container =
-    document.getElementById("stories-container");
-
-  if (!container) return;
-
-  const { data, error } =
-    await supabaseClient
-      .from("stories")
-      .select("id, title, excerpt, created_at, published")
-      .eq("published", true)
-      .order("created_at", {
-        ascending: false
-      });
-
-  if (error) {
-
-    console.error("Stories Error:", error);
-
-    container.innerHTML = `
-      <div class="story-card">
-
-        <span>
-          STORIES
-        </span>
-
-        <h3>
-          গল্প লোড করা যায়নি
-        </h3>
-
-        <p>
-          ${escapeHtml(error.message)}
-        </p>
-
-      </div>
-    `;
-
-    return;
-  }
-
-  if (!data || data.length === 0) {
-
-    container.innerHTML = `
-      <div class="story-card">
-
-        <span>
-          STORIES
-        </span>
-
-        <h3>
-          কোনো প্রকাশিত গল্প নেই
-        </h3>
-
-        <p>
-          Admin Dashboard থেকে গল্পটি Publish করা আছে কিনা দেখুন।
-        </p>
-
-      </div>
-    `;
-
-    return;
-  }
-
-  container.innerHTML =
-    data.map((story, index) => `
-
-      <article class="story-card">
-
-        <span>
-          STORY ${String(index + 1).padStart(2, "0")}
-        </span>
-
-        <h3>
-          ${escapeHtml(story.title)}
-        </h3>
-
-        ${
-          story.excerpt
-            ? `
-              <p>
-                ${escapeHtml(story.excerpt)}
-              </p>
-            `
-            : ""
-        }
-
-        <a
-          href="story.html?id=${encodeURIComponent(story.id)}"
-        >
-          গল্প পড়ুন ↗
-        </a>
-
-      </article>
-
-    `).join("");
-
-}
-
-/* =========================
-   NOVELS
-========================= */
-
-async function loadNovels() {
-
-  const container =
-    document.getElementById("novels-container");
-
-  if (!container) return;
-
-
-  const { data, error } =
-    await supabaseClient
-      .from("novels")
-      .select("id, title, content, excerpt, created_at, published")
-      .eq("published", true)
-      .order("created_at", {
-        ascending: false
-      });
-
-
-  if (error) {
-
-    console.error("Novels Error:", error);
-
-    container.innerHTML = `
-      <div class="novel-card">
-
-        <p class="card-label">
-          NOVELS
-        </p>
-
-        <h3>
-          উপন্যাস লোড করা যায়নি
-        </h3>
-
-        <p>
-          ${escapeHtml(error.message)}
-        </p>
-
-      </div>
-    `;
-
-    return;
-  }
-
-
-  if (!data || data.length === 0) {
-
-    container.innerHTML = `
-      <div class="novel-card">
-
-        <p class="card-label">
-          NOVELS
-        </p>
-
-        <h3>
-          শীঘ্রই আসছে
-        </h3>
-
-        <p>
-          নতুন উপন্যাস খুব শীঘ্রই প্রকাশিত হবে।
-        </p>
-
-      </div>
-    `;
-
-    return;
-  }
-
-
-  container.innerHTML = data.map((novel, index) => `
-
-    <article class="novel-card">
-
-      <div class="novel-info">
-
-        <p class="card-label">
-          NOVEL ${String(index + 1).padStart(2, "0")}
-        </p>
-
-        <h3>
-          ${escapeHtml(novel.title)}
-        </h3>
-
-        ${
-          novel.excerpt
-            ? `
-              <p>
-                ${escapeHtml(novel.excerpt)}
-              </p>
-            `
-            : ""
-        }
-
-        <a
-          href="novel.html?id=${encodeURIComponent(novel.id)}"
-          class="text-link"
-        >
-          উপন্যাস পড়ুন →
-        </a>
-
-      </div>
-
-    </article>
-
-  `).join("");
-
-}
-
-/* =========================
-   START
-========================= */
-
-document.addEventListener("DOMContentLoaded", function() {
-
-  loadPoetry();
-
-  loadStories();
-
-  loadNovels();
-
-});
-
-</script>
+<!-- =====================================================
+     MAIN JAVASCRIPT
+     
+     IMPORTANT:
+     This file will be replaced in the next step.
+===================================================== -->
+
+<script src="script.js"></script>
 
 </body>
+
 </html>
