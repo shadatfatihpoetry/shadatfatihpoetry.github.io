@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Shadat Fatih — কবিতা</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+</head>
+
+
+<body>
+
+  <main class="poem-page">
+
+    <article
+      class="poem-reader"
+      id="poem-content"
+    >
+
+      <p>
+        কবিতা লোড হচ্ছে...
+      </p>
+
+    </article>
+
+  </main>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+  <script>
+
+    const SUPABASE_URL =
+      "https://ooxbtwxqumaixvrwsllg.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_dNAV-kJ5rv_-BH6GhChYVg_1xbRUNdy";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+
+
+    async function loadPoem() {
+
+      const params =
+        new URLSearchParams(
+          window.location.search
+        );
+
+      const id =
+        params.get("id");
+
+
+      if (!id) {
+
+        document.getElementById(
+          "poem-content"
+        ).innerHTML = `
+          <h1>কবিতা পাওয়া যায়নি</h1>
+        `;
+
+        return;
+      }
+
+
+      const { data, error } =
+        await supabaseClient
+          .from("poems")
+          .select("title, content, excerpt, published")
+          .eq("id", id)
+          .eq("published", true)
+          .single();
+
+
+      if (error || !data) {
+
+        console.error(error);
+
+        document.getElementById(
+          "poem-content"
+        ).innerHTML = `
+          <h1>কবিতা পাওয়া যায়নি</h1>
+          <p>
+            এই কবিতাটি বর্তমানে প্রকাশিত নয়।
+          </p>
+        `;
+
+        return;
+      }
+
+
+      document.getElementById(
+        "poem-content"
+      ).innerHTML = `
+
+        <p class="eyebrow">
+          POETRY
+        </p>
+
+        <h1>
+          ${escapeHtml(data.title)}
+        </h1>
+
+        ${
+          data.excerpt
+            ? `<p class="poem-excerpt">
+                ${escapeHtml(data.excerpt)}
+              </p>`
+            : ""
+        }
+
+        <div class="poem-body">
+          ${formatPoem(data.content)}
+        </div>
+
+        <a
+          href="index.html#poetry"
+          class="text-link"
+        >
+          ← সব কবিতা
+        </a>
+
+      `;
+
+    }
+
+
+    function formatPoem(text) {
+
+      return escapeHtml(text)
+        .replace(/\r?\n/g, "<br>");
+
+    }
+
+
+    function escapeHtml(value) {
+
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+    }
+
+
+    loadPoem();
+
+  </script>
+
+</body>
+
+</html>
