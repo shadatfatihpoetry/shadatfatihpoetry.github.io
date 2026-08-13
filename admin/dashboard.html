@@ -2,6 +2,7 @@
 <html lang="bn">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -39,6 +40,10 @@
       font: inherit;
     }
 
+    button {
+      cursor: pointer;
+    }
+
     .topbar {
       position: sticky;
       top: 0;
@@ -52,7 +57,7 @@
 
       padding: 0 30px;
 
-      background: rgba(255,255,255,.82);
+      background: rgba(255,255,255,.86);
 
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
@@ -97,8 +102,6 @@
 
       background: #111;
       color: white;
-
-      cursor: pointer;
     }
 
     .container {
@@ -155,8 +158,6 @@
       background: transparent;
 
       color: #666;
-
-      cursor: pointer;
 
       font-weight: 600;
     }
@@ -237,8 +238,6 @@
 
       background: #111;
       color: white;
-
-      cursor: pointer;
     }
 
     .search {
@@ -340,14 +339,19 @@
 
       border-radius: 10px;
 
-      cursor: pointer;
-
       background: #eee;
+
+      white-space: nowrap;
     }
 
     .actions .delete {
       background: #ffe8e8;
       color: #c00;
+    }
+
+    .chapter-button {
+      background: #e8f0ff !important;
+      color: #2457a6;
     }
 
     .empty {
@@ -360,6 +364,12 @@
       border-radius: 18px;
 
       color: #777;
+    }
+
+    .error-box {
+      color: #b00020;
+      background: #fff1f1;
+      border: 1px solid #ffd4d4;
     }
 
     /* MODAL */
@@ -388,7 +398,7 @@
     }
 
     .modal-box {
-      width: min(650px, 100%);
+      width: min(700px, 100%);
 
       max-height: 90vh;
 
@@ -407,6 +417,7 @@
       font-family: Georgia, serif;
 
       font-size: 30px;
+
       font-weight: 500;
     }
 
@@ -420,6 +431,7 @@
       margin-bottom: 7px;
 
       font-size: 13px;
+
       font-weight: 600;
     }
 
@@ -434,6 +446,8 @@
       border-radius: 12px;
 
       outline: none;
+
+      background: white;
     }
 
     .field textarea {
@@ -462,8 +476,6 @@
       border-radius: 12px;
 
       background: #eee;
-
-      cursor: pointer;
     }
 
     .save {
@@ -476,16 +488,107 @@
       background: #111;
 
       color: white;
-
-      cursor: pointer;
     }
 
-    #message {
+    #message,
+    #chapterMessage {
       margin-top: 15px;
 
       text-align: center;
 
       font-size: 13px;
+    }
+
+    /* CHAPTER */
+
+    .chapter-header {
+      margin-bottom: 20px;
+    }
+
+    .chapter-header p {
+      color: #777;
+      font-size: 14px;
+    }
+
+    .chapter-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .chapter-item {
+      padding: 16px;
+
+      background: #f7f7f8;
+
+      border: 1px solid #e5e5e5;
+
+      border-radius: 15px;
+    }
+
+    .chapter-item-top {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: flex-start;
+
+      gap: 15px;
+    }
+
+    .chapter-title {
+      font-weight: 600;
+
+      font-size: 17px;
+    }
+
+    .chapter-number {
+      color: #777;
+
+      font-size: 12px;
+
+      margin-bottom: 5px;
+    }
+
+    .chapter-actions {
+      display: flex;
+
+      gap: 7px;
+
+      flex-wrap: wrap;
+    }
+
+    .chapter-actions button {
+      padding: 7px 10px;
+
+      border: 0;
+
+      border-radius: 9px;
+
+      background: #e8e8ea;
+
+      font-size: 12px;
+    }
+
+    .chapter-actions .delete {
+      background: #ffe8e8;
+
+      color: #c00;
+    }
+
+    .chapter-divider {
+      margin: 25px 0;
+
+      border: 0;
+
+      border-top: 1px solid #eee;
+    }
+
+    .chapter-form-title {
+      margin-bottom: 18px;
+
+      font-size: 20px;
+
+      font-family: Georgia, serif;
     }
 
     @media (max-width: 700px) {
@@ -496,6 +599,7 @@
 
       .container {
         width: 92%;
+
         padding-top: 30px;
       }
 
@@ -513,11 +617,13 @@
 
       .toolbar {
         align-items: flex-start;
+
         flex-direction: column;
       }
 
       .content-item {
         align-items: flex-start;
+
         flex-direction: column;
       }
 
@@ -531,6 +637,10 @@
 
       .modal-box {
         padding: 22px;
+      }
+
+      .chapter-item-top {
+        flex-direction: column;
       }
 
     }
@@ -553,8 +663,15 @@
     >
 
     <div>
-      <strong>Shadat Fatih</strong>
-      <span>ADMIN PANEL</span>
+
+      <strong>
+        Shadat Fatih
+      </strong>
+
+      <span>
+        ADMIN PANEL
+      </span>
+
     </div>
 
   </div>
@@ -588,27 +705,32 @@
 
 
 
-  <!-- CONTENT TABS -->
+  <!-- TABS -->
 
   <div class="tabs">
 
     <button
       class="tab active"
       data-type="poems"
+      type="button"
     >
       Poetry
     </button>
 
+
     <button
       class="tab"
       data-type="stories"
+      type="button"
     >
       Stories
     </button>
 
+
     <button
       class="tab"
       data-type="novels"
+      type="button"
     >
       Novels
     </button>
@@ -673,9 +795,11 @@
         Poetry
       </h2>
 
+
       <button
         class="primary"
         id="addContentBtn"
+        type="button"
       >
         + নতুন কবিতা
       </button>
@@ -703,7 +827,7 @@
 
 
 
-<!-- MODAL -->
+<!-- CONTENT MODAL -->
 
 <div
   class="modal"
@@ -735,7 +859,6 @@
       </div>
 
 
-
       <div class="field">
 
         <label>
@@ -748,7 +871,6 @@
         >
 
       </div>
-
 
 
       <div class="field">
@@ -766,7 +888,6 @@
       </div>
 
 
-
       <div class="field">
 
         <label id="contentLabel">
@@ -779,7 +900,6 @@
         ></textarea>
 
       </div>
-
 
 
       <div class="modal-actions">
@@ -814,10 +934,137 @@
 
 
 
+<!-- CHAPTER MODAL -->
+
+<div
+  class="modal"
+  id="chapterModal"
+>
+
+  <div class="modal-box">
+
+    <div class="chapter-header">
+
+      <h2>
+        Chapter Management
+      </h2>
+
+      <p id="chapterNovelName">
+        উপন্যাস
+      </p>
+
+    </div>
+
+
+    <!-- CHAPTER LIST -->
+
+    <div
+      class="chapter-list"
+      id="chapterList"
+    ></div>
+
+
+    <hr class="chapter-divider">
+
+
+    <!-- ADD CHAPTER -->
+
+    <h3 class="chapter-form-title">
+      নতুন Chapter
+    </h3>
+
+
+    <form id="chapterForm">
+
+
+      <div class="field">
+
+        <label>
+          Chapter Number
+        </label>
+
+        <input
+          type="number"
+          id="chapterNumber"
+          min="1"
+          required
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Chapter Title
+        </label>
+
+        <input
+          type="text"
+          id="chapterTitle"
+          placeholder="যেমন: প্রথম অধ্যায়"
+          required
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Chapter Content
+        </label>
+
+        <textarea
+          id="chapterContent"
+          placeholder="এখানে Chapter-এর সম্পূর্ণ লেখা লিখুন..."
+          required
+        ></textarea>
+
+      </div>
+
+
+      <div class="modal-actions">
+
+        <button
+          type="button"
+          class="cancel"
+          id="chapterCancelBtn"
+        >
+          বন্ধ করুন
+        </button>
+
+
+        <button
+          type="submit"
+          class="save"
+          id="chapterSaveBtn"
+        >
+          Chapter যোগ করুন
+        </button>
+
+      </div>
+
+
+      <div id="chapterMessage"></div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+
 <script>
+
+/* ==========================================
+   SUPABASE
+========================================== */
 
 const SUPABASE_URL =
   "https://ooxbtwxqumaixvrwsllg.supabase.co";
+
 
 const SUPABASE_PUBLISHABLE_KEY =
   "sb_publishable_dNAV-kJ5rv_-BH6GhChYVg_1xbRUNdy";
@@ -830,9 +1077,10 @@ const supabaseClient =
   );
 
 
-/* =========================
+
+/* ==========================================
    STATE
-========================= */
+========================================== */
 
 let currentType = "poems";
 
@@ -840,10 +1088,13 @@ let contents = [];
 
 let editingId = null;
 
+let currentNovelId = null;
 
-/* =========================
+
+
+/* ==========================================
    TYPE SETTINGS
-========================= */
+========================================== */
 
 const typeSettings = {
 
@@ -903,7 +1154,7 @@ const typeSettings = {
 
     edit: "উপন্যাস সম্পাদনা",
 
-    label: "পুরো উপন্যাস",
+    label: "উপন্যাসের মূল লেখা",
 
     empty: "এখনো কোনো উপন্যাস নেই।"
 
@@ -912,29 +1163,34 @@ const typeSettings = {
 };
 
 
-/* =========================
+
+/* ==========================================
    ELEMENTS
-========================= */
+========================================== */
 
 const contentList =
   document.getElementById(
     "contentList"
   );
 
+
 const modal =
   document.getElementById(
     "contentModal"
   );
+
 
 const form =
   document.getElementById(
     "contentForm"
   );
 
+
 const message =
   document.getElementById(
     "message"
   );
+
 
 const saveBtn =
   document.getElementById(
@@ -942,9 +1198,71 @@ const saveBtn =
   );
 
 
-/* =========================
+const chapterModal =
+  document.getElementById(
+    "chapterModal"
+  );
+
+
+const chapterList =
+  document.getElementById(
+    "chapterList"
+  );
+
+
+const chapterForm =
+  document.getElementById(
+    "chapterForm"
+  );
+
+
+const chapterMessage =
+  document.getElementById(
+    "chapterMessage"
+  );
+
+
+
+/* ==========================================
+   ESCAPE HTML
+========================================== */
+
+function escapeHtml(value) {
+
+  return String(value ?? "")
+
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
+
+}
+
+
+
+/* ==========================================
    CHECK LOGIN
-========================= */
+========================================== */
 
 async function checkUser() {
 
@@ -959,7 +1277,10 @@ async function checkUser() {
 
     if (error) {
 
-      console.error(error);
+      console.error(
+        "Session error:",
+        error
+      );
 
       window.location.href =
         "./index.html";
@@ -983,7 +1304,10 @@ async function checkUser() {
 
   catch (error) {
 
-    console.error(error);
+    console.error(
+      "Auth error:",
+      error
+    );
 
     window.location.href =
       "./index.html";
@@ -995,9 +1319,10 @@ async function checkUser() {
 }
 
 
-/* =========================
+
+/* ==========================================
    LOAD CONTENT
-========================= */
+========================================== */
 
 async function loadContent() {
 
@@ -1005,33 +1330,55 @@ async function loadContent() {
     typeSettings[currentType];
 
 
-  contentList.innerHTML =
-    `<div class="empty">
+  contentList.innerHTML = `
+    <div class="empty">
       Loading...
-    </div>`;
+    </div>
+  `;
 
 
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
+  try {
 
-      .from(settings.table)
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
 
-      .select(
-        "id,title,excerpt,cover_url,content,published,created_at"
-      )
+        .from(settings.table)
 
-      .order(
-        "created_at",
-        {
-          ascending: false
-        }
-      );
+        .select(
+          "id,title,excerpt,cover_url,content,published,created_at"
+        )
+
+        .order(
+          "created_at",
+          {
+            ascending: false
+          }
+        );
 
 
-  if (error) {
+    if (error) {
+
+      throw error;
+
+    }
+
+
+    contents =
+      Array.isArray(data)
+        ? data
+        : [];
+
+
+    updateStats();
+
+    renderContent();
+
+  }
+
+  catch (error) {
 
     console.error(
       "Load error:",
@@ -1044,8 +1391,9 @@ async function loadContent() {
     updateStats();
 
 
-    contentList.innerHTML =
-      `<div class="empty">
+    contentList.innerHTML = `
+
+      <div class="empty error-box">
 
         <strong>
           ${escapeHtml(settings.title)}
@@ -1055,31 +1403,23 @@ async function loadContent() {
         <br><br>
 
         ${escapeHtml(
-          error.message
+          error.message ||
+          "Unknown error"
         )}
 
-      </div>`;
+      </div>
 
-    return;
+    `;
+
   }
-
-
-  contents =
-    Array.isArray(data)
-      ? data
-      : [];
-
-
-  renderContent();
-
-  updateStats();
 
 }
 
 
-/* =========================
+
+/* ==========================================
    UPDATE STATS
-========================= */
+========================================== */
 
 function updateStats() {
 
@@ -1110,9 +1450,10 @@ function updateStats() {
 }
 
 
-/* =========================
+
+/* ==========================================
    RENDER CONTENT
-========================= */
+========================================== */
 
 function renderContent() {
 
@@ -1120,14 +1461,10 @@ function renderContent() {
     typeSettings[currentType];
 
 
-  const searchInput =
-    document.getElementById(
-      "search"
-    );
-
-
   const search =
-    searchInput.value
+    document
+      .getElementById("search")
+      .value
       .trim()
       .toLowerCase();
 
@@ -1157,153 +1494,135 @@ function renderContent() {
 
   if (!filtered.length) {
 
-    contentList.innerHTML =
-      `<div class="empty">
+    contentList.innerHTML = `
+
+      <div class="empty">
+
         ${escapeHtml(
           settings.empty
         )}
-      </div>`;
+
+      </div>
+
+    `;
 
     return;
+
   }
 
 
   contentList.innerHTML =
 
-    filtered.map(item => `
+    filtered.map(item => {
 
-      <article class="content-item">
-
-        <div class="content-info">
-
-          <h3>
-            ${escapeHtml(
-              item.title ||
-              "Untitled"
-            )}
-          </h3>
-
-
-          <p>
-            ${escapeHtml(
-              item.excerpt ||
-              "No description"
-            )}
-          </p>
+      const chapterButton =
+        currentType === "novels"
+          ? `
+            <button
+              type="button"
+              class="chapter-button"
+              onclick="manageChapters('${item.id}')"
+            >
+              Chapters
+            </button>
+          `
+          : "";
 
 
-          <span
-            class="status ${
-              item.published
-                ? "published"
-                : "draft"
-            }"
-          >
+      return `
 
-            ${
-              item.published
-                ? "Published"
-                : "Draft"
-            }
+        <article class="content-item">
 
-          </span>
+          <div class="content-info">
 
-        </div>
+            <h3>
+              ${escapeHtml(
+                item.title ||
+                "Untitled"
+              )}
+            </h3>
 
 
-        <div class="actions">
-
-          <button
-            type="button"
-            onclick="editContent('${item.id}')"
-          >
-            Edit
-          </button>
-${
-  currentType === "novels"
-    ? `
-      <button
-        type="button"
-        onclick="manageChapters('${item.id}')"
-      >
-        Chapters
-      </button>
-    `
-    : ""
-}
-          <button
-            type="button"
-            onclick="togglePublish(
-              '${item.id}',
-              ${item.published === true}
-            )"
-          >
-
-            ${
-              item.published
-                ? "Unpublish"
-                : "Publish"
-            }
-
-          </button>
+            <p>
+              ${escapeHtml(
+                item.excerpt ||
+                "No description"
+              )}
+            </p>
 
 
-          <button
-            type="button"
-            class="delete"
-            onclick="deleteContent('${item.id}')"
-          >
-            Delete
-          </button>
+            <span
+              class="status ${
+                item.published
+                  ? "published"
+                  : "draft"
+              }"
+            >
 
-        </div>
+              ${
+                item.published
+                  ? "Published"
+                  : "Draft"
+              }
 
-      </article>
+            </span>
 
-    `).join("");
-
-}
+          </div>
 
 
-/* =========================
-   ESCAPE HTML
-========================= */
+          <div class="actions">
 
-function escapeHtml(value) {
+            <button
+              type="button"
+              onclick="editContent('${item.id}')"
+            >
+              Edit
+            </button>
 
-  return String(value)
 
-    .replaceAll(
-      "&",
-      "&amp;"
-    )
+            ${chapterButton}
 
-    .replaceAll(
-      "<",
-      "&lt;"
-    )
 
-    .replaceAll(
-      ">",
-      "&gt;"
-    )
+            <button
+              type="button"
+              onclick="togglePublish(
+                '${item.id}',
+                ${item.published === true}
+              )"
+            >
 
-    .replaceAll(
-      '"',
-      "&quot;"
-    )
+              ${
+                item.published
+                  ? "Unpublish"
+                  : "Publish"
+              }
 
-    .replaceAll(
-      "'",
-      "&#039;"
-    );
+            </button>
+
+
+            <button
+              type="button"
+              class="delete"
+              onclick="deleteContent('${item.id}')"
+            >
+              Delete
+            </button>
+
+          </div>
+
+        </article>
+
+      `;
+
+    }).join("");
 
 }
 
 
-/* =========================
-   OPEN ADD MODAL
-========================= */
+
+/* ==========================================
+   ADD CONTENT
+========================================== */
 
 document
   .getElementById(
@@ -1335,10 +1654,8 @@ document
       form.reset();
 
 
-      message.textContent = "";
-
-      message.style.color =
-        "#777";
+      message.textContent =
+        "";
 
 
       saveBtn.textContent =
@@ -1353,9 +1670,10 @@ document
   );
 
 
-/* =========================
+
+/* ==========================================
    EDIT CONTENT
-========================= */
+========================================== */
 
 window.editContent =
 function(id) {
@@ -1370,12 +1688,12 @@ function(id) {
 
   if (!item) {
 
-    console.error(
-      "Content not found:",
-      id
+    alert(
+      "Content পাওয়া যায়নি।"
     );
 
     return;
+
   }
 
 
@@ -1422,10 +1740,8 @@ function(id) {
     item.content || "";
 
 
-  message.textContent = "";
-
-  message.style.color =
-    "#777";
+  message.textContent =
+    "";
 
 
   saveBtn.textContent =
@@ -1439,9 +1755,10 @@ function(id) {
 };
 
 
-/* =========================
-   SAVE / UPDATE
-========================= */
+
+/* ==========================================
+   SAVE / UPDATE CONTENT
+========================================== */
 
 form.addEventListener(
   "submit",
@@ -1455,27 +1772,31 @@ form.addEventListener(
 
 
     const title =
-      document.getElementById(
-        "title"
-      ).value.trim();
+      document
+        .getElementById("title")
+        .value
+        .trim();
 
 
     const excerpt =
-      document.getElementById(
-        "excerpt"
-      ).value.trim();
+      document
+        .getElementById("excerpt")
+        .value
+        .trim();
 
 
     const cover_url =
-      document.getElementById(
-        "cover_url"
-      ).value.trim();
+      document
+        .getElementById("cover_url")
+        .value
+        .trim();
 
 
     const content =
-      document.getElementById(
-        "content"
-      ).value.trim();
+      document
+        .getElementById("content")
+        .value
+        .trim();
 
 
     if (!title) {
@@ -1487,6 +1808,7 @@ form.addEventListener(
         "Title দিতে হবে।";
 
       return;
+
     }
 
 
@@ -1499,20 +1821,24 @@ form.addEventListener(
         `${settings.label} দিতে হবে।`;
 
       return;
+
     }
+
+
+    saveBtn.disabled =
+      true;
+
+
+    saveBtn.style.opacity =
+      ".6";
 
 
     message.style.color =
       "#777";
 
+
     message.textContent =
       "Saving...";
-
-
-    saveBtn.disabled = true;
-
-    saveBtn.style.opacity =
-      "0.6";
 
 
     const payload = {
@@ -1531,8 +1857,6 @@ form.addEventListener(
     let result;
 
 
-    /* UPDATE */
-
     if (editingId !== null) {
 
       result =
@@ -1548,9 +1872,6 @@ form.addEventListener(
           );
 
     }
-
-
-    /* INSERT */
 
     else {
 
@@ -1573,11 +1894,10 @@ form.addEventListener(
     saveBtn.disabled =
       false;
 
+
     saveBtn.style.opacity =
       "1";
 
-
-    /* ERROR */
 
     if (result.error) {
 
@@ -1600,8 +1920,6 @@ form.addEventListener(
     }
 
 
-    /* SUCCESS */
-
     message.style.color =
       "#16803c";
 
@@ -1623,481 +1941,23 @@ form.addEventListener(
         editingId = null;
 
 
+        form.reset();
+
+
         await loadContent();
 
       },
-      600
+      500
     );
 
   }
 );
 
-/* =========================
-   MANAGE CHAPTERS
-========================= */
 
-window.manageChapters = async function(novelId) {
 
-  const novel =
-    contents.find(
-      item =>
-        String(item.id) === String(novelId)
-    );
-
-  if (!novel) {
-    alert("উপন্যাস পাওয়া যায়নি।");
-    return;
-  }
-
-  const { data, error } =
-    await supabaseClient
-      .from("chapters")
-      .select(
-        "id, novel_id, chapter_number, title, content, published, created_at"
-      )
-      .eq("novel_id", novelId)
-      .order("chapter_number", {
-        ascending: true
-      });
-
-  if (error) {
-
-    console.error(
-      "Chapters Error:",
-      error
-    );
-
-    alert(
-      "Chapter লোড করা যায়নি:\n" +
-      error.message
-    );
-
-    return;
-  }
-
-  let chapterText = "";
-
-  if (!data || data.length === 0) {
-
-    chapterText =
-      "এই উপন্যাসে এখনো কোনো Chapter নেই।";
-
-  } else {
-
-    chapterText =
-      data.map(chapter => {
-
-        return (
-          String(chapter.chapter_number) +
-          ". " +
-          chapter.title +
-          (
-            chapter.published
-              ? " — Published"
-              : " — Draft"
-          )
-        );
-
-      }).join("\n");
-
-  }
-
-  alert(
-    "উপন্যাস: " +
-    novel.title +
-    "\n\n" +
-    chapterText
-  );
-
-};  
-/* =========================
-   CHAPTER MANAGEMENT
-========================= */
-
-let currentNovelId = null;
-
-
-/* OPEN CHAPTER MANAGER */
-
-window.manageChapters = async function(novelId) {
-
-  currentNovelId = Number(novelId);
-
-  const novel =
-    contents.find(
-      item =>
-        Number(item.id) === currentNovelId
-    );
-
-
-  document.getElementById(
-    "chapterNovelName"
-  ).textContent =
-    novel
-      ? `উপন্যাস: ${novel.title}`
-      : "উপন্যাস";
-
-
-  document.getElementById(
-    "chapterModal"
-  ).classList.add("active");
-
-
-  document.getElementById(
-    "chapterMessage"
-  ).textContent = "";
-
-
-  document.getElementById(
-    "chapterForm"
-  ).reset();
-
-
-  await loadChapters();
-
-};
-
-
-/* LOAD CHAPTERS */
-
-async function loadChapters() {
-
-  const list =
-    document.getElementById(
-      "chapterList"
-    );
-
-
-  list.innerHTML = `
-    <div class="empty">
-      Chapter লোড হচ্ছে...
-    </div>
-  `;
-
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-
-      .from("chapters")
-
-      .select(
-        "id, novel_id, chapter_number, title, content, published, created_at"
-      )
-
-      .eq(
-        "novel_id",
-        currentNovelId
-      )
-
-      .order(
-        "chapter_number",
-        {
-          ascending: true
-        }
-      );
-
-
-  if (error) {
-
-    console.error(
-      "Chapter load error:",
-      error
-    );
-
-
-    list.innerHTML = `
-      <div class="empty">
-
-        Chapter লোড করা যায়নি।
-
-        <br><br>
-
-        ${escapeHtml(error.message)}
-
-      </div>
-    `;
-
-    return;
-  }
-
-
-  if (!data || data.length === 0) {
-
-    list.innerHTML = `
-      <div class="empty">
-
-        এই উপন্যাসে এখনো কোনো Chapter নেই।
-
-      </div>
-    `;
-
-    return;
-  }
-
-
-  list.innerHTML = data.map(
-    chapter => `
-
-      <div
-        class="content-item"
-        style="margin-bottom:12px;"
-      >
-
-        <div class="content-info">
-
-          <h3>
-
-            Chapter
-            ${chapter.chapter_number}
-
-            —
-            ${escapeHtml(
-              chapter.title
-            )}
-
-          </h3>
-
-
-          <span
-            class="status ${
-              chapter.published
-                ? "published"
-                : "draft"
-            }"
-          >
-
-            ${
-              chapter.published
-                ? "Published"
-                : "Draft"
-            }
-
-          </span>
-
-        </div>
-
-
-        <div class="actions">
-
-          <button
-            type="button"
-            onclick="toggleChapterPublish(
-              ${chapter.id},
-              ${chapter.published === true}
-            )"
-          >
-
-            ${
-              chapter.published
-                ? "Unpublish"
-                : "Publish"
-            }
-
-          </button>
-
-
-          <button
-            type="button"
-            class="delete"
-            onclick="deleteChapter(
-              ${chapter.id}
-            )"
-          >
-            Delete
-          </button>
-
-        </div>
-
-      </div>
-
-    `
-  ).join("");
-
-}
-
-
-/* ADD CHAPTER */
-
-document
-  .getElementById(
-    "chapterForm"
-  )
-  .addEventListener(
-    "submit",
-    async function(event) {
-
-      event.preventDefault();
-
-
-      const chapterNumber =
-        Number(
-          document.getElementById(
-            "chapterNumber"
-          ).value
-        );
-
-
-      const title =
-        document.getElementById(
-          "chapterTitle"
-        ).value.trim();
-
-
-      const content =
-        document.getElementById(
-          "chapterContent"
-        ).value.trim();
-
-
-      const msg =
-        document.getElementById(
-          "chapterMessage"
-        );
-
-
-      if (!chapterNumber || chapterNumber < 1) {
-
-        msg.style.color = "#d00";
-
-        msg.textContent =
-          "সঠিক Chapter Number দিন।";
-
-        return;
-      }
-
-
-      if (!title || !content) {
-
-        msg.style.color = "#d00";
-
-        msg.textContent =
-          "Chapter title এবং content দিতে হবে।";
-
-        return;
-      }
-
-
-      msg.style.color = "#777";
-
-      msg.textContent =
-        "Chapter যোগ হচ্ছে...";
-
-
-      const {
-        error
-      } =
-        await supabaseClient
-
-          .from("chapters")
-
-          .insert({
-
-            novel_id:
-              currentNovelId,
-
-            chapter_number:
-              chapterNumber,
-
-            title:
-
-              title,
-
-            content:
-
-              content,
-
-            published:
-              false
-
-          });
-
-
-      if (error) {
-
-        console.error(
-          "Chapter insert error:",
-          error
-        );
-
-
-        msg.style.color = "#d00";
-
-        msg.textContent =
-          error.message;
-
-        return;
-      }
-
-
-      msg.style.color =
-        "#16803c";
-
-      msg.textContent =
-        "Chapter সফলভাবে যোগ হয়েছে।";
-
-
-      document
-        .getElementById(
-          "chapterForm"
-        )
-        .reset();
-
-
-      await loadChapters();
-
-    }
-  );
-
-
-/* PUBLISH / UNPUBLISH CHAPTER */
-
-window.toggleChapterPublish =
-async function(
-  chapterId,
-  currentStatus
-) {
-
-  const {
-    error
-  } =
-    await supabaseClient
-
-      .from("chapters")
-
-      .update({
-
-        published:
-          !currentStatus
-
-      })
-
-      .eq(
-        "id",
-        chapterId
-      );
-
-
-  if (error) {
-
-    alert(
-      error.message
-    );
-
-    return;
-  }
-
-
-  await loadChapters();
-
-};
-
-
-/* =========================
+/* ==========================================
    DELETE CONTENT
-========================= */
+========================================== */
 
 window.deleteContent =
 async function(id) {
@@ -2126,11 +1986,15 @@ async function(id) {
 
 
   if (!confirmed) {
+
     return;
+
   }
 
 
-  const { error } =
+  const {
+    error
+  } =
     await supabaseClient
 
       .from(settings.table)
@@ -2156,6 +2020,7 @@ async function(id) {
     );
 
     return;
+
   }
 
 
@@ -2164,9 +2029,10 @@ async function(id) {
 };
 
 
-/* =========================
-   PUBLISH / UNPUBLISH
-========================= */
+
+/* ==========================================
+   PUBLISH / UNPUBLISH CONTENT
+========================================== */
 
 window.togglePublish =
 async function(
@@ -2178,7 +2044,9 @@ async function(
     typeSettings[currentType];
 
 
-  const { error } =
+  const {
+    error
+  } =
     await supabaseClient
 
       .from(settings.table)
@@ -2209,6 +2077,7 @@ async function(
     );
 
     return;
+
   }
 
 
@@ -2217,9 +2086,528 @@ async function(
 };
 
 
-/* =========================
+
+/* ==========================================
+   MANAGE CHAPTERS
+========================================== */
+
+window.manageChapters =
+async function(novelId) {
+
+  currentNovelId =
+    Number(novelId);
+
+
+  if (!currentNovelId) {
+
+    alert(
+      "Invalid Novel ID"
+    );
+
+    return;
+
+  }
+
+
+  const novel =
+    contents.find(
+      item =>
+        Number(item.id) ===
+        currentNovelId
+    );
+
+
+  document.getElementById(
+    "chapterNovelName"
+  ).textContent =
+    novel
+      ? `উপন্যাস: ${novel.title}`
+      : "উপন্যাস";
+
+
+  chapterMessage.textContent =
+    "";
+
+
+  chapterForm.reset();
+
+
+  chapterModal.classList.add(
+    "active"
+  );
+
+
+  await loadChapters();
+
+};
+
+
+
+/* ==========================================
+   LOAD CHAPTERS
+========================================== */
+
+async function loadChapters() {
+
+  chapterList.innerHTML = `
+
+    <div class="empty">
+      Chapter লোড হচ্ছে...
+    </div>
+
+  `;
+
+
+  if (!currentNovelId) {
+
+    return;
+
+  }
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+
+      .from("chapters")
+
+      .select(
+        "id,novel_id,chapter_number,title,content,published,created_at"
+      )
+
+      .eq(
+        "novel_id",
+        currentNovelId
+      )
+
+      .order(
+        "chapter_number",
+        {
+          ascending: true
+        }
+      );
+
+
+  if (error) {
+
+    console.error(
+      "Chapter load error:",
+      error
+    );
+
+
+    chapterList.innerHTML = `
+
+      <div class="empty error-box">
+
+        Chapter লোড করা যায়নি।
+
+        <br><br>
+
+        ${escapeHtml(
+          error.message
+        )}
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  if (!data || data.length === 0) {
+
+    chapterList.innerHTML = `
+
+      <div class="empty">
+
+        এই উপন্যাসে এখনো কোনো Chapter নেই।
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  chapterList.innerHTML =
+
+    data.map(chapter => `
+
+      <div class="chapter-item">
+
+        <div class="chapter-item-top">
+
+          <div>
+
+            <div class="chapter-number">
+
+              Chapter
+              ${escapeHtml(
+                chapter.chapter_number
+              )}
+
+            </div>
+
+
+            <div class="chapter-title">
+
+              ${escapeHtml(
+                chapter.title ||
+                "Untitled Chapter"
+              )}
+
+            </div>
+
+
+            <span
+              class="status ${
+                chapter.published
+                  ? "published"
+                  : "draft"
+              }"
+            >
+
+              ${
+                chapter.published
+                  ? "Published"
+                  : "Draft"
+              }
+
+            </span>
+
+          </div>
+
+
+          <div class="chapter-actions">
+
+            <button
+              type="button"
+              onclick="toggleChapterPublish(
+                ${chapter.id},
+                ${chapter.published === true}
+              )"
+            >
+
+              ${
+                chapter.published
+                  ? "Unpublish"
+                  : "Publish"
+              }
+
+            </button>
+
+
+            <button
+              type="button"
+              class="delete"
+              onclick="deleteChapter(
+                ${chapter.id}
+              )"
+            >
+              Delete
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+
+/* ==========================================
+   ADD CHAPTER
+========================================== */
+
+chapterForm.addEventListener(
+  "submit",
+  async event => {
+
+    event.preventDefault();
+
+
+    if (!currentNovelId) {
+
+      chapterMessage.style.color =
+        "#d00";
+
+      chapterMessage.textContent =
+        "কোনো Novel নির্বাচন করা হয়নি।";
+
+      return;
+
+    }
+
+
+    const chapterNumber =
+      Number(
+        document
+          .getElementById(
+            "chapterNumber"
+          )
+          .value
+      );
+
+
+    const title =
+      document
+        .getElementById(
+          "chapterTitle"
+        )
+        .value
+        .trim();
+
+
+    const content =
+      document
+        .getElementById(
+          "chapterContent"
+        )
+        .value
+        .trim();
+
+
+    if (
+      !chapterNumber ||
+      chapterNumber < 1
+    ) {
+
+      chapterMessage.style.color =
+        "#d00";
+
+      chapterMessage.textContent =
+        "সঠিক Chapter Number দিন।";
+
+      return;
+
+    }
+
+
+    if (!title) {
+
+      chapterMessage.style.color =
+        "#d00";
+
+      chapterMessage.textContent =
+        "Chapter Title দিতে হবে।";
+
+      return;
+
+    }
+
+
+    if (!content) {
+
+      chapterMessage.style.color =
+        "#d00";
+
+      chapterMessage.textContent =
+        "Chapter Content দিতে হবে।";
+
+      return;
+
+    }
+
+
+    chapterMessage.style.color =
+      "#777";
+
+
+    chapterMessage.textContent =
+      "Chapter যোগ হচ্ছে...";
+
+
+    const {
+      error
+    } =
+      await supabaseClient
+
+        .from("chapters")
+
+        .insert({
+
+          novel_id:
+            currentNovelId,
+
+          chapter_number:
+            chapterNumber,
+
+          title:
+            title,
+
+          content:
+            content,
+
+          published:
+            false
+
+        });
+
+
+    if (error) {
+
+      console.error(
+        "Chapter insert error:",
+        error
+      );
+
+
+      chapterMessage.style.color =
+        "#d00";
+
+
+      chapterMessage.textContent =
+        error.message;
+
+
+      return;
+
+    }
+
+
+    chapterMessage.style.color =
+      "#16803c";
+
+
+    chapterMessage.textContent =
+      "Chapter সফলভাবে যোগ হয়েছে।";
+
+
+    chapterForm.reset();
+
+
+    await loadChapters();
+
+  }
+);
+
+
+
+/* ==========================================
+   PUBLISH / UNPUBLISH CHAPTER
+========================================== */
+
+window.toggleChapterPublish =
+async function(
+  chapterId,
+  currentStatus
+) {
+
+  const {
+    error
+  } =
+    await supabaseClient
+
+      .from("chapters")
+
+      .update({
+
+        published:
+          !currentStatus
+
+      })
+
+      .eq(
+        "id",
+        chapterId
+      );
+
+
+  if (error) {
+
+    console.error(
+      "Chapter publish error:",
+      error
+    );
+
+
+    alert(
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  await loadChapters();
+
+};
+
+
+
+/* ==========================================
+   DELETE CHAPTER
+========================================== */
+
+window.deleteChapter =
+async function(chapterId) {
+
+  const confirmed =
+    confirm(
+      "এই Chapter মুছে ফেলতে চান?"
+    );
+
+
+  if (!confirmed) {
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+
+      .from("chapters")
+
+      .delete()
+
+      .eq(
+        "id",
+        chapterId
+      );
+
+
+  if (error) {
+
+    console.error(
+      "Chapter delete error:",
+      error
+    );
+
+
+    alert(
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  await loadChapters();
+
+};
+
+
+
+/* ==========================================
    SEARCH
-========================= */
+========================================== */
 
 document
   .getElementById(
@@ -2235,9 +2623,10 @@ document
   );
 
 
-/* =========================
+
+/* ==========================================
    TABS
-========================= */
+========================================== */
 
 document
   .querySelectorAll(
@@ -2312,9 +2701,10 @@ document
   });
 
 
-/* =========================
-   CANCEL MODAL
-========================= */
+
+/* ==========================================
+   CLOSE CONTENT MODAL
+========================================== */
 
 document
   .getElementById(
@@ -2342,10 +2732,6 @@ document
   );
 
 
-/* =========================
-   CLOSE MODAL
-   OUTSIDE CLICK
-========================= */
 
 modal.addEventListener(
   "click",
@@ -2368,9 +2754,63 @@ modal.addEventListener(
 );
 
 
-/* =========================
+
+/* ==========================================
+   CLOSE CHAPTER MODAL
+========================================== */
+
+document
+  .getElementById(
+    "chapterCancelBtn"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      chapterModal.classList.remove(
+        "active"
+      );
+
+
+      currentNovelId = null;
+
+
+      chapterForm.reset();
+
+
+      chapterMessage.textContent =
+        "";
+
+    }
+  );
+
+
+
+chapterModal.addEventListener(
+  "click",
+  event => {
+
+    if (
+      event.target === chapterModal
+    ) {
+
+      chapterModal.classList.remove(
+        "active"
+      );
+
+
+      currentNovelId = null;
+
+    }
+
+  }
+);
+
+
+
+/* ==========================================
    LOGOUT
-========================= */
+========================================== */
 
 document
   .getElementById(
@@ -2392,9 +2832,10 @@ document
   );
 
 
-/* =========================
+
+/* ==========================================
    START DASHBOARD
-========================= */
+========================================== */
 
 (async () => {
 
@@ -2403,7 +2844,9 @@ document
 
 
   if (!loggedIn) {
+
     return;
+
   }
 
 
@@ -2412,107 +2855,8 @@ document
 })();
 
 </script>
-<!-- =========================
-     CHAPTER MODAL
-========================= -->
-
-<div class="modal" id="chapterModal">
-
-  <div class="modal-box">
-
-    <h2 id="chapterModalTitle">
-      Chapter Management
-    </h2>
-
-    <p
-      id="chapterNovelName"
-      style="margin-bottom:20px;color:#777;"
-    ></p>
-
-    <div id="chapterList"></div>
-
-    <hr style="margin:25px 0;border:0;border-top:1px solid #eee;">
-
-    <h3 style="margin-bottom:18px;">
-      নতুন Chapter
-    </h3>
-
-    <form id="chapterForm">
-
-      <div class="field">
-
-        <label>
-          Chapter Number
-        </label>
-
-        <input
-          type="number"
-          id="chapterNumber"
-          min="1"
-          required
-        >
-
-      </div>
 
 
-      <div class="field">
-
-        <label>
-          Chapter Title
-        </label>
-
-        <input
-          type="text"
-          id="chapterTitle"
-          placeholder="যেমন: প্রথম অধ্যায়"
-          required
-        >
-
-      </div>
-
-
-      <div class="field">
-
-        <label>
-          Chapter Content
-        </label>
-
-        <textarea
-          id="chapterContent"
-          placeholder="এখানে Chapter-এর সম্পূর্ণ লেখা লিখুন..."
-          required
-        ></textarea>
-
-      </div>
-
-
-      <div class="modal-actions">
-
-        <button
-          type="button"
-          class="cancel"
-          id="chapterCancelBtn"
-        >
-          বন্ধ করুন
-        </button>
-
-        <button
-          type="submit"
-          class="save"
-          id="chapterSaveBtn"
-        >
-          Chapter যোগ করুন
-        </button>
-
-      </div>
-
-      <div id="chapterMessage"></div>
-
-    </form>
-
-  </div>
-
-</div>
 </body>
 
 </html>
