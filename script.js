@@ -1,6 +1,6 @@
 /* =====================================================
-   SHADAT FATIH — LITERARY ARCHIVE
-   FINAL SCRIPT
+   SHADAT FATIH LITERARY ARCHIVE
+   SCRIPT.JS
 ===================================================== */
 
 "use strict";
@@ -55,11 +55,6 @@ function initMenu() {
       isOpen ? "true" : "false"
     );
 
-    mainNav.setAttribute(
-      "aria-hidden",
-      isOpen ? "false" : "true"
-    );
-
   });
 
 
@@ -72,11 +67,6 @@ function initMenu() {
       menuToggle.setAttribute(
         "aria-expanded",
         "false"
-      );
-
-      mainNav.setAttribute(
-        "aria-hidden",
-        "true"
       );
 
     });
@@ -98,11 +88,6 @@ function initMenu() {
         "false"
       );
 
-      mainNav.setAttribute(
-        "aria-hidden",
-        "true"
-      );
-
     }
 
   });
@@ -119,49 +104,9 @@ function initMenu() {
         "false"
       );
 
-      mainNav.setAttribute(
-        "aria-hidden",
-        "true"
-      );
-
     }
 
   });
-
-
-  /* submenu */
-
-  document
-    .querySelectorAll("[data-toggle]")
-    .forEach(button => {
-
-      button.addEventListener("click", () => {
-
-        const targetId =
-          button.dataset.toggle;
-
-        const submenu =
-          document.getElementById(targetId);
-
-        if (!submenu) return;
-
-        submenu.classList.toggle("open");
-
-        const arrow =
-          button.querySelector(".menu-arrow");
-
-        if (arrow) {
-
-          arrow.textContent =
-            submenu.classList.contains("open")
-              ? "−"
-              : "+";
-
-        }
-
-      });
-
-    });
 
 }
 
@@ -186,7 +131,7 @@ function initYear() {
 
 
 /* =====================================================
-   ESCAPE HTML
+   SECURITY
 ===================================================== */
 
 function escapeHtml(value) {
@@ -200,7 +145,9 @@ function escapeHtml(value) {
 
   }
 
+
   return String(value)
+
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
@@ -218,12 +165,17 @@ function formatDate(dateValue) {
 
   if (!dateValue) return "";
 
+
   const date =
     new Date(dateValue);
 
+
   if (Number.isNaN(date.getTime())) {
+
     return "";
+
   }
+
 
   return date.toLocaleDateString(
     "bn-BD",
@@ -238,37 +190,26 @@ function formatDate(dateValue) {
 
 
 /* =====================================================
-   TYPE URL
+   YEAR NUMBER
 ===================================================== */
 
-function getContentUrl(type, id) {
+function getYear(dateValue) {
 
-  const pages = {
-
-    poem: "poem.html",
-    story: "story.html",
-    novel: "novel.html"
-
-  };
-
-  const page =
-    pages[type] || "index.html";
-
-  return `${page}?id=${encodeURIComponent(id)}`;
-
-}
+  if (!dateValue) return "";
 
 
-/* =====================================================
-   ABSOLUTE SHARE URL
-===================================================== */
+  const date =
+    new Date(dateValue);
 
-function getShareUrl(type, id) {
 
-  return new URL(
-    getContentUrl(type, id),
-    window.location.href
-  ).href;
+  if (Number.isNaN(date.getTime())) {
+
+    return "";
+
+  }
+
+
+  return date.getFullYear();
 
 }
 
@@ -301,6 +242,7 @@ function showToast(message) {
 
   toast.textContent =
     message;
+
 
   toast.classList.add("show");
 
@@ -340,17 +282,10 @@ async function copyLink(url) {
     textarea.value =
       url;
 
-    textarea.style.position =
-      "fixed";
-
-    textarea.style.opacity =
-      "0";
-
     document.body.appendChild(
       textarea
     );
 
-    textarea.focus();
     textarea.select();
 
     document.execCommand("copy");
@@ -380,24 +315,17 @@ async function shareContent(
     try {
 
       await navigator.share({
-        title: title,
-        url: url
+        title,
+        url
       });
-
-      return;
 
     } catch (error) {
 
-      if (
-        error &&
-        error.name === "AbortError"
-      ) {
-
-        return;
-
-      }
+      /* User cancelled */
 
     }
+
+    return;
 
   }
 
@@ -408,514 +336,26 @@ async function shareContent(
 
 
 /* =====================================================
-   COMMENT MODAL
+   COMMENT PAGE
 ===================================================== */
 
 function openComment(
   type,
-  id,
-  title = ""
+  id
 ) {
-
-  let overlay =
-    document.getElementById(
-      "commentOverlay"
-    );
-
-
-  if (!overlay) {
-
-    overlay =
-      createCommentModal();
-
-  }
-
-
-  const contentType =
-    overlay.querySelector(
-      "#commentContentType"
-    );
-
-  const contentId =
-    overlay.querySelector(
-      "#commentContentId"
-    );
-
-  const titleInput =
-    overlay.querySelector(
-      "#commentContentTitle"
-    );
-
-  if (contentType) {
-    contentType.value = type;
-  }
-
-  if (contentId) {
-    contentId.value = id;
-  }
-
-  if (titleInput) {
-    titleInput.value = title;
-  }
-
-
-  overlay.classList.add("active");
-
-  document.body.style.overflow =
-    "hidden";
-
-}
-
-
-/* =====================================================
-   CREATE COMMENT MODAL
-===================================================== */
-
-function createCommentModal() {
-
-  const overlay =
-    document.createElement("div");
-
-  overlay.id =
-    "commentOverlay";
-
-  overlay.className =
-    "comment-overlay";
-
-
-  overlay.innerHTML = `
-
-    <div
-      class="comment-box"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="commentTitle"
-    >
-
-      <button
-        type="button"
-        class="comment-close"
-        onclick="closeComment()"
-        aria-label="Close"
-      >
-        ×
-      </button>
-
-
-      <h3 id="commentTitle">
-        মন্তব্য করুন
-      </h3>
-
-
-      <p class="comment-box-subtitle">
-        আপনার মতামত আমাদের জানান।
-      </p>
-
-
-      <form id="commentForm">
-
-        <input
-          type="hidden"
-          id="commentContentType"
-        >
-
-        <input
-          type="hidden"
-          id="commentContentId"
-        >
-
-        <input
-          type="hidden"
-          id="commentContentTitle"
-        >
-
-
-        <div class="comment-form-group">
-
-          <label>
-            আপনার নাম
-          </label>
-
-          <input
-            type="text"
-            id="commentName"
-            maxlength="100"
-            required
-            placeholder="আপনার নাম"
-          >
-
-        </div>
-
-
-        <div class="comment-form-group">
-
-          <label>
-            আপনার ইমেইল
-          </label>
-
-          <input
-            type="email"
-            id="commentEmail"
-            maxlength="160"
-            required
-            placeholder="example@email.com"
-          >
-
-        </div>
-
-
-        <div class="comment-form-group">
-
-          <label>
-            মন্তব্য
-          </label>
-
-          <textarea
-            id="commentMessage"
-            maxlength="2000"
-            required
-            placeholder="আপনার মন্তব্য লিখুন..."
-          ></textarea>
-
-        </div>
-
-
-        <div class="comment-submit-row">
-
-          <button
-            type="button"
-            class="comment-cancel"
-            onclick="closeComment()"
-          >
-            বাতিল
-          </button>
-
-
-          <button
-            type="submit"
-            class="comment-submit"
-          >
-            মন্তব্য পাঠান
-          </button>
-
-        </div>
-
-      </form>
-
-    </div>
-
-  `;
-
-
-  document.body.appendChild(
-    overlay
-  );
-
-
-  overlay.addEventListener(
-    "click",
-    event => {
-
-      if (
-        event.target === overlay
-      ) {
-
-        closeComment();
-
-      }
-
-    }
-  );
-
-
-  document
-    .getElementById("commentForm")
-    .addEventListener(
-      "submit",
-      submitComment
-    );
-
-
-  return overlay;
-
-}
-
-
-/* =====================================================
-   CLOSE COMMENT
-===================================================== */
-
-function closeComment() {
-
-  const overlay =
-    document.getElementById(
-      "commentOverlay"
-    );
-
-
-  if (overlay) {
-
-    overlay.classList.remove(
-      "active"
-    );
-
-  }
-
-  document.body.style.overflow =
-    "";
-
-}
-
-
-/* =====================================================
-   SUBMIT COMMENT
-===================================================== */
-
-async function submitComment(event) {
-
-  event.preventDefault();
-
-
-  const type =
-    document.getElementById(
-      "commentContentType"
-    ).value;
-
-  const contentId =
-    document.getElementById(
-      "commentContentId"
-    ).value;
-
-  const contentTitle =
-    document.getElementById(
-      "commentContentTitle"
-    ).value;
-
-
-  const name =
-    document.getElementById(
-      "commentName"
-    ).value.trim();
-
-
-  const email =
-    document.getElementById(
-      "commentEmail"
-    ).value.trim();
-
-
-  const message =
-    document.getElementById(
-      "commentMessage"
-    ).value.trim();
-
-
-  if (
-    !name ||
-    !email ||
-    !message ||
-    !type ||
-    !contentId
-  ) {
-
-    showToast(
-      "সব তথ্য পূরণ করুন"
-    );
-
-    return;
-
-  }
-
-
-  const submitButton =
-    event.target.querySelector(
-      ".comment-submit"
-    );
-
-
-  if (submitButton) {
-
-    submitButton.disabled =
-      true;
-
-    submitButton.textContent =
-      "পাঠানো হচ্ছে...";
-
-  }
-
-
-  try {
-
-    /*
-      IMPORTANT:
-
-      Your Supabase project must have
-      a comments table with columns:
-
-      id
-      content_type
-      content_id
-      content_title
-      name
-      email
-      message
-      created_at
-      approved
-
-    */
-
-
-    const {
-      error
-    } =
-      await window.supabaseClient
-        .from("comments")
-        .insert({
-
-          content_type: type,
-
-          content_id: contentId,
-
-          content_title:
-            contentTitle,
-
-          name: name,
-
-          email: email,
-
-          message: message,
-
-          approved: false
-
-        });
-
-
-    if (error) {
-
-      throw error;
-
-    }
-
-
-    showToast(
-      "মন্তব্য পাঠানো হয়েছে"
-    );
-
-
-    document
-      .getElementById(
-        "commentForm"
-      )
-      .reset();
-
-
-    setTimeout(
-      closeComment,
-      900
-    );
-
-
-  } catch (error) {
-
-    console.error(
-      "Comment Error:",
-      error
-    );
-
-
-    showToast(
-      "মন্তব্য পাঠানো যায়নি"
-    );
-
-  } finally {
-
-    if (submitButton) {
-
-      submitButton.disabled =
-        false;
-
-      submitButton.textContent =
-        "মন্তব্য পাঠান";
-
-    }
-
-  }
-
-}
-
-
-/* =====================================================
-   ACTION BUTTONS
-===================================================== */
-
-function actionButtons(
-  type,
-  item
-) {
-
-  const id =
-    item.id;
-
-  const title =
-    escapeHtml(
-      item.title || ""
-    );
 
   const url =
-    getShareUrl(
-      type,
-      id
-    );
+    `${type}.html?id=${encodeURIComponent(id)}#comments`;
 
 
-  return `
-
-    <div class="writing-actions premium-actions">
-
-      <button
-        type="button"
-        class="action-btn premium-action"
-        onclick="openComment(
-          '${escapeHtml(type)}',
-          '${escapeHtml(String(id))}',
-          '${title}'
-        )"
-      >
-        ✦ Comment
-      </button>
-
-
-      <button
-        type="button"
-        class="action-btn premium-action"
-        onclick="shareContent(
-          '${title.replaceAll("'", "\\'")}',
-          '${url}'
-        )"
-      >
-        ✦ Share
-      </button>
-
-
-      <button
-        type="button"
-        class="action-btn premium-action"
-        onclick="copyLink(
-          '${url}'
-        )"
-      >
-        ✦ Copy Link
-      </button>
-
-    </div>
-
-  `;
+  window.location.href =
+    url;
 
 }
 
 
 /* =====================================================
-   TOTAL VIEWS
+   VIEWS
 ===================================================== */
 
 function totalViews(item) {
@@ -926,18 +366,80 @@ function totalViews(item) {
 
   return `
 
-    <div
-      class="total-views"
-      title="Total Views"
-    >
+    <div class="total-views">
 
-      <span>
-        VIEWS
+      <span class="views-icon">
+        ◉
       </span>
 
-      <strong>
+      <span>
         ${views.toLocaleString("en-US")}
-      </strong>
+      </span>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   ACTION BUTTONS
+===================================================== */
+
+function actionButtons(
+  type,
+  id,
+  title
+) {
+
+  const url =
+    `${window.location.origin}${window.location.pathname.replace(
+      /index\.html$/,
+      ""
+    )}${type}.html?id=${encodeURIComponent(id)}`;
+
+
+  return `
+
+    <div class="writing-actions">
+
+      <button
+        type="button"
+        class="action-btn"
+        onclick="openComment('${type}', '${id}')"
+        title="Comment"
+      >
+        <span>◌</span>
+        <small>Comment</small>
+      </button>
+
+
+      <button
+        type="button"
+        class="action-btn"
+        onclick="shareContent(
+          ${JSON.stringify(title)},
+          ${JSON.stringify(url)}
+        )"
+        title="Share"
+      >
+        <span>↗</span>
+        <small>Share</small>
+      </button>
+
+
+      <button
+        type="button"
+        class="action-btn"
+        onclick="copyLink(
+          ${JSON.stringify(url)}
+        )"
+        title="Copy Link"
+      >
+        <span>⛓</span>
+        <small>Copy</small>
+      </button>
 
     </div>
 
@@ -972,7 +474,7 @@ async function loadPoetry() {
         .from("poems")
 
         .select(
-          "id,title,content,excerpt,created_at,published,views"
+          "id, title, content, excerpt, created_at, published, views"
         )
 
         .eq(
@@ -988,22 +490,23 @@ async function loadPoetry() {
         );
 
 
-    if (error) {
-      throw error;
-    }
+    if (error) throw error;
 
 
-    if (
-      !data ||
-      data.length === 0
-    ) {
+    if (!data || data.length === 0) {
 
       container.innerHTML = `
 
-        <div class="empty-state">
+        <div class="empty-card">
+
+          <span>POETRY</span>
+
+          <h3>
+            শীঘ্রই আসছে
+          </h3>
 
           <p>
-            এখনো কোনো প্রকাশিত কবিতা নেই।
+            নতুন কবিতা খুব শীঘ্রই প্রকাশিত হবে।
           </p>
 
         </div>
@@ -1016,8 +519,9 @@ async function loadPoetry() {
 
 
     container.innerHTML =
-      data.map(
-        (poem, index) => `
+      data.map((poem, index) => {
+
+        return `
 
           <article class="writing-card">
 
@@ -1057,35 +561,27 @@ async function loadPoetry() {
               }
 
 
-              <div class="card-bottom">
-
-                <a
-                  href="${getContentUrl(
-                    "poem",
-                    poem.id
-                  )}"
-                  class="text-link"
-                >
-                  কবিতা পড়ুন →
-                </a>
-
-              </div>
+              <a
+                href="poem.html?id=${encodeURIComponent(poem.id)}"
+                class="text-link"
+              >
+                কবিতা পড়ুন →
+              </a>
 
 
               ${actionButtons(
                 "poem",
-                poem
+                poem.id,
+                poem.title
               )}
 
             </div>
 
           </article>
 
-        `
-      ).join("");
+        `;
 
-
-    initReveal();
+      }).join("");
 
   } catch (error) {
 
@@ -1097,7 +593,9 @@ async function loadPoetry() {
 
     container.innerHTML = `
 
-      <div class="error-state">
+      <div class="error-card">
+
+        <span>POETRY</span>
 
         <h3>
           কবিতা লোড করা যায়নি
@@ -1142,7 +640,7 @@ async function loadStories() {
         .from("stories")
 
         .select(
-          "id,title,excerpt,content,created_at,published,views"
+          "id, title, excerpt, content, created_at, published, views"
         )
 
         .eq(
@@ -1158,26 +656,19 @@ async function loadStories() {
         );
 
 
-    if (error) {
-      throw error;
-    }
+    if (error) throw error;
 
 
-    if (
-      !data ||
-      data.length === 0
-    ) {
+    if (!data || data.length === 0) {
 
       container.innerHTML = `
 
-        <div class="story-card">
+        <div class="story-card empty-card">
 
-          <span>
-            STORIES
-          </span>
+          <span>STORIES</span>
 
           <h3>
-            এখনো কোনো প্রকাশিত গল্প নেই
+            কোনো প্রকাশিত গল্প নেই
           </h3>
 
           <p>
@@ -1194,8 +685,9 @@ async function loadStories() {
 
 
     container.innerHTML =
-      data.map(
-        (story, index) => `
+      data.map((story, index) => {
+
+        return `
 
           <article class="story-card">
 
@@ -1228,33 +720,25 @@ async function loadStories() {
             }
 
 
-            <div class="card-bottom">
-
-              <a
-                href="${getContentUrl(
-                  "story",
-                  story.id
-                )}"
-                class="text-link"
-              >
-                গল্প পড়ুন ↗
-              </a>
-
-            </div>
+            <a
+              href="story.html?id=${encodeURIComponent(story.id)}"
+              class="text-link"
+            >
+              গল্প পড়ুন ↗
+            </a>
 
 
             ${actionButtons(
               "story",
-              story
+              story.id,
+              story.title
             )}
 
           </article>
 
-        `
-      ).join("");
+        `;
 
-
-    initReveal();
+      }).join("");
 
   } catch (error) {
 
@@ -1266,7 +750,9 @@ async function loadStories() {
 
     container.innerHTML = `
 
-      <div class="story-card error-state">
+      <div class="story-card error-card">
+
+        <span>STORIES</span>
 
         <h3>
           গল্প লোড করা যায়নি
@@ -1311,7 +797,7 @@ async function loadNovels() {
         .from("novels")
 
         .select(
-          "id,title,content,excerpt,created_at,published,views"
+          "id, title, content, excerpt, created_at, published, views"
         )
 
         .eq(
@@ -1327,26 +813,21 @@ async function loadNovels() {
         );
 
 
-    if (error) {
-      throw error;
-    }
+    if (error) throw error;
 
 
-    if (
-      !data ||
-      data.length === 0
-    ) {
+    if (!data || data.length === 0) {
 
       container.innerHTML = `
 
-        <div class="novel-card">
+        <div class="novel-card empty-card">
 
           <p class="card-label">
             NOVELS
           </p>
 
           <h3>
-            এখনো কোনো প্রকাশিত উপন্যাস নেই
+            শীঘ্রই আসছে
           </h3>
 
           <p>
@@ -1363,8 +844,9 @@ async function loadNovels() {
 
 
     container.innerHTML =
-      data.map(
-        (novel, index) => `
+      data.map((novel, index) => {
+
+        return `
 
           <article class="novel-card">
 
@@ -1399,35 +881,27 @@ async function loadNovels() {
               }
 
 
-              <div class="card-bottom">
-
-                <a
-                  href="${getContentUrl(
-                    "novel",
-                    novel.id
-                  )}"
-                  class="text-link"
-                >
-                  উপন্যাস পড়ুন →
-                </a>
-
-              </div>
+              <a
+                href="novel.html?id=${encodeURIComponent(novel.id)}"
+                class="text-link"
+              >
+                উপন্যাস পড়ুন →
+              </a>
 
 
               ${actionButtons(
                 "novel",
-                novel
+                novel.id,
+                novel.title
               )}
 
             </div>
 
           </article>
 
-        `
-      ).join("");
+        `;
 
-
-    initReveal();
+      }).join("");
 
   } catch (error) {
 
@@ -1439,7 +913,7 @@ async function loadNovels() {
 
     container.innerHTML = `
 
-      <div class="novel-card error-state">
+      <div class="novel-card error-card">
 
         <p class="card-label">
           NOVELS
@@ -1468,6 +942,33 @@ async function loadNovels() {
 
 async function loadYearlyPublished() {
 
+  const poemList =
+    document.getElementById(
+      "yearPoemsList"
+    );
+
+  const storyList =
+    document.getElementById(
+      "yearStoriesList"
+    );
+
+  const novelList =
+    document.getElementById(
+      "yearNovelsList"
+    );
+
+
+  if (
+    !poemList &&
+    !storyList &&
+    !novelList
+  ) {
+
+    return;
+
+  }
+
+
   try {
 
     const [
@@ -1480,49 +981,31 @@ async function loadYearlyPublished() {
         window.supabaseClient
           .from("poems")
           .select(
-            "id,title,created_at,published"
+            "id,title,created_at"
           )
           .eq(
             "published",
             true
-          )
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
           ),
 
         window.supabaseClient
           .from("stories")
           .select(
-            "id,title,created_at,published"
+            "id,title,created_at"
           )
           .eq(
             "published",
             true
-          )
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
           ),
 
         window.supabaseClient
           .from("novels")
           .select(
-            "id,title,created_at,published"
+            "id,title,created_at"
           )
           .eq(
             "published",
             true
-          )
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
           )
 
       ]);
@@ -1538,125 +1021,93 @@ async function loadYearlyPublished() {
       throw novelsResult.error;
 
 
-    renderArchiveList(
-      "yearPoemsList",
-      poemsResult.data || [],
-      "poem"
-    );
+    const currentYear =
+      new Date().getFullYear();
 
 
-    renderArchiveList(
-      "yearStoriesList",
-      storiesResult.data || [],
-      "story"
-    );
+    function renderYearList(
+      container,
+      data,
+      type
+    ) {
+
+      if (!container) return;
 
 
-    renderArchiveList(
-      "yearNovelsList",
-      novelsResult.data || [],
-      "novel"
-    );
+      const items =
+        (data || [])
+          .filter(
+            item =>
+              getYear(item.created_at) ===
+              currentYear
+          );
 
 
-  } catch (error) {
+      if (!items.length) {
 
-    console.error(
-      "Yearly Archive Error:",
-      error
-    );
+        container.innerHTML =
+          "<p>এখনো কোনো লেখা নেই।</p>";
 
-    [
-      "yearPoemsList",
-      "yearStoriesList",
-      "yearNovelsList"
-    ].forEach(id => {
-
-      const element =
-        document.getElementById(id);
-
-      if (element) {
-
-        element.innerHTML = `
-          <p class="archive-empty">
-            আর্কাইভ লোড করা যায়নি।
-          </p>
-        `;
+        return;
 
       }
 
-    });
 
-  }
+      container.innerHTML =
+        items.map(item => `
 
-}
+          <a
+            class="year-item"
+            href="${type}.html?id=${encodeURIComponent(item.id)}"
+          >
 
-
-/* =====================================================
-   ARCHIVE LIST
-===================================================== */
-
-function renderArchiveList(
-  elementId,
-  items,
-  type
-) {
-
-  const container =
-    document.getElementById(
-      elementId
-    );
-
-
-  if (!container) return;
-
-
-  if (
-    !items ||
-    items.length === 0
-  ) {
-
-    container.innerHTML = `
-
-      <p class="archive-empty">
-        এই বিভাগে এখনো কোনো লেখা নেই।
-      </p>
-
-    `;
-
-    return;
-
-  }
-
-
-  container.innerHTML =
-    items.map(
-      item => `
-
-        <a
-          href="${getContentUrl(
-            type,
-            item.id
-          )}"
-          class="archive-item"
-        >
-
-          <div>
-
-            <span class="archive-date">
-              ${formatDate(item.created_at)}
+            <span>
+              ${type.toUpperCase()}
             </span>
 
             <strong>
               ${escapeHtml(item.title)}
             </strong>
 
-          </div>
+            <small>
+              ${formatDate(item.created_at)}
+            </small>
 
-        </a>
+          </a>
 
-      `
-    ).join("");
+        `).join("");
+
+    }
+
+
+    renderYearList(
+      poemList,
+      poemsResult.data,
+      "poem"
+    );
+
+
+    renderYearList(
+      storyList,
+      storiesResult.data,
+      "story"
+    );
+
+
+    renderYearList(
+      novelList,
+      novelsResult.data,
+      "novel"
+    );
+
+  } catch (error) {
+
+    console.error(
+      "Year Archive Error:",
+      error
+    );
+
+  }
 
 }
 
@@ -1666,6 +1117,33 @@ function renderArchiveList(
 ===================================================== */
 
 async function loadMostViewed() {
+
+  const poemList =
+    document.getElementById(
+      "mostPoemsList"
+    );
+
+  const storyList =
+    document.getElementById(
+      "mostStoriesList"
+    );
+
+  const novelList =
+    document.getElementById(
+      "mostNovelsList"
+    );
+
+
+  if (
+    !poemList &&
+    !storyList &&
+    !novelList
+  ) {
+
+    return;
+
+  }
+
 
   try {
 
@@ -1679,7 +1157,7 @@ async function loadMostViewed() {
         window.supabaseClient
           .from("poems")
           .select(
-            "id,title,created_at,published,views"
+            "id,title,excerpt,created_at,views"
           )
           .eq(
             "published",
@@ -1696,7 +1174,7 @@ async function loadMostViewed() {
         window.supabaseClient
           .from("stories")
           .select(
-            "id,title,created_at,published,views"
+            "id,title,excerpt,created_at,views"
           )
           .eq(
             "published",
@@ -1713,7 +1191,7 @@ async function loadMostViewed() {
         window.supabaseClient
           .from("novels")
           .select(
-            "id,title,created_at,published,views"
+            "id,title,excerpt,created_at,views"
           )
           .eq(
             "published",
@@ -1730,26 +1208,87 @@ async function loadMostViewed() {
       ]);
 
 
-    renderMostViewedList(
-      "mostPoemsList",
-      poemsResult.data || [],
+    function renderMostViewed(
+      container,
+      data,
+      type
+    ) {
+
+      if (!container) return;
+
+
+      if (!data || !data.length) {
+
+        container.innerHTML =
+          "<p>এখনো কোনো লেখা নেই।</p>";
+
+        return;
+
+      }
+
+
+      container.innerHTML =
+        data.map((item, index) => `
+
+          <article class="most-viewed-card">
+
+            <div class="most-viewed-rank">
+              ${String(index + 1).padStart(2, "0")}
+            </div>
+
+
+            <div class="most-viewed-content">
+
+              <span>
+                ${type.toUpperCase()}
+              </span>
+
+
+              <h3>
+                ${escapeHtml(item.title)}
+              </h3>
+
+
+              <div class="total-views">
+                ◉ ${Number(item.views || 0).toLocaleString("en-US")}
+              </div>
+
+
+              <a
+                href="${type}.html?id=${encodeURIComponent(item.id)}"
+                class="text-link"
+              >
+                পড়ুন →
+              </a>
+
+            </div>
+
+          </article>
+
+        `).join("");
+
+    }
+
+
+    renderMostViewed(
+      poemList,
+      poemsResult.data,
       "poem"
     );
 
 
-    renderMostViewedList(
-      "mostStoriesList",
-      storiesResult.data || [],
+    renderMostViewed(
+      storyList,
+      storiesResult.data,
       "story"
     );
 
 
-    renderMostViewedList(
-      "mostNovelsList",
-      novelsResult.data || [],
+    renderMostViewed(
+      novelList,
+      novelsResult.data,
       "novel"
     );
-
 
   } catch (error) {
 
@@ -1764,96 +1303,7 @@ async function loadMostViewed() {
 
 
 /* =====================================================
-   MOST VIEWED LIST
-===================================================== */
-
-function renderMostViewedList(
-  elementId,
-  items,
-  type
-) {
-
-  const container =
-    document.getElementById(
-      elementId
-    );
-
-
-  if (!container) return;
-
-
-  if (
-    !items ||
-    items.length === 0
-  ) {
-
-    container.innerHTML = `
-
-      <p class="archive-empty">
-        এখনো কোনো লেখা নেই।
-      </p>
-
-    `;
-
-    return;
-
-  }
-
-
-  container.innerHTML =
-    items.map(
-      (item, index) => `
-
-        <a
-          href="${getContentUrl(
-            type,
-            item.id
-          )}"
-          class="most-viewed-item"
-        >
-
-          <span class="most-rank">
-            ${String(index + 1).padStart(2, "0")}
-          </span>
-
-
-          <div class="most-title">
-
-            <span>
-              ${escapeHtml(item.title)}
-            </span>
-
-            <small>
-              ${formatDate(item.created_at)}
-            </small>
-
-          </div>
-
-
-          <div class="view-count">
-
-            <span>
-              VIEWS
-            </span>
-
-            <strong>
-              ${Number(
-                item.views || 0
-              ).toLocaleString("en-US")}
-            </strong>
-
-          </div>
-
-        </a>
-
-      `
-    ).join("");
-
-}
-
-
-/* =====================================================
-   REVEAL
+   SCROLL REVEAL
 ===================================================== */
 
 function initReveal() {
@@ -1866,8 +1316,8 @@ function initReveal() {
       ".novel-card, " +
       ".quote-container, " +
       ".author-grid, " +
-      ".archive-block, " +
-      ".most-viewed-block"
+      ".year-card, " +
+      ".most-viewed-card"
     );
 
 
@@ -1909,24 +1359,16 @@ function initReveal() {
 
       },
       {
-        threshold: 0.05
+        threshold: 0.08
       }
     );
 
 
   elements.forEach(element => {
 
-    if (
-      !element.classList.contains(
-        "reveal"
-      )
-    ) {
-
-      element.classList.add(
-        "reveal"
-      );
-
-    }
+    element.classList.add(
+      "reveal"
+    );
 
     observer.observe(
       element
@@ -1949,6 +1391,3 @@ window.shareContent =
 
 window.openComment =
   openComment;
-
-window.closeComment =
-  closeComment;
