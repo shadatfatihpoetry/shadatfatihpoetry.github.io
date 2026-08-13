@@ -1,5 +1,11 @@
 /* =====================================================
-   SHADAT FATIH — FINAL RESPONSIVE STYLE
+   SHADAT FATIH — COMPLETE STYLE.CSS
+   Responsive: Mobile + Desktop
+===================================================== */
+
+
+/* =====================================================
+   RESET
 ===================================================== */
 
 * {
@@ -10,15 +16,28 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 body {
+  width: 100%;
+  min-width: 0;
   background: #f5f5f2;
   color: #111;
-  font-family: "Noto Serif Bengali", serif;
+
+  font-family:
+    "Noto Serif Bengali",
+    serif;
+
   line-height: 1.7;
   padding-top: 64px;
+
   overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
 }
 
 a {
@@ -39,23 +58,37 @@ button {
   position: fixed;
   top: 0;
   left: 0;
+
   width: 100%;
   height: 64px;
-  z-index: 99999;
 
-  background: rgba(18, 18, 18, 0.88);
+  z-index: 9999;
 
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  background: rgba(18, 18, 18, .86);
 
-  border-bottom: 1px solid rgba(255,255,255,.12);
+  backdrop-filter:
+    blur(24px)
+    saturate(180%);
+
+  -webkit-backdrop-filter:
+    blur(24px)
+    saturate(180%);
+
+  border-bottom:
+    1px solid rgba(255,255,255,.12);
+
+  box-shadow:
+    0 4px 25px rgba(0,0,0,.25);
 }
 
 .nav-inner {
   position: relative;
+
   width: 100%;
   max-width: 1200px;
+
   height: 64px;
+
   margin: 0 auto;
   padding: 0 20px;
 
@@ -65,61 +98,91 @@ button {
 }
 
 
-/* LOGO */
+/* =====================================================
+   NAV LOGO
+===================================================== */
 
 .brand-logo {
-  width: 34px !important;
-  height: 34px !important;
+  width: 32px !important;
+  height: 32px !important;
+
   display: block !important;
+
   flex-shrink: 0;
+
   border-radius: 50%;
   overflow: hidden;
+
+  border: 1px solid rgba(255,255,255,.2);
 }
 
 .brand-logo img {
   width: 100% !important;
   height: 100% !important;
+
   max-width: none !important;
+
   object-fit: cover;
   display: block;
 }
 
 
-/* TITLE */
+/* =====================================================
+   SITE TITLE
+===================================================== */
 
 .site-title {
   position: absolute;
+
   left: 50%;
+
   transform: translateX(-50%);
 
-  font-family: "Playfair Display", Georgia, serif;
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
   font-size: 27px;
   font-weight: 600;
+
   letter-spacing: -1px;
 
   color: #fff;
+
   white-space: nowrap;
+
+  transition: opacity .25s ease;
+}
+
+.site-title:hover {
+  opacity: .65;
 }
 
 
 /* =====================================================
-   THREE DOT MENU
+   THREE DOT BUTTON
 ===================================================== */
 
 .menu-btn {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
 
   margin-left: auto;
+  padding: 0;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border: 1px solid rgba(255,255,255,.18);
+  border:
+    1px solid rgba(255,255,255,.18);
+
   border-radius: 50%;
 
-  background: rgba(255,255,255,.10);
+  background:
+    rgba(255,255,255,.10);
+
   color: #fff;
 
   font-size: 27px;
@@ -127,16 +190,19 @@ button {
 
   cursor: pointer;
 
-  position: relative;
-  z-index: 100001;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 
   transition:
-    transform .2s ease,
-    background .2s ease;
+    transform .25s ease,
+    background .25s ease;
 }
 
 .menu-btn:hover {
-  background: rgba(255,255,255,.18);
+  background:
+    rgba(255,255,255,.18);
+
+  transform: scale(1.06);
 }
 
 .menu-btn:active {
@@ -144,59 +210,285 @@ button {
 }
 
 
-/* MENU */
+/* =====================================================
+   THREE DOT MENU
+===================================================== */
 
 #mainNav {
   position: absolute;
 
   top: 72px;
-  right: 20px;
+  right: 15px;
 
-  width: 210px;
+  width: 320px;
+  max-width: calc(100vw - 30px);
 
   display: none;
   flex-direction: column;
-  gap: 4px;
 
-  padding: 10px;
+  padding: 22px;
 
-  background: rgba(20,20,20,.96);
+  background:
+    rgba(20,20,20,.96);
 
-  border: 1px solid rgba(255,255,255,.14);
-  border-radius: 18px;
+  color: #fff;
+
+  border:
+    1px solid rgba(255,255,255,.12);
+
+  border-radius: 22px;
 
   box-shadow:
-    0 20px 60px rgba(0,0,0,.35);
+    0 20px 60px rgba(0,0,0,.45);
 
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter:
+    blur(28px);
 
-  z-index: 100000;
+  -webkit-backdrop-filter:
+    blur(28px);
+
+  z-index: 10000;
+
+  overflow: hidden;
 }
 
 #mainNav.active {
   display: flex;
 }
 
-#mainNav a {
+
+/* =====================================================
+   PROFILE AREA INSIDE 3 DOT MENU
+===================================================== */
+
+.menu-profile {
+  width: 100%;
+
+  padding-bottom: 20px;
+  margin-bottom: 16px;
+
+  text-align: center;
+
+  border-bottom:
+    1px solid rgba(255,255,255,.10);
+}
+
+.menu-profile img {
+  width: 82px;
+  height: 82px;
+
   display: block;
 
-  padding: 12px 14px;
+  margin: 0 auto 14px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  border:
+    2px solid rgba(255,255,255,.25);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.35);
+}
+
+.menu-profile h3 {
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
+
+  font-size: 21px;
+  font-weight: 500;
 
   color: #fff;
 
-  font-family: Arial, sans-serif;
-  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.menu-profile p {
+  font-size: 13px;
+  line-height: 1.7;
+
+  color: rgba(255,255,255,.62);
+
+  margin: 0 auto;
+
+  max-width: 250px;
+}
+
+
+/* =====================================================
+   MENU YEARLY
+===================================================== */
+
+.menu-yearly {
+  width: 100%;
+
+  margin-bottom: 14px;
+}
+
+.menu-yearly-title {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+
+  padding: 12px 14px;
+
+  background:
+    rgba(255,255,255,.07);
+
+  border:
+    1px solid rgba(255,255,255,.08);
+
+  border-radius: 12px;
+
+  color: #fff;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 1px;
+}
+
+.menu-year {
+  font-size: 16px;
+
+  color: #fff;
+}
+
+.menu-year-items {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 7px;
+
+  margin-top: 8px;
+}
+
+.menu-year-items a {
+  padding: 10px 5px;
+
+  text-align: center;
 
   border-radius: 10px;
 
+  background:
+    rgba(255,255,255,.05);
+
+  color:
+    rgba(255,255,255,.78);
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 10px;
+
   transition:
     background .2s ease,
-    opacity .2s ease;
+    color .2s ease,
+    transform .2s ease;
 }
 
-#mainNav a:hover {
-  background: rgba(255,255,255,.10);
+.menu-year-items a:hover {
+  background:
+    rgba(255,255,255,.14);
+
+  color: #fff;
+
+  transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   MENU VISITS
+===================================================== */
+
+.menu-visits {
+  margin-top: 15px;
+
+  padding: 14px;
+
+  border-radius: 13px;
+
+  background:
+    rgba(255,255,255,.06);
+
+  border:
+    1px solid rgba(255,255,255,.08);
+
+  text-align: center;
+}
+
+.menu-visits-label {
+  display: block;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 2px;
+
+  color:
+    rgba(255,255,255,.45);
+
+  margin-bottom: 3px;
+}
+
+.menu-visits-count {
+  display: block;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 22px;
+
+  font-weight: 700;
+
+  color: #fff;
+}
+
+
+/* =====================================================
+   MENU LINKS
+===================================================== */
+
+#mainNav > a {
+  padding: 10px 4px;
+
+  color: #fff;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 13px;
+
+  border-bottom:
+    1px solid rgba(255,255,255,.07);
+
+  transition: opacity .2s ease;
+}
+
+#mainNav > a:last-child {
+  border-bottom: none;
+}
+
+#mainNav > a:hover {
+  opacity: .55;
 }
 
 
@@ -205,36 +497,33 @@ button {
 ===================================================== */
 
 .eyebrow {
-  font-family: Arial, sans-serif;
+  font-family:
+    Arial,
+    sans-serif;
+
   font-size: 11px;
+
   letter-spacing: 3px;
+
   font-weight: 700;
+
   margin-bottom: 24px;
 }
 
 .text-link {
-  display: inline-block;
+  font-family:
+    Arial,
+    sans-serif;
 
-  font-family: Arial, sans-serif;
   font-size: 13px;
+
   font-weight: 700;
 
-  margin-top: 10px;
+  transition: opacity .2s ease;
 }
 
 .text-link:hover {
   opacity: .5;
-}
-
-.published-date {
-  margin: 8px 0 14px;
-
-  font-family: Arial, sans-serif;
-
-  font-size: 9px;
-  letter-spacing: 1.8px;
-
-  opacity: .45;
 }
 
 
@@ -244,17 +533,22 @@ button {
 
 .hero {
   width: 100%;
-  min-height: calc(100vh - 64px);
+  min-height: 100vh;
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1fr);
 
   background: #f5f5f2;
 }
 
 .hero-content {
   display: flex;
+
   justify-content: center;
+
   flex-direction: column;
 
   padding: 80px;
@@ -266,10 +560,13 @@ button {
     "Noto Serif Bengali",
     serif;
 
-  font-size: clamp(55px, 7vw, 100px);
+  font-size:
+    clamp(55px, 7vw, 100px);
+
   line-height: 1.02;
 
   font-weight: 500;
+
   letter-spacing: -4px;
 }
 
@@ -282,7 +579,9 @@ blockquote em {
 
 .hero-text {
   margin-top: 32px;
+
   font-size: 18px;
+
   opacity: .7;
 }
 
@@ -290,21 +589,36 @@ blockquote em {
   width: fit-content;
 
   margin-top: 38px;
+
   padding: 13px 22px;
 
   border-radius: 30px;
 
   background: #111;
-  color: #fff;
+  color: white;
 
-  font-family: Arial, sans-serif;
+  font-family:
+    Arial,
+    sans-serif;
+
   font-size: 13px;
+
+  transition:
+    transform .3s ease;
+}
+
+.hero-button:hover {
+  transform: translateY(-2px);
 }
 
 .hero-image {
   position: relative;
+
+  width: 100%;
   min-height: 650px;
+
   overflow: hidden;
+
   background: #111;
 }
 
@@ -322,6 +636,7 @@ blockquote em {
   content: "";
 
   position: absolute;
+
   inset: 0;
 
   background:
@@ -338,16 +653,22 @@ blockquote em {
   position: absolute;
 
   bottom: 28px;
+
   left: 32px;
   right: 32px;
 
   display: flex;
+
   justify-content: space-between;
 
-  color: #fff;
+  color: white;
 
-  font-family: Arial, sans-serif;
+  font-family:
+    Arial,
+    sans-serif;
+
   font-size: 9px;
+
   letter-spacing: 2px;
 
   z-index: 2;
@@ -359,12 +680,17 @@ blockquote em {
 ===================================================== */
 
 .intro {
+  width: 100%;
+
   padding: 180px 28px;
+
   background: #fff;
 }
 
 .intro-inner {
+  width: 100%;
   max-width: 900px;
+
   margin: auto;
 }
 
@@ -374,28 +700,34 @@ blockquote em {
     "Noto Serif Bengali",
     serif;
 
-  font-size: clamp(40px, 6vw, 76px);
+  font-size:
+    clamp(40px, 6vw, 76px);
+
   line-height: 1.15;
 
   font-weight: 500;
+
   letter-spacing: -2px;
 }
 
 .intro p:last-child {
   max-width: 600px;
+
   margin-top: 40px;
 
   font-size: 18px;
+
   opacity: .65;
 }
 
 
 /* =====================================================
-   CONTENT
+   CONTENT SECTIONS
 ===================================================== */
 
 .content-section {
   width: 100%;
+
   padding: 140px 28px;
 }
 
@@ -405,18 +737,21 @@ blockquote em {
 
 .dark {
   background: #111;
-  color: #fff;
+  color: white;
 }
 
 .section-container {
   width: 100%;
   max-width: 1120px;
-  margin: 0 auto;
+
+  margin: auto;
 }
 
 .section-top {
   display: flex;
+
   justify-content: space-between;
+
   align-items: end;
 
   margin-bottom: 80px;
@@ -429,18 +764,21 @@ blockquote em {
     serif;
 
   font-size: 70px;
+
   font-weight: 500;
+
   line-height: 1;
 }
 
 .section-top > p {
   max-width: 300px;
+
   opacity: .6;
 }
 
 
 /* =====================================================
-   POETRY
+   POETRY CARD
 ===================================================== */
 
 .writing-card {
@@ -449,57 +787,40 @@ blockquote em {
 
   padding: 60px;
 
-  background: #fff;
-
-  display: flex;
-  flex-direction: column;
-
-  justify-content: center;
-}
-
-.writing-item {
-  width: 100%;
-
-  padding: 45px 0;
-
-  border-bottom: 1px solid rgba(0,0,0,.10);
+  background: white;
 
   display: grid;
 
-  grid-template-columns: 150px minmax(0, 1fr);
+  grid-template-columns:
+    160px minmax(0, 1fr);
 
-  gap: 30px;
-}
-
-.writing-item:first-child {
-  padding-top: 0;
-}
-
-.writing-item:last-child {
-  border-bottom: 0;
+  align-items: center;
 }
 
 .card-number {
-  font-family: Arial, sans-serif;
+  font-family:
+    Arial,
+    sans-serif;
 
-  font-size: 80px;
+  font-size: 90px;
+
   font-weight: 700;
-
-  line-height: 1;
 
   opacity: .08;
 }
 
 .card-label {
-  font-family: Arial, sans-serif;
+  font-family:
+    Arial,
+    sans-serif;
 
   font-size: 10px;
+
   letter-spacing: 3px;
 
   opacity: .55;
 }
 
-.writing-item h3,
 .writing-card h3 {
   font-family:
     "Playfair Display",
@@ -507,83 +828,113 @@ blockquote em {
     serif;
 
   font-size: 42px;
+
   font-weight: 500;
 
-  line-height: 1.3;
-
-  margin-bottom: 8px;
+  overflow-wrap: anywhere;
 }
 
-.writing-item > div:last-child > p:not(.card-label):not(.published-date) {
-  max-width: 600px;
+.writing-card p {
+  max-width: 550px;
 
-  margin: 12px 0;
+  margin: 18px 0;
 
   opacity: .6;
 }
 
 
 /* =====================================================
-   ACTION BUTTONS
+   WRITING ACTIONS
 ===================================================== */
 
-.writing-actions {
+.writing-actions,
+.story-actions,
+.novel-actions {
+  width: 100%;
+
+  margin-top: 24px;
+
+  padding-top: 16px;
+
+  border-top:
+    1px solid rgba(0,0,0,.08);
+
   display: flex;
 
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
   flex-wrap: wrap;
+}
+
+.dark .writing-actions,
+.dark .story-actions {
+  border-top-color:
+    rgba(255,255,255,.10);
+}
+
+.action-buttons {
+  display: flex;
+
+  align-items: center;
 
   gap: 8px;
 
-  margin-top: 22px;
+  flex-wrap: wrap;
 }
 
-.writing-action {
-  border: 1px solid rgba(0,0,0,.12);
+.action-btn {
+  border: 1px solid rgba(0,0,0,.10);
 
-  background: transparent;
+  background: #f8f8f6;
 
   color: #111;
 
-  padding: 8px 13px;
+  padding: 8px 12px;
 
   border-radius: 999px;
 
-  font-family: Arial, sans-serif;
+  font-family:
+    Arial,
+    sans-serif;
 
   font-size: 10px;
-  font-weight: 600;
 
   cursor: pointer;
 
   transition:
-    background .2s ease,
-    color .2s ease,
-    transform .2s ease;
+    transform .2s ease,
+    background .2s ease;
 }
 
-.writing-action:hover {
-  background: #111;
-  color: #fff;
-
+.action-btn:hover {
   transform: translateY(-2px);
+
+  background: #eee;
 }
 
+.total-views {
+  margin-left: auto;
 
-/* DARK SECTION BUTTON */
+  font-family:
+    Arial,
+    sans-serif;
 
-.dark .writing-action {
-  color: #fff;
-  border-color: rgba(255,255,255,.20);
-}
+  font-size: 10px;
 
-.dark .writing-action:hover {
-  background: #fff;
-  color: #111;
+  letter-spacing: 1px;
+
+  opacity: .55;
+
+  white-space: nowrap;
 }
 
 
 /* =====================================================
-   STORIES
+   STORIES HOME
 ===================================================== */
 
 .story-grid {
@@ -603,13 +954,23 @@ blockquote em {
   padding: 50px;
 
   background: #1b1b1b;
-  color: #fff;
+
+  color: white;
 
   display: flex;
+
   flex-direction: column;
+
   justify-content: end;
 
-  overflow: hidden;
+  transition:
+    background .3s ease;
+
+  min-width: 0;
+}
+
+.story-grid .story-card:hover {
+  background: #252525;
 }
 
 .story-grid .story-card h3 {
@@ -619,23 +980,332 @@ blockquote em {
     serif;
 
   font-size: 40px;
+
   font-weight: 500;
 
-  line-height: 1.3;
-
   margin: 15px 0;
+
+  overflow-wrap: anywhere;
 }
 
 .story-grid .story-card p {
   opacity: .55;
+
   max-width: 400px;
 }
 
 .story-grid .story-card a {
   margin-top: 25px;
 
-  font-family: Arial, sans-serif;
+  font-family:
+    Arial,
+    sans-serif;
+
   font-size: 12px;
+}
+
+
+/* =====================================================
+   STORIES PAGE
+===================================================== */
+
+.stories-page {
+  width: 100%;
+  min-height: 100vh;
+
+  padding:
+    100px 24px 90px;
+
+  background: #f5f5f2;
+  color: #111;
+
+  overflow-x: hidden;
+}
+
+.stories-content {
+  width: 100%;
+  max-width: 900px;
+
+  margin: 0 auto;
+}
+
+.stories-header {
+  margin-bottom: 55px;
+}
+
+.stories-header .eyebrow {
+  margin-bottom: 18px;
+}
+
+.stories-header h1 {
+  margin: 0;
+
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
+
+  font-size:
+    clamp(45px, 8vw, 78px);
+
+  font-weight: 500;
+
+  line-height: 1.15;
+
+  letter-spacing: -2px;
+}
+
+.stories-intro {
+  max-width: 600px;
+
+  margin-top: 20px;
+
+  font-size: 16px;
+
+  line-height: 1.9;
+
+  opacity: .58;
+}
+
+.stories-list {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+.stories-list .story-card {
+  width: 100%;
+
+  min-height: auto;
+
+  padding: 32px;
+
+  background: #fff;
+
+  color: #111;
+
+  border:
+    1px solid rgba(0,0,0,.07);
+
+  border-radius: 18px;
+
+  display: block;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+.stories-list .story-card:hover {
+  background: #fff;
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.08);
+}
+
+.stories-list .story-card h2 {
+  margin: 0 0 14px;
+
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
+
+  font-size:
+    clamp(26px, 4vw, 38px);
+
+  font-weight: 500;
+
+  line-height: 1.35;
+}
+
+.stories-list .story-card .story-excerpt {
+  margin: 0 0 22px;
+
+  max-width: 720px;
+
+  font-size: 16px;
+
+  line-height: 1.9;
+
+  opacity: .62;
+}
+
+.stories-list .story-card .text-link {
+  display: inline-block;
+
+  color: #111;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   STORY READING PAGE
+===================================================== */
+
+.story-page {
+  width: 100%;
+
+  min-height: 100vh;
+
+  padding:
+    100px 24px 80px;
+
+  overflow-x: hidden;
+}
+
+.story-reader {
+  width: 100%;
+  max-width: 800px;
+
+  margin: 0 auto;
+}
+
+.story-reader h1 {
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
+
+  font-size:
+    clamp(38px, 7vw, 72px);
+
+  font-weight: 500;
+
+  line-height: 1.25;
+
+  letter-spacing: -2px;
+
+  margin-bottom: 25px;
+
+  overflow-wrap: anywhere;
+}
+
+.story-reader .story-excerpt {
+  max-width: 680px;
+
+  font-size: 17px;
+
+  line-height: 1.9;
+
+  opacity: .6;
+
+  margin-bottom: 45px;
+}
+
+.story-body {
+  max-width: 720px;
+
+  font-family:
+    "Noto Serif Bengali",
+    serif;
+
+  font-size: 19px;
+
+  line-height: 2;
+
+  margin-bottom: 50px;
+
+  overflow-wrap: break-word;
+}
+
+
+/* =====================================================
+   POEM READING PAGE
+===================================================== */
+
+.poem-page {
+  width: 100%;
+
+  min-height: 100vh;
+
+  padding:
+    100px 24px 80px;
+
+  overflow-x: hidden;
+}
+
+.poem-reader {
+  width: 100%;
+
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  padding: 20px 0;
+
+  overflow-wrap: break-word;
+}
+
+.poem-reader h1 {
+  width: 100%;
+
+  margin: 0 0 25px;
+
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
+
+  font-size:
+    clamp(38px, 7vw, 72px);
+
+  font-weight: 500;
+
+  line-height: 1.25;
+
+  letter-spacing: -2px;
+
+  overflow-wrap: anywhere;
+}
+
+.poem-excerpt {
+  width: 100%;
+  max-width: 650px;
+
+  margin: 0 0 40px;
+
+  font-size: 17px;
+
+  line-height: 1.9;
+
+  opacity: .6;
+
+  overflow-wrap: break-word;
+}
+
+.poem-body {
+  width: 100%;
+  max-width: 680px;
+
+  font-family:
+    "Noto Serif Bengali",
+    serif;
+
+  font-size: 20px;
+
+  line-height: 2.15;
+
+  margin-bottom: 50px;
+
+  overflow-wrap: break-word;
+}
+
+.poem-body br {
+  line-height: 2.15;
 }
 
 
@@ -659,20 +1329,18 @@ blockquote em {
 }
 
 .novel-card {
-  min-height: 350px;
+  width: 100%;
 
   padding: 45px;
 
   background: #fff;
 
-  display: flex;
-  align-items: center;
+  min-width: 0;
 
-  border: 1px solid rgba(0,0,0,.05);
-}
+  border:
+    1px solid rgba(0,0,0,.06);
 
-.novel-info {
-  width: 100%;
+  border-radius: 4px;
 }
 
 .novel-card h3 {
@@ -681,155 +1349,111 @@ blockquote em {
     "Noto Serif Bengali",
     serif;
 
-  font-size: 40px;
+  font-size: 38px;
+
   font-weight: 500;
 
-  line-height: 1.3;
-
-  margin-bottom: 10px;
-}
-
-.novel-card p:not(.card-label):not(.published-date) {
-  opacity: .6;
   margin: 12px 0;
+
+  overflow-wrap: anywhere;
 }
 
-
-/* =====================================================
-   MOST VIEWED
-===================================================== */
-
-.most-viewed-section {
-  padding: 130px 28px;
-  background: #111;
-  color: #fff;
+.novel-card p {
+  opacity: .62;
 }
 
-.most-viewed-list {
-  width: 100%;
-
+.novel-content {
   display: grid;
 
   grid-template-columns:
-    repeat(3, minmax(0, 1fr));
+    minmax(0, 1fr)
+    400px;
 
-  gap: 2px;
+  gap: 100px;
+
+  align-items: center;
 }
 
-.most-viewed-card {
-  min-height: 360px;
-
-  padding: 35px;
-
-  background: #1b1b1b;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.most-viewed-card-number {
-  font-family: Arial, sans-serif;
-
-  font-size: 55px;
-  font-weight: 700;
-
-  opacity: .10;
-
-  margin-bottom: 15px;
-}
-
-.most-viewed-card h3 {
+.novel-content h2 {
   font-family:
     "Playfair Display",
     "Noto Serif Bengali",
     serif;
 
-  font-size: 30px;
+  font-size: 80px;
+
   font-weight: 500;
 
-  line-height: 1.35;
-
-  margin: 12px 0;
+  line-height: 1;
 }
 
-.most-viewed-card p {
-  opacity: .55;
+.novel-description {
+  max-width: 500px;
+
+  margin: 30px 0;
+
+  opacity: .65;
 }
 
-.most-viewed-card-footer {
+.dark-button {
+  background: #111;
+}
+
+.book {
+  height: 540px;
+
+  background: #111;
+
+  padding: 15px;
+
+  box-shadow:
+    25px 25px 50px rgba(0,0,0,.2);
+
+  transform: rotate(3deg);
+}
+
+.book-inner {
+  height: 100%;
+
+  border:
+    1px solid rgba(255,255,255,.3);
+
+  color: white;
+
   display: flex;
 
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
 
-  margin-top: 25px;
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
 }
 
-.view-count {
-  font-family: Arial, sans-serif;
+.book-inner strong {
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size: 48px;
+
+  line-height: 1;
+
+  margin: 30px 0;
+}
+
+.book-small,
+.book-bottom {
+  font-family:
+    Arial,
+    sans-serif;
 
   font-size: 9px;
 
-  letter-spacing: 2px;
+  letter-spacing: 3px;
 
-  opacity: .45;
-}
-
-
-/* =====================================================
-   YEARLY ARCHIVE
-===================================================== */
-
-.archive-section {
-  padding: 120px 28px;
-  background: #fff;
-}
-
-.archive-heading {
-  max-width: 1120px;
-  margin: 0 auto 50px;
-}
-
-.archive-heading h2 {
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
-
-  font-size: 65px;
-  font-weight: 500;
-}
-
-.yearly-list {
-  max-width: 1120px;
-  margin: auto;
-
-  display: flex;
-  flex-wrap: wrap;
-
-  gap: 10px;
-}
-
-.yearly-list a {
-  padding: 10px 18px;
-
-  border: 1px solid rgba(0,0,0,.12);
-
-  border-radius: 999px;
-
-  font-family: Arial, sans-serif;
-
-  font-size: 12px;
-
-  transition:
-    background .2s ease,
-    color .2s ease;
-}
-
-.yearly-list a:hover {
-  background: #111;
-  color: #fff;
+  opacity: .6;
 }
 
 
@@ -838,19 +1462,26 @@ blockquote em {
 ===================================================== */
 
 .quote-section {
+  width: 100%;
+
   padding: 180px 28px;
+
   background: #fff;
 }
 
 .quote-container {
   max-width: 1000px;
+
   margin: auto;
 }
 
 .quote-symbol {
-  font-family: Georgia, serif;
+  font-family:
+    Georgia,
+    serif;
 
   font-size: 100px;
+
   line-height: .5;
 
   opacity: .12;
@@ -862,16 +1493,19 @@ blockquote {
     "Noto Serif Bengali",
     serif;
 
-  font-size: clamp(45px, 7vw, 90px);
+  font-size:
+    clamp(45px, 7vw, 90px);
 
   line-height: 1.1;
 
   font-weight: 500;
+
   letter-spacing: -3px;
 }
 
 .quote-container p {
   margin-top: 35px;
+
   opacity: .5;
 }
 
@@ -882,6 +1516,7 @@ blockquote {
 
 .author-section {
   padding: 140px 28px;
+
   background: #f5f5f2;
 }
 
@@ -909,6 +1544,7 @@ blockquote {
   height: 100%;
 
   object-fit: cover;
+  object-position: center;
 
   display: block;
 }
@@ -920,6 +1556,7 @@ blockquote {
     serif;
 
   font-size: 70px;
+
   font-weight: 500;
 
   line-height: 1;
@@ -933,6 +1570,11 @@ blockquote {
   opacity: .65;
 }
 
+
+/* =====================================================
+   SOCIAL
+===================================================== */
+
 .floating-socials {
   display: flex;
 
@@ -944,21 +1586,49 @@ blockquote {
 }
 
 .floating-socials a {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
   padding: 12px 20px;
 
   border-radius: 999px;
 
-  background: rgba(255,255,255,.72);
+  background:
+    rgba(255,255,255,.72);
 
-  border: 1px solid rgba(0,0,0,.08);
+  border:
+    1px solid rgba(0,0,0,.08);
 
   box-shadow:
     0 10px 30px rgba(0,0,0,.08);
 
-  font-family: Arial, sans-serif;
+  backdrop-filter:
+    blur(18px);
+
+  -webkit-backdrop-filter:
+    blur(18px);
+
+  font-family:
+    Arial,
+    sans-serif;
 
   font-size: 12px;
   font-weight: 600;
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+.floating-socials a:hover {
+  transform: translateY(-5px);
+
+  background: #fff;
+
+  box-shadow:
+    0 16px 35px rgba(0,0,0,.14);
 }
 
 
@@ -967,8 +1637,11 @@ blockquote {
 ===================================================== */
 
 footer {
+  width: 100%;
+
   background: #111;
-  color: #fff;
+
+  color: white;
 
   padding: 45px 28px;
 }
@@ -994,7 +1667,9 @@ footer {
 }
 
 .footer-inner p {
-  font-family: Arial, sans-serif;
+  font-family:
+    Arial,
+    sans-serif;
 
   font-size: 9px;
 
@@ -1007,21 +1682,25 @@ footer {
 
 
 /* =====================================================
-   REVEAL
+   REVEAL ANIMATION
 ===================================================== */
 
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
+
+  transform:
+    translateY(35px);
 
   transition:
-    opacity .7s ease,
-    transform .7s ease;
+    opacity .8s ease,
+    transform .8s ease;
 }
 
 .reveal.show {
   opacity: 1;
-  transform: translateY(0);
+
+  transform:
+    translateY(0);
 }
 
 
@@ -1031,17 +1710,30 @@ footer {
 
 @media (max-width: 800px) {
 
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   body {
     padding-top: 60px;
   }
+
+
+  /* NAV */
 
   .navbar {
     height: 60px;
   }
 
   .nav-inner {
+    width: 100%;
     height: 60px;
-    padding: 0 15px;
+
+    padding:
+      0 16px;
   }
 
   .brand-logo {
@@ -1050,129 +1742,198 @@ footer {
   }
 
   .site-title {
-    font-size: 21px;
+    font-size: 22px;
+
+    letter-spacing: -.7px;
   }
 
   .menu-btn {
     width: 40px;
     height: 40px;
+
     font-size: 24px;
   }
 
+
+  /* 3 DOT MENU */
+
   #mainNav {
     top: 68px;
-    right: 12px;
-    width: 190px;
+    right: 10px;
+
+    width: 300px;
+
+    max-width:
+      calc(100vw - 20px);
+
+    padding: 18px;
+
+    border-radius: 20px;
+  }
+
+  .menu-profile img {
+    width: 74px;
+    height: 74px;
+  }
+
+  .menu-profile h3 {
+    font-size: 19px;
+  }
+
+  .menu-profile p {
+    font-size: 12px;
+  }
+
+  .menu-year-items {
+    gap: 6px;
   }
 
 
   /* HERO */
 
   .hero {
+    width: 100%;
+
     grid-template-columns: 1fr;
 
     min-height: auto;
   }
 
   .hero-content {
-    padding: 100px 25px 65px;
+    width: 100%;
+
+    padding:
+      110px 28px 70px;
   }
 
   .hero h1 {
-    font-size: 54px;
+    font-size: 55px;
+
     letter-spacing: -2px;
   }
 
-  .hero-text {
-    font-size: 16px;
-  }
-
   .hero-image {
-    min-height: 430px;
+    width: 100%;
+
+    min-height: 450px;
   }
 
   .hero-image img {
     width: 100%;
-    height: 430px;
+    height: 450px;
 
-    object-fit: cover;
+    object-fit: contain;
+
+    background: #111;
   }
 
 
   /* INTRO */
 
   .intro {
-    padding: 110px 25px;
+    width: 100%;
+
+    padding:
+      120px 28px;
   }
 
-  .intro h2 {
-    font-size: 43px;
-    letter-spacing: -1px;
-  }
 
-
-  /* CONTENT */
+  /* SECTIONS */
 
   .content-section {
-    padding: 90px 20px;
+    width: 100%;
+
+    padding:
+      100px 20px;
+  }
+
+  .section-container {
+    width: 100%;
   }
 
   .section-top {
     display: block;
 
-    margin-bottom: 50px;
-  }
-
-  .section-top h2 {
-    font-size: 54px;
+    margin-bottom: 55px;
   }
 
   .section-top > p {
     margin-top: 25px;
   }
 
+  .section-top h2,
+  .novel-content h2,
+  .author-info h2 {
+
+    font-size: 55px;
+  }
+
 
   /* POETRY */
 
   .writing-card {
-    padding: 25px;
-  }
+    width: 100%;
 
-  .writing-item {
     grid-template-columns: 1fr;
 
-    gap: 10px;
+    padding: 40px 25px;
 
-    padding: 30px 0;
-  }
-
-  .writing-item:first-child {
-    padding-top: 0;
+    min-height: 0;
   }
 
   .card-number {
-    font-size: 45px;
+    font-size: 50px;
+
+    margin-bottom: 20px;
   }
 
-  .writing-item h3,
   .writing-card h3 {
     font-size: 32px;
   }
 
-  .writing-item > div:last-child > p:not(.card-label):not(.published-date) {
-    font-size: 15px;
+
+  /* ACTIONS */
+
+  .writing-actions,
+  .story-actions,
+  .novel-actions {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .total-views {
+    margin-left: 0;
+
+    width: 100%;
+
+    text-align: right;
+  }
+
+  .action-buttons {
+    width: 100%;
+  }
+
+  .action-btn {
+    padding:
+      8px 10px;
   }
 
 
-  /* STORIES */
+  /* STORIES HOME */
 
   .story-grid {
+    width: 100%;
+
     grid-template-columns: 1fr;
   }
 
   .story-grid .story-card {
-    min-height: 360px;
-    padding: 35px;
+    width: 100%;
+
+    min-height: 380px;
+
+    padding: 40px 25px;
   }
 
   .story-grid .story-card h3 {
@@ -1184,11 +1945,12 @@ footer {
 
   .novel-grid {
     grid-template-columns: 1fr;
+
+    gap: 15px;
   }
 
   .novel-card {
-    min-height: 300px;
-    padding: 30px;
+    padding: 30px 25px;
   }
 
   .novel-card h3 {
@@ -1196,41 +1958,142 @@ footer {
   }
 
 
-  /* MOST VIEWED */
+  .novel-content {
+    width: 100%;
 
-  .most-viewed-section {
-    padding: 90px 20px;
-  }
-
-  .most-viewed-list {
     grid-template-columns: 1fr;
+
+    gap: 60px;
   }
 
-  .most-viewed-card {
-    min-height: 300px;
-    padding: 30px;
+  .book {
+    max-width: 330px;
+
+    margin: auto;
+
+    width: 100%;
   }
 
 
-  /* ARCHIVE */
+  /* POEM */
 
-  .archive-section {
-    padding: 90px 20px;
+  .poem-page {
+    width: 100%;
+
+    padding:
+      90px 20px 60px;
   }
 
-  .archive-heading h2 {
-    font-size: 50px;
+  .poem-reader {
+    width: 100%;
+
+    max-width: 100%;
+  }
+
+  .poem-reader h1 {
+    font-size:
+      clamp(32px, 9vw, 48px);
+
+    line-height: 1.3;
+
+    letter-spacing: -1px;
+  }
+
+  .poem-excerpt {
+    font-size: 15px;
+
+    line-height: 1.8;
+  }
+
+  .poem-body {
+    font-size: 18px;
+
+    line-height: 2.1;
+  }
+
+
+  /* STORIES PAGE */
+
+  .stories-page {
+    width: 100%;
+
+    padding:
+      90px 20px 60px;
+  }
+
+  .stories-header {
+    margin-bottom: 38px;
+  }
+
+  .stories-header h1 {
+    font-size: 48px;
+
+    letter-spacing: -1px;
+  }
+
+  .stories-intro {
+    font-size: 15px;
+
+    line-height: 1.8;
+  }
+
+  .stories-list {
+    gap: 14px;
+  }
+
+  .stories-list .story-card {
+    padding: 24px;
+
+    border-radius: 15px;
+  }
+
+
+  /* STORY */
+
+  .story-page {
+    width: 100%;
+
+    padding:
+      90px 20px 60px;
+  }
+
+  .story-reader {
+    width: 100%;
+  }
+
+  .story-reader h1 {
+    font-size:
+      clamp(32px, 9vw, 48px);
+
+    line-height: 1.3;
+
+    letter-spacing: -1px;
+  }
+
+  .story-reader .story-excerpt {
+    font-size: 15px;
+
+    line-height: 1.8;
+  }
+
+  .story-body {
+    font-size: 18px;
+
+    line-height: 2.05;
   }
 
 
   /* QUOTE */
 
   .quote-section {
-    padding: 110px 25px;
+    padding:
+      120px 25px;
   }
 
   blockquote {
-    font-size: 48px;
+    font-size:
+      clamp(40px, 10vw, 60px);
+
     letter-spacing: -1px;
   }
 
@@ -1238,11 +2101,13 @@ footer {
   /* AUTHOR */
 
   .author-section {
-    padding: 90px 20px;
+    padding:
+      100px 20px;
   }
 
   .author-grid {
     grid-template-columns: 1fr;
+
     gap: 50px;
   }
 
@@ -1250,15 +2115,28 @@ footer {
     height: 420px;
   }
 
-  .author-info h2 {
-    font-size: 52px;
+
+  /* SOCIAL */
+
+  .floating-socials {
+    gap: 8px;
+
+    margin-top: 28px;
+  }
+
+  .floating-socials a {
+    padding:
+      10px 15px;
+
+    font-size: 11px;
   }
 
 
   /* FOOTER */
 
   footer {
-    padding: 40px 20px;
+    padding:
+      40px 20px;
   }
 
   .footer-inner {
@@ -1273,38 +2151,38 @@ footer {
 
 
 /* =====================================================
-   SMALL PHONES
+   SMALL MOBILE
 ===================================================== */
 
-@media (max-width: 420px) {
+@media (max-width: 380px) {
 
   .site-title {
     font-size: 19px;
   }
 
   .hero h1 {
-    font-size: 46px;
-  }
-
-  .section-top h2 {
     font-size: 48px;
   }
 
-  .intro h2 {
-    font-size: 38px;
+  .section-top h2,
+  .novel-content h2,
+  .author-info h2 {
+    font-size: 48px;
   }
 
-  .writing-item h3,
-  .writing-card h3 {
-    font-size: 29px;
+  #mainNav {
+    width:
+      calc(100vw - 20px);
   }
 
-  .story-grid .story-card h3 {
-    font-size: 29px;
+  .menu-profile img {
+    width: 68px;
+    height: 68px;
   }
 
-  .novel-card h3 {
-    font-size: 29px;
+  .action-btn {
+    font-size: 9px;
+    padding:
+      7px 9px;
   }
-
 }
