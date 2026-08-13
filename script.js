@@ -2,12 +2,6 @@
 
 
 /* =====================================================
-   SHADAT FATIH
-   MAIN SCRIPT.JS
-===================================================== */
-
-
-/* =====================================================
    SUPABASE
 ===================================================== */
 
@@ -25,7 +19,7 @@ const supabaseClient =
 
 
 /* =====================================================
-   HTML SECURITY
+   SECURITY
 ===================================================== */
 
 function escapeHtml(value) {
@@ -41,46 +35,28 @@ function escapeHtml(value) {
 
 
 /* =====================================================
-   DATE FORMAT
+   DATE
 ===================================================== */
 
-function formatPublishedDate(dateValue) {
+function formatDate(dateValue) {
 
   if (!dateValue) {
-    return "Published date unavailable";
+    return "";
   }
 
   const date = new Date(dateValue);
 
-  if (Number.isNaN(date.getTime())) {
-    return "Published date unavailable";
+  if (isNaN(date.getTime())) {
+    return "";
   }
 
-  return date.toLocaleDateString(
-    "en-GB",
-    {
+  return date
+    .toLocaleDateString("en-GB", {
       day: "2-digit",
       month: "short",
       year: "numeric"
-    }
-  ).toUpperCase();
-
-}
-
-
-function getPublishedYear(dateValue) {
-
-  if (!dateValue) {
-    return null;
-  }
-
-  const date = new Date(dateValue);
-
-  if (Number.isNaN(date.getTime())) {
-    return null;
-  }
-
-  return date.getFullYear();
+    })
+    .toUpperCase();
 
 }
 
@@ -88,16 +64,6 @@ function getPublishedYear(dateValue) {
 /* =====================================================
    URL
 ===================================================== */
-
-function getAbsoluteUrl(path) {
-
-  return new URL(
-    path,
-    window.location.href
-  ).href;
-
-}
-
 
 function getWritingUrl(type, id) {
 
@@ -107,15 +73,7 @@ function getWritingUrl(type, id) {
     novel: "novel.html"
   };
 
-  const page = pages[type];
-
-  if (!page) {
-    return window.location.href;
-  }
-
-  return getAbsoluteUrl(
-    `${page}?id=${encodeURIComponent(id)}`
-  );
+  return `${pages[type]}?id=${encodeURIComponent(id)}`;
 
 }
 
@@ -127,34 +85,38 @@ function getWritingUrl(type, id) {
 async function copyWritingLink(type, id, button) {
 
   const url =
-    getWritingUrl(type, id);
+    new URL(
+      getWritingUrl(type, id),
+      window.location.href
+    ).href;
+
 
   try {
 
     await navigator.clipboard.writeText(url);
 
-    const originalText =
-      button.innerHTML;
+    const oldText =
+      button.textContent;
 
-    button.innerHTML =
-      "✓ Copied";
+    button.textContent =
+      "Copied";
 
     setTimeout(() => {
 
-      button.innerHTML =
-        originalText;
+      button.textContent =
+        oldText;
 
-    }, 1800);
+    }, 1500);
 
   } catch (error) {
 
     console.error(
-      "Copy link error:",
+      "Copy error:",
       error
     );
 
     window.prompt(
-      "Copy this link:",
+      "Copy link:",
       url
     );
 
@@ -175,38 +137,33 @@ async function shareWriting(
 ) {
 
   const url =
-    getWritingUrl(type, id);
-
-  const shareData = {
-
-    title:
-      title || "Shadat Fatih",
-
-    text:
-      `${title || "একটি লেখা"} — Shadat Fatih`,
-
-    url
-
-  };
+    new URL(
+      getWritingUrl(type, id),
+      window.location.href
+    ).href;
 
 
   if (
-    navigator.share &&
-    typeof navigator.share === "function"
+    navigator.share
   ) {
 
     try {
 
-      await navigator.share(
-        shareData
-      );
+      await navigator.share({
+        title:
+          title || "Shadat Fatih",
+
+        text:
+          `${title || "লেখা"} — Shadat Fatih`,
+
+        url
+      });
 
       return;
 
     } catch (error) {
 
       if (
-        error &&
         error.name === "AbortError"
       ) {
         return;
@@ -232,19 +189,8 @@ async function shareWriting(
 
 function openComment(type, id) {
 
-  const url =
-    getWritingUrl(type, id);
-
-  /*
-    Comment system will live on the
-    individual poem/story/novel page.
-
-    The #comments anchor allows the
-    reader to jump directly there.
-  */
-
   window.location.href =
-    `${url}#comments`;
+    `${getWritingUrl(type, id)}#comments`;
 
 }
 
@@ -253,7 +199,7 @@ function openComment(type, id) {
    ACTION BUTTONS
 ===================================================== */
 
-function createWritingActions(
+function actionButtons(
   type,
   id,
   title
@@ -261,45 +207,35 @@ function createWritingActions(
 
   return `
 
-    <div
-      class="writing-actions"
-      aria-label="Writing actions"
-    >
+    <div class="writing-actions">
 
       <button
-        type="button"
         class="writing-action"
-        onclick="openComment(
-          '${escapeHtml(type)}',
-          '${escapeHtml(id)}'
-        )"
+        type="button"
+        data-action="comment"
+        data-type="${escapeHtml(type)}"
+        data-id="${escapeHtml(id)}"
       >
         Comment
       </button>
 
-
       <button
-        type="button"
         class="writing-action"
-        onclick="copyWritingLink(
-          '${escapeHtml(type)}',
-          '${escapeHtml(id)}',
-          this
-        )"
+        type="button"
+        data-action="copy"
+        data-type="${escapeHtml(type)}"
+        data-id="${escapeHtml(id)}"
       >
         Copy Link
       </button>
 
-
       <button
-        type="button"
         class="writing-action"
-        onclick="shareWriting(
-          '${escapeHtml(type)}',
-          '${escapeHtml(id)}',
-          '${escapeHtml(title)}',
-          this
-        )"
+        type="button"
+        data-action="share"
+        data-type="${escapeHtml(type)}"
+        data-id="${escapeHtml(id)}"
+        data-title="${escapeHtml(title)}"
       >
         Share
       </button>
@@ -307,6 +243,686 @@ function createWritingActions(
     </div>
 
   `;
+
+}
+
+
+/* =====================================================
+   POEMS
+===================================================== */
+
+async function loadPoetry() {
+
+  const container =
+    document.getElementById(
+      "poetry-list"
+    );
+
+  if (!container) {
+    return [];
+  }
+
+
+  try {
+
+    const result =
+      await supabaseClient
+        .from("poems")
+        .select("*")
+        .eq("published", true)
+        .order(
+          "created_at",
+          {
+            ascending: false
+          }
+        );
+
+
+    const data =
+      result.data;
+
+    const error =
+      result.error;
+
+
+    if (error) {
+
+      throw error;
+
+    }
+
+
+    if (
+      !data ||
+      data.length === 0
+    ) {
+
+      container.innerHTML = `
+
+        <div>
+
+          <p class="card-label">
+            POETRY
+          </p>
+
+          <h3>
+            শীঘ্রই আসছে
+          </h3>
+
+          <p>
+            নতুন কবিতা খুব শীঘ্রই প্রকাশিত হবে।
+          </p>
+
+        </div>
+
+      `;
+
+      return [];
+
+    }
+
+
+    container.innerHTML =
+      data.map(
+        (poem, index) => `
+
+          <article
+            class="writing-item"
+            data-year="${
+              new Date(
+                poem.created_at
+              ).getFullYear()
+            }"
+          >
+
+            <div class="card-number">
+              ${String(
+                index + 1
+              ).padStart(2, "0")}
+            </div>
+
+
+            <div>
+
+              <p class="card-label">
+                POETRY
+              </p>
+
+
+              <div class="published-date">
+                PUBLISHED — ${
+                  formatDate(
+                    poem.created_at
+                  )
+                }
+              </div>
+
+
+              <h3>
+                ${
+                  escapeHtml(
+                    poem.title
+                  )
+                }
+              </h3>
+
+
+              ${
+                poem.excerpt
+                  ? `
+                    <p>
+                      ${
+                        escapeHtml(
+                          poem.excerpt
+                        )
+                      }
+                    </p>
+                  `
+                  : ""
+              }
+
+
+              <a
+                href="poem.html?id=${encodeURIComponent(
+                  poem.id
+                )}"
+                class="text-link"
+              >
+                কবিতা পড়ুন →
+              </a>
+
+
+              ${
+                actionButtons(
+                  "poem",
+                  poem.id,
+                  poem.title
+                )
+              }
+
+            </div>
+
+          </article>
+
+        `
+      ).join("");
+
+
+    return data;
+
+
+  } catch (error) {
+
+    console.error(
+      "Poetry loading error:",
+      error
+    );
+
+
+    container.innerHTML = `
+
+      <div>
+
+        <p class="card-label">
+          POETRY
+        </p>
+
+        <h3>
+          কবিতা লোড করা যায়নি
+        </h3>
+
+        <p>
+          ${escapeHtml(
+            error.message
+          )}
+        </p>
+
+      </div>
+
+    `;
+
+
+    return [];
+
+  }
+
+}
+
+
+/* =====================================================
+   STORIES
+===================================================== */
+
+async function loadStories() {
+
+  const container =
+    document.getElementById(
+      "stories-container"
+    );
+
+  if (!container) {
+    return [];
+  }
+
+
+  try {
+
+    const result =
+      await supabaseClient
+        .from("stories")
+        .select("*")
+        .eq("published", true)
+        .order(
+          "created_at",
+          {
+            ascending: false
+          }
+        );
+
+
+    const data =
+      result.data;
+
+    const error =
+      result.error;
+
+
+    if (error) {
+
+      throw error;
+
+    }
+
+
+    if (
+      !data ||
+      data.length === 0
+    ) {
+
+      container.innerHTML = `
+
+        <article class="story-card">
+
+          <span>
+            STORIES
+          </span>
+
+          <h3>
+            কোনো প্রকাশিত গল্প নেই
+          </h3>
+
+          <p>
+            নতুন গল্প খুব শীঘ্রই প্রকাশিত হবে।
+          </p>
+
+        </article>
+
+      `;
+
+      return [];
+
+    }
+
+
+    container.innerHTML =
+      data.map(
+        (story, index) => `
+
+          <article
+            class="story-card"
+            data-year="${
+              new Date(
+                story.created_at
+              ).getFullYear()
+            }"
+          >
+
+            <span>
+              STORY ${
+                String(
+                  index + 1
+                ).padStart(2, "0")
+              }
+            </span>
+
+
+            <div class="published-date">
+              PUBLISHED — ${
+                formatDate(
+                  story.created_at
+                )
+              }
+            </div>
+
+
+            <h3>
+              ${
+                escapeHtml(
+                  story.title
+                )
+              }
+            </h3>
+
+
+            ${
+              story.excerpt
+                ? `
+                  <p>
+                    ${
+                      escapeHtml(
+                        story.excerpt
+                      )
+                    }
+                  </p>
+                `
+                : ""
+            }
+
+
+            <a
+              href="story.html?id=${encodeURIComponent(
+                story.id
+              )}"
+            >
+              গল্প পড়ুন ↗
+            </a>
+
+
+            ${
+              actionButtons(
+                "story",
+                story.id,
+                story.title
+              )
+            }
+
+          </article>
+
+        `
+      ).join("");
+
+
+    return data;
+
+
+  } catch (error) {
+
+    console.error(
+      "Stories loading error:",
+      error
+    );
+
+
+    container.innerHTML = `
+
+      <article class="story-card">
+
+        <span>
+          STORIES
+        </span>
+
+        <h3>
+          গল্প লোড করা যায়নি
+        </h3>
+
+        <p>
+          ${escapeHtml(
+            error.message
+          )}
+        </p>
+
+      </article>
+
+    `;
+
+
+    return [];
+
+  }
+
+}
+
+
+/* =====================================================
+   NOVELS
+===================================================== */
+
+async function loadNovels() {
+
+  const container =
+    document.getElementById(
+      "novels-container"
+    );
+
+  if (!container) {
+    return [];
+  }
+
+
+  try {
+
+    const result =
+      await supabaseClient
+        .from("novels")
+        .select("*")
+        .eq("published", true)
+        .order(
+          "created_at",
+          {
+            ascending: false
+          }
+        );
+
+
+    const data =
+      result.data;
+
+    const error =
+      result.error;
+
+
+    if (error) {
+
+      throw error;
+
+    }
+
+
+    if (
+      !data ||
+      data.length === 0
+    ) {
+
+      container.innerHTML = `
+
+        <article class="novel-card">
+
+          <div class="novel-info">
+
+            <p class="card-label">
+              NOVELS
+            </p>
+
+            <h3>
+              শীঘ্রই আসছে
+            </h3>
+
+            <p>
+              নতুন উপন্যাস খুব শীঘ্রই প্রকাশিত হবে।
+            </p>
+
+          </div>
+
+        </article>
+
+      `;
+
+      return [];
+
+    }
+
+
+    container.innerHTML =
+      data.map(
+        (novel, index) => `
+
+          <article
+            class="novel-card"
+            data-year="${
+              new Date(
+                novel.created_at
+              ).getFullYear()
+            }"
+          >
+
+            <div class="novel-info">
+
+              <p class="card-label">
+                NOVEL ${
+                  String(
+                    index + 1
+                  ).padStart(2, "0")
+                }
+              </p>
+
+
+              <div class="published-date">
+                PUBLISHED — ${
+                  formatDate(
+                    novel.created_at
+                  )
+                }
+              </div>
+
+
+              <h3>
+                ${
+                  escapeHtml(
+                    novel.title
+                  )
+                }
+              </h3>
+
+
+              ${
+                novel.excerpt
+                  ? `
+                    <p>
+                      ${
+                        escapeHtml(
+                          novel.excerpt
+                        )
+                      }
+                    </p>
+                  `
+                  : ""
+              }
+
+
+              <a
+                href="novel.html?id=${encodeURIComponent(
+                  novel.id
+                )}"
+                class="text-link"
+              >
+                উপন্যাস পড়ুন →
+              </a>
+
+
+              ${
+                actionButtons(
+                  "novel",
+                  novel.id,
+                  novel.title
+                )
+              }
+
+            </div>
+
+          </article>
+
+        `
+      ).join("");
+
+
+    return data;
+
+
+  } catch (error) {
+
+    console.error(
+      "Novels loading error:",
+      error
+    );
+
+
+    container.innerHTML = `
+
+      <article class="novel-card">
+
+        <div class="novel-info">
+
+          <p class="card-label">
+            NOVELS
+          </p>
+
+          <h3>
+            উপন্যাস লোড করা যায়নি
+          </h3>
+
+          <p>
+            ${escapeHtml(
+              error.message
+            )}
+          </p>
+
+        </div>
+
+      </article>
+
+    `;
+
+
+    return [];
+
+  }
+
+}
+
+
+/* =====================================================
+   ACTION EVENT DELEGATION
+===================================================== */
+
+function initializeWritingActions() {
+
+  document.addEventListener(
+    "click",
+    async function(event) {
+
+      const button =
+        event.target.closest(
+          ".writing-action"
+        );
+
+      if (!button) {
+        return;
+      }
+
+
+      const type =
+        button.dataset.type;
+
+      const id =
+        button.dataset.id;
+
+      const title =
+        button.dataset.title || "";
+
+
+      if (
+        button.dataset.action ===
+        "comment"
+      ) {
+
+        openComment(
+          type,
+          id
+        );
+
+      }
+
+
+      if (
+        button.dataset.action ===
+        "copy"
+      ) {
+
+        await copyWritingLink(
+          type,
+          id,
+          button
+        );
+
+      }
+
+
+      if (
+        button.dataset.action ===
+        "share"
+      ) {
+
+        await shareWriting(
+          type,
+          id,
+          title,
+          button
+        );
+
+      }
+
+    }
+  );
 
 }
 
@@ -328,8 +944,17 @@ function initializeMenu() {
     );
 
 
-  if (!menuToggle || !mainNav) {
+  if (
+    !menuToggle ||
+    !mainNav
+  ) {
+
+    console.error(
+      "Menu elements not found."
+    );
+
     return;
+
   }
 
 
@@ -337,16 +962,11 @@ function initializeMenu() {
     "click",
     function(event) {
 
+      event.preventDefault();
       event.stopPropagation();
 
-      const isActive =
-        mainNav.classList.toggle(
-          "active"
-        );
-
-      menuToggle.setAttribute(
-        "aria-expanded",
-        String(isActive)
+      mainNav.classList.toggle(
+        "active"
       );
 
     }
@@ -367,995 +987,72 @@ function initializeMenu() {
     "click",
     function() {
 
-      if (
-        mainNav.classList.contains(
-          "active"
-        )
-      ) {
-
-        mainNav.classList.remove(
-          "active"
-        );
-
-        menuToggle.setAttribute(
-          "aria-expanded",
-          "false"
-        );
-
-      }
+      mainNav.classList.remove(
+        "active"
+      );
 
     }
   );
 
 
-  document
-    .querySelectorAll(
-      "#mainNav a"
-    )
-    .forEach(link => {
+  mainNav
+    .querySelectorAll("a")
+    .forEach(
+      link => {
 
-      link.addEventListener(
-        "click",
-        function() {
+        link.addEventListener(
+          "click",
+          function() {
 
-          mainNav.classList.remove(
-            "active"
-          );
+            mainNav.classList.remove(
+              "active"
+            );
 
-          menuToggle.setAttribute(
-            "aria-expanded",
-            "false"
-          );
+          }
+        );
 
-        }
-      );
-
-    });
+      }
+    );
 
 }
 
 
 /* =====================================================
-   FOOTER YEAR
+   YEAR
 ===================================================== */
 
 function initializeYear() {
 
-  const yearElement =
+  const year =
     document.getElementById(
       "year"
     );
 
-  if (!yearElement) {
-    return;
-  }
+  if (year) {
 
-  yearElement.textContent =
-    new Date().getFullYear();
+    year.textContent =
+      new Date().getFullYear();
+
+  }
 
 }
 
 
 /* =====================================================
-   POETRY
-===================================================== */
-
-async function loadPoetry() {
-
-  const container =
-    document.getElementById(
-      "poetry-list"
-    );
-
-  if (!container) {
-    return [];
-  }
-
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .from("poems")
-      .select("*")
-      .eq("published", true)
-      .order(
-        "created_at",
-        {
-          ascending: false
-        }
-      );
-
-
-  if (error) {
-
-    console.error(
-      "Poetry Error:",
-      error
-    );
-
-    container.innerHTML = `
-
-      <div>
-
-        <p class="card-label">
-          POETRY
-        </p>
-
-        <h3>
-          কবিতা লোড করা যায়নি
-        </h3>
-
-        <p>
-          ${escapeHtml(error.message)}
-        </p>
-
-      </div>
-
-    `;
-
-    return [];
-
-  }
-
-
-  if (
-    !data ||
-    data.length === 0
-  ) {
-
-    container.innerHTML = `
-
-      <div>
-
-        <p class="card-label">
-          POETRY
-        </p>
-
-        <h3>
-          শীঘ্রই আসছে
-        </h3>
-
-        <p>
-          নতুন কবিতা খুব শীঘ্রই প্রকাশিত হবে।
-        </p>
-
-      </div>
-
-    `;
-
-    return [];
-
-  }
-
-
-  container.innerHTML =
-    data.map(
-      (poem, index) => {
-
-        const date =
-          poem.created_at;
-
-        return `
-
-          <article
-            class="writing-item"
-            data-year="${getPublishedYear(date) || ""}"
-          >
-
-            <div class="card-number">
-              ${String(index + 1).padStart(2, "0")}
-            </div>
-
-
-            <div>
-
-              <p class="card-label">
-                POETRY
-              </p>
-
-
-              <div class="published-date">
-                PUBLISHED — ${formatPublishedDate(date)}
-              </div>
-
-
-              <h3>
-                ${escapeHtml(poem.title)}
-              </h3>
-
-
-              ${
-                poem.excerpt
-                  ? `
-                    <p>
-                      ${escapeHtml(
-                        poem.excerpt
-                      )}
-                    </p>
-                  `
-                  : ""
-              }
-
-
-              <a
-                href="poem.html?id=${encodeURIComponent(poem.id)}"
-                class="text-link"
-              >
-                কবিতা পড়ুন →
-              </a>
-
-
-              ${createWritingActions(
-                "poem",
-                poem.id,
-                poem.title
-              )}
-
-            </div>
-
-          </article>
-
-        `;
-
-      }
-    ).join("");
-
-
-  return data;
-
-}
-
-
-/* =====================================================
-   STORIES
-===================================================== */
-
-async function loadStories() {
-
-  const container =
-    document.getElementById(
-      "stories-container"
-    );
-
-  if (!container) {
-    return [];
-  }
-
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .from("stories")
-      .select("*")
-      .eq("published", true)
-      .order(
-        "created_at",
-        {
-          ascending: false
-        }
-      );
-
-
-  if (error) {
-
-    console.error(
-      "Stories Error:",
-      error
-    );
-
-    container.innerHTML = `
-
-      <div class="story-card">
-
-        <span>
-          STORIES
-        </span>
-
-        <h3>
-          গল্প লোড করা যায়নি
-        </h3>
-
-        <p>
-          ${escapeHtml(error.message)}
-        </p>
-
-      </div>
-
-    `;
-
-    return [];
-
-  }
-
-
-  if (
-    !data ||
-    data.length === 0
-  ) {
-
-    container.innerHTML = `
-
-      <div class="story-card">
-
-        <span>
-          STORIES
-        </span>
-
-        <h3>
-          কোনো প্রকাশিত গল্প নেই
-        </h3>
-
-        <p>
-          Admin Dashboard থেকে গল্পটি
-          Publish করা আছে কিনা দেখুন।
-        </p>
-
-      </div>
-
-    `;
-
-    return [];
-
-  }
-
-
-  container.innerHTML =
-    data.map(
-      (story, index) => {
-
-        const date =
-          story.created_at;
-
-        return `
-
-          <article
-            class="story-card"
-            data-year="${getPublishedYear(date) || ""}"
-          >
-
-            <span>
-              STORY ${String(index + 1).padStart(2, "0")}
-            </span>
-
-
-            <div class="published-date">
-              PUBLISHED — ${formatPublishedDate(date)}
-            </div>
-
-
-            <h3>
-              ${escapeHtml(story.title)}
-            </h3>
-
-
-            ${
-              story.excerpt
-                ? `
-                  <p>
-                    ${escapeHtml(
-                      story.excerpt
-                    )}
-                  </p>
-                `
-                : ""
-            }
-
-
-            <a
-              href="story.html?id=${encodeURIComponent(story.id)}"
-            >
-              গল্প পড়ুন ↗
-            </a>
-
-
-            ${createWritingActions(
-              "story",
-              story.id,
-              story.title
-            )}
-
-          </article>
-
-        `;
-
-      }
-    ).join("");
-
-
-  return data;
-
-}
-
-
-/* =====================================================
-   NOVELS
-===================================================== */
-
-async function loadNovels() {
-
-  const container =
-    document.getElementById(
-      "novels-container"
-    );
-
-  if (!container) {
-    return [];
-  }
-
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .from("novels")
-      .select("*")
-      .eq("published", true)
-      .order(
-        "created_at",
-        {
-          ascending: false
-        }
-      );
-
-
-  if (error) {
-
-    console.error(
-      "Novels Error:",
-      error
-    );
-
-    container.innerHTML = `
-
-      <div class="novel-card">
-
-        <p class="card-label">
-          NOVELS
-        </p>
-
-        <h3>
-          উপন্যাস লোড করা যায়নি
-        </h3>
-
-        <p>
-          ${escapeHtml(error.message)}
-        </p>
-
-      </div>
-
-    `;
-
-    return [];
-
-  }
-
-
-  if (
-    !data ||
-    data.length === 0
-  ) {
-
-    container.innerHTML = `
-
-      <div class="novel-card">
-
-        <p class="card-label">
-          NOVELS
-        </p>
-
-        <h3>
-          শীঘ্রই আসছে
-        </h3>
-
-        <p>
-          নতুন উপন্যাস খুব শীঘ্রই প্রকাশিত হবে।
-        </p>
-
-      </div>
-
-    `;
-
-    return [];
-
-  }
-
-
-  container.innerHTML =
-    data.map(
-      (novel, index) => {
-
-        const date =
-          novel.created_at;
-
-        return `
-
-          <article
-            class="novel-card"
-            data-year="${getPublishedYear(date) || ""}"
-          >
-
-            <div class="novel-info">
-
-              <p class="card-label">
-                NOVEL ${String(index + 1).padStart(2, "0")}
-              </p>
-
-
-              <div class="published-date">
-                PUBLISHED — ${formatPublishedDate(date)}
-              </div>
-
-
-              <h3>
-                ${escapeHtml(novel.title)}
-              </h3>
-
-
-              ${
-                novel.excerpt
-                  ? `
-                    <p>
-                      ${escapeHtml(
-                        novel.excerpt
-                      )}
-                    </p>
-                  `
-                  : ""
-              }
-
-
-              <a
-                href="novel.html?id=${encodeURIComponent(novel.id)}"
-                class="text-link"
-              >
-                উপন্যাস পড়ুন →
-              </a>
-
-
-              ${createWritingActions(
-                "novel",
-                novel.id,
-                novel.title
-              )}
-
-            </div>
-
-          </article>
-
-        `;
-
-      }
-    ).join("");
-
-
-  return data;
-
-}
-
-
-/* =====================================================
-   MOST VIEWED
-===================================================== */
-
-function getViewCount(item) {
-
-  const possibleFields = [
-    "view_count",
-    "views",
-    "viewCount"
-  ];
-
-
-  for (
-    const field of possibleFields
-  ) {
-
-    if (
-      item &&
-      item[field] !== undefined &&
-      item[field] !== null
-    ) {
-
-      const number =
-        Number(item[field]);
-
-      if (
-        Number.isFinite(number)
-      ) {
-
-        return number;
-
-      }
-
-    }
-
-  }
-
-
-  return 0;
-
-}
-
-
-/* =====================================================
-   MOST VIEWED CARD
-===================================================== */
-
-function createMostViewedCard(
-  type,
-  item,
-  index
-) {
-
-  const date =
-    item.created_at;
-
-  const views =
-    getViewCount(item);
-
-
-  return `
-
-    <article
-      class="most-viewed-card"
-      data-year="${getPublishedYear(date) || ""}"
-    >
-
-      <div>
-
-        <div class="most-viewed-card-number">
-          ${String(index + 1).padStart(2, "0")}
-        </div>
-
-
-        <div class="published-date">
-          PUBLISHED — ${formatPublishedDate(date)}
-        </div>
-
-
-        <h3>
-          ${escapeHtml(item.title)}
-        </h3>
-
-
-        ${
-          item.excerpt
-            ? `
-              <p>
-                ${escapeHtml(
-                  item.excerpt
-                )}
-              </p>
-            `
-            : ""
-        }
-
-      </div>
-
-
-      <div class="most-viewed-card-footer">
-
-        <span class="view-count">
-          ${views.toLocaleString()} VIEWS
-        </span>
-
-
-        <a
-          href="${getWritingUrl(
-            type,
-            item.id
-          )}"
-          class="text-link"
-        >
-          পড়ুন →
-        </a>
-
-      </div>
-
-
-      ${createWritingActions(
-        type,
-        item.id,
-        item.title
-      )}
-
-    </article>
-
-  `;
-
-}
-
-
-/* =====================================================
-   LOAD MOST VIEWED
-===================================================== */
-
-function loadMostViewed(
-  data,
-  type,
-  containerId
-) {
-
-  const container =
-    document.getElementById(
-      containerId
-    );
-
-  if (!container) {
-    return;
-  }
-
-
-  if (
-    !data ||
-    data.length === 0
-  ) {
-
-    container.innerHTML = `
-      <p>
-        এখনও কোনো লেখা নেই।
-      </p>
-    `;
-
-    return;
-
-  }
-
-
-  const sorted =
-    [...data]
-      .sort(
-        (a, b) =>
-          getViewCount(b) -
-          getViewCount(a)
-      )
-      .slice(0, 6);
-
-
-  container.innerHTML =
-    sorted
-      .map(
-        (item, index) =>
-          createMostViewedCard(
-            type,
-            item,
-            index
-          )
-      )
-      .join("");
-
-}
-
-
-/* =====================================================
-   YEARLY PUBLISHED
-===================================================== */
-
-function loadYearlyPublished(
-  poems,
-  stories,
-  novels
-) {
-
-  const container =
-    document.getElementById(
-      "yearly-list"
-    );
-
-  if (!container) {
-    return;
-  }
-
-
-  const years =
-    new Set();
-
-
-  [
-    ...(poems || []),
-    ...(stories || []),
-    ...(novels || [])
-  ]
-    .forEach(item => {
-
-      const year =
-        getPublishedYear(
-          item.created_at
-        );
-
-      if (year) {
-        years.add(year);
-      }
-
-    });
-
-
-  const sortedYears =
-    [...years]
-      .sort(
-        (a, b) =>
-          b - a
-      );
-
-
-  if (
-    sortedYears.length === 0
-  ) {
-
-    container.innerHTML = `
-      <span>
-        No published years yet
-      </span>
-    `;
-
-    return;
-
-  }
-
-
-  container.innerHTML =
-    sortedYears
-      .map(
-        year => `
-
-          <a
-            href="#year-${year}"
-            data-year-filter="${year}"
-          >
-            ${year}
-          </a>
-
-        `
-      )
-      .join("");
-
-
-  document
-    .querySelectorAll(
-      "[data-year-filter]"
-    )
-    .forEach(link => {
-
-      link.addEventListener(
-        "click",
-        event => {
-
-          event.preventDefault();
-
-          const year =
-            Number(
-              link.dataset.yearFilter
-            );
-
-          filterByYear(year);
-
-        }
-      );
-
-    });
-
-}
-
-
-/* =====================================================
-   YEAR FILTER
-===================================================== */
-
-function filterByYear(year) {
-
-  const sections = [
-    "poetry-list",
-    "stories-container",
-    "novels-container"
-  ];
-
-
-  sections.forEach(
-    sectionId => {
-
-      const container =
-        document.getElementById(
-          sectionId
-        );
-
-      if (!container) {
-        return;
-      }
-
-
-      const cards =
-        container.querySelectorAll(
-          "[data-year]"
-        );
-
-
-      let found = false;
-
-
-      cards.forEach(card => {
-
-        const cardYear =
-          Number(
-            card.dataset.year
-          );
-
-
-        if (
-          cardYear === year
-        ) {
-
-          card.style.display =
-            "";
-
-          found = true;
-
-        } else {
-
-          card.style.display =
-            "none";
-
-        }
-
-      });
-
-
-      if (found) {
-
-        container.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-
-      }
-
-    }
-  );
-
-}
-
-
-/* =====================================================
-   RESET YEAR FILTER
-===================================================== */
-
-function resetYearFilter() {
-
-  document
-    .querySelectorAll(
-      "[data-year]"
-    )
-    .forEach(
-      card => {
-        card.style.display = "";
-      }
-    );
-
-}
-
-
-/* =====================================================
-   REVEAL ANIMATION
+   REVEAL
 ===================================================== */
 
 function initializeReveal() {
 
-  const revealElements =
+  const elements =
     document.querySelectorAll(
       `
-        .intro-inner,
-        .writing-card,
-        .writing-item,
-        .story-card,
-        .novel-card,
-        .most-viewed-card,
-        .quote-container,
-        .author-grid,
-        .archive-heading
+      .intro-inner,
+      .writing-item,
+      .story-card,
+      .novel-card,
+      .quote-container,
+      .author-grid
       `
     );
 
@@ -1364,12 +1061,11 @@ function initializeReveal() {
     !("IntersectionObserver" in window)
   ) {
 
-    revealElements.forEach(
-      element => {
+    elements.forEach(
+      element =>
         element.classList.add(
           "show"
-        );
-      }
+        )
     );
 
     return;
@@ -1403,12 +1099,12 @@ function initializeReveal() {
 
       },
       {
-        threshold: 0.12
+        threshold: 0.08
       }
     );
 
 
-  revealElements.forEach(
+  elements.forEach(
     element => {
 
       element.classList.add(
@@ -1426,157 +1122,39 @@ function initializeReveal() {
 
 
 /* =====================================================
-   SMOOTH ANCHOR
-===================================================== */
-
-function initializeAnchors() {
-
-  document
-    .querySelectorAll(
-      'a[href^="#"]'
-    )
-    .forEach(link => {
-
-      link.addEventListener(
-        "click",
-        event => {
-
-          const targetId =
-            link.getAttribute(
-              "href"
-            );
-
-          if (
-            !targetId ||
-            targetId === "#"
-          ) {
-            return;
-          }
-
-
-          const target =
-            document.querySelector(
-              targetId
-            );
-
-          if (!target) {
-            return;
-          }
-
-
-          event.preventDefault();
-
-
-          target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-
-        }
-      );
-
-    });
-
-}
-
-
-/* =====================================================
-   MAIN INITIALIZATION
+   START
 ===================================================== */
 
 document.addEventListener(
   "DOMContentLoaded",
   async function() {
 
+    console.log(
+      "Shadat Fatih website started."
+    );
+
+
     initializeMenu();
 
     initializeYear();
 
-
-    /*
-      Load all writings in parallel.
-    */
-
-    const [
-      poems,
-      stories,
-      novels
-    ] =
-      await Promise.all([
-        loadPoetry(),
-        loadStories(),
-        loadNovels()
-      ]);
+    initializeWritingActions();
 
 
     /*
-      Year archive
+      Load independently.
+      একটি table error হলে অন্যগুলো
+      আটকে থাকবে না।
     */
 
-    loadYearlyPublished(
-      poems,
-      stories,
-      novels
-    );
+    await loadPoetry();
 
+    await loadStories();
 
-    /*
-      Most viewed
-    */
+    await loadNovels();
 
-    loadMostViewed(
-      poems,
-      "poem",
-      "most-viewed-poems-list"
-    );
-
-
-    loadMostViewed(
-      stories,
-      "story",
-      "most-viewed-stories-list"
-    );
-
-
-    loadMostViewed(
-      novels,
-      "novel",
-      "most-viewed-novels-list"
-    );
-
-
-    /*
-      Animations
-    */
 
     initializeReveal();
 
-
-    /*
-      Smooth navigation
-    */
-
-    initializeAnchors();
-
   }
 );
-
-
-/* =====================================================
-   GLOBAL FUNCTIONS
-===================================================== */
-
-window.copyWritingLink =
-  copyWritingLink;
-
-window.shareWriting =
-  shareWriting;
-
-window.openComment =
-  openComment;
-
-window.filterByYear =
-  filterByYear;
-
-window.resetYearFilter =
-  resetYearFilter;
