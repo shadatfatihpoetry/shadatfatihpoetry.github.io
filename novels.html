@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Shadat Fatih — উপন্যাস</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+</head>
+
+
+<body>
+
+
+  <main class="poem-page">
+
+    <article
+      class="poem-reader"
+      id="novel-content"
+    >
+
+      <p>
+        উপন্যাস লোড হচ্ছে...
+      </p>
+
+    </article>
+
+  </main>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+  <script>
+
+    const SUPABASE_URL =
+      "https://ooxbtwxqumaixvrwsllg.supabase.co";
+
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_dNAV-kJ5rv_-BH6GhChYVg_1xbRUNdy";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+
+
+    async function loadNovel() {
+
+      const container =
+        document.getElementById(
+          "novel-content"
+        );
+
+
+      const params =
+        new URLSearchParams(
+          window.location.search
+        );
+
+
+      const id =
+        params.get("id");
+
+
+      if (!id) {
+
+        container.innerHTML = `
+          <h1>
+            উপন্যাস পাওয়া যায়নি
+          </h1>
+        `;
+
+        return;
+      }
+
+
+      const { data, error } =
+        await supabaseClient
+
+          .from("novels")
+
+          .select(
+            "id, title, content, excerpt, created_at, published"
+          )
+
+          .eq("id", id)
+
+          .eq("published", true)
+
+          .single();
+
+
+      if (error || !data) {
+
+        console.error(
+          "Novel Error:",
+          error
+        );
+
+
+        container.innerHTML = `
+
+          <h1>
+            উপন্যাস পাওয়া যায়নি
+          </h1>
+
+          <p>
+            এই উপন্যাসটি বর্তমানে প্রকাশিত নয়।
+          </p>
+
+        `;
+
+        return;
+      }
+
+
+      document.title =
+        "Shadat Fatih — " +
+        data.title;
+
+
+      container.innerHTML = `
+
+        <p class="eyebrow">
+          NOVEL
+        </p>
+
+
+        <h1>
+          ${escapeHtml(
+            data.title
+          )}
+        </h1>
+
+
+        ${
+          data.excerpt
+            ? `
+              <p class="poem-excerpt">
+                ${escapeHtml(
+                  data.excerpt
+                )}
+              </p>
+            `
+            : ""
+        }
+
+
+        <div class="poem-body">
+
+          ${formatNovel(
+            data.content
+          )}
+
+        </div>
+
+
+        <a
+          href="index.html#novels"
+          class="text-link"
+        >
+          ← সব উপন্যাস
+        </a>
+
+      `;
+
+    }
+
+
+    function formatNovel(text) {
+
+      return escapeHtml(text)
+        .replace(
+          /\r?\n/g,
+          "<br>"
+        );
+
+    }
+
+
+    function escapeHtml(value) {
+
+      return String(value || "")
+
+        .replaceAll(
+          "&",
+          "&amp;"
+        )
+
+        .replaceAll(
+          "<",
+          "&lt;"
+        )
+
+        .replaceAll(
+          ">",
+          "&gt;"
+        )
+
+        .replaceAll(
+          '"',
+          "&quot;"
+        )
+
+        .replaceAll(
+          "'",
+          "&#039;"
+        );
+
+    }
+
+
+    loadNovel();
+
+  </script>
+
+
+</body>
+
+</html>
