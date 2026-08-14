@@ -612,7 +612,7 @@ function totalViews(item) {
 
 /* =====================================================
    ACTION BUTTONS
-   PREMIUM SVG ICONS
+   PREMIUM ANIMATED SVG ICONS
 ===================================================== */
 
 function actionButtons(
@@ -635,7 +635,7 @@ function actionButtons(
 
       <button
         type="button"
-        class="action-btn"
+        class="action-btn action-comment"
         aria-label="Comment"
         title="Comment"
         onclick="openComment(
@@ -644,33 +644,58 @@ function actionButtons(
         )"
       >
 
-        <span>
+        <span class="action-icon">
 
           <svg
             viewBox="0 0 24 24"
-            width="18"
-            height="18"
             fill="none"
-            stroke="currentColor"
-            stroke-width="1.7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
           >
+
             <path
-              d="M20 11.5a8 8 0 0 1-8 8
-                 8.4 8.4 0 0 1-3.4-.72
-                 L4 20l1.22-3.72
-                 A8 8 0 1 1 20 11.5Z"
+              d="M20 11.5
+                 C20 16.194 16.194 20 11.5 20
+                 C9.95 20 8.5 19.59 7.24 18.88
+                 L4 20
+                 L5.12 16.76
+                 C4.41 15.5 4 14.05 4 12.5
+                 C4 7.806 7.806 4 12.5 4
+                 C16.642 4 20 7.358 20 11.5Z"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
             />
-            <path d="M8 11.5h.01" />
-            <path d="M12 11.5h.01" />
-            <path d="M16 11.5h.01" />
+
+            <circle
+              cx="8.5"
+              cy="12"
+              r="0.8"
+              fill="currentColor"
+            />
+
+            <circle
+              cx="12.5"
+              cy="12"
+              r="0.8"
+              fill="currentColor"
+            />
+
+            <circle
+              cx="16.5"
+              cy="12"
+              r="0.8"
+              fill="currentColor"
+            />
+
           </svg>
 
         </span>
 
-        <small>Comment</small>
+        <small>
+          Comment
+        </small>
 
       </button>
 
@@ -679,7 +704,7 @@ function actionButtons(
 
       <button
         type="button"
-        class="action-btn"
+        class="action-btn action-share"
         aria-label="Share"
         title="Share"
         onclick="shareContent(
@@ -688,30 +713,62 @@ function actionButtons(
         )"
       >
 
-        <span>
+        <span class="action-icon">
 
           <svg
             viewBox="0 0 24 24"
-            width="18"
-            height="18"
             fill="none"
-            stroke="currentColor"
-            stroke-width="1.7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
           >
-            <circle cx="18" cy="5" r="2.2" />
-            <circle cx="6" cy="12" r="2.2" />
-            <circle cx="18" cy="19" r="2.2" />
 
-            <path d="M8 11l7.8-4.5" />
-            <path d="M8 13l7.8 4.5" />
+            <circle
+              cx="18"
+              cy="5"
+              r="2.4"
+              stroke="currentColor"
+              stroke-width="1.7"
+            />
+
+            <circle
+              cx="6"
+              cy="12"
+              r="2.4"
+              stroke="currentColor"
+              stroke-width="1.7"
+            />
+
+            <circle
+              cx="18"
+              cy="19"
+              r="2.4"
+              stroke="currentColor"
+              stroke-width="1.7"
+            />
+
+            <path
+              d="M8.2 10.9
+                 L15.8 6.5"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+            />
+
+            <path
+              d="M8.2 13.1
+                 L15.8 17.5"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+            />
+
           </svg>
 
         </span>
 
-        <small>Share</small>
+        <small>
+          Share
+        </small>
 
       </button>
 
@@ -720,7 +777,7 @@ function actionButtons(
 
       <button
         type="button"
-        class="action-btn"
+        class="action-btn action-copy"
         aria-label="Copy Link"
         title="Copy Link"
         onclick="copyLink(
@@ -728,41 +785,56 @@ function actionButtons(
         )"
       >
 
-        <span>
+        <span class="action-icon">
 
           <svg
             viewBox="0 0 24 24"
-            width="18"
-            height="18"
             fill="none"
-            stroke="currentColor"
-            stroke-width="1.7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
           >
+
             <path
-              d="M9.5 14.5l5-5"
+              d="M9.5 14.5
+                 L14.5 9.5"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
             />
 
             <path
-              d="M7.2 17.8l-1.1 1.1
-                 a3.3 3.3 0 0 1-4.7-4.7
-                 l3.1-3.1
-                 a3.3 3.3 0 0 1 4.7 0"
+              d="M8.1 17.9
+                 L6.7 19.3
+                 C5.4 20.6 3.3 20.6 2 19.3
+                 C0.7 18 0.7 15.9 2 14.6
+                 L5.7 10.9
+                 C7 9.6 9.1 9.6 10.4 10.9"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
             />
 
             <path
-              d="M16.8 6.2l1.1-1.1
-                 a3.3 3.3 0 0 1 4.7 4.7
-                 l-3.1 3.1
-                 a3.3 3.3 0 0 1-4.7 0"
+              d="M15.9 6.1
+                 L17.3 4.7
+                 C18.6 3.4 20.7 3.4 22 4.7
+                 C23.3 6 23.3 8.1 22 9.4
+                 L18.3 13.1
+                 C17 14.4 14.9 14.4 13.6 13.1"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
             />
+
           </svg>
 
         </span>
 
-        <small>Copy</small>
+        <small>
+          Copy
+        </small>
 
       </button>
 
@@ -770,181 +842,7 @@ function actionButtons(
 
   `;
 
-}
-
-/* =====================================================
-   POETRY
-===================================================== */
-
-async function loadPoetry() {
-
-  const container =
-    document.getElementById(
-      "poetry-list"
-    );
-
-  if (!container) return;
-
-
-  try {
-
-    const {
-      data,
-      error
-    } =
-      await window.supabaseClient
-        .from("poems")
-        .select(
-          "id,title,content,excerpt,created_at,published,views"
-        )
-        .eq(
-          "published",
-          true
-        )
-        .order(
-          "created_at",
-          {
-            ascending: false
-          }
-        );
-
-
-    if (error) throw error;
-
-
-    if (
-      !data ||
-      data.length === 0
-    ) {
-
-      container.innerHTML = `
-
-        <div class="empty-card">
-
-          <span>POETRY</span>
-
-          <h3>
-            শীঘ্রই আসছে
-          </h3>
-
-          <p>
-            নতুন কবিতা খুব শীঘ্রই প্রকাশিত হবে।
-          </p>
-
-        </div>
-
-      `;
-
-      return;
-
-    }
-
-
-    container.innerHTML =
-      data.map(
-        (poem, index) => `
-
-          <article class="writing-card">
-
-            <div class="card-number">
-              ${String(
-                index + 1
-              ).padStart(2, "0")}
-            </div>
-
-
-            <div class="writing-card-content">
-
-              <div class="published-date">
-                ${formatDate(
-                  poem.created_at
-                )}
-              </div>
-
-
-              <p class="card-label">
-                POETRY
-              </p>
-
-
-              <h3>
-                ${escapeHtml(
-                  poem.title
-                )}
-              </h3>
-
-
-              ${
-                poem.excerpt
-                  ? `
-                    <p class="writing-excerpt">
-                      ${escapeHtml(
-                        poem.excerpt
-                      )}
-                    </p>
-                  `
-                  : ""
-              }
-
-
-              ${totalViews(poem)}
-
-
-              <a
-                href="${typeUrl(
-                  "poem",
-                  poem.id
-                )}"
-                class="text-link"
-              >
-                কবিতা পড়ুন →
-              </a>
-
-
-              ${actionButtons(
-                "poem",
-                poem.id,
-                poem.title
-              )}
-
-            </div>
-
-          </article>
-
-        `
-      ).join("");
-
-
-  } catch (error) {
-
-    console.error(
-      "Poetry Error:",
-      error
-    );
-
-    container.innerHTML = `
-
-      <div class="error-card">
-
-        <span>POETRY</span>
-
-        <h3>
-          কবিতা লোড করা যায়নি
-        </h3>
-
-        <p>
-          ${escapeHtml(
-            error.message
-          )}
-        </p>
-
-      </div>
-
-    `;
-
-  }
-
-}
+}   
 
 
 /* =====================================================
