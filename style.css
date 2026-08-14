@@ -1653,81 +1653,189 @@ main {
 
   line-height: 1;
 
-  transition:
-    transform .3s ease,
-    color .3s ease;
+/* =================================================
+   PREMIUM ACTION BUTTONS
+================================================= */
 
+.home-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 
-/* ICON HOVER */
+/* BUTTON */
 
-.action-btn:hover span {
+.home-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
 
-  color:
-    #24758a;
+  padding: 7px 15px 7px 8px;
 
+  border: 1px solid rgba(80, 80, 80, 0.16);
+  border-radius: 30px;
+
+  background: rgba(255, 255, 255, 0.72);
+
+  color: #242424;
+
+  font-family:
+    "Noto Serif Bengali",
+    serif;
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease,
+    background .25s ease;
+
+  backdrop-filter: blur(8px);
+}
+
+
+/* CIRCULAR ICON */
+
+.home-action-icon {
+  width: 34px;
+  height: 34px;
+
+  min-width: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  box-shadow:
+    0 5px 14px rgba(0,0,0,.16);
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
 }
 
 
 /* COMMENT */
 
-.action-btn:first-child:hover span {
-
-  animation:
-    homeComment .6s ease;
-
+.home-action.comment .home-action-icon {
+  background:
+    linear-gradient(
+      135deg,
+      #5b4b8a,
+      #8c6fc4
+    );
 }
 
 
 /* SHARE */
 
-.action-btn:nth-child(2):hover span {
-
-  animation:
-    homeShare .6s ease;
-
+.home-action.share .home-action-icon {
+  background:
+    linear-gradient(
+      135deg,
+      #147d92,
+      #29a6b8
+    );
 }
 
 
 /* COPY */
 
-.action-btn:nth-child(3):hover span {
-
-  animation:
-    homeCopy .6s ease;
-
+.home-action.copy .home-action-icon {
+  background:
+    linear-gradient(
+      135deg,
+      #3d566e,
+      #66849f
+    );
 }
 
 
-/* TEXT */
+/* HOVER */
 
-.action-btn small {
+.home-action:hover {
 
-  position: relative;
+  transform:
+    translateY(-3px);
 
-  z-index: 2;
+  background:
+    rgba(255,255,255,.95);
 
-  color:
-    #64748b;
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.12);
 
-  font-size: 10px;
-
-  letter-spacing: .3px;
-
-  transition:
-    color .25s ease;
-
+  border-color:
+    rgba(70,70,70,.25);
 }
 
 
-.action-btn:hover small {
+.home-action:hover
+.home-action-icon {
 
-  color:
-    #315c72;
+  transform:
+    rotate(8deg)
+    scale(1.1);
 
+  box-shadow:
+    0 7px 20px rgba(0,0,0,.22);
 }
 
+
+/* CLICK */
+
+.home-action:active {
+
+  transform:
+    translateY(-1px)
+    scale(.97);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  .home-actions {
+    gap: 8px;
+  }
+
+  .home-action {
+
+    padding:
+      6px 12px 6px 7px;
+
+    font-size: 13px;
+
+  }
+
+  .home-action-icon {
+
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+
+    font-size: 15px;
+
+  }
+
+}
 
 /* =====================================================
    ANIMATIONS
