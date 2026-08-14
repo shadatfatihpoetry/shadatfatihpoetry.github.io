@@ -45,25 +45,67 @@ function initMenu() {
   if (!menuToggle || !mainNav) return;
 
 
-  menuToggle.addEventListener("click", event => {
+  /* Ensure initial state */
 
-    event.stopPropagation();
-
-    const isOpen =
-      mainNav.classList.toggle("active");
+  if (!mainNav.classList.contains("active")) {
 
     menuToggle.setAttribute(
       "aria-expanded",
-      isOpen ? "true" : "false"
+      "false"
     );
 
     mainNav.setAttribute(
       "aria-hidden",
-      isOpen ? "false" : "true"
+      "true"
     );
+
+  }
+
+
+  /* 3 DOT MENU */
+
+  menuToggle.addEventListener("click", event => {
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    const isOpen =
+      mainNav.classList.contains("active");
+
+    if (isOpen) {
+
+      mainNav.classList.remove("active");
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      mainNav.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+    } else {
+
+      mainNav.classList.add("active");
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+      mainNav.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+    }
 
   });
 
+
+  /* SUB MENUS */
 
   mainNav
     .querySelectorAll("[data-toggle]")
@@ -71,6 +113,7 @@ function initMenu() {
 
       button.addEventListener("click", event => {
 
+        event.preventDefault();
         event.stopPropagation();
 
         const targetId =
@@ -93,14 +136,18 @@ function initMenu() {
           button.querySelector(".menu-arrow");
 
         if (arrow) {
+
           arrow.textContent =
             isOpen ? "−" : "+";
+
         }
 
       });
 
     });
 
+
+  /* MENU LINKS */
 
   mainNav
     .querySelectorAll(".menu-main-links a")
@@ -124,6 +171,8 @@ function initMenu() {
 
     });
 
+
+  /* CLOSE WHEN CLICKING OUTSIDE */
 
   document.addEventListener("click", event => {
 
@@ -149,6 +198,8 @@ function initMenu() {
   });
 
 
+  /* ESCAPE */
+
   document.addEventListener("keydown", event => {
 
     if (event.key === "Escape") {
@@ -168,6 +219,30 @@ function initMenu() {
     }
 
   });
+
+}
+
+
+/* =====================================================
+   SUPABASE CHECK
+===================================================== */
+
+function getSupabaseClient() {
+
+  if (
+    window.supabaseClient &&
+    typeof window.supabaseClient.from === "function"
+  ) {
+
+    return window.supabaseClient;
+
+  }
+
+  console.error(
+    "Supabase client is not available."
+  );
+
+  return null;
 
 }
 
@@ -602,13 +677,42 @@ async function loadPoetry() {
 
   if (!container) return;
 
+
+  const client =
+    getSupabaseClient();
+
+  if (!client) {
+
+    container.innerHTML = `
+
+      <div class="error-card">
+
+        <span>POETRY</span>
+
+        <h3>
+          কবিতা লোড করা যায়নি
+        </h3>
+
+        <p>
+          Database connection পাওয়া যায়নি।
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
   try {
 
     const {
       data,
       error
     } =
-      await window.supabaseClient
+      await client
         .from("poems")
         .select(
           "id,title,content,excerpt,created_at,published,views"
@@ -624,7 +728,9 @@ async function loadPoetry() {
           }
         );
 
+
     if (error) throw error;
+
 
     if (!data || data.length === 0) {
 
@@ -762,13 +868,44 @@ async function loadStories() {
 
   if (!container) return;
 
+
+  const client =
+    getSupabaseClient();
+
+  if (!client) {
+
+    container.innerHTML = `
+
+      <div class="story-card error-card">
+
+        <span>
+          STORIES
+        </span>
+
+        <h3>
+          গল্প লোড করা যায়নি
+        </h3>
+
+        <p>
+          Database connection পাওয়া যায়নি।
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
   try {
 
     const {
       data,
       error
     } =
-      await window.supabaseClient
+      await client
         .from("stories")
         .select(
           "id,title,excerpt,content,created_at,published,views"
@@ -784,7 +921,9 @@ async function loadStories() {
           }
         );
 
+
     if (error) throw error;
+
 
     if (!data || data.length === 0) {
 
@@ -917,13 +1056,44 @@ async function loadNovels() {
 
   if (!container) return;
 
+
+  const client =
+    getSupabaseClient();
+
+  if (!client) {
+
+    container.innerHTML = `
+
+      <div class="novel-card error-card">
+
+        <p class="card-label">
+          NOVELS
+        </p>
+
+        <h3>
+          উপন্যাস লোড করা যায়নি
+        </h3>
+
+        <p>
+          Database connection পাওয়া যায়নি।
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
   try {
 
     const {
       data,
       error
     } =
-      await window.supabaseClient
+      await client
         .from("novels")
         .select(
           "id,title,content,excerpt,created_at,published,views"
@@ -939,7 +1109,9 @@ async function loadNovels() {
           }
         );
 
+
     if (error) throw error;
+
 
     if (!data || data.length === 0) {
 
@@ -1076,6 +1248,13 @@ async function loadYearlyArchive() {
 
   if (!container) return;
 
+
+  const client =
+    getSupabaseClient();
+
+  if (!client) return;
+
+
   try {
 
     const [
@@ -1085,7 +1264,7 @@ async function loadYearlyArchive() {
     ] =
       await Promise.all([
 
-        window.supabaseClient
+        client
           .from("poems")
           .select(
             "id,title,created_at,published"
@@ -1101,7 +1280,7 @@ async function loadYearlyArchive() {
             }
           ),
 
-        window.supabaseClient
+        client
           .from("stories")
           .select(
             "id,title,created_at,published"
@@ -1117,7 +1296,7 @@ async function loadYearlyArchive() {
             }
           ),
 
-        window.supabaseClient
+        client
           .from("novels")
           .select(
             "id,title,created_at,published"
@@ -1418,6 +1597,7 @@ function initArchiveToggles() {
         "click",
         event => {
 
+          event.preventDefault();
           event.stopPropagation();
 
           const id =
@@ -1476,6 +1656,12 @@ async function loadMostViewed() {
   }
 
 
+  const client =
+    getSupabaseClient();
+
+  if (!client) return;
+
+
   try {
 
     const [
@@ -1484,7 +1670,7 @@ async function loadMostViewed() {
       novelsResult
     ] = await Promise.all([
 
-      window.supabaseClient
+      client
         .from("poems")
         .select("id,title,views")
         .eq("published", true)
@@ -1494,7 +1680,7 @@ async function loadMostViewed() {
         })
         .limit(5),
 
-      window.supabaseClient
+      client
         .from("stories")
         .select("id,title,views")
         .eq("published", true)
@@ -1504,7 +1690,7 @@ async function loadMostViewed() {
         })
         .limit(5),
 
-      window.supabaseClient
+      client
         .from("novels")
         .select("id,title,views")
         .eq("published", true)
@@ -1617,61 +1803,6 @@ function renderMostMenu(
           ${String(index + 1).padStart(2, "0")}
         </span>
 
-        <span class="most-item-title">
-          ${escapeHtml(item.title)}
-        </span>
-
-        <span class="most-item-views">
-          ${Number(item.views || 0).toLocaleString("en-US")} views
-        </span>
-
-      </a>
-
-    `).join("");
-
-}
-
-/* =====================================================
-   MOST VIEWED MENU RENDER
-===================================================== */
-
-function renderMostMenu(
-  container,
-  data,
-  type
-) {
-
-  if (!container) return;
-
-
-  if (!data.length) {
-
-    container.innerHTML = `
-      <p>
-        এখনো কোনো লেখা নেই।
-      </p>
-    `;
-
-    return;
-
-  }
-
-
-  container.innerHTML =
-    data.map((item, index) => `
-
-      <a
-        href="${typeUrl(
-          type,
-          item.id
-        )}"
-        class="menu-sub-link most-item-link"
-      >
-
-        <span class="most-rank">
-          ${String(index + 1).padStart(2, "0")}
-        </span>
-
         <span>
           ${escapeHtml(item.title)}
         </span>
@@ -1703,13 +1834,19 @@ async function loadWebsiteViews() {
   if (!element) return;
 
 
+  const client =
+    getSupabaseClient();
+
+  if (!client) return;
+
+
   try {
 
     const {
       data,
       error
     } =
-      await window.supabaseClient
+      await client
         .from("site_views")
         .select("views")
         .eq("id", 1)
