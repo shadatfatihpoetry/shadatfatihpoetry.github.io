@@ -3518,3 +3518,321 @@ a:focus-visible {
   }
 
 }
+
+/* =====================================================
+   HOMEPAGE — PREMIUM COMMENT / SHARE / COPY
+===================================================== */
+
+.home-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+
+/* BUTTON */
+
+.home-action {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 6px 15px 6px 7px;
+
+  border: 1px solid rgba(176, 138, 69, 0.30);
+  border-radius: 30px;
+
+  background: rgba(176, 138, 69, 0.07);
+
+  color: #705524;
+
+  box-shadow:
+    0 5px 16px rgba(90, 65, 20, 0.08);
+
+  overflow: hidden;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  transition:
+    transform 0.3s cubic-bezier(.22,.61,.36,1),
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* SHINE */
+
+.home-action::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -130%;
+
+  width: 75%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,0.45),
+      transparent
+    );
+
+  transform: skewX(-20deg);
+
+  transition: left 0.55s ease;
+}
+
+.home-action:hover::before {
+  left: 140%;
+}
+
+
+/* CIRCULAR ICON */
+
+.home-action-icon {
+  position: relative;
+  z-index: 2;
+
+  width: 35px;
+  height: 35px;
+
+  min-width: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  box-shadow:
+    0 5px 15px rgba(80,60,20,0.18);
+
+  transition:
+    transform 0.35s cubic-bezier(.22,.61,.36,1),
+    box-shadow 0.35s ease;
+}
+
+
+/* COMMENT */
+
+.home-action.comment .home-action-icon {
+  background:
+    linear-gradient(
+      135deg,
+      #70542a,
+      #b08a45
+    );
+}
+
+
+/* SHARE */
+
+.home-action.share .home-action-icon {
+  background:
+    linear-gradient(
+      135deg,
+      #315c72,
+      #568ba0
+    );
+}
+
+
+/* COPY */
+
+.home-action.copy .home-action-icon {
+  background:
+    linear-gradient(
+      135deg,
+      #3f4650,
+      #737b86
+    );
+}
+
+
+/* HOVER */
+
+.home-action:hover {
+  transform:
+    translateY(-4px);
+
+  background:
+    rgba(176, 138, 69, 0.13);
+
+  border-color:
+    rgba(176, 138, 69, 0.55);
+
+  box-shadow:
+    0 12px 28px rgba(80,60,20,0.14);
+}
+
+
+.home-action:hover .home-action-icon {
+  transform:
+    scale(1.12)
+    rotate(6deg);
+
+  box-shadow:
+    0 8px 22px rgba(70,50,20,0.25);
+}
+
+
+/* =====================================================
+   ICON ANIMATIONS
+===================================================== */
+
+.home-action.comment:hover .home-action-icon {
+  animation:
+    homePremiumComment 0.65s ease;
+}
+
+@keyframes homePremiumComment {
+
+  0% {
+    transform: scale(1);
+  }
+
+  35% {
+    transform:
+      scale(1.22)
+      rotate(-6deg);
+  }
+
+  65% {
+    transform:
+      scale(.94)
+      rotate(4deg);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+.home-action.share:hover .home-action-icon {
+  animation:
+    homePremiumShare 0.65s ease;
+}
+
+@keyframes homePremiumShare {
+
+  0% {
+    transform: translate(0,0);
+  }
+
+  35% {
+    transform:
+      translate(3px,-4px)
+      rotate(-8deg)
+      scale(1.12);
+  }
+
+  65% {
+    transform:
+      translate(-1px,1px)
+      rotate(4deg);
+  }
+
+  100% {
+    transform: translate(0,0);
+  }
+}
+
+
+.home-action.copy:hover .home-action-icon {
+  animation:
+    homePremiumCopy 0.65s ease;
+}
+
+@keyframes homePremiumCopy {
+
+  0% {
+    transform: scale(1);
+  }
+
+  35% {
+    transform:
+      scale(1.2)
+      rotate(5deg);
+  }
+
+  65% {
+    transform:
+      scale(.92)
+      rotate(-4deg);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+/* =====================================================
+   CLICK EFFECT
+===================================================== */
+
+.home-action:active {
+  transform:
+    translateY(-1px)
+    scale(.96);
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+  .home-actions {
+    gap: 8px;
+  }
+
+  .home-action {
+    padding:
+      6px 12px 6px 6px;
+
+    font-size: 13px;
+  }
+
+  .home-action-icon {
+    width: 32px;
+    height: 32px;
+
+    min-width: 32px;
+
+    font-size: 15px;
+  }
+}
+
+
+/* =====================================================
+   REDUCE MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .home-action,
+  .home-action-icon {
+    animation: none !important;
+    transition: none !important;
+  }
+
+}
