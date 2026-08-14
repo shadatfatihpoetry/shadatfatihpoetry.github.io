@@ -1,3 +1,9 @@
+/* =====================================================
+   SHADAT FATIH LITERARY ARCHIVE
+   FINAL SCRIPT.JS
+   VIEWS + MOST VIEWED + YEARLY ARCHIVE
+===================================================== */
+
 "use strict";
 
 
@@ -21,8 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initReveal();
 
-  initMostViewedToggles();
-
 });
 
 
@@ -41,8 +45,11 @@ function initMenu() {
   if (!menuToggle || !mainNav) return;
 
 
+  /* 3 DOT MAIN MENU */
+
   menuToggle.addEventListener("click", event => {
 
+    event.preventDefault();
     event.stopPropagation();
 
     const isOpen =
@@ -61,50 +68,54 @@ function initMenu() {
   });
 
 
- mainNav
-  .querySelectorAll("[data-toggle]")
-  .forEach(button => {
+  /* YEARLY ARCHIVE + MOST VIEWED */
 
-    button.addEventListener("click", event => {
+  mainNav
+    .querySelectorAll("[data-toggle]")
+    .forEach(button => {
 
-      event.preventDefault();
-      event.stopPropagation();
+      button.addEventListener("click", event => {
 
-      const targetId =
-        button.getAttribute("data-toggle");
+        event.preventDefault();
+        event.stopPropagation();
 
-      const target =
-        document.getElementById(targetId);
+        const targetId =
+          button.getAttribute("data-toggle");
 
-      if (!target) return;
+        const target =
+          document.getElementById(targetId);
 
-      const isOpen =
-        target.classList.contains("active");
+        if (!target) return;
 
-      target.classList.toggle(
-        "active",
-        !isOpen
-      );
+        const isOpen =
+          target.classList.contains("active");
 
-      button.setAttribute(
-        "aria-expanded",
-        !isOpen ? "true" : "false"
-      );
+        target.classList.toggle(
+          "active",
+          !isOpen
+        );
 
-      const arrow =
-        button.querySelector(".menu-arrow");
+        button.setAttribute(
+          "aria-expanded",
+          !isOpen ? "true" : "false"
+        );
 
-      if (arrow) {
+        const arrow =
+          button.querySelector(".menu-arrow");
 
-        arrow.textContent =
-          !isOpen ? "−" : "+";
+        if (arrow) {
 
-      }
+          arrow.textContent =
+            !isOpen ? "−" : "+";
+
+        }
+
+      });
 
     });
 
-  }); 
 
+  /* MAIN LINKS */
 
   mainNav
     .querySelectorAll(".menu-main-links a")
@@ -129,6 +140,8 @@ function initMenu() {
     });
 
 
+  /* OUTSIDE CLICK */
+
   document.addEventListener("click", event => {
 
     if (
@@ -152,6 +165,8 @@ function initMenu() {
 
   });
 
+
+  /* ESCAPE */
 
   document.addEventListener("keydown", event => {
 
@@ -205,9 +220,7 @@ function escapeHtml(value) {
     value === null ||
     value === undefined
   ) {
-
     return "";
-
   }
 
   return String(value)
@@ -1061,7 +1074,6 @@ async function loadYearlyArchive() {
 
   if (!container) return;
 
-
   try {
 
     const [
@@ -1206,9 +1218,6 @@ async function loadYearlyArchive() {
       sortedYears
         .map(year => {
 
-          const yearId =
-            `archive-year-${year}`;
-
           const months =
             years[year];
 
@@ -1216,7 +1225,7 @@ async function loadYearlyArchive() {
             Object.keys(months)
               .sort(
                 (a, b) =>
-                  Number(b) - Number(a)
+                  Number(a) - Number(b)
               );
 
 
@@ -1227,7 +1236,7 @@ async function loadYearlyArchive() {
               <button
                 type="button"
                 class="archive-year-title"
-                data-archive-toggle="${yearId}"
+                data-archive-toggle="year-${year}"
                 aria-expanded="false"
               >
 
@@ -1244,14 +1253,11 @@ async function loadYearlyArchive() {
 
               <div
                 class="archive-year-content"
-                id="${yearId}"
+                id="year-${year}"
               >
 
                 ${sortedMonths
                   .map(month => {
-
-                    const monthId =
-                      `archive-month-${year}-${month}`;
 
                     const items =
                       months[month];
@@ -1263,16 +1269,14 @@ async function loadYearlyArchive() {
                         <button
                           type="button"
                           class="archive-month-title"
-                          data-archive-toggle="${monthId}"
+                          data-archive-toggle="month-${year}-${month}"
                           aria-expanded="false"
                         >
 
                           <span>
-                            ${
-                              BANGLA_MONTHS[
-                                Number(month)
-                              ]
-                            }
+                            ${BANGLA_MONTHS[
+                              Number(month)
+                            ]}
                           </span>
 
                           <span>
@@ -1284,7 +1288,7 @@ async function loadYearlyArchive() {
 
                         <div
                           class="archive-month-content"
-                          id="${monthId}"
+                          id="month-${year}-${month}"
                         >
 
                           ${renderArchiveTypes(items)}
@@ -1359,19 +1363,11 @@ function renderArchiveTypes(items) {
     )
     .map(type => {
 
-      const typeId =
-        `archive-type-${type}-${Math.random()
-          .toString(36)
-          .slice(2, 9)}`;
-
-
       return `
 
         <div class="archive-type">
 
-          <div
-            class="archive-type-title"
-          >
+          <div class="archive-type-title">
             ${typeLabel(type)}
           </div>
 
@@ -1426,6 +1422,7 @@ function initArchiveToggles() {
         "click",
         event => {
 
+          event.preventDefault();
           event.stopPropagation();
 
           const id =
@@ -1438,16 +1435,21 @@ function initArchiveToggles() {
 
           if (!target) return;
 
-
           const isOpen =
-            target.classList.toggle(
+            target.classList.contains(
               "active"
             );
 
 
+          target.classList.toggle(
+            "active",
+            !isOpen
+          );
+
+
           button.setAttribute(
             "aria-expanded",
-            isOpen ? "true" : "false"
+            !isOpen ? "true" : "false"
           );
 
 
@@ -1460,7 +1462,7 @@ function initArchiveToggles() {
           if (spans.length > 1) {
 
             spans[1].textContent =
-              isOpen ? "−" : "+";
+              !isOpen ? "−" : "+";
 
           }
 
@@ -1480,17 +1482,17 @@ async function loadMostViewed() {
 
   const poemList =
     document.getElementById(
-      "most-poems-folder"
+      "mostPoemsList"
     );
 
   const storyList =
     document.getElementById(
-      "most-stories-folder"
+      "mostStoriesList"
     );
 
   const novelList =
     document.getElementById(
-      "most-novels-folder"
+      "mostNovelsList"
     );
 
 
@@ -1499,9 +1501,7 @@ async function loadMostViewed() {
     !storyList &&
     !novelList
   ) {
-
     return;
-
   }
 
 
@@ -1531,7 +1531,6 @@ async function loadMostViewed() {
         )
         .limit(5),
 
-
       window.supabaseClient
         .from("stories")
         .select(
@@ -1549,7 +1548,6 @@ async function loadMostViewed() {
           }
         )
         .limit(5),
-
 
       window.supabaseClient
         .from("novels")
@@ -1618,14 +1616,12 @@ async function loadMostViewed() {
 
     }
 
-
     if (storyList) {
 
       storyList.innerHTML =
         "<p>লোড করা যায়নি।</p>";
 
     }
-
 
     if (novelList) {
 
@@ -1640,7 +1636,7 @@ async function loadMostViewed() {
 
 
 /* =====================================================
-   MOST VIEWED RENDER
+   MOST VIEWED MENU RENDER
 ===================================================== */
 
 function renderMostMenu(
@@ -1680,15 +1676,12 @@ function renderMostMenu(
           ${String(index + 1).padStart(2, "0")}
         </span>
 
-
         <span class="most-item-title">
           ${escapeHtml(item.title)}
         </span>
 
-
-        <span class="most-views">
-          ◉
-          ${Number(
+        <span class="most-item-views">
+          ◉ ${Number(
             item.views || 0
           ).toLocaleString("en-US")}
         </span>
@@ -1696,68 +1689,6 @@ function renderMostMenu(
       </a>
 
     `).join("");
-
-}
-
-
-/* =====================================================
-   MOST VIEWED FOLDER TOGGLES
-===================================================== */
-
-function initMostViewedToggles() {
-
-  document
-    .querySelectorAll(
-      "[data-most-toggle]"
-    )
-    .forEach(button => {
-
-      button.addEventListener(
-        "click",
-        event => {
-
-          event.stopPropagation();
-
-          const id =
-            button.getAttribute(
-              "data-most-toggle"
-            );
-
-          const target =
-            document.getElementById(id);
-
-          if (!target) return;
-
-
-          const isOpen =
-            target.classList.toggle(
-              "active"
-            );
-
-
-          button.setAttribute(
-            "aria-expanded",
-            isOpen ? "true" : "false"
-          );
-
-
-          const spans =
-            button.querySelectorAll(
-              "span"
-            );
-
-
-          if (spans.length > 1) {
-
-            spans[1].textContent =
-              isOpen ? "−" : "+";
-
-          }
-
-        }
-      );
-
-    });
 
 }
 
@@ -1785,7 +1716,10 @@ async function loadWebsiteViews() {
       await window.supabaseClient
         .from("site_views")
         .select("views")
-        .eq("id", 1)
+        .eq(
+          "id",
+          1
+        )
         .maybeSingle();
 
 
