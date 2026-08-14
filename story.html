@@ -77,96 +77,336 @@
 
 
     /* =================================================
-       BOTTOM ACTIONS
-    ================================================= */
+   PREMIUM READER ACTIONS
+================================================= */
 
-    .reader-actions {
+.reader-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 
-      display: flex;
+  margin-top: 38px;
+  padding-top: 22px;
 
-      align-items: center;
-
-      flex-wrap: wrap;
-
-      gap: 10px;
-
-      margin-top: 35px;
-
-      padding-top: 20px;
-
-      border-top:
-        1px solid
-        rgba(0,0,0,.10);
-
-    }
+  border-top: 1px solid rgba(0,0,0,.10);
+}
 
 
-    .reader-action {
+/* ACTION BUTTON */
 
-      appearance: none;
+.reader-action {
 
-      background: transparent;
+  position: relative;
 
-      display: inline-flex;
+  appearance: none;
 
-      align-items: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-      gap: 7px;
+  gap: 9px;
 
-      padding: 9px 13px;
+  min-width: 48px;
+  min-height: 44px;
 
-      color: #292929;
+  padding: 9px 15px;
 
-      font-family:
-        "Noto Serif Bengali",
-        serif;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 14px;
 
-      font-size: 14px;
+  background:
+    rgba(255,255,255,.55);
 
-      cursor: pointer;
+  color: #292929;
 
-      border:
-        1px solid
-        rgba(0,0,0,.13);
+  font-family:
+    "Noto Serif Bengali",
+    serif;
 
-      border-radius: 25px;
+  font-size: 13px;
 
-      transition:
-        transform .2s ease,
-        border-color .2s ease,
-        color .2s ease,
-        background .2s ease;
+  cursor: pointer;
 
-    }
+  overflow: hidden;
 
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 
-    .reader-action:hover {
-
-      transform:
-        translateY(-2px);
-
-      border-color:
-        #9c8147;
-
-      color:
-        #9c8147;
-
-      background:
-        rgba(156,129,71,.05);
-
-    }
+  transition:
+    transform .28s cubic-bezier(.22,.61,.36,1),
+    border-color .28s ease,
+    background .28s ease,
+    box-shadow .28s ease,
+    color .28s ease;
+}
 
 
-    .action-icon {
+/* GOLD SHINE */
 
-      font-family: Arial, sans-serif;
+.reader-action::before {
 
-      font-size: 16px;
+  content: "";
 
-      color:
-        #9c8147;
+  position: absolute;
 
-    }
+  top: 0;
+  left: -120%;
+
+  width: 80%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(176,138,69,.13),
+      transparent
+    );
+
+  transform: skewX(-20deg);
+
+  transition:
+    left .6s ease;
+
+}
+
+
+/* HOVER */
+
+.reader-action:hover {
+
+  transform:
+    translateY(-4px);
+
+  border-color:
+    rgba(176,138,69,.55);
+
+  color:
+    #9c8147;
+
+  background:
+    rgba(255,255,255,.85);
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,.08),
+    0 0 0 3px rgba(176,138,69,.04);
+
+}
+
+
+.reader-action:hover::before {
+
+  left: 130%;
+
+}
+
+
+/* CLICK */
+
+.reader-action:active {
+
+  transform:
+    translateY(-1px)
+    scale(.96);
+
+}
+
+
+/* =================================================
+   PREMIUM ICON
+================================================= */
+
+.action-icon {
+
+  position: relative;
+
+  width: 23px;
+  height: 23px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  color:
+    #9c8147;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 17px;
+
+  line-height: 1;
+
+  transition:
+    transform .3s cubic-bezier(.22,.61,.36,1),
+    color .3s ease;
+}
+
+
+/* ICON ANIMATION */
+
+.reader-action:hover .action-icon {
+
+  transform:
+    scale(1.15)
+    rotate(-4deg);
+
+  color:
+    #b08a45;
+
+}
+
+
+/* COMMENT ICON */
+
+.reader-action:first-child:hover .action-icon {
+
+  animation:
+    commentFloat .65s ease;
+
+}
+
+
+/* SHARE ICON */
+
+.reader-action:nth-child(2):hover .action-icon {
+
+  animation:
+    shareFly .65s ease;
+
+}
+
+
+/* COPY ICON */
+
+.reader-action:nth-child(3):hover .action-icon {
+
+  animation:
+    copyPulse .65s ease;
+
+}
+
+
+/* =================================================
+   ANIMATIONS
+================================================= */
+
+@keyframes commentFloat {
+
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  45% {
+    transform: translateY(-4px) scale(1.18);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+}
+
+
+@keyframes shareFly {
+
+  0% {
+    transform: translate(0,0) rotate(0);
+  }
+
+  45% {
+    transform: translate(4px,-4px) rotate(-8deg);
+  }
+
+  100% {
+    transform: translate(0,0) rotate(0);
+  }
+
+}
+
+
+@keyframes copyPulse {
+
+  0% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(1.22) rotate(5deg);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+
+}
+
+
+/* TEXT */
+
+.reader-action > span:last-child {
+
+  position: relative;
+
+  z-index: 2;
+
+  transition:
+    letter-spacing .25s ease;
+
+}
+
+
+.reader-action:hover > span:last-child {
+
+  letter-spacing:
+    .3px;
+
+}
+
+
+/* =================================================
+   MOBILE
+================================================= */
+
+@media (max-width: 600px) {
+
+  .reader-actions {
+
+    gap: 8px;
+
+    margin-top: 30px;
+    padding-top: 18px;
+
+  }
+
+  .reader-action {
+
+    min-height: 42px;
+
+    padding:
+      8px 12px;
+
+    border-radius: 12px;
+
+    font-size: 12px;
+
+  }
+
+  .action-icon {
+
+    width: 21px;
+    height: 21px;
+
+    font-size: 16px;
+
+  }
+
+}
 
 
     /* =================================================
