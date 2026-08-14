@@ -61,43 +61,49 @@ function initMenu() {
   });
 
 
-  mainNav
-    .querySelectorAll("[data-toggle]")
-    .forEach(button => {
+ mainNav
+  .querySelectorAll("[data-toggle]")
+  .forEach(button => {
 
-      button.addEventListener("click", event => {
+    button.addEventListener("click", event => {
 
-        event.stopPropagation();
+      event.preventDefault();
+      event.stopPropagation();
 
-        const targetId =
-          button.getAttribute("data-toggle");
+      const targetId =
+        button.getAttribute("data-toggle");
 
-        const target =
-          document.getElementById(targetId);
+      const target =
+        document.getElementById(targetId);
 
-        if (!target) return;
+      if (!target) return;
 
-        const isOpen =
-          target.classList.toggle("active");
+      const isOpen =
+        target.classList.contains("active");
 
-        button.setAttribute(
-          "aria-expanded",
-          isOpen ? "true" : "false"
-        );
+      target.classList.toggle(
+        "active",
+        !isOpen
+      );
 
-        const arrow =
-          button.querySelector(".menu-arrow");
+      button.setAttribute(
+        "aria-expanded",
+        !isOpen ? "true" : "false"
+      );
 
-        if (arrow) {
+      const arrow =
+        button.querySelector(".menu-arrow");
 
-          arrow.textContent =
-            isOpen ? "−" : "+";
+      if (arrow) {
 
-        }
+        arrow.textContent =
+          !isOpen ? "−" : "+";
 
-      });
+      }
 
     });
+
+  }); 
 
 
   mainNav
