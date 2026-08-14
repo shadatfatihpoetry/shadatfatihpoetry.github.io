@@ -1489,61 +1489,362 @@ main {
 
 
 /* =====================================================
-   ACTION BUTTONS
+   PREMIUM HOMEPAGE ACTION ICONS
 ===================================================== */
 
 .writing-actions {
+
   display: flex;
 
   align-items: center;
 
-  gap: 10px;
+  gap: 8px;
 
   margin-top: 25px;
 
   padding-top: 16px;
 
-  border-top: 1px solid rgba(0,0,0,.12);
+  border-top:
+    1px solid
+    rgba(0,0,0,.09);
+
 }
 
+
+/* ACTION */
+
 .action-btn {
-  border: 0;
 
-  background: transparent;
-
-  padding: 7px 9px;
+  position: relative;
 
   display: inline-flex;
 
   align-items: center;
 
+  justify-content: center;
+
   gap: 6px;
+
+  min-width: 40px;
+
+  height: 38px;
+
+  padding: 6px 10px;
+
+  border:
+    1px solid
+    rgba(51,65,85,.14);
+
+  border-radius: 11px;
+
+  background:
+    rgba(248,250,252,.65);
+
+  color:
+    #334155;
+
+  font-family:
+    "Noto Serif Bengali",
+    serif;
 
   cursor: pointer;
 
-  font-family: inherit;
-
-  opacity: .72;
+  overflow: hidden;
 
   transition:
-    opacity .2s ease,
-    transform .2s ease;
+    transform .25s ease,
+    color .25s ease,
+    background .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
+
 }
+
+
+/* SHINE */
+
+.action-btn::before {
+
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: -120%;
+
+  width: 80%;
+
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(49,92,114,.10),
+      transparent
+    );
+
+  transform:
+    skewX(-20deg);
+
+  transition:
+    left .55s ease;
+
+}
+
+
+.action-btn:hover::before {
+
+  left: 130%;
+
+}
+
+
+/* HOVER */
 
 .action-btn:hover {
-  opacity: 1;
 
-  transform: translateY(-2px);
+  transform:
+    translateY(-3px);
+
+  color:
+    #315c72;
+
+  border-color:
+    rgba(49,92,114,.40);
+
+  background:
+    rgba(239,246,250,.95);
+
+  box-shadow:
+    0 8px 22px
+    rgba(49,92,114,.10);
+
 }
+
+
+/* ICON */
 
 .action-btn span {
-  font-size: 17px;
+
+  position: relative;
+
+  z-index: 2;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 19px;
+
+  height: 19px;
+
+  color:
+    #315c72;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 16px;
+
+  line-height: 1;
+
+  transition:
+    transform .3s ease,
+    color .3s ease;
+
 }
 
-.action-btn small {
-  font-size: 11px;
 
-  letter-spacing: .5px;
+/* ICON HOVER */
+
+.action-btn:hover span {
+
+  color:
+    #24758a;
+
+}
+
+
+/* COMMENT */
+
+.action-btn:first-child:hover span {
+
+  animation:
+    homeComment .6s ease;
+
+}
+
+
+/* SHARE */
+
+.action-btn:nth-child(2):hover span {
+
+  animation:
+    homeShare .6s ease;
+
+}
+
+
+/* COPY */
+
+.action-btn:nth-child(3):hover span {
+
+  animation:
+    homeCopy .6s ease;
+
+}
+
+
+/* TEXT */
+
+.action-btn small {
+
+  position: relative;
+
+  z-index: 2;
+
+  color:
+    #64748b;
+
+  font-size: 10px;
+
+  letter-spacing: .3px;
+
+  transition:
+    color .25s ease;
+
+}
+
+
+.action-btn:hover small {
+
+  color:
+    #315c72;
+
+}
+
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes homeComment {
+
+  0% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform:
+      scale(1.2)
+      translateY(-2px);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+
+}
+
+
+@keyframes homeShare {
+
+  0% {
+    transform: translate(0,0);
+  }
+
+  45% {
+    transform:
+      translate(3px,-3px)
+      rotate(-7deg);
+  }
+
+  100% {
+    transform: translate(0,0);
+  }
+
+}
+
+
+@keyframes homeCopy {
+
+  0% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform:
+      scale(1.18)
+      rotate(4deg);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+
+}
+
+
+/* =====================================================
+   CLICK
+===================================================== */
+
+.action-btn:active {
+
+  transform:
+    translateY(-1px)
+    scale(.95);
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+  .writing-actions {
+
+    gap: 6px;
+
+  }
+
+  .action-btn {
+
+    min-width: 38px;
+
+    height: 36px;
+
+    padding:
+      5px 8px;
+
+    border-radius:
+      10px;
+
+  }
+
+  .action-btn span {
+
+    width: 18px;
+
+    height: 18px;
+
+    font-size: 15px;
+
+  }
+
+  .action-btn small {
+
+    font-size: 9px;
+
+  }
+
 }
 
 
