@@ -626,49 +626,76 @@ function actionButtons(
       id
     );
 
-  return `
+    return `
 
     <div class="writing-actions">
 
+      <!-- COMMENT -->
+
       <button
         type="button"
-        class="action-btn"
+        class="action-btn comment"
         onclick="openComment(
           '${escapeHtml(type)}',
           '${escapeHtml(id)}'
         )"
+        aria-label="Comment"
       >
 
-        <span>◌</span>
+        <span class="action-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 11.5a7.5 7.5 0 0 1-7.8 7.5H8l-4 2v-4.1A7.4 7.4 0 0 1 4.5 7A7.5 7.5 0 0 1 20 11.5Z"/>
+          </svg>
+        </span>
+
         <small>Comment</small>
 
       </button>
 
 
+      <!-- SHARE -->
+
       <button
         type="button"
-        class="action-btn"
+        class="action-btn share"
         onclick="shareContent(
           ${JSON.stringify(title)},
           ${JSON.stringify(url)}
         )"
+        aria-label="Share"
       >
 
-        <span>↗</span>
+        <span class="action-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 16V4"/>
+            <path d="M7 9l5-5 5 5"/>
+            <path d="M5 13v6h14v-6"/>
+          </svg>
+        </span>
+
         <small>Share</small>
 
       </button>
 
 
+      <!-- COPY LINK -->
+
       <button
         type="button"
-        class="action-btn"
+        class="action-btn copy"
         onclick="copyLink(
           ${JSON.stringify(url)}
         )"
+        aria-label="Copy Link"
       >
 
-        <span>⛓</span>
+        <span class="action-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 7h8a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3H10a3 3 0 0 1-3-3v-1"/>
+            <path d="M15 17H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h7a3 3 0 0 1 3 3v1"/>
+          </svg>
+        </span>
+
         <small>Copy</small>
 
       </button>
@@ -676,8 +703,6 @@ function actionButtons(
     </div>
 
   `;
-
-}
 
 
 /* =====================================================
