@@ -3150,3 +3150,371 @@ a:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* =====================================================
+   PREMIUM ACTION ICONS
+   COMMENT • SHARE • COPY LINK
+===================================================== */
+
+.writing-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 18px;
+}
+
+/* BUTTON */
+
+.action-btn {
+  position: relative;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(176, 138, 69, 0.28);
+  border-radius: 50%;
+
+  background: rgba(176, 138, 69, 0.07);
+
+  color: #8a6a32;
+
+  box-shadow:
+    0 4px 14px rgba(80, 60, 20, 0.08);
+
+  overflow: hidden;
+
+  opacity: 1;
+
+  transition:
+    transform 0.3s cubic-bezier(.22,.61,.36,1),
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    color 0.3s ease;
+}
+
+
+/* SHINE ANIMATION */
+
+.action-btn::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -130%;
+
+  width: 70%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,0.45),
+      transparent
+    );
+
+  transform: skewX(-20deg);
+
+  transition: left 0.55s ease;
+}
+
+.action-btn:hover::before {
+  left: 140%;
+}
+
+
+/* ICON */
+
+.action-btn span {
+  position: relative;
+
+  z-index: 2;
+
+  width: 20px;
+  height: 20px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #8a6a32;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 17px;
+  font-weight: 600;
+
+  line-height: 1;
+
+  transition:
+    transform 0.35s cubic-bezier(.22,.61,.36,1),
+    color 0.3s ease;
+}
+
+
+/* HOVER */
+
+.action-btn:hover {
+  transform:
+    translateY(-4px)
+    scale(1.06);
+
+  background:
+    rgba(176, 138, 69, 0.14);
+
+  border-color:
+    rgba(176, 138, 69, 0.55);
+
+  color: #6f531f;
+
+  box-shadow:
+    0 10px 25px rgba(110, 80, 25, 0.16);
+}
+
+.action-btn:hover span {
+  color: #6f531f;
+}
+
+
+/* CLICK */
+
+.action-btn:active {
+  transform:
+    translateY(-1px)
+    scale(0.92);
+
+  box-shadow:
+    0 4px 10px rgba(80, 60, 20, 0.12);
+}
+
+
+/* =====================================================
+   INDIVIDUAL ICON ANIMATIONS
+===================================================== */
+
+/* COMMENT */
+
+.action-btn:nth-child(1):hover span {
+  animation:
+    premiumComment 0.65s ease;
+}
+
+@keyframes premiumComment {
+
+  0% {
+    transform: scale(1);
+  }
+
+  35% {
+    transform:
+      scale(1.22)
+      rotate(-5deg);
+  }
+
+  65% {
+    transform:
+      scale(0.92)
+      rotate(4deg);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+/* SHARE */
+
+.action-btn:nth-child(2):hover span {
+  animation:
+    premiumShare 0.65s ease;
+}
+
+@keyframes premiumShare {
+
+  0% {
+    transform: translate(0,0);
+  }
+
+  35% {
+    transform:
+      translate(3px,-3px)
+      rotate(-8deg)
+      scale(1.12);
+  }
+
+  65% {
+    transform:
+      translate(-1px,1px)
+      rotate(4deg);
+  }
+
+  100% {
+    transform: translate(0,0);
+  }
+}
+
+
+/* COPY */
+
+.action-btn:nth-child(3):hover span {
+  animation:
+    premiumCopy 0.65s ease;
+}
+
+@keyframes premiumCopy {
+
+  0% {
+    transform: scale(1);
+  }
+
+  35% {
+    transform:
+      scale(1.2)
+      rotate(5deg);
+  }
+
+  65% {
+    transform:
+      scale(0.9)
+      rotate(-4deg);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+/* =====================================================
+   DARK STORY CARDS
+===================================================== */
+
+.story-card .action-btn {
+  background: rgba(176, 138, 69, 0.10);
+
+  border-color:
+    rgba(176, 138, 69, 0.30);
+
+  color: #c19b58;
+
+  box-shadow:
+    0 4px 15px rgba(0,0,0,0.18);
+}
+
+.story-card .action-btn span {
+  color: #c19b58;
+}
+
+.story-card .action-btn:hover {
+  background:
+    rgba(176, 138, 69, 0.18);
+
+  border-color:
+    rgba(193, 155, 88, 0.65);
+
+  color: #d6b675;
+
+  box-shadow:
+    0 10px 28px rgba(0,0,0,0.25);
+}
+
+.story-card .action-btn:hover span {
+  color: #d6b675;
+}
+
+
+/* =====================================================
+   NOVEL CARDS
+===================================================== */
+
+.novel-card .action-btn {
+  background:
+    rgba(176, 138, 69, 0.07);
+
+  border-color:
+    rgba(176, 138, 69, 0.28);
+
+  color: #80622e;
+}
+
+.novel-card .action-btn span {
+  color: #80622e;
+}
+
+.novel-card .action-btn:hover {
+  background:
+    rgba(176, 138, 69, 0.14);
+
+  border-color:
+    rgba(176, 138, 69, 0.55);
+
+  color: #624a20;
+
+  box-shadow:
+    0 10px 25px rgba(100,75,25,0.14);
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .writing-actions {
+    gap: 8px;
+  }
+
+  .action-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .action-btn span {
+    font-size: 16px;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .writing-actions {
+    gap: 7px;
+  }
+
+  .action-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .action-btn span {
+    width: 18px;
+    height: 18px;
+
+    font-size: 15px;
+  }
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .action-btn,
+  .action-btn span {
+    animation: none !important;
+    transition: none !important;
+  }
+
+}
