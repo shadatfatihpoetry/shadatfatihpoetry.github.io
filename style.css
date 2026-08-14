@@ -1,6 +1,6 @@
 /* =====================================================
-   SHADAT FATIH — COMPLETE RESPONSIVE STYLE
-   Archive + Most Viewed moved inside 3-dot menu
+   SHADAT FATIH — COMPLETE PREMIUM RESPONSIVE STYLE
+   Archive + Most Viewed inside 3-dot menu
 ===================================================== */
 
 :root {
@@ -47,7 +47,6 @@ body {
   min-height: 100vh;
   background: var(--paper);
   color: var(--text);
-
   font-family: "Noto Serif Bengali", serif;
   line-height: 1.8;
 }
@@ -76,7 +75,6 @@ a {
 
 /* =====================================================
    NAVBAR
-   LOGO LEFT | TITLE CENTER | 3-DOT RIGHT
 ===================================================== */
 
 .navbar {
@@ -114,7 +112,7 @@ a {
 
 
 /* =====================================================
-   LEFT LOGO
+   LOGO
 ===================================================== */
 
 .brand-logo {
@@ -139,15 +137,13 @@ a {
 .brand-logo img {
   width: 100%;
   height: 100%;
-
   object-fit: cover;
-
   display: block;
 }
 
 
 /* =====================================================
-   CENTER WEBSITE TITLE
+   SITE TITLE
 ===================================================== */
 
 .site-title {
@@ -185,7 +181,7 @@ a {
 
 
 /* =====================================================
-   THREE DOT MENU BUTTON
+   THREE DOT MENU
 ===================================================== */
 
 .menu-btn {
@@ -205,7 +201,6 @@ a {
   padding: 0 !important;
 
   display: flex !important;
-
   align-items: center;
   justify-content: center;
 
@@ -278,13 +273,9 @@ a {
 
 .side-menu.active {
   transform: translateX(0);
-
   visibility: visible;
   opacity: 1;
 }
-
-
-/* SCROLLBAR */
 
 .side-menu::-webkit-scrollbar {
   width: 5px;
@@ -306,7 +297,6 @@ a {
 
 .menu-profile {
   text-align: center;
-
   padding: 5px 0 18px;
 }
 
@@ -365,7 +355,7 @@ a {
 
 
 /* =====================================================
-   WEBSITE VISITOR COUNT
+   WEBSITE VIEWS
 ===================================================== */
 
 .website-views {
@@ -409,7 +399,7 @@ a {
 
 
 /* =====================================================
-   NORMAL MENU GROUP
+   NORMAL MENU
 ===================================================== */
 
 .menu-group {
@@ -436,8 +426,6 @@ a {
   font-weight: 600;
 
   text-align: left;
-
-  transition: color 0.2s ease;
 }
 
 .menu-group-title:hover {
@@ -459,13 +447,7 @@ a {
 
   font-family: Arial, sans-serif;
   font-size: 16px;
-  line-height: 1;
 }
-
-
-/* =====================================================
-   NORMAL SUB MENU
-===================================================== */
 
 .menu-submenu {
   max-height: 0;
@@ -496,18 +478,11 @@ a {
   font-size: 14px;
 
   border-left: 1px solid #dddddd;
-
-  transition:
-    color 0.2s ease,
-    border-color 0.2s ease,
-    padding-left 0.2s ease;
 }
 
 .menu-sub-link:hover {
   color: var(--black);
-
   border-color: var(--gold);
-
   padding-left: 17px;
 }
 
@@ -527,10 +502,6 @@ a {
   border-bottom: 1px solid #eeeeee;
 
   font-size: 15px;
-
-  transition:
-    color 0.2s ease,
-    padding-left 0.2s ease;
 }
 
 .menu-main-links a:hover {
@@ -540,7 +511,7 @@ a {
 
 
 /* =====================================================
-   NEW — ARCHIVE INSIDE THREE DOT MENU
+   ARCHIVE MENU
 ===================================================== */
 
 .menu-archive-area {
@@ -550,9 +521,6 @@ a {
 
   border-top: 1px solid var(--line);
 }
-
-
-/* Archive title */
 
 .menu-archive-heading {
   padding: 8px 2px 12px;
@@ -569,14 +537,8 @@ a {
   text-transform: uppercase;
 }
 
-
-/* =====================================================
-   ARCHIVE FOLDER
-===================================================== */
-
 .menu-folder {
   width: 100%;
-
   margin-bottom: 5px;
 }
 
@@ -605,10 +567,6 @@ a {
 
   font-size: 15px;
   font-weight: 600;
-
-  transition:
-    color 0.2s ease,
-    background 0.2s ease;
 }
 
 .menu-folder-btn:hover {
@@ -676,11 +634,6 @@ a {
   transform: rotate(90deg);
 }
 
-
-/* =====================================================
-   YEAR FOLDER CONTENT
-===================================================== */
-
 .menu-folder-content {
   max-height: 0;
 
@@ -697,18 +650,11 @@ a {
 
 .menu-folder.open > .menu-folder-content {
   max-height: 3000px;
-
   opacity: 1;
 }
 
-
-/* =====================================================
-   MONTH FOLDER
-===================================================== */
-
 .menu-month {
   width: 100%;
-
   margin-bottom: 2px;
 }
 
@@ -738,15 +684,10 @@ a {
   font-size: 13px;
 
   text-align: left;
-
-  transition:
-    color 0.2s ease,
-    padding-left 0.2s ease;
 }
 
 .menu-month-btn:hover {
   color: var(--black);
-
   padding-left: 10px;
 }
 
@@ -764,11 +705,6 @@ a {
   transform: rotate(90deg);
 }
 
-
-/* =====================================================
-   MONTH CONTENT
-===================================================== */
-
 .menu-month-content {
   max-height: 0;
 
@@ -785,14 +721,8 @@ a {
 
 .menu-month.open .menu-month-content {
   max-height: 1500px;
-
   opacity: 1;
 }
-
-
-/* =====================================================
-   ARCHIVE WRITING ITEM
-===================================================== */
 
 .menu-archive-item {
   display: block;
@@ -806,11 +736,6 @@ a {
   font-size: 12px;
 
   line-height: 1.6;
-
-  transition:
-    color 0.2s ease,
-    border-color 0.2s ease,
-    padding-left 0.2s ease;
 }
 
 .menu-archive-item:hover {
@@ -861,11 +786,6 @@ a {
   text-transform: uppercase;
 }
 
-
-/* Separate folders:
-   Poetry / Stories / Novels
-*/
-
 .menu-most-folder {
   margin-bottom: 4px;
 }
@@ -893,8 +813,6 @@ a {
   font-weight: 600;
 
   text-align: left;
-
-  transition: color 0.2s ease;
 }
 
 .menu-most-folder-btn:hover {
@@ -911,15 +829,9 @@ a {
   transition: transform 0.2s ease;
 }
 
-.menu-most-folder.open
-.menu-most-folder-arrow {
+.menu-most-folder.open .menu-most-folder-arrow {
   transform: rotate(90deg);
 }
-
-
-/* =====================================================
-   MOST VIEWED LIST
-===================================================== */
 
 .menu-most-content {
   max-height: 0;
@@ -937,7 +849,6 @@ a {
 
 .menu-most-folder.open .menu-most-content {
   max-height: 1200px;
-
   opacity: 1;
 }
 
@@ -951,10 +862,6 @@ a {
   padding: 8px 5px;
 
   border-left: 1px solid #e3e0da;
-
-  transition:
-    color 0.2s ease,
-    border-color 0.2s ease;
 }
 
 .menu-most-item:hover {
@@ -1015,7 +922,6 @@ a {
 main {
   width: 100%;
   max-width: 100%;
-
   overflow-x: hidden;
 }
 
@@ -1114,10 +1020,6 @@ main {
   border: 1px solid var(--black);
 
   font-size: 14px;
-
-  transition:
-    background 0.25s ease,
-    color 0.25s ease;
 }
 
 .hero-button:hover {
@@ -1185,7 +1087,6 @@ main {
 
 .intro-inner {
   width: min(100%, 800px);
-
   margin: auto;
 }
 
@@ -1202,7 +1103,6 @@ main {
 
 .intro h2 em {
   color: #c5b99e;
-
   font-style: italic;
 }
 
@@ -1218,7 +1118,7 @@ main {
 
 
 /* =====================================================
-   SECTIONS
+   CONTENT SECTIONS
 ===================================================== */
 
 .content-section {
@@ -1291,69 +1191,116 @@ main {
 
   display: grid;
 
-  grid-template-columns: 80px 1fr;
+  grid-template-columns: 105px minmax(0, 1fr);
 
-  gap: 30px;
+  gap: 38px;
 
-  padding: 42px 0;
+  padding: 52px 0;
 
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(17, 17, 17, 0.14);
+
+  transition:
+    padding-left 0.35s ease,
+    padding-right 0.35s ease;
+}
+
+.writing-card:hover {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .card-number {
-  color: #b5b5b5;
+  color: #b9b3a8;
 
-  font-family: Arial, sans-serif;
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
 
-  font-size: 13px;
+  font-size: clamp(38px, 5vw, 58px);
 
-  letter-spacing: 1px;
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing: -2px;
+}
+
+.writing-card:hover .card-number {
+  color: var(--gold);
+  transform: translateY(-3px);
 }
 
 .writing-card-content {
   position: relative;
-
   min-width: 0;
 }
 
 .published-date {
-  margin-bottom: 7px;
+  margin-bottom: 10px;
 
-  color: var(--muted);
+  color: #8b877f;
 
   font-family: Arial, sans-serif;
 
-  font-size: 10px;
+  font-size: 9px;
 
-  letter-spacing: 1px;
+  letter-spacing: 1.4px;
 
   text-transform: uppercase;
 }
 
 .card-label {
+  display: inline-flex;
+
+  align-items: center;
+
+  min-height: 24px;
+
+  padding: 4px 9px;
+
+  border: 1px solid rgba(176, 138, 69, 0.35);
+
   color: var(--gold);
 
   font-family: Arial, sans-serif;
 
-  font-size: 10px;
+  font-size: 9px;
+
   font-weight: 700;
 
   letter-spacing: 1.8px;
+
+  line-height: 1;
+
+  text-transform: uppercase;
 }
 
 .writing-card h3,
 .story-card h3,
 .novel-card h3 {
-  margin-top: 5px;
-
   font-family:
     "Playfair Display",
     "Noto Serif Bengali",
     serif;
 
-  font-size: clamp(25px, 3vw, 36px);
+  font-weight: 500;
 
-  line-height: 1.4;
+  line-height: 1.35;
+}
+
+.writing-card h3 {
+  margin-top: 13px;
+
+  max-width: 760px;
+
+  font-size: clamp(27px, 3.2vw, 40px);
+
+  letter-spacing: -0.4px;
+}
+
+.writing-card:hover h3 {
+  color: #7c612e;
 }
 
 .writing-excerpt,
@@ -1361,45 +1308,13 @@ main {
 .novel-card p {
   max-width: 700px;
 
-  margin-top: 10px;
+  margin-top: 13px;
 
   color: var(--muted);
 
   font-size: 14px;
-}
 
-
-/* =====================================================
-   CARD BOTTOM
-===================================================== */
-
-.card-bottom {
-  margin-top: 20px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 20px;
-}
-
-.text-link {
-  display: inline-block;
-
-  font-size: 14px;
-  font-weight: 600;
-
-  border-bottom: 1px solid currentColor;
-
-  transition:
-    color 0.2s ease,
-    opacity 0.2s ease;
-}
-
-.text-link:hover {
-  color: var(--gold);
+  line-height: 1.9;
 }
 
 
@@ -1440,18 +1355,13 @@ main {
   letter-spacing: 0.5px;
 }
 
-
-/* =====================================================
-   TOP RIGHT TOTAL VIEWS
-===================================================== */
-
 .writing-card-content > .view-count,
 .story-card > .view-count,
 .novel-info > .view-count,
 .total-views {
   position: absolute;
 
-  top: 0;
+  top: 2px;
   right: 0;
 
   display: inline-flex;
@@ -1460,7 +1370,7 @@ main {
 
   gap: 5px;
 
-  color: #777777;
+  color: #77736f;
 
   font-family: Arial, sans-serif;
 
@@ -1489,33 +1399,75 @@ main {
 
 
 /* =====================================================
-   PREMIUM HOMEPAGE ACTION ICONS
+   CARD BOTTOM
 ===================================================== */
 
-.writing-actions {
+.card-bottom {
+  margin-top: 28px;
+
+  padding-top: 18px;
 
   display: flex;
 
   align-items: center;
 
+  justify-content: space-between;
+
+  gap: 20px;
+
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+.text-link {
+  display: inline-flex;
+
+  align-items: center;
+
   gap: 8px;
 
-  margin-top: 25px;
+  border: 0;
 
-  padding-top: 16px;
+  font-family:
+    "Noto Serif Bengali",
+    serif;
 
-  border-top:
-    1px solid
-    rgba(0,0,0,.09);
+  font-size: 14px;
 
+  font-weight: 600;
+}
+
+.text-link:hover {
+  color: var(--gold);
 }
 
 
-/* ACTION */
+/* =====================================================
+   PREMIUM ACTION BUTTONS
+===================================================== */
+
+.writing-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  margin-top: 17px;
+
+  padding-top: 0;
+
+  border-top: 0;
+}
 
 .action-btn {
-
   position: relative;
+
+  width: 36px;
+  height: 36px;
+
+  min-width: 36px;
+
+  padding: 0;
 
   display: inline-flex;
 
@@ -1523,111 +1475,69 @@ main {
 
   justify-content: center;
 
-  gap: 6px;
+  border: 1px solid transparent;
 
-  min-width: 40px;
+  border-radius: 50%;
 
-  height: 38px;
+  background: transparent;
 
-  padding: 6px 10px;
+  color: #334155;
 
-  border:
-    1px solid
-    rgba(51,65,85,.14);
-
-  border-radius: 11px;
-
-  background:
-    rgba(248,250,252,.65);
-
-  color:
-    #334155;
-
-  font-family:
-    "Noto Serif Bengali",
-    serif;
+  opacity: 0.62;
 
   cursor: pointer;
 
   overflow: hidden;
 
   transition:
-    transform .25s ease,
-    color .25s ease,
-    background .25s ease,
-    border-color .25s ease,
-    box-shadow .25s ease;
-
+    opacity 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
 }
 
-
-/* SHINE */
-
 .action-btn::before {
-
   content: "";
 
   position: absolute;
 
   top: 0;
-
   left: -120%;
 
   width: 80%;
-
   height: 100%;
 
   background:
     linear-gradient(
       90deg,
       transparent,
-      rgba(49,92,114,.10),
+      rgba(49, 92, 114, 0.10),
       transparent
     );
 
-  transform:
-    skewX(-20deg);
+  transform: skewX(-20deg);
 
-  transition:
-    left .55s ease;
-
+  transition: left 0.55s ease;
 }
-
 
 .action-btn:hover::before {
-
   left: 130%;
-
 }
-
-
-/* HOVER */
 
 .action-btn:hover {
-
-  transform:
-    translateY(-3px);
-
-  color:
-    #315c72;
+  opacity: 1;
 
   border-color:
-    rgba(49,92,114,.40);
+    rgba(176, 138, 69, 0.35);
 
   background:
-    rgba(239,246,250,.95);
+    rgba(176, 138, 69, 0.06);
 
-  box-shadow:
-    0 8px 22px
-    rgba(49,92,114,.10);
-
+  transform:
+    translateY(-2px);
 }
 
-
-/* ICON */
-
 .action-btn span {
-
   position: relative;
 
   z-index: 2;
@@ -1639,43 +1549,55 @@ main {
   justify-content: center;
 
   width: 19px;
-
   height: 19px;
 
-  color:
-    #315c72;
+  color: #315c72;
 
-  font-family:
-    Arial,
-    sans-serif;
+  font-family: Arial, sans-serif;
 
-  font-size: 16px;
+  font-size: 15px;
 
   line-height: 1;
+}
 
-/* =================================================
-   PREMIUM ACTION BUTTONS
-================================================= */
+.action-btn small {
+  display: none;
+}
 
-.home-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 20px;
+.action-btn:active {
+  transform:
+    translateY(-1px)
+    scale(0.95);
 }
 
 
-/* BUTTON */
+/* =====================================================
+   HOME ACTION BUTTONS
+===================================================== */
+
+.home-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+
+  margin-top: 20px;
+}
 
 .home-action {
   display: inline-flex;
+
   align-items: center;
+
   gap: 9px;
 
   padding: 7px 15px 7px 8px;
 
   border: 1px solid rgba(80, 80, 80, 0.16);
+
   border-radius: 30px;
 
   background: rgba(255, 255, 255, 0.72);
@@ -1691,16 +1613,13 @@ main {
   cursor: pointer;
 
   transition:
-    transform .25s ease,
-    box-shadow .25s ease,
-    border-color .25s ease,
-    background .25s ease;
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
 
   backdrop-filter: blur(8px);
 }
-
-
-/* CIRCULAR ICON */
 
 .home-action-icon {
   width: 34px;
@@ -1709,6 +1628,7 @@ main {
   min-width: 34px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -1716,9 +1636,7 @@ main {
 
   color: #ffffff;
 
-  font-family:
-    Arial,
-    sans-serif;
+  font-family: Arial, sans-serif;
 
   font-size: 16px;
   font-weight: 600;
@@ -1727,12 +1645,9 @@ main {
     0 5px 14px rgba(0,0,0,.16);
 
   transition:
-    transform .3s ease,
-    box-shadow .3s ease;
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
-
-
-/* COMMENT */
 
 .home-action.comment .home-action-icon {
   background:
@@ -1743,9 +1658,6 @@ main {
     );
 }
 
-
-/* SHARE */
-
 .home-action.share .home-action-icon {
   background:
     linear-gradient(
@@ -1754,9 +1666,6 @@ main {
       #29a6b8
     );
 }
-
-
-/* COPY */
 
 .home-action.copy .home-action-icon {
   background:
@@ -1767,13 +1676,8 @@ main {
     );
 }
 
-
-/* HOVER */
-
 .home-action:hover {
-
-  transform:
-    translateY(-3px);
+  transform: translateY(-3px);
 
   background:
     rgba(255,255,255,.95);
@@ -1785,10 +1689,7 @@ main {
     rgba(70,70,70,.25);
 }
 
-
-.home-action:hover
-.home-action-icon {
-
+.home-action:hover .home-action-icon {
   transform:
     rotate(8deg)
     scale(1.1);
@@ -1797,162 +1698,10 @@ main {
     0 7px 20px rgba(0,0,0,.22);
 }
 
-
-/* CLICK */
-
 .home-action:active {
-
   transform:
     translateY(-1px)
     scale(.97);
-}
-
-
-/* MOBILE */
-
-@media (max-width: 600px) {
-
-  .home-actions {
-    gap: 8px;
-  }
-
-  .home-action {
-
-    padding:
-      6px 12px 6px 7px;
-
-    font-size: 13px;
-
-  }
-
-  .home-action-icon {
-
-    width: 32px;
-    height: 32px;
-    min-width: 32px;
-
-    font-size: 15px;
-
-  }
-
-}
-
-/* =====================================================
-   ANIMATIONS
-===================================================== */
-
-@keyframes homeComment {
-
-  0% {
-    transform: scale(1);
-  }
-
-  45% {
-    transform:
-      scale(1.2)
-      translateY(-2px);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-
-}
-
-
-@keyframes homeShare {
-
-  0% {
-    transform: translate(0,0);
-  }
-
-  45% {
-    transform:
-      translate(3px,-3px)
-      rotate(-7deg);
-  }
-
-  100% {
-    transform: translate(0,0);
-  }
-
-}
-
-
-@keyframes homeCopy {
-
-  0% {
-    transform: scale(1);
-  }
-
-  45% {
-    transform:
-      scale(1.18)
-      rotate(4deg);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-
-}
-
-
-/* =====================================================
-   CLICK
-===================================================== */
-
-.action-btn:active {
-
-  transform:
-    translateY(-1px)
-    scale(.95);
-
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 480px) {
-
-  .writing-actions {
-
-    gap: 6px;
-
-  }
-
-  .action-btn {
-
-    min-width: 38px;
-
-    height: 36px;
-
-    padding:
-      5px 8px;
-
-    border-radius:
-      10px;
-
-  }
-
-  .action-btn span {
-
-    width: 18px;
-
-    height: 18px;
-
-    font-size: 15px;
-
-  }
-
-  .action-btn small {
-
-    font-size: 9px;
-
-  }
-
 }
 
 
@@ -1968,7 +1717,7 @@ main {
 
   gap: 1px;
 
-  background: #3b3b3b;
+  background: rgba(255,255,255,0.12);
 }
 
 .story-card {
@@ -1976,31 +1725,126 @@ main {
 
   min-width: 0;
 
-  padding: 42px;
+  padding: 46px 42px;
 
-  background: var(--dark);
+  background:
+    linear-gradient(
+      135deg,
+      #191919 0%,
+      #161616 100%
+    );
+
+  color: #ffffff;
 
   transition:
-    background 0.3s ease,
-    transform 0.3s ease;
+    transform 0.35s ease,
+    background 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
 .story-card:hover {
-  background: #202020;
+  z-index: 2;
+
+  transform: translateY(-5px);
+
+  background: #1c1c1c;
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.22);
 }
 
 .story-card > span {
-  color: var(--gold);
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 5px 9px;
+
+  border: 1px solid rgba(176,138,69,0.38);
+
+  color: #c0a36e;
 
   font-family: Arial, sans-serif;
 
-  font-size: 10px;
+  font-size: 9px;
 
-  letter-spacing: 1.5px;
+  font-weight: 700;
+
+  letter-spacing: 1.8px;
+
+  text-transform: uppercase;
+}
+
+.story-card .published-date {
+  margin-top: 20px;
+  color: #777777;
 }
 
 .story-card h3 {
-  margin-top: 12px;
+  margin-top: 9px;
+
+  font-size: clamp(25px, 3vw, 34px);
+}
+
+.story-card:hover h3 {
+  color: #d2b77f;
+}
+
+.story-card > p {
+  max-width: 580px;
+
+  margin-top: 13px;
+
+  color: #969696;
+
+  line-height: 1.9;
+}
+
+.story-card > .view-count {
+  top: 42px;
+  right: 42px;
+
+  color: #777777;
+}
+
+.story-card .card-bottom {
+  margin-top: 30px;
+
+  padding-top: 18px;
+
+  border-top:
+    1px solid
+    rgba(255,255,255,0.08);
+}
+
+.story-card .text-link {
+  color: #e1ded8;
+}
+
+.story-card .text-link:hover {
+  color: #c4a66d;
+}
+
+.story-card .writing-actions {
+  margin-top: 15px;
+}
+
+.story-card .action-btn {
+  color: #dddddd;
+}
+
+.story-card .action-btn span {
+  color: #dddddd;
+}
+
+.story-card .action-btn:hover {
+  color: #ffffff;
+
+  border-color:
+    rgba(255,255,255,0.18);
+
+  background:
+    rgba(255,255,255,0.05);
 }
 
 
@@ -2026,7 +1870,7 @@ main {
   grid-template-columns:
     repeat(2, minmax(0, 1fr));
 
-  gap: 28px;
+  gap: 24px;
 
   margin: 0 auto;
 }
@@ -2038,21 +1882,31 @@ main {
 
   min-width: 0;
 
-  padding: 42px;
+  padding: 46px 42px;
 
-  background: #f8f5ef;
+  background:
+    linear-gradient(
+      145deg,
+      #faf8f3 0%,
+      #f4f0e8 100%
+    );
 
-  border: 1px solid #ded8ce;
+  border: 1px solid rgba(120,105,80,0.18);
 
   transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
 }
 
 .novel-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
 
-  box-shadow: var(--shadow);
+  border-color:
+    rgba(176,138,69,0.35);
+
+  box-shadow:
+    0 22px 55px rgba(50,45,35,0.14);
 }
 
 .novel-info {
@@ -2061,6 +1915,109 @@ main {
   min-width: 0;
 
   width: 100%;
+}
+
+.novel-card .card-label,
+.novel-card > span {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 5px 9px;
+
+  border: 1px solid rgba(176,138,69,0.35);
+
+  color: var(--gold);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.8px;
+
+  text-transform: uppercase;
+}
+
+.novel-card .published-date {
+  margin-top: 17px;
+}
+
+.novel-card h3 {
+  margin-top: 10px;
+
+  font-size: clamp(26px, 3vw, 37px);
+}
+
+.novel-card:hover h3 {
+  color: #816632;
+}
+
+.novel-card p {
+  max-width: 650px;
+
+  margin-top: 13px;
+
+  color: #77736c;
+
+  line-height: 1.9;
+}
+
+.novel-info > .view-count {
+  top: 0;
+  right: 0;
+
+  color: #77736c;
+}
+
+.novel-card .card-bottom {
+  margin-top: 30px;
+
+  padding-top: 18px;
+
+  border-top:
+    1px solid
+    rgba(0,0,0,0.08);
+}
+
+.novel-card .text-link {
+  border: 0;
+}
+
+.novel-card .text-link:hover {
+  color: var(--gold);
+}
+
+
+/* =====================================================
+   PREMIUM MICRO DETAILS
+===================================================== */
+
+.writing-card-content::after,
+.story-card::after,
+.novel-card::after {
+  content: "";
+
+  position: absolute;
+
+  width: 0;
+
+  height: 1px;
+
+  left: 0;
+
+  bottom: 0;
+
+  background: var(--gold);
+
+  transition: width 0.4s ease;
+}
+
+.writing-card:hover .writing-card-content::after,
+.story-card:hover::after,
+.novel-card:hover::after {
+  width: 55px;
 }
 
 
@@ -2181,15 +2138,10 @@ main {
   font-family: Arial, sans-serif;
 
   font-size: 10px;
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
 }
 
 .floating-socials a:hover {
   background: var(--black);
-
   color: white;
 }
 
@@ -2431,8 +2383,6 @@ footer {
   justify-content: center;
   align-items: flex-start;
 
-  box-sizing: border-box;
-
   padding: 80px 20px;
 }
 
@@ -2441,8 +2391,6 @@ footer {
   max-width: 900px;
 
   margin: 0 auto;
-
-  box-sizing: border-box;
 }
 
 .poem-reader h1 {
@@ -2491,7 +2439,9 @@ footer {
 
   padding-bottom: 40px;
 
-  border-bottom: 1px solid rgba(0,0,0,.15);
+  border-bottom:
+    1px solid
+    rgba(0,0,0,.15);
 }
 
 .poem-reader .chapter-number {
@@ -2551,7 +2501,85 @@ footer {
 
 
 /* =====================================================
-   MOBILE
+   HIDE ARCHIVE / MOST VIEWED MAIN SECTIONS
+===================================================== */
+
+body > .archive-section,
+main > .archive-section,
+section.archive-section {
+  display: none !important;
+}
+
+body > .most-viewed-section,
+main > .most-viewed-section,
+section.most-viewed-section {
+  display: none !important;
+}
+
+.archive-section,
+.most-viewed-section {
+  scroll-margin-top: 80px;
+}
+
+
+/* =====================================================
+   ARCHIVE INSIDE SIDE MENU
+===================================================== */
+
+.side-menu .archive-section,
+.side-menu .most-viewed-section {
+  display: block !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  background: transparent !important;
+  color: var(--text) !important;
+}
+
+.side-menu .archive-heading {
+  margin-bottom: 15px !important;
+}
+
+.side-menu .archive-heading h2 {
+  font-size: 22px !important;
+}
+
+.side-menu .archive-block,
+.side-menu .most-viewed-block {
+  margin-bottom: 12px !important;
+  padding: 15px !important;
+}
+
+.side-menu .archive-block-heading h3,
+.side-menu .most-viewed-block .archive-block-heading h3 {
+  font-size: 15px !important;
+}
+
+.side-menu .archive-item {
+  padding: 10px 0 !important;
+}
+
+.side-menu .archive-item strong {
+  font-size: 13px !important;
+}
+
+.side-menu .most-viewed-item {
+  grid-template-columns:
+    25px 1fr auto !important;
+
+  gap: 8px !important;
+
+  padding: 10px 0 !important;
+}
+
+.side-menu .most-title span {
+  font-size: 12px !important;
+}
+
+
+/* =====================================================
+   MOBILE — 768px
 ===================================================== */
 
 @media (max-width: 768px) {
@@ -2562,7 +2590,6 @@ footer {
 
   .nav-inner {
     height: 68px !important;
-
     padding: 0 16px !important;
   }
 
@@ -2607,6 +2634,8 @@ footer {
 
   .hero {
     min-height: auto;
+
+    width: 100%;
 
     padding:
       105px 18px 60px;
@@ -2671,11 +2700,14 @@ footer {
 
   .content-section,
   .author-section {
+    width: 100%;
+
     padding: 80px 18px;
   }
 
   .section-container {
     width: 100%;
+    max-width: 100%;
   }
 
   .section-top {
@@ -2689,38 +2721,42 @@ footer {
   }
 
 
-  /* WRITING */
+  /* POETRY */
 
   .writing-card {
+    width: 100%;
+
     grid-template-columns:
-      35px 1fr;
+      52px minmax(0, 1fr);
 
-    gap: 15px;
+    gap: 18px;
 
-    padding: 32px 0;
+    padding: 38px 0;
   }
 
-  .writing-card h3,
-  .story-card h3,
-  .novel-card h3 {
-    font-size: 25px;
+  .card-number {
+    font-size: 36px;
   }
 
-  .writing-card-content > .view-count,
-  .story-card > .view-count,
-  .novel-info > .view-count,
-  .total-views {
-    top: 0;
+  .writing-card h3 {
+    font-size: 26px;
+
+    padding-right: 55px;
+  }
+
+  .writing-card-content > .view-count {
+    top: 2px;
     right: 0;
-
-    font-size: 9px;
   }
 
-  .writing-card-content > .view-count strong,
-  .story-card > .view-count strong,
-  .novel-info > .view-count strong,
-  .total-views strong {
-    font-size: 10px;
+  .writing-card .card-bottom {
+    align-items: flex-start;
+
+    gap: 16px;
+  }
+
+  .writing-actions {
+    margin-top: 10px;
   }
 
 
@@ -2731,14 +2767,26 @@ footer {
   }
 
   .story-card {
-    padding: 30px 24px;
+    padding: 35px 25px;
+  }
+
+  .story-card > .view-count {
+    top: 35px;
+    right: 25px;
+  }
+
+  .story-card h3 {
+    padding-right: 45px;
+
+    font-size: 26px;
   }
 
 
   /* NOVELS */
 
   .novel-section .section-container {
-    width: calc(100% - 4px);
+    width: 100%;
+    max-width: 100%;
   }
 
   .novel-grid {
@@ -2748,11 +2796,17 @@ footer {
   }
 
   .novel-card {
-    padding: 30px 24px;
+    padding: 35px 25px;
+  }
+
+  .novel-card h3 {
+    padding-right: 45px;
+
+    font-size: 27px;
   }
 
 
-  /* MENU ARCHIVE */
+  /* ARCHIVE MENU */
 
   .menu-archive-area {
     margin-top: 15px;
@@ -2764,6 +2818,15 @@ footer {
 
   .menu-month-content {
     padding-left: 10px;
+  }
+
+  .side-menu .archive-heading h2 {
+    font-size: 20px !important;
+  }
+
+  .side-menu .archive-block,
+  .side-menu .most-viewed-block {
+    padding: 12px !important;
   }
 
 
@@ -2825,11 +2888,34 @@ footer {
 
     line-height: 2;
   }
+
+
+  /* HOME ACTIONS */
+
+  .home-actions {
+    gap: 8px;
+  }
+
+  .home-action {
+    padding:
+      6px 12px 6px 7px;
+
+    font-size: 13px;
+  }
+
+  .home-action-icon {
+    width: 32px;
+    height: 32px;
+
+    min-width: 32px;
+
+    font-size: 15px;
+  }
 }
 
 
 /* =====================================================
-   SMALL MOBILE
+   SMALL MOBILE — 480px
 ===================================================== */
 
 @media (max-width: 480px) {
@@ -2865,6 +2951,8 @@ footer {
   /* HERO */
 
   .hero {
+    width: 100%;
+
     padding-left: 12px;
     padding-right: 12px;
 
@@ -2881,25 +2969,73 @@ footer {
   }
 
 
-  /* WRITING */
+  /* POETRY */
 
   .writing-card {
     grid-template-columns:
-      28px 1fr;
+      40px minmax(0, 1fr);
+
+    gap: 13px;
+
+    padding: 32px 0;
+  }
+
+  .card-number {
+    font-size: 30px;
+
+    letter-spacing: -1px;
+  }
+
+  .writing-card h3 {
+    font-size: 24px;
+
+    padding-right: 48px;
+  }
+
+  .writing-excerpt {
+    font-size: 13px;
+  }
+
+  .writing-card .card-bottom {
+    flex-direction: column;
+
+    align-items: flex-start;
 
     gap: 10px;
   }
 
-  .card-bottom {
-    align-items: flex-start;
+  .action-btn {
+    width: 34px;
+    height: 34px;
 
-    flex-direction: column;
-
-    gap: 12px;
+    min-width: 34px;
   }
 
-  .view-count {
-    justify-content: flex-start;
+
+  /* STORY */
+
+  .story-card {
+    padding: 30px 21px;
+  }
+
+  .story-card > .view-count {
+    top: 30px;
+    right: 21px;
+  }
+
+  .story-card h3 {
+    font-size: 24px;
+  }
+
+
+  /* NOVEL */
+
+  .novel-card {
+    padding: 30px 21px;
+  }
+
+  .novel-card h3 {
+    font-size: 25px;
   }
 
 
@@ -2947,6 +3083,29 @@ footer {
   }
 
 
+  /* HOME ACTIONS */
+
+  .home-actions {
+    gap: 7px;
+  }
+
+  .home-action {
+    padding:
+      6px 10px 6px 6px;
+
+    font-size: 12px;
+  }
+
+  .home-action-icon {
+    width: 31px;
+    height: 31px;
+
+    min-width: 31px;
+
+    font-size: 14px;
+  }
+
+
   /* ACTIONS */
 
   .writing-actions {
@@ -2954,11 +3113,7 @@ footer {
   }
 
   .action-btn {
-    padding: 6px;
-  }
-
-  .action-btn small {
-    font-size: 10px;
+    padding: 0;
   }
 }
 
@@ -2993,854 +3148,5 @@ a:focus-visible {
     animation-iteration-count: 1 !important;
 
     transition-duration: 0.01ms !important;
-  }
-}
-
-/* =====================================================
-   HIDE ARCHIVE & MOST VIEWED FROM MAIN PAGE
-   They are accessible only from 3-dot menu
-===================================================== */
-
-body > .archive-section,
-main > .archive-section,
-section.archive-section {
-  display: none !important;
-}
-
-body > .most-viewed-section,
-main > .most-viewed-section,
-section.most-viewed-section {
-  display: none !important;
-}
-
-
-/* =====================================================
-   ARCHIVE / MOST VIEWED INSIDE SIDE MENU
-===================================================== */
-
-.side-menu .archive-section,
-.side-menu .most-viewed-section {
-  display: block !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  background: transparent !important;
-  color: var(--text) !important;
-}
-
-.side-menu .archive-heading {
-  margin-bottom: 15px !important;
-}
-
-.side-menu .archive-heading h2 {
-  font-size: 22px !important;
-}
-
-.side-menu .archive-block,
-.side-menu .most-viewed-block {
-  margin-bottom: 12px !important;
-  padding: 15px !important;
-}
-
-.side-menu .archive-block-heading h3,
-.side-menu .most-viewed-block .archive-block-heading h3 {
-  font-size: 15px !important;
-}
-
-.side-menu .archive-item {
-  padding: 10px 0 !important;
-}
-
-.side-menu .archive-item strong {
-  font-size: 13px !important;
-}
-
-.side-menu .most-viewed-item {
-  grid-template-columns: 25px 1fr auto !important;
-  gap: 8px !important;
-  padding: 10px 0 !important;
-}
-
-.side-menu .most-title span {
-  font-size: 12px !important;
-}
-
-
-/* =====================================================
-   HIDE ARCHIVE / MOST VIEWED HEADINGS FROM MAIN PAGE
-===================================================== */
-
-.archive-section,
-.most-viewed-section {
-  scroll-margin-top: 80px;
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 768px) {
-
-  .side-menu .archive-heading h2 {
-    font-size: 20px !important;
-  }
-
-  .side-menu .archive-block,
-  .side-menu .most-viewed-block {
-    padding: 12px !important;
-  }
-
-}
-
-/* =====================================================
-   SHADAT FATIH — PREMIUM LITERARY ARCHIVE CARDS
-   VISUAL ONLY — EXISTING FUNCTIONALITY UNCHANGED
-===================================================== */
-
-
-/* =====================================================
-   POETRY — PREMIUM EDITORIAL CARD
-===================================================== */
-
-.writing-card {
-  position: relative;
-
-  grid-template-columns: 105px minmax(0, 1fr);
-
-  gap: 38px;
-
-  padding: 52px 0;
-
-  border-top: 1px solid rgba(17, 17, 17, 0.14);
-
-  transition:
-    padding-left 0.35s ease,
-    padding-right 0.35s ease;
-}
-
-.writing-card:hover {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-
-/* BIG SERIAL NUMBER */
-
-.card-number {
-  color: #b9b3a8;
-
-  font-family:
-    "Playfair Display",
-    Georgia,
-    serif;
-
-  font-size: clamp(38px, 5vw, 58px);
-
-  font-weight: 500;
-
-  line-height: 1;
-
-  letter-spacing: -2px;
-
-  transition:
-    color 0.3s ease,
-    transform 0.3s ease;
-}
-
-.writing-card:hover .card-number {
-  color: var(--gold);
-
-  transform: translateY(-3px);
-}
-
-
-/* POETRY LABEL */
-
-.card-label {
-  display: inline-flex;
-
-  align-items: center;
-
-  min-height: 24px;
-
-  padding: 4px 9px;
-
-  border: 1px solid rgba(176, 138, 69, 0.35);
-
-  color: var(--gold);
-
-  font-family: Arial, sans-serif;
-
-  font-size: 9px;
-
-  font-weight: 700;
-
-  letter-spacing: 1.8px;
-
-  line-height: 1;
-
-  text-transform: uppercase;
-}
-
-
-/* DATE */
-
-.published-date {
-  margin-bottom: 10px;
-
-  color: #8b877f;
-
-  font-family: Arial, sans-serif;
-
-  font-size: 9px;
-
-  letter-spacing: 1.4px;
-
-  text-transform: uppercase;
-}
-
-
-/* TITLE */
-
-.writing-card h3 {
-  margin-top: 13px;
-
-  max-width: 760px;
-
-  font-family:
-    "Playfair Display",
-    "Noto Serif Bengali",
-    serif;
-
-  font-size: clamp(27px, 3.2vw, 40px);
-
-  font-weight: 500;
-
-  line-height: 1.3;
-
-  letter-spacing: -0.4px;
-
-  transition: color 0.25s ease;
-}
-
-.writing-card:hover h3 {
-  color: #7c612e;
-}
-
-
-/* EXCERPT */
-
-.writing-excerpt {
-  max-width: 680px;
-
-  margin-top: 13px;
-
-  color: #77736c;
-
-  font-size: 14px;
-
-  line-height: 1.9;
-}
-
-
-/* VIEW */
-
-.writing-card-content > .view-count {
-  top: 2px;
-  right: 0;
-
-  color: #77736f;
-
-  font-size: 10px;
-
-  letter-spacing: 0.3px;
-}
-
-.writing-card-content > .view-count strong {
-  color: #44413c;
-
-  font-size: 11px;
-}
-
-
-/* =====================================================
-   POETRY BOTTOM AREA
-===================================================== */
-
-.writing-card .card-bottom {
-  margin-top: 28px;
-
-  padding-top: 18px;
-
-  border-top: 1px solid rgba(17, 17, 17, 0.08);
-}
-
-
-/* READ BUTTON */
-
-.writing-card .text-link {
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 8px;
-
-  border: 0;
-
-  font-family:
-    "Noto Serif Bengali",
-    serif;
-
-  font-size: 14px;
-
-  font-weight: 600;
-
-  transition:
-    gap 0.25s ease,
-    color 0.25s ease;
-}
-
-.writing-card .text-link:hover {
-  gap: 13px;
-
-  color: var(--gold);
-}
-
-
-/* =====================================================
-   PREMIUM ACTION ICONS
-===================================================== */
-
-.writing-actions {
-  margin-top: 17px;
-
-  padding-top: 13px;
-
-  border-top: 0;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 5px;
-}
-
-.action-btn {
-  width: 36px;
-  height: 36px;
-
-  padding: 0;
-
-  justify-content: center;
-
-  border: 1px solid transparent;
-
-  border-radius: 50%;
-
-  opacity: 0.62;
-
-  transition:
-    opacity 0.25s ease,
-    border-color 0.25s ease,
-    background 0.25s ease,
-    transform 0.25s ease;
-}
-
-.action-btn:hover {
-  opacity: 1;
-
-  border-color: rgba(176, 138, 69, 0.35);
-
-  background: rgba(176, 138, 69, 0.06);
-
-  transform: translateY(-2px);
-}
-
-.action-btn span {
-  font-size: 15px;
-}
-
-.action-btn small {
-  display: none;
-}
-
-
-/* =====================================================
-   STORY — PREMIUM MAGAZINE CARD
-===================================================== */
-
-.story-grid {
-  gap: 1px;
-
-  background: rgba(255,255,255,0.12);
-}
-
-.story-card {
-  position: relative;
-
-  padding: 46px 42px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #191919 0%,
-      #161616 100%
-    );
-
-  border: 0;
-
-  transition:
-    transform 0.35s ease,
-    background 0.35s ease,
-    box-shadow 0.35s ease;
-}
-
-.story-card:hover {
-  z-index: 2;
-
-  transform: translateY(-5px);
-
-  background: #1c1c1c;
-
-  box-shadow:
-    0 20px 50px rgba(0,0,0,0.22);
-}
-
-
-/* STORY LABEL */
-
-.story-card > span {
-  display: inline-flex;
-
-  align-items: center;
-
-  padding: 5px 9px;
-
-  border: 1px solid rgba(176,138,69,0.38);
-
-  color: #c0a36e;
-
-  font-family: Arial, sans-serif;
-
-  font-size: 9px;
-
-  font-weight: 700;
-
-  letter-spacing: 1.8px;
-
-  text-transform: uppercase;
-}
-
-
-/* STORY DATE */
-
-.story-card .published-date {
-  margin-top: 20px;
-
-  color: #777777;
-}
-
-
-/* STORY TITLE */
-
-.story-card h3 {
-  margin-top: 9px;
-
-  font-size: clamp(25px, 3vw, 34px);
-
-  font-weight: 500;
-
-  line-height: 1.35;
-
-  transition: color 0.25s ease;
-}
-
-.story-card:hover h3 {
-  color: #d2b77f;
-}
-
-
-/* STORY EXCERPT */
-
-.story-card > p {
-  max-width: 580px;
-
-  margin-top: 13px;
-
-  color: #969696;
-
-  line-height: 1.9;
-}
-
-
-/* STORY VIEWS */
-
-.story-card > .view-count {
-  top: 42px;
-  right: 42px;
-
-  color: #777777;
-}
-
-
-/* STORY BOTTOM */
-
-.story-card .card-bottom {
-  margin-top: 30px;
-
-  padding-top: 18px;
-
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-
-
-/* STORY READ */
-
-.story-card .text-link {
-  border: 0;
-
-  color: #e1ded8;
-
-  transition:
-    color 0.25s ease,
-    gap 0.25s ease;
-}
-
-.story-card .text-link:hover {
-  color: #c4a66d;
-}
-
-
-/* DARK ACTION ICONS */
-
-.story-card .writing-actions {
-  margin-top: 15px;
-}
-
-.story-card .action-btn {
-  color: #dddddd;
-}
-
-.story-card .action-btn:hover {
-  color: #ffffff;
-
-  border-color: rgba(255,255,255,0.18);
-
-  background: rgba(255,255,255,0.05);
-}
-
-
-/* =====================================================
-   NOVEL — PREMIUM ARCHIVE CARD
-===================================================== */
-
-.novel-grid {
-  gap: 24px;
-}
-
-.novel-card {
-  padding: 46px 42px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #faf8f3 0%,
-      #f4f0e8 100%
-    );
-
-  border: 1px solid rgba(120,105,80,0.18);
-
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease,
-    border-color 0.35s ease;
-}
-
-.novel-card:hover {
-  transform: translateY(-6px);
-
-  border-color: rgba(176,138,69,0.35);
-
-  box-shadow:
-    0 22px 55px rgba(50,45,35,0.14);
-}
-
-
-/* NOVEL LABEL */
-
-.novel-card .card-label,
-.novel-card > span {
-  display: inline-flex;
-
-  align-items: center;
-
-  padding: 5px 9px;
-
-  border: 1px solid rgba(176,138,69,0.35);
-
-  color: var(--gold);
-
-  font-family: Arial, sans-serif;
-
-  font-size: 9px;
-
-  font-weight: 700;
-
-  letter-spacing: 1.8px;
-
-  text-transform: uppercase;
-}
-
-
-/* NOVEL DATE */
-
-.novel-card .published-date {
-  margin-top: 17px;
-}
-
-
-/* NOVEL TITLE */
-
-.novel-card h3 {
-  margin-top: 10px;
-
-  font-size: clamp(26px, 3vw, 37px);
-
-  font-weight: 500;
-
-  line-height: 1.35;
-
-  transition: color 0.25s ease;
-}
-
-.novel-card:hover h3 {
-  color: #816632;
-}
-
-
-/* NOVEL EXCERPT */
-
-.novel-card p {
-  max-width: 650px;
-
-  margin-top: 13px;
-
-  color: #77736c;
-
-  line-height: 1.9;
-}
-
-
-/* NOVEL VIEWS */
-
-.novel-info > .view-count {
-  top: 0;
-  right: 0;
-
-  color: #77736c;
-}
-
-
-/* NOVEL BOTTOM */
-
-.novel-card .card-bottom {
-  margin-top: 30px;
-
-  padding-top: 18px;
-
-  border-top: 1px solid rgba(0,0,0,0.08);
-}
-
-
-/* NOVEL READ */
-
-.novel-card .text-link {
-  border: 0;
-
-  transition:
-    color 0.25s ease,
-    gap 0.25s ease;
-}
-
-.novel-card .text-link:hover {
-  color: var(--gold);
-}
-
-
-/* =====================================================
-   PREMIUM CARD MICRO DETAILS
-===================================================== */
-
-.writing-card-content::after,
-.story-card::after,
-.novel-card::after {
-  content: "";
-
-  position: absolute;
-
-  width: 0;
-
-  height: 1px;
-
-  left: 0;
-
-  bottom: 0;
-
-  background: var(--gold);
-
-  transition: width 0.4s ease;
-}
-
-.writing-card:hover .writing-card-content::after,
-.story-card:hover::after,
-.novel-card:hover::after {
-  width: 55px;
-}
-
-
-/* =====================================================
-   MOBILE PREMIUM CARDS
-===================================================== */
-
-@media (max-width: 768px) {
-
-  .writing-card {
-    grid-template-columns: 52px minmax(0,1fr);
-
-    gap: 18px;
-
-    padding: 38px 0;
-  }
-
-  .card-number {
-    font-size: 36px;
-  }
-
-  .writing-card h3 {
-    font-size: 26px;
-
-    padding-right: 55px;
-  }
-
-  .writing-card-content > .view-count {
-    top: 2px;
-  }
-
-  .writing-card .card-bottom {
-    align-items: flex-start;
-
-    gap: 16px;
-  }
-
-  .writing-actions {
-    margin-top: 10px;
-  }
-
-
-  /* STORY */
-
-  .story-card {
-    padding: 35px 25px;
-  }
-
-  .story-card > .view-count {
-    top: 35px;
-    right: 25px;
-  }
-
-  .story-card h3 {
-    padding-right: 45px;
-
-    font-size: 26px;
-  }
-
-
-  /* NOVEL */
-
-  .novel-card {
-    padding: 35px 25px;
-  }
-
-  .novel-card h3 {
-    padding-right: 45px;
-
-    font-size: 27px;
-  }
-
-  .novel-info > .view-count {
-    top: 0;
-    right: 0;
-  }
-}
-
-
-/* =====================================================
-   SMALL MOBILE
-===================================================== */
-
-@media (max-width: 480px) {
-
-  .writing-card {
-    grid-template-columns: 40px minmax(0,1fr);
-
-    gap: 13px;
-
-    padding: 32px 0;
-  }
-
-  .card-number {
-    font-size: 30px;
-
-    letter-spacing: -1px;
-  }
-
-  .writing-card h3 {
-    font-size: 24px;
-
-    padding-right: 48px;
-  }
-
-  .writing-excerpt {
-    font-size: 13px;
-  }
-
-  .writing-card .card-bottom {
-    flex-direction: column;
-
-    align-items: flex-start;
-
-    gap: 10px;
-  }
-
-  .action-btn {
-    width: 34px;
-    height: 34px;
-  }
-
-
-  /* STORY */
-
-  .story-card {
-    padding: 30px 21px;
-  }
-
-  .story-card > .view-count {
-    top: 30px;
-    right: 21px;
-  }
-
-  .story-card h3 {
-    font-size: 24px;
-  }
-
-
-  /* NOVEL */
-
-  .novel-card {
-    padding: 30px 21px;
-  }
-
-  .novel-card h3 {
-    font-size: 25px;
   }
 }
