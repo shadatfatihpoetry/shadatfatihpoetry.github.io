@@ -65,9 +65,7 @@ function initMenu() {
   });
 
 
-  /* ---------------------------------------------------
-     SUB MENU TOGGLE
-  --------------------------------------------------- */
+  /* SUB MENU */
 
   mainNav
     .querySelectorAll("[data-toggle]")
@@ -85,26 +83,20 @@ function initMenu() {
 
         if (!target) return;
 
-
         const isOpen =
           target.classList.toggle("active");
-
 
         button.setAttribute(
           "aria-expanded",
           isOpen ? "true" : "false"
         );
 
-
         const arrow =
           button.querySelector(".menu-arrow");
 
-
         if (arrow) {
-
           arrow.textContent =
             isOpen ? "−" : "+";
-
         }
 
       });
@@ -112,9 +104,7 @@ function initMenu() {
     });
 
 
-  /* ---------------------------------------------------
-     CLOSE MENU AFTER MAIN LINK
-  --------------------------------------------------- */
+  /* CLOSE AFTER MAIN LINK */
 
   mainNav
     .querySelectorAll(".menu-main-links a")
@@ -139,9 +129,7 @@ function initMenu() {
     });
 
 
-  /* ---------------------------------------------------
-     CLOSE OUTSIDE
-  --------------------------------------------------- */
+  /* CLOSE OUTSIDE */
 
   document.addEventListener("click", event => {
 
@@ -167,9 +155,7 @@ function initMenu() {
   });
 
 
-  /* ---------------------------------------------------
-     ESCAPE
-  --------------------------------------------------- */
+  /* ESCAPE */
 
   document.addEventListener("keydown", event => {
 
@@ -223,14 +209,10 @@ function escapeHtml(value) {
     value === null ||
     value === undefined
   ) {
-
     return "";
-
   }
 
-
   return String(value)
-
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
@@ -248,17 +230,12 @@ function formatDate(dateValue) {
 
   if (!dateValue) return "";
 
-
   const date =
     new Date(dateValue);
 
-
   if (Number.isNaN(date.getTime())) {
-
     return "";
-
   }
-
 
   return date.toLocaleDateString(
     "bn-BD",
@@ -280,17 +257,12 @@ function getMonth(dateValue) {
 
   if (!dateValue) return "";
 
-
   const date =
     new Date(dateValue);
 
-
   if (Number.isNaN(date.getTime())) {
-
     return "";
-
   }
-
 
   return date.getMonth();
 
@@ -305,17 +277,12 @@ function getYear(dateValue) {
 
   if (!dateValue) return "";
 
-
   const date =
     new Date(dateValue);
 
-
   if (Number.isNaN(date.getTime())) {
-
     return "";
-
   }
-
 
   return date.getFullYear();
 
@@ -323,7 +290,7 @@ function getYear(dateValue) {
 
 
 /* =====================================================
-   BANGLA MONTH NAMES
+   BANGLA MONTHS
 ===================================================== */
 
 const BANGLA_MONTHS = [
@@ -351,21 +318,15 @@ const BANGLA_MONTHS = [
 function typeLabel(type) {
 
   if (type === "poem") {
-
     return "কবিতা";
-
   }
 
   if (type === "story") {
-
     return "গল্প";
-
   }
 
   if (type === "novel") {
-
     return "উপন্যাস";
-
   }
 
   return "";
@@ -380,6 +341,31 @@ function typeLabel(type) {
 function typeUrl(type, id) {
 
   return `${type}.html?id=${encodeURIComponent(id)}`;
+
+}
+
+
+/* =====================================================
+   CURRENT CONTENT URL
+===================================================== */
+
+function getContentUrl(type, id) {
+
+  const base =
+    window.location.href
+      .split("#")[0]
+      .split("?")[0];
+
+  const directory =
+    base.substring(
+      0,
+      base.lastIndexOf("/") + 1
+    );
+
+  return (
+    directory +
+    `${type}.html?id=${encodeURIComponent(id)}`
+  );
 
 }
 
@@ -412,7 +398,6 @@ function showToast(message) {
 
   toast.textContent =
     message;
-
 
   toast.classList.add("show");
 
@@ -473,10 +458,7 @@ async function copyLink(url) {
    SHARE
 ===================================================== */
 
-async function shareContent(
-  title,
-  url
-) {
+async function shareContent(title, url) {
 
   if (navigator.share) {
 
@@ -488,15 +470,12 @@ async function shareContent(
       });
 
     } catch (error) {
-
       /* User cancelled */
-
     }
 
     return;
 
   }
-
 
   await copyLink(url);
 
@@ -507,47 +486,13 @@ async function shareContent(
    COMMENT
 ===================================================== */
 
-function openComment(
-  type,
-  id
-) {
+function openComment(type, id) {
 
   const url =
     `${type}.html?id=${encodeURIComponent(id)}#comments`;
 
-
   window.location.href =
     url;
-
-}
-
-
-/* =====================================================
-   CURRENT URL
-===================================================== */
-
-function getContentUrl(
-  type,
-  id
-) {
-
-  const base =
-    window.location.href
-      .split("#")[0]
-      .split("?")[0];
-
-
-  const directory =
-    base.substring(
-      0,
-      base.lastIndexOf("/") + 1
-    );
-
-
-  return (
-    directory +
-    `${type}.html?id=${encodeURIComponent(id)}`
-  );
 
 }
 
@@ -560,7 +505,6 @@ function totalViews(item) {
 
   const views =
     Number(item?.views || 0);
-
 
   return `
 
@@ -585,18 +529,13 @@ function totalViews(item) {
    ACTION BUTTONS
 ===================================================== */
 
-function actionButtons(
-  type,
-  id,
-  title
-) {
+function actionButtons(type, id, title) {
 
   const url =
     getContentUrl(
       type,
       id
     );
-
 
   return `
 
@@ -675,18 +614,10 @@ async function loadPoetry() {
       "poetry-list"
     );
 
-
   if (!container) return;
 
 
   try {
-
-    /*
-      IMPORTANT:
-
-      views column না থাকলেও
-      কবিতা যেন লোড হয়।
-    */
 
     const {
       data,
@@ -697,7 +628,7 @@ async function loadPoetry() {
         .from("poems")
 
         .select(
-          "id, title, content, excerpt, created_at, published"
+          "id, title, content, excerpt, created_at, published, views"
         )
 
         .eq(
@@ -713,103 +644,52 @@ async function loadPoetry() {
         );
 
 
-    if (error) throw error;
-
+    /*
+      যদি views column না থাকে,
+      আবার views ছাড়া query করা হবে।
+    */
 
     if (
-      !data ||
-      data.length === 0
+      error &&
+      String(error.message)
+        .toLowerCase()
+        .includes("views")
     ) {
 
-      container.innerHTML = `
+      const fallback =
+        await window.supabaseClient
+          .from("poems")
+          .select(
+            "id, title, content, excerpt, created_at, published"
+          )
+          .eq(
+            "published",
+            true
+          )
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          );
 
-        <div class="empty-card">
+      if (fallback.error)
+        throw fallback.error;
 
-          <span>
-            POETRY
-          </span>
-
-          <h3>
-            শীঘ্রই আসছে
-          </h3>
-
-          <p>
-            নতুন কবিতা খুব শীঘ্রই প্রকাশিত হবে।
-          </p>
-
-        </div>
-
-      `;
-
-      return;
+      return renderPoetry(
+        container,
+        fallback.data || []
+      );
 
     }
 
 
-    container.innerHTML =
-      data.map((poem, index) => {
+    if (error) throw error;
 
-        return `
-
-          <article class="writing-card">
-
-            <div class="card-number">
-              ${String(index + 1).padStart(2, "0")}
-            </div>
-
-
-            <div class="writing-card-content">
-
-              <div class="published-date">
-                ${formatDate(poem.created_at)}
-              </div>
-
-
-              <p class="card-label">
-                POETRY
-              </p>
-
-
-              <h3>
-                ${escapeHtml(poem.title)}
-              </h3>
-
-
-              ${
-                poem.excerpt
-                  ? `
-                    <p class="writing-excerpt">
-                      ${escapeHtml(poem.excerpt)}
-                    </p>
-                  `
-                  : ""
-              }
-
-
-              <a
-                href="${typeUrl(
-                  "poem",
-                  poem.id
-                )}"
-                class="text-link"
-              >
-                কবিতা পড়ুন →
-              </a>
-
-
-              ${actionButtons(
-                "poem",
-                poem.id,
-                poem.title
-              )}
-
-            </div>
-
-          </article>
-
-        `;
-
-      }).join("");
+    renderPoetry(
+      container,
+      data || []
+    );
 
 
   } catch (error) {
@@ -818,7 +698,6 @@ async function loadPoetry() {
       "Poetry Error:",
       error
     );
-
 
     container.innerHTML = `
 
@@ -846,6 +725,113 @@ async function loadPoetry() {
 
 
 /* =====================================================
+   RENDER POETRY
+===================================================== */
+
+function renderPoetry(container, data) {
+
+  if (!data.length) {
+
+    container.innerHTML = `
+
+      <div class="empty-card">
+
+        <span>
+          POETRY
+        </span>
+
+        <h3>
+          শীঘ্রই আসছে
+        </h3>
+
+        <p>
+          নতুন কবিতা খুব শীঘ্রই প্রকাশিত হবে।
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    data.map((poem, index) => {
+
+      return `
+
+        <article class="writing-card">
+
+          <div class="card-number">
+            ${String(index + 1).padStart(2, "0")}
+          </div>
+
+
+          <div class="writing-card-content">
+
+            <div class="published-date">
+              ${formatDate(poem.created_at)}
+            </div>
+
+
+            <p class="card-label">
+              POETRY
+            </p>
+
+
+            <h3>
+              ${escapeHtml(poem.title)}
+            </h3>
+
+
+            ${
+              poem.excerpt
+                ? `
+                  <p class="writing-excerpt">
+                    ${escapeHtml(poem.excerpt)}
+                  </p>
+                `
+                : ""
+            }
+
+
+            ${poem.views !== undefined
+              ? totalViews(poem)
+              : ""
+            }
+
+
+            <a
+              href="${typeUrl(
+                "poem",
+                poem.id
+              )}"
+              class="text-link"
+            >
+              কবিতা পড়ুন →
+            </a>
+
+
+            ${actionButtons(
+              "poem",
+              poem.id,
+              poem.title
+            )}
+
+          </div>
+
+        </article>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =====================================================
    STORIES
 ===================================================== */
 
@@ -855,7 +841,6 @@ async function loadStories() {
     document.getElementById(
       "stories-container"
     );
-
 
   if (!container) return;
 
@@ -871,7 +856,7 @@ async function loadStories() {
         .from("stories")
 
         .select(
-          "id, title, excerpt, content, created_at, published"
+          "id, title, excerpt, content, created_at, published, views"
         )
 
         .eq(
@@ -887,94 +872,47 @@ async function loadStories() {
         );
 
 
-    if (error) throw error;
-
-
     if (
-      !data ||
-      data.length === 0
+      error &&
+      String(error.message)
+        .toLowerCase()
+        .includes("views")
     ) {
 
-      container.innerHTML = `
+      const fallback =
+        await window.supabaseClient
+          .from("stories")
+          .select(
+            "id, title, excerpt, content, created_at, published"
+          )
+          .eq(
+            "published",
+            true
+          )
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          );
 
-        <div class="story-card empty-card">
+      if (fallback.error)
+        throw fallback.error;
 
-          <span>
-            STORIES
-          </span>
-
-          <h3>
-            কোনো প্রকাশিত গল্প নেই
-          </h3>
-
-          <p>
-            নতুন গল্প খুব শীঘ্রই প্রকাশিত হবে।
-          </p>
-
-        </div>
-
-      `;
-
-      return;
+      return renderStories(
+        container,
+        fallback.data || []
+      );
 
     }
 
 
-    container.innerHTML =
-      data.map((story, index) => {
+    if (error) throw error;
 
-        return `
-
-          <article class="story-card">
-
-            <div class="published-date">
-              ${formatDate(story.created_at)}
-            </div>
-
-
-            <span>
-              STORY ${String(index + 1).padStart(2, "0")}
-            </span>
-
-
-            <h3>
-              ${escapeHtml(story.title)}
-            </h3>
-
-
-            ${
-              story.excerpt
-                ? `
-                  <p>
-                    ${escapeHtml(story.excerpt)}
-                  </p>
-                `
-                : ""
-            }
-
-
-            <a
-              href="${typeUrl(
-                "story",
-                story.id
-              )}"
-              class="text-link"
-            >
-              গল্প পড়ুন ↗
-            </a>
-
-
-            ${actionButtons(
-              "story",
-              story.id,
-              story.title
-            )}
-
-          </article>
-
-        `;
-
-      }).join("");
+    renderStories(
+      container,
+      data || []
+    );
 
 
   } catch (error) {
@@ -983,7 +921,6 @@ async function loadStories() {
       "Stories Error:",
       error
     );
-
 
     container.innerHTML = `
 
@@ -1011,6 +948,104 @@ async function loadStories() {
 
 
 /* =====================================================
+   RENDER STORIES
+===================================================== */
+
+function renderStories(container, data) {
+
+  if (!data.length) {
+
+    container.innerHTML = `
+
+      <div class="story-card empty-card">
+
+        <span>
+          STORIES
+        </span>
+
+        <h3>
+          কোনো প্রকাশিত গল্প নেই
+        </h3>
+
+        <p>
+          নতুন গল্প খুব শীঘ্রই প্রকাশিত হবে।
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    data.map((story, index) => {
+
+      return `
+
+        <article class="story-card">
+
+          <div class="published-date">
+            ${formatDate(story.created_at)}
+          </div>
+
+
+          <span>
+            STORY ${String(index + 1).padStart(2, "0")}
+          </span>
+
+
+          <h3>
+            ${escapeHtml(story.title)}
+          </h3>
+
+
+          ${
+            story.excerpt
+              ? `
+                <p>
+                  ${escapeHtml(story.excerpt)}
+                </p>
+              `
+              : ""
+          }
+
+
+          ${story.views !== undefined
+            ? totalViews(story)
+            : ""
+          }
+
+
+          <a
+            href="${typeUrl(
+              "story",
+              story.id
+            )}"
+            class="text-link"
+          >
+            গল্প পড়ুন ↗
+          </a>
+
+
+          ${actionButtons(
+            "story",
+            story.id,
+            story.title
+          )}
+
+        </article>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =====================================================
    NOVELS
 ===================================================== */
 
@@ -1020,7 +1055,6 @@ async function loadNovels() {
     document.getElementById(
       "novels-container"
     );
-
 
   if (!container) return;
 
@@ -1036,7 +1070,7 @@ async function loadNovels() {
         .from("novels")
 
         .select(
-          "id, title, content, excerpt, created_at, published"
+          "id, title, content, excerpt, created_at, published, views"
         )
 
         .eq(
@@ -1052,98 +1086,47 @@ async function loadNovels() {
         );
 
 
-    if (error) throw error;
-
-
     if (
-      !data ||
-      data.length === 0
+      error &&
+      String(error.message)
+        .toLowerCase()
+        .includes("views")
     ) {
 
-      container.innerHTML = `
+      const fallback =
+        await window.supabaseClient
+          .from("novels")
+          .select(
+            "id, title, content, excerpt, created_at, published"
+          )
+          .eq(
+            "published",
+            true
+          )
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          );
 
-        <div class="novel-card empty-card">
+      if (fallback.error)
+        throw fallback.error;
 
-          <p class="card-label">
-            NOVELS
-          </p>
-
-          <h3>
-            শীঘ্রই আসছে
-          </h3>
-
-          <p>
-            নতুন উপন্যাস খুব শীঘ্রই প্রকাশিত হবে।
-          </p>
-
-        </div>
-
-      `;
-
-      return;
+      return renderNovels(
+        container,
+        fallback.data || []
+      );
 
     }
 
 
-    container.innerHTML =
-      data.map((novel, index) => {
+    if (error) throw error;
 
-        return `
-
-          <article class="novel-card">
-
-            <div class="novel-info">
-
-              <div class="published-date">
-                ${formatDate(novel.created_at)}
-              </div>
-
-
-              <p class="card-label">
-                NOVEL ${String(index + 1).padStart(2, "0")}
-              </p>
-
-
-              <h3>
-                ${escapeHtml(novel.title)}
-              </h3>
-
-
-              ${
-                novel.excerpt
-                  ? `
-                    <p>
-                      ${escapeHtml(novel.excerpt)}
-                    </p>
-                  `
-                  : ""
-              }
-
-
-              <a
-                href="${typeUrl(
-                  "novel",
-                  novel.id
-                )}"
-                class="text-link"
-              >
-                উপন্যাস পড়ুন →
-              </a>
-
-
-              ${actionButtons(
-                "novel",
-                novel.id,
-                novel.title
-              )}
-
-            </div>
-
-          </article>
-
-        `;
-
-      }).join("");
+    renderNovels(
+      container,
+      data || []
+    );
 
 
   } catch (error) {
@@ -1152,7 +1135,6 @@ async function loadNovels() {
       "Novels Error:",
       error
     );
-
 
     container.innerHTML = `
 
@@ -1180,6 +1162,108 @@ async function loadNovels() {
 
 
 /* =====================================================
+   RENDER NOVELS
+===================================================== */
+
+function renderNovels(container, data) {
+
+  if (!data.length) {
+
+    container.innerHTML = `
+
+      <div class="novel-card empty-card">
+
+        <p class="card-label">
+          NOVELS
+        </p>
+
+        <h3>
+          শীঘ্রই আসছে
+        </h3>
+
+        <p>
+          নতুন উপন্যাস খুব শীঘ্রই প্রকাশিত হবে।
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    data.map((novel, index) => {
+
+      return `
+
+        <article class="novel-card">
+
+          <div class="novel-info">
+
+            <div class="published-date">
+              ${formatDate(novel.created_at)}
+            </div>
+
+
+            <p class="card-label">
+              NOVEL ${String(index + 1).padStart(2, "0")}
+            </p>
+
+
+            <h3>
+              ${escapeHtml(novel.title)}
+            </h3>
+
+
+            ${
+              novel.excerpt
+                ? `
+                  <p>
+                    ${escapeHtml(novel.excerpt)}
+                  </p>
+                `
+                : ""
+            }
+
+
+            ${novel.views !== undefined
+              ? totalViews(novel)
+              : ""
+            }
+
+
+            <a
+              href="${typeUrl(
+                "novel",
+                novel.id
+              )}"
+              class="text-link"
+            >
+              উপন্যাস পড়ুন →
+            </a>
+
+
+            ${actionButtons(
+              "novel",
+              novel.id,
+              novel.title
+            )}
+
+          </div>
+
+        </article>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =====================================================
    YEARLY ARCHIVE
 ===================================================== */
 
@@ -1189,7 +1273,6 @@ async function loadYearlyArchive() {
     document.getElementById(
       "archiveYears"
     );
-
 
   if (!container) return;
 
@@ -1300,10 +1383,6 @@ async function loadYearlyArchive() {
     }
 
 
-    /*
-      YEAR → MONTH → TYPE
-    */
-
     const years = {};
 
 
@@ -1317,16 +1396,12 @@ async function loadYearlyArchive() {
 
 
       if (!years[year]) {
-
         years[year] = {};
-
       }
 
 
       if (!years[year][month]) {
-
         years[year][month] = [];
-
       }
 
 
@@ -1349,7 +1424,6 @@ async function loadYearlyArchive() {
 
           const months =
             years[year];
-
 
           const sortedMonths =
             Object.keys(months)
@@ -1391,7 +1465,6 @@ async function loadYearlyArchive() {
                     const items =
                       months[month];
 
-
                     return `
 
                       <div class="archive-month">
@@ -1403,9 +1476,11 @@ async function loadYearlyArchive() {
                         >
 
                           <span>
-                            ${BANGLA_MONTHS[
-                              Number(month)
-                            ]}
+                            ${
+                              BANGLA_MONTHS[
+                                Number(month)
+                              ]
+                            }
                           </span>
 
                           <span>
@@ -1420,9 +1495,7 @@ async function loadYearlyArchive() {
                           id="month-${year}-${month}"
                         >
 
-                          ${renderArchiveTypes(
-                            items
-                          )}
+                          ${renderArchiveTypes(items)}
 
                         </div>
 
@@ -1453,7 +1526,6 @@ async function loadYearlyArchive() {
       error
     );
 
-
     container.innerHTML = `
       <p>
         Archive লোড করা যায়নি।
@@ -1483,9 +1555,7 @@ function renderArchiveTypes(items) {
   items.forEach(item => {
 
     if (types[item.type]) {
-
       types[item.type].push(item);
-
     }
 
   });
@@ -1503,9 +1573,7 @@ function renderArchiveTypes(items) {
         <div class="archive-type">
 
           <div class="archive-type-title">
-
             ${typeLabel(type)}
-
           </div>
 
 
@@ -1561,16 +1629,13 @@ function initArchiveToggles() {
 
           event.stopPropagation();
 
-
           const id =
             button.getAttribute(
               "data-archive-toggle"
             );
 
-
           const target =
             document.getElementById(id);
-
 
           if (!target) return;
 
@@ -1629,22 +1694,8 @@ async function loadMostViewed() {
     !storyList &&
     !novelList
   ) {
-
     return;
-
   }
-
-
-  /*
-    IMPORTANT:
-
-    তোমার poems.views column নেই।
-    তাই এখানে views সরাসরি database থেকে
-    নেওয়া হচ্ছে না।
-
-    ভবিষ্যতে views column তৈরি করলে
-    এই function সহজেই upgrade করা যাবে।
-  */
 
 
   try {
@@ -1656,77 +1707,32 @@ async function loadMostViewed() {
     ] =
       await Promise.all([
 
-        window.supabaseClient
-          .from("poems")
-          .select(
-            "id,title,created_at"
-          )
-          .eq(
-            "published",
-            true
-          )
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
-          )
-          .limit(5),
+        getMostViewed("poems"),
 
-        window.supabaseClient
-          .from("stories")
-          .select(
-            "id,title,created_at"
-          )
-          .eq(
-            "published",
-            true
-          )
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
-          )
-          .limit(5),
+        getMostViewed("stories"),
 
-        window.supabaseClient
-          .from("novels")
-          .select(
-            "id,title,created_at"
-          )
-          .eq(
-            "published",
-            true
-          )
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
-          )
-          .limit(5)
+        getMostViewed("novels")
 
       ]);
 
 
     renderMostMenu(
       poemList,
-      poemsResult.data || [],
+      poemsResult,
       "poem"
     );
 
 
     renderMostMenu(
       storyList,
-      storiesResult.data || [],
+      storiesResult,
       "story"
     );
 
 
     renderMostMenu(
       novelList,
-      novelsResult.data || [],
+      novelsResult,
       "novel"
     );
 
@@ -1738,13 +1744,120 @@ async function loadMostViewed() {
       error
     );
 
+    /*
+      Error হলেও menu পুরোপুরি
+      ভেঙে যাবে না।
+    */
+
+    if (poemList) {
+      poemList.innerHTML =
+        "<p>ডেটা পাওয়া যায়নি।</p>";
+    }
+
+    if (storyList) {
+      storyList.innerHTML =
+        "<p>ডেটা পাওয়া যায়নি।</p>";
+    }
+
+    if (novelList) {
+      novelList.innerHTML =
+        "<p>ডেটা পাওয়া যায়নি।</p>";
+    }
+
   }
 
 }
 
 
 /* =====================================================
-   MOST VIEWED MENU RENDER
+   GET MOST VIEWED
+===================================================== */
+
+async function getMostViewed(table) {
+
+  /*
+    প্রথমে views অনুযায়ী query
+  */
+
+  const result =
+    await window.supabaseClient
+
+      .from(table)
+
+      .select(
+        "id,title,created_at,views"
+      )
+
+      .eq(
+        "published",
+        true
+      )
+
+      .order(
+        "views",
+        {
+          ascending: false
+        }
+      )
+
+      .limit(5);
+
+
+  /*
+    views column না থাকলে fallback
+  */
+
+  if (
+    result.error &&
+    String(result.error.message)
+      .toLowerCase()
+      .includes("views")
+  ) {
+
+    const fallback =
+      await window.supabaseClient
+
+        .from(table)
+
+        .select(
+          "id,title,created_at"
+        )
+
+        .eq(
+          "published",
+          true
+        )
+
+        .order(
+          "created_at",
+          {
+            ascending: false
+          }
+        )
+
+        .limit(5);
+
+
+    if (fallback.error)
+      throw fallback.error;
+
+
+    return fallback.data || [];
+
+  }
+
+
+  if (result.error)
+    throw result.error;
+
+
+  return result.data || [];
+
+}
+
+
+/* =====================================================
+   RENDER MOST VIEWED
 ===================================================== */
 
 function renderMostMenu(
@@ -1788,9 +1901,141 @@ function renderMostMenu(
           ${escapeHtml(item.title)}
         </span>
 
+        ${
+          item.views !== undefined
+            ? `
+              <span class="most-views">
+                ${Number(
+                  item.views || 0
+                ).toLocaleString("en-US")}
+              </span>
+            `
+            : ""
+        }
+
       </a>
 
     `).join("");
+
+}
+
+
+/* =====================================================
+   INCREMENT CONTENT VIEW
+===================================================== */
+
+/*
+   poem.html / story.html / novel.html
+   page থেকে এই function call করবে।
+
+   Example:
+
+   incrementContentView("poem", id);
+*/
+
+async function incrementContentView(
+  type,
+  id
+) {
+
+  const tableMap = {
+
+    poem: "poems",
+
+    story: "stories",
+
+    novel: "novels"
+
+  };
+
+
+  const table =
+    tableMap[type];
+
+
+  if (!table || !id) return;
+
+
+  try {
+
+    /*
+      প্রথমে বর্তমান views নেওয়া
+    */
+
+    const {
+      data,
+      error
+    } =
+      await window.supabaseClient
+
+        .from(table)
+
+        .select("views")
+
+        .eq(
+          "id",
+          id
+        )
+
+        .maybeSingle();
+
+
+    if (error) {
+
+      console.warn(
+        "View read error:",
+        error.message
+      );
+
+      return;
+
+    }
+
+
+    const currentViews =
+      Number(
+        data?.views || 0
+      );
+
+
+    /*
+      +1
+    */
+
+    const {
+      error: updateError
+    } =
+      await window.supabaseClient
+
+        .from(table)
+
+        .update({
+          views: currentViews + 1
+        })
+
+        .eq(
+          "id",
+          id
+        );
+
+
+    if (updateError) {
+
+      console.warn(
+        "View update error:",
+        updateError.message
+      );
+
+    }
+
+  } catch (error) {
+
+    console.warn(
+      "Increment View Error:",
+      error
+    );
+
+  }
 
 }
 
@@ -1812,24 +2057,21 @@ async function loadWebsiteViews() {
 
   try {
 
-    /*
-      site_views table না থাকলে
-      website যেন error না দেখায়।
-    */
-
     const {
       data,
       error
     } =
       await window.supabaseClient
+
         .from("site_views")
-        .select(
-          "views"
-        )
+
+        .select("views")
+
         .eq(
           "id",
           1
         )
+
         .maybeSingle();
 
 
@@ -1858,6 +2100,88 @@ async function loadWebsiteViews() {
 
     console.warn(
       "Website Views Error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   INCREMENT WEBSITE VIEW
+===================================================== */
+
+async function incrementWebsiteView() {
+
+  try {
+
+    const {
+      data,
+      error
+    } =
+      await window.supabaseClient
+
+        .from("site_views")
+
+        .select("views")
+
+        .eq(
+          "id",
+          1
+        )
+
+        .maybeSingle();
+
+
+    if (error) {
+
+      console.warn(
+        "Website view read error:",
+        error.message
+      );
+
+      return;
+
+    }
+
+
+    const currentViews =
+      Number(
+        data?.views || 0
+      );
+
+
+    const {
+      error: updateError
+    } =
+      await window.supabaseClient
+
+        .from("site_views")
+
+        .update({
+          views: currentViews + 1
+        })
+
+        .eq(
+          "id",
+          1
+        );
+
+
+    if (updateError) {
+
+      console.warn(
+        "Website view update error:",
+        updateError.message
+      );
+
+    }
+
+  } catch (error) {
+
+    console.warn(
+      "Website view error:",
       error
     );
 
@@ -1953,3 +2277,9 @@ window.shareContent =
 
 window.openComment =
   openComment;
+
+window.incrementContentView =
+  incrementContentView;
+
+window.incrementWebsiteView =
+  incrementWebsiteView;
