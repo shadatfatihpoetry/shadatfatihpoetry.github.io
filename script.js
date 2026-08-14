@@ -631,106 +631,46 @@ function actionButtons(
 
     <div class="writing-actions">
 
-      <!-- COMMENT -->
-
       <button
         type="button"
-        class="action-btn action-comment"
+        class="action-btn"
         onclick="openComment(
           '${escapeHtml(type)}',
           '${escapeHtml(id)}'
         )"
-        aria-label="Comment"
       >
 
-        <span class="action-icon">
-          <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path
-              d="M20 11.5a8 8 0 0 1-8 8
-              7.9 7.9 0 0 1-4-.98
-              L4 20l1.48-3.2A8 8 0 1 1 20 11.5Z"
-            />
-            <path
-              d="M8 11.5h.01M12 11.5h.01M16 11.5h.01"
-            />
-          </svg>
-        </span>
-
+        <span>◌</span>
         <small>Comment</small>
 
       </button>
 
 
-      <!-- SHARE -->
-
       <button
         type="button"
-        class="action-btn action-share"
+        class="action-btn"
         onclick="shareContent(
           ${JSON.stringify(title)},
           ${JSON.stringify(url)}
         )"
-        aria-label="Share"
       >
 
-        <span class="action-icon">
-          <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path
-              d="M12 16V4"
-            />
-
-            <path
-              d="m7 9 5-5 5 5"
-            />
-
-            <path
-              d="M5 14v5h14v-5"
-            />
-          </svg>
-        </span>
-
+        <span>↗</span>
         <small>Share</small>
 
       </button>
 
 
-      <!-- COPY LINK -->
-
       <button
         type="button"
-        class="action-btn action-copy"
+        class="action-btn"
         onclick="copyLink(
           ${JSON.stringify(url)}
         )"
-        aria-label="Copy Link"
       >
 
-        <span class="action-icon">
-          <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path
-              d="M9 7h-2a4 4 0 0 0 0 8h2"
-            />
-
-            <path
-              d="M15 7h2a4 4 0 0 1 0 8h-2"
-            />
-
-            <path
-              d="M8 12h8"
-            />
-          </svg>
-        </span>
-
-        <small>Copy Link</small>
+        <span>⛓</span>
+        <small>Copy</small>
 
       </button>
 
