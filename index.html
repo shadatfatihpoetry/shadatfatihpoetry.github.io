@@ -108,9 +108,7 @@
     </button>
 
 
-    <!-- =================================================
-         SIDE MENU
-    ================================================== -->
+    <!-- SIDE MENU -->
 
     <aside
       id="mainNav"
@@ -163,7 +161,7 @@
 
       <!-- =================================================
            YEARLY ARCHIVE
-           Year → Month → Type
+           YEAR → MONTH → TYPE → WRITINGS
       ================================================== -->
 
       <div class="menu-group">
@@ -206,6 +204,7 @@
 
       <!-- =================================================
            MOST VIEWED
+           TYPE → WRITINGS
       ================================================== -->
 
       <div class="menu-group">
@@ -237,13 +236,27 @@
 
           <div class="most-menu-group">
 
-            <div class="most-menu-title">
-              POEMS
-            </div>
+            <button
+              type="button"
+              class="most-menu-title most-folder-toggle"
+              data-most-toggle="most-poems-folder"
+              aria-expanded="false"
+            >
+
+              <span>
+                কবিতা
+              </span>
+
+              <span>
+                +
+              </span>
+
+            </button>
+
 
             <div
-              id="mostPoemsList"
-              class="most-menu-list"
+              id="most-poems-folder"
+              class="most-menu-list most-folder-content"
             >
 
               <p>
@@ -259,13 +272,27 @@
 
           <div class="most-menu-group">
 
-            <div class="most-menu-title">
-              STORIES
-            </div>
+            <button
+              type="button"
+              class="most-menu-title most-folder-toggle"
+              data-most-toggle="most-stories-folder"
+              aria-expanded="false"
+            >
+
+              <span>
+                গল্প
+              </span>
+
+              <span>
+                +
+              </span>
+
+            </button>
+
 
             <div
-              id="mostStoriesList"
-              class="most-menu-list"
+              id="most-stories-folder"
+              class="most-menu-list most-folder-content"
             >
 
               <p>
@@ -281,13 +308,27 @@
 
           <div class="most-menu-group">
 
-            <div class="most-menu-title">
-              NOVELS
-            </div>
+            <button
+              type="button"
+              class="most-menu-title most-folder-toggle"
+              data-most-toggle="most-novels-folder"
+              aria-expanded="false"
+            >
+
+              <span>
+                উপন্যাস
+              </span>
+
+              <span>
+                +
+              </span>
+
+            </button>
+
 
             <div
-              id="mostNovelsList"
-              class="most-menu-list"
+              id="most-novels-folder"
+              class="most-menu-list most-folder-content"
             >
 
               <p>
@@ -348,15 +389,10 @@
 <main id="pageContent">
 
 
-<!-- =====================================================
-     HERO
-===================================================== -->
-
 <section
   class="hero"
   id="home"
 >
-
 
   <div class="hero-content">
 
@@ -364,18 +400,15 @@
       SHADAT FATIH
     </p>
 
-
     <h1>
       অনুভূতিগুলোকে কবিতা বলে<br>
       <em>চালিয়ে দেয়া মানুষ।</em>
     </h1>
 
-
     <p class="hero-text">
       কবিতা, গল্প ও উপন্যাসের<br>
       একটি নিজস্ব সাহিত্যভুবন।
     </p>
-
 
     <a
       href="#poetry"
@@ -414,14 +447,9 @@
 
   </div>
 
-
 </section>
 
 
-
-<!-- =====================================================
-     INTRO
-===================================================== -->
 
 <section class="intro">
 
@@ -431,12 +459,10 @@
       A WORLD OF WORDS
     </p>
 
-
     <h2>
       কিছু অনুভূতি বলা যায় না।<br>
       <em>তাই তারা লেখা হয়ে থাকে।</em>
     </h2>
-
 
     <p>
       এই সাহিত্যভুবনে জমা থাকে অনুভূতি,
@@ -450,9 +476,7 @@
 
 
 
-<!-- =====================================================
-     POETRY
-===================================================== -->
+<!-- POETRY -->
 
 <section
   class="content-section light"
@@ -460,7 +484,6 @@
 >
 
   <div class="section-container">
-
 
     <div class="section-top">
 
@@ -475,7 +498,6 @@
         </h2>
 
       </div>
-
 
       <p>
         কিছু কথা ছন্দে বলা হয়,<br>
@@ -496,16 +518,13 @@
 
     </div>
 
-
   </div>
 
 </section>
 
 
 
-<!-- =====================================================
-     STORIES
-===================================================== -->
+<!-- STORIES -->
 
 <section
   class="content-section dark"
@@ -513,7 +532,6 @@
 >
 
   <div class="section-container">
-
 
     <div class="section-top">
 
@@ -528,7 +546,6 @@
         </h2>
 
       </div>
-
 
       <p>
         প্রতিটি গল্পের ভেতরে<br>
@@ -549,16 +566,13 @@
 
     </div>
 
-
   </div>
 
 </section>
 
 
 
-<!-- =====================================================
-     NOVELS
-===================================================== -->
+<!-- NOVELS -->
 
 <section
   class="content-section novel-section"
@@ -566,7 +580,6 @@
 >
 
   <div class="section-container">
-
 
     <div class="section-top">
 
@@ -581,7 +594,6 @@
         </h2>
 
       </div>
-
 
       <p>
         দীর্ঘ গল্পের জন্য<br>
@@ -602,16 +614,11 @@
 
     </div>
 
-
   </div>
 
 </section>
 
 
-
-<!-- =====================================================
-     HIDDEN ARCHIVE DATA AREA
-===================================================== -->
 
 <section
   class="archive-section archive-data-section"
@@ -673,9 +680,7 @@
 
 
 
-<!-- =====================================================
-     QUOTE
-===================================================== -->
+<!-- QUOTE -->
 
 <section class="quote-section">
 
@@ -685,12 +690,10 @@
       “
     </span>
 
-
     <blockquote>
       কিছু অনুভূতি<br>
       <em>শুধু লেখাই যায়।</em>
     </blockquote>
-
 
     <p>
       — Shadat Fatih
@@ -702,9 +705,7 @@
 
 
 
-<!-- =====================================================
-     AUTHOR
-===================================================== -->
+<!-- AUTHOR -->
 
 <section
   class="author-section"
@@ -714,7 +715,6 @@
   <div class="section-container">
 
     <div class="author-grid">
-
 
       <div class="author-photo">
 
@@ -732,11 +732,9 @@
           THE AUTHOR
         </p>
 
-
         <h2>
           Shadat Fatih
         </h2>
-
 
         <p>
           কবিতা, গল্প ও উপন্যাসের মাধ্যমে
@@ -756,7 +754,6 @@
             Facebook ↗
           </a>
 
-
           <a
             href="https://www.instagram.com/shadatfatih"
             target="_blank"
@@ -765,7 +762,6 @@
             Instagram ↗
           </a>
 
-
           <a
             href="https://wa.me/8801601800222"
             target="_blank"
@@ -773,7 +769,6 @@
           >
             WhatsApp ↗
           </a>
-
 
           <a
             href="mailto:helloshadat@hotmail.com"
@@ -785,7 +780,6 @@
 
       </div>
 
-
     </div>
 
   </div>
@@ -794,14 +788,11 @@
 
 
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+<!-- FOOTER -->
 
 <footer>
 
   <div class="footer-inner">
-
 
     <div>
 
@@ -815,13 +806,11 @@
 
     </div>
 
-
     <p>
       ©
       <span id="year"></span>
       Shadat Fatih
     </p>
-
 
   </div>
 
