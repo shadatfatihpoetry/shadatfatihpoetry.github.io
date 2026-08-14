@@ -1462,29 +1462,17 @@ function initArchiveToggles() {
 async function loadMostViewed() {
 
   const poemList =
-    document.getElementById(
-      "mostPoemsList"
-    );
+    document.getElementById("mostPoemsList");
 
   const storyList =
-    document.getElementById(
-      "mostStoriesList"
-    );
+    document.getElementById("mostStoriesList");
 
   const novelList =
-    document.getElementById(
-      "mostNovelsList"
-    );
+    document.getElementById("mostNovelsList");
 
 
-  if (
-    !poemList &&
-    !storyList &&
-    !novelList
-  ) {
-
+  if (!poemList && !storyList && !novelList) {
     return;
-
   }
 
 
@@ -1494,63 +1482,39 @@ async function loadMostViewed() {
       poemsResult,
       storiesResult,
       novelsResult
-    ] =
-      await Promise.all([
+    ] = await Promise.all([
 
-        window.supabaseClient
-          .from("poems")
-          .select(
-            "id,title,created_at,views"
-          )
-          .eq(
-            "published",
-            true
-          )
-          .order(
-            "views",
-            {
-              ascending: false
-            }
-          )
-          .limit(5),
+      window.supabaseClient
+        .from("poems")
+        .select("id,title,views")
+        .eq("published", true)
+        .order("views", {
+          ascending: false,
+          nullsFirst: false
+        })
+        .limit(5),
 
+      window.supabaseClient
+        .from("stories")
+        .select("id,title,views")
+        .eq("published", true)
+        .order("views", {
+          ascending: false,
+          nullsFirst: false
+        })
+        .limit(5),
 
-        window.supabaseClient
-          .from("stories")
-          .select(
-            "id,title,created_at,views"
-          )
-          .eq(
-            "published",
-            true
-          )
-          .order(
-            "views",
-            {
-              ascending: false
-            }
-          )
-          .limit(5),
+      window.supabaseClient
+        .from("novels")
+        .select("id,title,views")
+        .eq("published", true)
+        .order("views", {
+          ascending: false,
+          nullsFirst: false
+        })
+        .limit(5)
 
-
-        window.supabaseClient
-          .from("novels")
-          .select(
-            "id,title,created_at,views"
-          )
-          .eq(
-            "published",
-            true
-          )
-          .order(
-            "views",
-            {
-              ascending: false
-            }
-          )
-          .limit(5)
-
-      ]);
+    ]);
 
 
     if (poemsResult.error)
@@ -1591,22 +1555,81 @@ async function loadMostViewed() {
       error
     );
 
-    if (poemList)
+
+    if (poemList) {
       poemList.innerHTML =
-        "<p>Most Viewed লোড করা যায়নি।</p>";
+        "<p>লোড করা যায়নি।</p>";
+    }
 
-    if (storyList)
+    if (storyList) {
       storyList.innerHTML =
-        "<p>Most Viewed লোড করা যায়নি।</p>";
+        "<p>লোড করা যায়নি।</p>";
+    }
 
-    if (novelList)
+    if (novelList) {
       novelList.innerHTML =
-        "<p>Most Viewed লোড করা যায়নি।</p>";
+        "<p>লোড করা যায়নি।</p>";
+    }
 
   }
 
 }
 
+
+/* =====================================================
+   MOST VIEWED MENU RENDER
+===================================================== */
+
+function renderMostMenu(
+  container,
+  data,
+  type
+) {
+
+  if (!container) return;
+
+
+  if (!data.length) {
+
+    container.innerHTML = `
+      <p>
+        এখনো কোনো লেখা নেই।
+      </p>
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    data.map((item, index) => `
+
+      <a
+        href="${typeUrl(
+          type,
+          item.id
+        )}"
+        class="menu-sub-link most-item-link"
+      >
+
+        <span class="most-rank">
+          ${String(index + 1).padStart(2, "0")}
+        </span>
+
+        <span class="most-item-title">
+          ${escapeHtml(item.title)}
+        </span>
+
+        <span class="most-item-views">
+          ${Number(item.views || 0).toLocaleString("en-US")} views
+        </span>
+
+      </a>
+
+    `).join("");
+
+}
 
 /* =====================================================
    MOST VIEWED MENU RENDER
