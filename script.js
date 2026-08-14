@@ -1,11 +1,3 @@
-/* =====================================================
-   SHADAT FATIH LITERARY ARCHIVE
-   FINAL SCRIPT.JS
-
-   VIEWS + MOST VIEWED + YEARLY ARCHIVE
-   Nested Folder Structure
-===================================================== */
-
 "use strict";
 
 
@@ -28,6 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
   loadWebsiteViews();
 
   initReveal();
+
+  initMostViewedToggles();
 
 });
 
@@ -66,11 +60,6 @@ function initMenu() {
 
   });
 
-
-  /*
-    YEARLY ARCHIVE / MOST VIEWED
-    Main folders
-  */
 
   mainNav
     .querySelectorAll("[data-toggle]")
@@ -111,10 +100,6 @@ function initMenu() {
     });
 
 
-  /*
-    Close menu when main links are clicked
-  */
-
   mainNav
     .querySelectorAll(".menu-main-links a")
     .forEach(link => {
@@ -137,10 +122,6 @@ function initMenu() {
 
     });
 
-
-  /*
-    Click outside
-  */
 
   document.addEventListener("click", event => {
 
@@ -165,10 +146,6 @@ function initMenu() {
 
   });
 
-
-  /*
-    Escape
-  */
 
   document.addEventListener("keydown", event => {
 
@@ -324,27 +301,6 @@ const BANGLA_MONTHS = [
   "ডিসেম্বর"
 
 ];
-
-
-/* =====================================================
-   BANGLA NUMBERS
-===================================================== */
-
-function toBanglaNumber(value) {
-
-  return String(value)
-    .replaceAll("0", "০")
-    .replaceAll("1", "১")
-    .replaceAll("2", "২")
-    .replaceAll("3", "৩")
-    .replaceAll("4", "৪")
-    .replaceAll("5", "৫")
-    .replaceAll("6", "৬")
-    .replaceAll("7", "৭")
-    .replaceAll("8", "৮")
-    .replaceAll("9", "৯");
-
-}
 
 
 /* =====================================================
@@ -704,23 +660,19 @@ async function loadPoetry() {
               ${String(index + 1).padStart(2, "0")}
             </div>
 
-
             <div class="writing-card-content">
 
               <div class="published-date">
                 ${formatDate(poem.created_at)}
               </div>
 
-
               <p class="card-label">
                 POETRY
               </p>
 
-
               <h3>
                 ${escapeHtml(poem.title)}
               </h3>
-
 
               ${
                 poem.excerpt
@@ -732,9 +684,7 @@ async function loadPoetry() {
                   : ""
               }
 
-
               ${totalViews(poem)}
-
 
               <a
                 href="${typeUrl(
@@ -745,7 +695,6 @@ async function loadPoetry() {
               >
                 কবিতা পড়ুন →
               </a>
-
 
               ${actionButtons(
                 "poem",
@@ -866,16 +815,13 @@ async function loadStories() {
               ${formatDate(story.created_at)}
             </div>
 
-
             <span>
               STORY ${String(index + 1).padStart(2, "0")}
             </span>
 
-
             <h3>
               ${escapeHtml(story.title)}
             </h3>
-
 
             ${
               story.excerpt
@@ -887,9 +833,7 @@ async function loadStories() {
                 : ""
             }
 
-
             ${totalViews(story)}
-
 
             <a
               href="${typeUrl(
@@ -900,7 +844,6 @@ async function loadStories() {
             >
               গল্প পড়ুন ↗
             </a>
-
 
             ${actionButtons(
               "story",
@@ -1023,16 +966,13 @@ async function loadNovels() {
                 ${formatDate(novel.created_at)}
               </div>
 
-
               <p class="card-label">
                 NOVEL ${String(index + 1).padStart(2, "0")}
               </p>
 
-
               <h3>
                 ${escapeHtml(novel.title)}
               </h3>
-
 
               ${
                 novel.excerpt
@@ -1044,9 +984,7 @@ async function loadNovels() {
                   : ""
               }
 
-
               ${totalViews(novel)}
-
 
               <a
                 href="${typeUrl(
@@ -1057,7 +995,6 @@ async function loadNovels() {
               >
                 উপন্যাস পড়ুন →
               </a>
-
 
               ${actionButtons(
                 "novel",
@@ -1107,7 +1044,6 @@ async function loadNovels() {
 
 /* =====================================================
    YEARLY ARCHIVE
-   YEAR → MONTH → TYPE → CONTENT
 ===================================================== */
 
 async function loadYearlyArchive() {
@@ -1118,6 +1054,7 @@ async function loadYearlyArchive() {
     );
 
   if (!container) return;
+
 
   try {
 
@@ -1225,15 +1162,6 @@ async function loadYearlyArchive() {
     }
 
 
-    /*
-      Structure:
-
-      years
-        └── year
-             └── month
-                  └── items
-    */
-
     const years = {};
 
 
@@ -1248,15 +1176,11 @@ async function loadYearlyArchive() {
       if (!year || month === "") return;
 
       if (!years[year]) {
-
         years[year] = {};
-
       }
 
       if (!years[year][month]) {
-
         years[year][month] = [];
-
       }
 
       years[year][month].push(item);
@@ -1276,6 +1200,9 @@ async function loadYearlyArchive() {
       sortedYears
         .map(year => {
 
+          const yearId =
+            `archive-year-${year}`;
+
           const months =
             years[year];
 
@@ -1294,12 +1221,12 @@ async function loadYearlyArchive() {
               <button
                 type="button"
                 class="archive-year-title"
-                data-archive-toggle="year-${year}"
+                data-archive-toggle="${yearId}"
                 aria-expanded="false"
               >
 
                 <span>
-                  ${toBanglaNumber(year)}
+                  ${escapeHtml(year)}
                 </span>
 
                 <span>
@@ -1311,11 +1238,14 @@ async function loadYearlyArchive() {
 
               <div
                 class="archive-year-content"
-                id="year-${year}"
+                id="${yearId}"
               >
 
                 ${sortedMonths
                   .map(month => {
+
+                    const monthId =
+                      `archive-month-${year}-${month}`;
 
                     const items =
                       months[month];
@@ -1327,14 +1257,16 @@ async function loadYearlyArchive() {
                         <button
                           type="button"
                           class="archive-month-title"
-                          data-archive-toggle="month-${year}-${month}"
+                          data-archive-toggle="${monthId}"
                           aria-expanded="false"
                         >
 
                           <span>
-                            ${BANGLA_MONTHS[
-                              Number(month)
-                            ]}
+                            ${
+                              BANGLA_MONTHS[
+                                Number(month)
+                              ]
+                            }
                           </span>
 
                           <span>
@@ -1346,14 +1278,10 @@ async function loadYearlyArchive() {
 
                         <div
                           class="archive-month-content"
-                          id="month-${year}-${month}"
+                          id="${monthId}"
                         >
 
-                          ${renderArchiveTypes(
-                            items,
-                            year,
-                            month
-                          )}
+                          ${renderArchiveTypes(items)}
 
                         </div>
 
@@ -1396,8 +1324,6 @@ async function loadYearlyArchive() {
 
 /* =====================================================
    ARCHIVE TYPES
-
-   MONTH → POEM / STORY / NOVEL → CONTENT
 ===================================================== */
 
 function renderArchiveTypes(items) {
@@ -1427,38 +1353,24 @@ function renderArchiveTypes(items) {
     )
     .map(type => {
 
-      const folderId =
+      const typeId =
         `archive-type-${type}-${Math.random()
           .toString(36)
-          .substring(2, 9)}`;
+          .slice(2, 9)}`;
 
 
       return `
 
         <div class="archive-type">
 
-          <button
-            type="button"
-            class="archive-type-title"
-            data-archive-toggle="${folderId}"
-            aria-expanded="false"
-          >
-
-            <span>
-              ${typeLabel(type)}
-            </span>
-
-            <span>
-              +
-            </span>
-
-          </button>
-
-
           <div
-            class="archive-type-items"
-            id="${folderId}"
+            class="archive-type-title"
           >
+            ${typeLabel(type)}
+          </div>
+
+
+          <div class="archive-type-items">
 
             ${types[type]
               .map(item => `
@@ -1520,6 +1432,7 @@ function initArchiveToggles() {
 
           if (!target) return;
 
+
           const isOpen =
             target.classList.toggle(
               "active"
@@ -1555,24 +1468,23 @@ function initArchiveToggles() {
 
 /* =====================================================
    MOST VIEWED
-   MOST VIEWED → TYPE → CONTENT
 ===================================================== */
 
 async function loadMostViewed() {
 
   const poemList =
     document.getElementById(
-      "mostPoemsList"
+      "most-poems-folder"
     );
 
   const storyList =
     document.getElementById(
-      "mostStoriesList"
+      "most-stories-folder"
     );
 
   const novelList =
     document.getElementById(
-      "mostNovelsList"
+      "most-novels-folder"
     );
 
 
@@ -1611,7 +1523,8 @@ async function loadMostViewed() {
             nullsFirst: false
           }
         )
-        .limit(10),
+        .limit(5),
+
 
       window.supabaseClient
         .from("stories")
@@ -1629,7 +1542,8 @@ async function loadMostViewed() {
             nullsFirst: false
           }
         )
-        .limit(10),
+        .limit(5),
+
 
       window.supabaseClient
         .from("novels")
@@ -1647,7 +1561,7 @@ async function loadMostViewed() {
             nullsFirst: false
           }
         )
-        .limit(10)
+        .limit(5)
 
     ]);
 
@@ -1662,21 +1576,21 @@ async function loadMostViewed() {
       throw novelsResult.error;
 
 
-    renderMostViewedFolder(
+    renderMostMenu(
       poemList,
       poemsResult.data || [],
       "poem"
     );
 
 
-    renderMostViewedFolder(
+    renderMostMenu(
       storyList,
       storiesResult.data || [],
       "story"
     );
 
 
-    renderMostViewedFolder(
+    renderMostMenu(
       novelList,
       novelsResult.data || [],
       "novel"
@@ -1720,10 +1634,10 @@ async function loadMostViewed() {
 
 
 /* =====================================================
-   MOST VIEWED FOLDER RENDER
+   MOST VIEWED RENDER
 ===================================================== */
 
-function renderMostViewedFolder(
+function renderMostMenu(
   container,
   data,
   type
@@ -1745,79 +1659,43 @@ function renderMostViewedFolder(
   }
 
 
-  const folderId =
-    `most-${type}-folder`;
+  container.innerHTML =
+    data.map((item, index) => `
+
+      <a
+        href="${typeUrl(
+          type,
+          item.id
+        )}"
+        class="menu-sub-link most-item-link"
+      >
+
+        <span class="most-rank">
+          ${String(index + 1).padStart(2, "0")}
+        </span>
 
 
-  container.innerHTML = `
-
-    <button
-      type="button"
-      class="most-category-title"
-      data-most-toggle="${folderId}"
-      aria-expanded="false"
-    >
-
-      <span>
-        ${typeLabel(type)}
-      </span>
-
-      <span>
-        +
-      </span>
-
-    </button>
+        <span class="most-item-title">
+          ${escapeHtml(item.title)}
+        </span>
 
 
-    <div
-      class="most-category-content"
-      id="${folderId}"
-    >
+        <span class="most-views">
+          ◉
+          ${Number(
+            item.views || 0
+          ).toLocaleString("en-US")}
+        </span>
 
-      ${data
-        .map((item, index) => `
+      </a>
 
-          <a
-            href="${typeUrl(
-              type,
-              item.id
-            )}"
-            class="menu-sub-link most-item-link"
-          >
-
-            <span class="most-rank">
-              ${String(index + 1).padStart(2, "0")}
-            </span>
-
-
-            <span class="most-item-title">
-              ${escapeHtml(item.title)}
-            </span>
-
-
-            <span class="most-item-views">
-              ◉ ${Number(
-                item.views || 0
-              ).toLocaleString("en-US")}
-            </span>
-
-          </a>
-
-        `)
-        .join("")}
-
-    </div>
-
-  `;
-
-
-  initMostViewedToggles();
+    `).join("");
 
 }
 
 
 /* =====================================================
-   MOST VIEWED TOGGLES
+   MOST VIEWED FOLDER TOGGLES
 ===================================================== */
 
 function initMostViewedToggles() {
@@ -1827,19 +1705,6 @@ function initMostViewedToggles() {
       "[data-most-toggle]"
     )
     .forEach(button => {
-
-      if (
-        button.dataset.initialized === "true"
-      ) {
-
-        return;
-
-      }
-
-
-      button.dataset.initialized =
-        "true";
-
 
       button.addEventListener(
         "click",
