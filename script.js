@@ -1,7 +1,9 @@
 /* =====================================================
    SHADAT FATIH LITERARY ARCHIVE
    FINAL SCRIPT.JS
+
    VIEWS + MOST VIEWED + YEARLY ARCHIVE
+   Nested Folder Structure
 ===================================================== */
 
 "use strict";
@@ -45,67 +47,30 @@ function initMenu() {
   if (!menuToggle || !mainNav) return;
 
 
-  /* Ensure initial state */
+  menuToggle.addEventListener("click", event => {
 
-  if (!mainNav.classList.contains("active")) {
+    event.stopPropagation();
+
+    const isOpen =
+      mainNav.classList.toggle("active");
 
     menuToggle.setAttribute(
       "aria-expanded",
-      "false"
+      isOpen ? "true" : "false"
     );
 
     mainNav.setAttribute(
       "aria-hidden",
-      "true"
+      isOpen ? "false" : "true"
     );
-
-  }
-
-
-  /* 3 DOT MENU */
-
-  menuToggle.addEventListener("click", event => {
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    const isOpen =
-      mainNav.classList.contains("active");
-
-    if (isOpen) {
-
-      mainNav.classList.remove("active");
-
-      menuToggle.setAttribute(
-        "aria-expanded",
-        "false"
-      );
-
-      mainNav.setAttribute(
-        "aria-hidden",
-        "true"
-      );
-
-    } else {
-
-      mainNav.classList.add("active");
-
-      menuToggle.setAttribute(
-        "aria-expanded",
-        "true"
-      );
-
-      mainNav.setAttribute(
-        "aria-hidden",
-        "false"
-      );
-
-    }
 
   });
 
 
-  /* SUB MENUS */
+  /*
+    YEARLY ARCHIVE / MOST VIEWED
+    Main folders
+  */
 
   mainNav
     .querySelectorAll("[data-toggle]")
@@ -113,7 +78,6 @@ function initMenu() {
 
       button.addEventListener("click", event => {
 
-        event.preventDefault();
         event.stopPropagation();
 
         const targetId =
@@ -147,7 +111,9 @@ function initMenu() {
     });
 
 
-  /* MENU LINKS */
+  /*
+    Close menu when main links are clicked
+  */
 
   mainNav
     .querySelectorAll(".menu-main-links a")
@@ -172,7 +138,9 @@ function initMenu() {
     });
 
 
-  /* CLOSE WHEN CLICKING OUTSIDE */
+  /*
+    Click outside
+  */
 
   document.addEventListener("click", event => {
 
@@ -198,7 +166,9 @@ function initMenu() {
   });
 
 
-  /* ESCAPE */
+  /*
+    Escape
+  */
 
   document.addEventListener("keydown", event => {
 
@@ -219,30 +189,6 @@ function initMenu() {
     }
 
   });
-
-}
-
-
-/* =====================================================
-   SUPABASE CHECK
-===================================================== */
-
-function getSupabaseClient() {
-
-  if (
-    window.supabaseClient &&
-    typeof window.supabaseClient.from === "function"
-  ) {
-
-    return window.supabaseClient;
-
-  }
-
-  console.error(
-    "Supabase client is not available."
-  );
-
-  return null;
 
 }
 
@@ -378,6 +324,27 @@ const BANGLA_MONTHS = [
   "ডিসেম্বর"
 
 ];
+
+
+/* =====================================================
+   BANGLA NUMBERS
+===================================================== */
+
+function toBanglaNumber(value) {
+
+  return String(value)
+    .replaceAll("0", "০")
+    .replaceAll("1", "১")
+    .replaceAll("2", "২")
+    .replaceAll("3", "৩")
+    .replaceAll("4", "৪")
+    .replaceAll("5", "৫")
+    .replaceAll("6", "৬")
+    .replaceAll("7", "৭")
+    .replaceAll("8", "৮")
+    .replaceAll("9", "৯");
+
+}
 
 
 /* =====================================================
@@ -677,42 +644,13 @@ async function loadPoetry() {
 
   if (!container) return;
 
-
-  const client =
-    getSupabaseClient();
-
-  if (!client) {
-
-    container.innerHTML = `
-
-      <div class="error-card">
-
-        <span>POETRY</span>
-
-        <h3>
-          কবিতা লোড করা যায়নি
-        </h3>
-
-        <p>
-          Database connection পাওয়া যায়নি।
-        </p>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
   try {
 
     const {
       data,
       error
     } =
-      await client
+      await window.supabaseClient
         .from("poems")
         .select(
           "id,title,content,excerpt,created_at,published,views"
@@ -728,9 +666,7 @@ async function loadPoetry() {
           }
         );
 
-
     if (error) throw error;
-
 
     if (!data || data.length === 0) {
 
@@ -868,44 +804,13 @@ async function loadStories() {
 
   if (!container) return;
 
-
-  const client =
-    getSupabaseClient();
-
-  if (!client) {
-
-    container.innerHTML = `
-
-      <div class="story-card error-card">
-
-        <span>
-          STORIES
-        </span>
-
-        <h3>
-          গল্প লোড করা যায়নি
-        </h3>
-
-        <p>
-          Database connection পাওয়া যায়নি।
-        </p>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
   try {
 
     const {
       data,
       error
     } =
-      await client
+      await window.supabaseClient
         .from("stories")
         .select(
           "id,title,excerpt,content,created_at,published,views"
@@ -921,9 +826,7 @@ async function loadStories() {
           }
         );
 
-
     if (error) throw error;
-
 
     if (!data || data.length === 0) {
 
@@ -1056,44 +959,13 @@ async function loadNovels() {
 
   if (!container) return;
 
-
-  const client =
-    getSupabaseClient();
-
-  if (!client) {
-
-    container.innerHTML = `
-
-      <div class="novel-card error-card">
-
-        <p class="card-label">
-          NOVELS
-        </p>
-
-        <h3>
-          উপন্যাস লোড করা যায়নি
-        </h3>
-
-        <p>
-          Database connection পাওয়া যায়নি।
-        </p>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
   try {
 
     const {
       data,
       error
     } =
-      await client
+      await window.supabaseClient
         .from("novels")
         .select(
           "id,title,content,excerpt,created_at,published,views"
@@ -1109,9 +981,7 @@ async function loadNovels() {
           }
         );
 
-
     if (error) throw error;
-
 
     if (!data || data.length === 0) {
 
@@ -1237,6 +1107,7 @@ async function loadNovels() {
 
 /* =====================================================
    YEARLY ARCHIVE
+   YEAR → MONTH → TYPE → CONTENT
 ===================================================== */
 
 async function loadYearlyArchive() {
@@ -1248,13 +1119,6 @@ async function loadYearlyArchive() {
 
   if (!container) return;
 
-
-  const client =
-    getSupabaseClient();
-
-  if (!client) return;
-
-
   try {
 
     const [
@@ -1264,7 +1128,7 @@ async function loadYearlyArchive() {
     ] =
       await Promise.all([
 
-        client
+        window.supabaseClient
           .from("poems")
           .select(
             "id,title,created_at,published"
@@ -1280,7 +1144,7 @@ async function loadYearlyArchive() {
             }
           ),
 
-        client
+        window.supabaseClient
           .from("stories")
           .select(
             "id,title,created_at,published"
@@ -1296,7 +1160,7 @@ async function loadYearlyArchive() {
             }
           ),
 
-        client
+        window.supabaseClient
           .from("novels")
           .select(
             "id,title,created_at,published"
@@ -1361,6 +1225,15 @@ async function loadYearlyArchive() {
     }
 
 
+    /*
+      Structure:
+
+      years
+        └── year
+             └── month
+                  └── items
+    */
+
     const years = {};
 
 
@@ -1372,12 +1245,18 @@ async function loadYearlyArchive() {
       const month =
         getMonth(item.created_at);
 
+      if (!year || month === "") return;
+
       if (!years[year]) {
+
         years[year] = {};
+
       }
 
       if (!years[year][month]) {
+
         years[year][month] = [];
+
       }
 
       years[year][month].push(item);
@@ -1416,10 +1295,11 @@ async function loadYearlyArchive() {
                 type="button"
                 class="archive-year-title"
                 data-archive-toggle="year-${year}"
+                aria-expanded="false"
               >
 
                 <span>
-                  ${escapeHtml(year)}
+                  ${toBanglaNumber(year)}
                 </span>
 
                 <span>
@@ -1448,6 +1328,7 @@ async function loadYearlyArchive() {
                           type="button"
                           class="archive-month-title"
                           data-archive-toggle="month-${year}-${month}"
+                          aria-expanded="false"
                         >
 
                           <span>
@@ -1468,7 +1349,11 @@ async function loadYearlyArchive() {
                           id="month-${year}-${month}"
                         >
 
-                          ${renderArchiveTypes(items)}
+                          ${renderArchiveTypes(
+                            items,
+                            year,
+                            month
+                          )}
 
                         </div>
 
@@ -1511,6 +1396,8 @@ async function loadYearlyArchive() {
 
 /* =====================================================
    ARCHIVE TYPES
+
+   MONTH → POEM / STORY / NOVEL → CONTENT
 ===================================================== */
 
 function renderArchiveTypes(items) {
@@ -1525,7 +1412,9 @@ function renderArchiveTypes(items) {
   items.forEach(item => {
 
     if (types[item.type]) {
+
       types[item.type].push(item);
+
     }
 
   });
@@ -1538,16 +1427,38 @@ function renderArchiveTypes(items) {
     )
     .map(type => {
 
+      const folderId =
+        `archive-type-${type}-${Math.random()
+          .toString(36)
+          .substring(2, 9)}`;
+
+
       return `
 
         <div class="archive-type">
 
-          <div class="archive-type-title">
-            ${typeLabel(type)}
-          </div>
+          <button
+            type="button"
+            class="archive-type-title"
+            data-archive-toggle="${folderId}"
+            aria-expanded="false"
+          >
+
+            <span>
+              ${typeLabel(type)}
+            </span>
+
+            <span>
+              +
+            </span>
+
+          </button>
 
 
-          <div class="archive-type-items">
+          <div
+            class="archive-type-items"
+            id="${folderId}"
+          >
 
             ${types[type]
               .map(item => `
@@ -1597,7 +1508,6 @@ function initArchiveToggles() {
         "click",
         event => {
 
-          event.preventDefault();
           event.stopPropagation();
 
           const id =
@@ -1615,10 +1525,18 @@ function initArchiveToggles() {
               "active"
             );
 
+
+          button.setAttribute(
+            "aria-expanded",
+            isOpen ? "true" : "false"
+          );
+
+
           const spans =
             button.querySelectorAll(
               "span"
             );
+
 
           if (spans.length > 1) {
 
@@ -1637,29 +1555,36 @@ function initArchiveToggles() {
 
 /* =====================================================
    MOST VIEWED
+   MOST VIEWED → TYPE → CONTENT
 ===================================================== */
 
 async function loadMostViewed() {
 
   const poemList =
-    document.getElementById("mostPoemsList");
+    document.getElementById(
+      "mostPoemsList"
+    );
 
   const storyList =
-    document.getElementById("mostStoriesList");
+    document.getElementById(
+      "mostStoriesList"
+    );
 
   const novelList =
-    document.getElementById("mostNovelsList");
+    document.getElementById(
+      "mostNovelsList"
+    );
 
 
-  if (!poemList && !storyList && !novelList) {
+  if (
+    !poemList &&
+    !storyList &&
+    !novelList
+  ) {
+
     return;
+
   }
-
-
-  const client =
-    getSupabaseClient();
-
-  if (!client) return;
 
 
   try {
@@ -1670,35 +1595,59 @@ async function loadMostViewed() {
       novelsResult
     ] = await Promise.all([
 
-      client
+      window.supabaseClient
         .from("poems")
-        .select("id,title,views")
-        .eq("published", true)
-        .order("views", {
-          ascending: false,
-          nullsFirst: false
-        })
-        .limit(5),
+        .select(
+          "id,title,views"
+        )
+        .eq(
+          "published",
+          true
+        )
+        .order(
+          "views",
+          {
+            ascending: false,
+            nullsFirst: false
+          }
+        )
+        .limit(10),
 
-      client
+      window.supabaseClient
         .from("stories")
-        .select("id,title,views")
-        .eq("published", true)
-        .order("views", {
-          ascending: false,
-          nullsFirst: false
-        })
-        .limit(5),
+        .select(
+          "id,title,views"
+        )
+        .eq(
+          "published",
+          true
+        )
+        .order(
+          "views",
+          {
+            ascending: false,
+            nullsFirst: false
+          }
+        )
+        .limit(10),
 
-      client
+      window.supabaseClient
         .from("novels")
-        .select("id,title,views")
-        .eq("published", true)
-        .order("views", {
-          ascending: false,
-          nullsFirst: false
-        })
-        .limit(5)
+        .select(
+          "id,title,views"
+        )
+        .eq(
+          "published",
+          true
+        )
+        .order(
+          "views",
+          {
+            ascending: false,
+            nullsFirst: false
+          }
+        )
+        .limit(10)
 
     ]);
 
@@ -1713,21 +1662,21 @@ async function loadMostViewed() {
       throw novelsResult.error;
 
 
-    renderMostMenu(
+    renderMostViewedFolder(
       poemList,
       poemsResult.data || [],
       "poem"
     );
 
 
-    renderMostMenu(
+    renderMostViewedFolder(
       storyList,
       storiesResult.data || [],
       "story"
     );
 
 
-    renderMostMenu(
+    renderMostViewedFolder(
       novelList,
       novelsResult.data || [],
       "novel"
@@ -1743,18 +1692,26 @@ async function loadMostViewed() {
 
 
     if (poemList) {
+
       poemList.innerHTML =
         "<p>লোড করা যায়নি।</p>";
+
     }
+
 
     if (storyList) {
+
       storyList.innerHTML =
         "<p>লোড করা যায়নি।</p>";
+
     }
 
+
     if (novelList) {
+
       novelList.innerHTML =
         "<p>লোড করা যায়নি।</p>";
+
     }
 
   }
@@ -1763,10 +1720,10 @@ async function loadMostViewed() {
 
 
 /* =====================================================
-   MOST VIEWED MENU RENDER
+   MOST VIEWED FOLDER RENDER
 ===================================================== */
 
-function renderMostMenu(
+function renderMostViewedFolder(
   container,
   data,
   type
@@ -1788,34 +1745,148 @@ function renderMostMenu(
   }
 
 
-  container.innerHTML =
-    data.map((item, index) => `
+  const folderId =
+    `most-${type}-folder`;
 
-      <a
-        href="${typeUrl(
-          type,
-          item.id
-        )}"
-        class="menu-sub-link most-item-link"
-      >
 
-        <span class="most-rank">
-          ${String(index + 1).padStart(2, "0")}
-        </span>
+  container.innerHTML = `
 
-        <span>
-          ${escapeHtml(item.title)}
-        </span>
+    <button
+      type="button"
+      class="most-category-title"
+      data-most-toggle="${folderId}"
+      aria-expanded="false"
+    >
 
-        <span class="most-views">
-          ◉ ${Number(
-            item.views || 0
-          ).toLocaleString("en-US")}
-        </span>
+      <span>
+        ${typeLabel(type)}
+      </span>
 
-      </a>
+      <span>
+        +
+      </span>
 
-    `).join("");
+    </button>
+
+
+    <div
+      class="most-category-content"
+      id="${folderId}"
+    >
+
+      ${data
+        .map((item, index) => `
+
+          <a
+            href="${typeUrl(
+              type,
+              item.id
+            )}"
+            class="menu-sub-link most-item-link"
+          >
+
+            <span class="most-rank">
+              ${String(index + 1).padStart(2, "0")}
+            </span>
+
+
+            <span class="most-item-title">
+              ${escapeHtml(item.title)}
+            </span>
+
+
+            <span class="most-item-views">
+              ◉ ${Number(
+                item.views || 0
+              ).toLocaleString("en-US")}
+            </span>
+
+          </a>
+
+        `)
+        .join("")}
+
+    </div>
+
+  `;
+
+
+  initMostViewedToggles();
+
+}
+
+
+/* =====================================================
+   MOST VIEWED TOGGLES
+===================================================== */
+
+function initMostViewedToggles() {
+
+  document
+    .querySelectorAll(
+      "[data-most-toggle]"
+    )
+    .forEach(button => {
+
+      if (
+        button.dataset.initialized === "true"
+      ) {
+
+        return;
+
+      }
+
+
+      button.dataset.initialized =
+        "true";
+
+
+      button.addEventListener(
+        "click",
+        event => {
+
+          event.stopPropagation();
+
+          const id =
+            button.getAttribute(
+              "data-most-toggle"
+            );
+
+          const target =
+            document.getElementById(id);
+
+          if (!target) return;
+
+
+          const isOpen =
+            target.classList.toggle(
+              "active"
+            );
+
+
+          button.setAttribute(
+            "aria-expanded",
+            isOpen ? "true" : "false"
+          );
+
+
+          const spans =
+            button.querySelectorAll(
+              "span"
+            );
+
+
+          if (spans.length > 1) {
+
+            spans[1].textContent =
+              isOpen ? "−" : "+";
+
+          }
+
+        }
+      );
+
+    });
 
 }
 
@@ -1834,19 +1905,13 @@ async function loadWebsiteViews() {
   if (!element) return;
 
 
-  const client =
-    getSupabaseClient();
-
-  if (!client) return;
-
-
   try {
 
     const {
       data,
       error
     } =
-      await client
+      await window.supabaseClient
         .from("site_views")
         .select("views")
         .eq("id", 1)
