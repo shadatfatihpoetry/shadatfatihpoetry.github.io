@@ -465,77 +465,80 @@ function openComments() {
 
 
 /* =================================================
-   VIEW COUNTER
-=================================================
-
-   IMPORTANT:
-
-   এখানে poems.views ব্যবহার করা হচ্ছে না।
-   তাই "column poems.views does not exist"
-   error হবে না।
-
-   আপাতত browser-based counter রাখা হচ্ছে।
-   পরে Supabase view counter যুক্ত করা যাবে।
+   SUPABASE VIEW COUNTER
 ================================================= */
 
-function getLocalViewKey(id) {
+async function increaseView(id) {
 
-  return "shadat_poem_views_" + id;
+  try {
 
-}
-
-
-function getViewCount(id) {
-
-  const key =
-    getLocalViewKey(id);
-
-  const value =
-    Number(localStorage.getItem(key) || 0);
-
-  return value;
-
-}
+    const { error } =
+      await supabaseClient.rpc(
+        "increment_poem_views",
+        {
+          poem_id: id
+        }
+      );
 
 
-function increaseView(id) {
+    if (error) {
 
-  const key =
-    getLocalViewKey(id);
+      console.error(
+        "Poem View Error:",
+        error
+      );
 
-  let value =
-    Number(localStorage.getItem(key) || 0);
+      return 0;
 
-  /*
-    একই browser-এ একই poem বারবার
-    refresh করলে বারবার count হবে না।
-  */
+    }
 
-  const sessionKey =
-    key + "_counted";
 
-  if (
-    !sessionStorage.getItem(sessionKey)
-  ) {
+    /* Get updated view count */
 
-    value++;
+    const {
+      data,
+      error: fetchError
+    } =
+      await supabaseClient
 
-    localStorage.setItem(
-      key,
-      value
+        .from("poems")
+
+        .select("views")
+
+        .eq("id", id)
+
+        .single();
+
+
+    if (fetchError) {
+
+      console.error(
+        "View Fetch Error:",
+        fetchError
+      );
+
+      return 0;
+
+    }
+
+
+    return Number(
+      data?.views || 0
     );
 
-    sessionStorage.setItem(
-      sessionKey,
-      "1"
+
+  } catch (error) {
+
+    console.error(
+      "View Counter Error:",
+      error
     );
+
+    return 0;
 
   }
 
-  return value;
-
 }
-
 
 
 /* =================================================
@@ -615,10 +618,10 @@ async function loadPoem() {
 
 
 
-    /* Increase view */
+/* Increase Supabase view */
 
-    const views =
-      increaseView(data.id);
+const views =
+  await increaseView(data.id);
 
 
 
