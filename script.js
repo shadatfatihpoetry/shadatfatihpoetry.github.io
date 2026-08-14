@@ -45,11 +45,10 @@ function initMenu() {
   if (!menuToggle || !mainNav) return;
 
 
-  /* 3 DOT MAIN MENU */
+  /* MAIN 3-DOT MENU */
 
   menuToggle.addEventListener("click", event => {
 
-    event.preventDefault();
     event.stopPropagation();
 
     const isOpen =
@@ -68,10 +67,10 @@ function initMenu() {
   });
 
 
-  /* YEARLY ARCHIVE + MOST VIEWED */
+  /* YEARLY ARCHIVE / MOST VIEWED */
 
   mainNav
-    .querySelectorAll("[data-toggle]")
+    .querySelectorAll(".menu-group-title[data-toggle]")
     .forEach(button => {
 
       button.addEventListener("click", event => {
@@ -87,26 +86,41 @@ function initMenu() {
 
         if (!target) return;
 
-        const isOpen =
-          target.classList.contains("active");
 
-        target.classList.toggle(
-          "active",
-          !isOpen
-        );
+        const isOpen =
+          target.classList.toggle("active");
+
 
         button.setAttribute(
           "aria-expanded",
-          !isOpen ? "true" : "false"
+          isOpen ? "true" : "false"
         );
+
 
         const arrow =
           button.querySelector(".menu-arrow");
 
+
         if (arrow) {
 
           arrow.textContent =
-            !isOpen ? "−" : "+";
+            isOpen ? "−" : "+";
+
+        }
+
+
+        /*
+         * Ensures submenu actually becomes visible
+         * even if CSS is hiding it.
+         */
+
+        if (isOpen) {
+
+          target.style.display = "block";
+
+        } else {
+
+          target.style.display = "";
 
         }
 
@@ -140,7 +154,7 @@ function initMenu() {
     });
 
 
-  /* OUTSIDE CLICK */
+  /* CLOSE OUTSIDE */
 
   document.addEventListener("click", event => {
 
@@ -220,7 +234,9 @@ function escapeHtml(value) {
     value === null ||
     value === undefined
   ) {
+
     return "";
+
   }
 
   return String(value)
@@ -679,19 +695,23 @@ async function loadPoetry() {
               ${String(index + 1).padStart(2, "0")}
             </div>
 
+
             <div class="writing-card-content">
 
               <div class="published-date">
                 ${formatDate(poem.created_at)}
               </div>
 
+
               <p class="card-label">
                 POETRY
               </p>
 
+
               <h3>
                 ${escapeHtml(poem.title)}
               </h3>
+
 
               ${
                 poem.excerpt
@@ -703,7 +723,9 @@ async function loadPoetry() {
                   : ""
               }
 
+
               ${totalViews(poem)}
+
 
               <a
                 href="${typeUrl(
@@ -714,6 +736,7 @@ async function loadPoetry() {
               >
                 কবিতা পড়ুন →
               </a>
+
 
               ${actionButtons(
                 "poem",
@@ -834,13 +857,16 @@ async function loadStories() {
               ${formatDate(story.created_at)}
             </div>
 
+
             <span>
               STORY ${String(index + 1).padStart(2, "0")}
             </span>
 
+
             <h3>
               ${escapeHtml(story.title)}
             </h3>
+
 
             ${
               story.excerpt
@@ -852,7 +878,9 @@ async function loadStories() {
                 : ""
             }
 
+
             ${totalViews(story)}
+
 
             <a
               href="${typeUrl(
@@ -863,6 +891,7 @@ async function loadStories() {
             >
               গল্প পড়ুন ↗
             </a>
+
 
             ${actionButtons(
               "story",
@@ -985,13 +1014,16 @@ async function loadNovels() {
                 ${formatDate(novel.created_at)}
               </div>
 
+
               <p class="card-label">
                 NOVEL ${String(index + 1).padStart(2, "0")}
               </p>
 
+
               <h3>
                 ${escapeHtml(novel.title)}
               </h3>
+
 
               ${
                 novel.excerpt
@@ -1003,7 +1035,9 @@ async function loadNovels() {
                   : ""
               }
 
+
               ${totalViews(novel)}
+
 
               <a
                 href="${typeUrl(
@@ -1014,6 +1048,7 @@ async function loadNovels() {
               >
                 উপন্যাস পড়ুন →
               </a>
+
 
               ${actionButtons(
                 "novel",
@@ -1073,6 +1108,7 @@ async function loadYearlyArchive() {
     );
 
   if (!container) return;
+
 
   try {
 
@@ -1191,15 +1227,21 @@ async function loadYearlyArchive() {
       const month =
         getMonth(item.created_at);
 
-      if (!year || month === "") return;
+
+      if (!year && year !== 0) return;
+
+      if (month === "" && month !== 0) return;
+
 
       if (!years[year]) {
         years[year] = {};
       }
 
+
       if (!years[year][month]) {
         years[year][month] = [];
       }
+
 
       years[year][month].push(item);
 
@@ -1221,11 +1263,12 @@ async function loadYearlyArchive() {
           const months =
             years[year];
 
+
           const sortedMonths =
             Object.keys(months)
               .sort(
                 (a, b) =>
-                  Number(a) - Number(b)
+                  Number(b) - Number(a)
               );
 
 
@@ -1261,6 +1304,7 @@ async function loadYearlyArchive() {
 
                     const items =
                       months[month];
+
 
                     return `
 
@@ -1313,6 +1357,7 @@ async function loadYearlyArchive() {
 
 
     initArchiveToggles();
+
 
   } catch (error) {
 
@@ -1418,6 +1463,7 @@ function initArchiveToggles() {
     )
     .forEach(button => {
 
+
       button.addEventListener(
         "click",
         event => {
@@ -1425,31 +1471,29 @@ function initArchiveToggles() {
           event.preventDefault();
           event.stopPropagation();
 
+
           const id =
             button.getAttribute(
               "data-archive-toggle"
             );
 
+
           const target =
             document.getElementById(id);
 
+
           if (!target) return;
 
+
           const isOpen =
-            target.classList.contains(
+            target.classList.toggle(
               "active"
             );
 
 
-          target.classList.toggle(
-            "active",
-            !isOpen
-          );
-
-
           button.setAttribute(
             "aria-expanded",
-            !isOpen ? "true" : "false"
+            isOpen ? "true" : "false"
           );
 
 
@@ -1462,7 +1506,25 @@ function initArchiveToggles() {
           if (spans.length > 1) {
 
             spans[1].textContent =
-              !isOpen ? "−" : "+";
+              isOpen ? "−" : "+";
+
+          }
+
+
+          /*
+           * Force visibility so the nested
+           * year/month archive works reliably.
+           */
+
+          if (isOpen) {
+
+            target.style.display =
+              "block";
+
+          } else {
+
+            target.style.display =
+              "";
 
           }
 
@@ -1501,7 +1563,9 @@ async function loadMostViewed() {
     !storyList &&
     !novelList
   ) {
+
     return;
+
   }
 
 
@@ -1511,63 +1575,66 @@ async function loadMostViewed() {
       poemsResult,
       storiesResult,
       novelsResult
-    ] = await Promise.all([
+    ] =
+      await Promise.all([
 
-      window.supabaseClient
-        .from("poems")
-        .select(
-          "id,title,views"
-        )
-        .eq(
-          "published",
-          true
-        )
-        .order(
-          "views",
-          {
-            ascending: false,
-            nullsFirst: false
-          }
-        )
-        .limit(5),
+        window.supabaseClient
+          .from("poems")
+          .select(
+            "id,title,views"
+          )
+          .eq(
+            "published",
+            true
+          )
+          .order(
+            "views",
+            {
+              ascending: false,
+              nullsFirst: false
+            }
+          )
+          .limit(5),
 
-      window.supabaseClient
-        .from("stories")
-        .select(
-          "id,title,views"
-        )
-        .eq(
-          "published",
-          true
-        )
-        .order(
-          "views",
-          {
-            ascending: false,
-            nullsFirst: false
-          }
-        )
-        .limit(5),
 
-      window.supabaseClient
-        .from("novels")
-        .select(
-          "id,title,views"
-        )
-        .eq(
-          "published",
-          true
-        )
-        .order(
-          "views",
-          {
-            ascending: false,
-            nullsFirst: false
-          }
-        )
-        .limit(5)
+        window.supabaseClient
+          .from("stories")
+          .select(
+            "id,title,views"
+          )
+          .eq(
+            "published",
+            true
+          )
+          .order(
+            "views",
+            {
+              ascending: false,
+              nullsFirst: false
+            }
+          )
+          .limit(5),
 
-    ]);
+
+        window.supabaseClient
+          .from("novels")
+          .select(
+            "id,title,views"
+          )
+          .eq(
+            "published",
+            true
+          )
+          .order(
+            "views",
+            {
+              ascending: false,
+              nullsFirst: false
+            }
+          )
+          .limit(5)
+
+      ]);
 
 
     if (poemsResult.error)
@@ -1616,12 +1683,14 @@ async function loadMostViewed() {
 
     }
 
+
     if (storyList) {
 
       storyList.innerHTML =
         "<p>লোড করা যায়নি।</p>";
 
     }
+
 
     if (novelList) {
 
@@ -1704,6 +1773,7 @@ async function loadWebsiteViews() {
       "totalWebsiteViews"
     );
 
+
   if (!element) return;
 
 
@@ -1716,10 +1786,7 @@ async function loadWebsiteViews() {
       await window.supabaseClient
         .from("site_views")
         .select("views")
-        .eq(
-          "id",
-          1
-        )
+        .eq("id", 1)
         .maybeSingle();
 
 
