@@ -2586,3 +2586,99 @@ a:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* =====================================================
+   HIDE ARCHIVE & MOST VIEWED FROM MAIN PAGE
+   They are accessible only from 3-dot menu
+===================================================== */
+
+body > .archive-section,
+main > .archive-section,
+section.archive-section {
+  display: none !important;
+}
+
+body > .most-viewed-section,
+main > .most-viewed-section,
+section.most-viewed-section {
+  display: none !important;
+}
+
+
+/* =====================================================
+   ARCHIVE / MOST VIEWED INSIDE SIDE MENU
+===================================================== */
+
+.side-menu .archive-section,
+.side-menu .most-viewed-section {
+  display: block !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  color: var(--text) !important;
+}
+
+.side-menu .archive-heading {
+  margin-bottom: 15px !important;
+}
+
+.side-menu .archive-heading h2 {
+  font-size: 22px !important;
+}
+
+.side-menu .archive-block,
+.side-menu .most-viewed-block {
+  margin-bottom: 12px !important;
+  padding: 15px !important;
+}
+
+.side-menu .archive-block-heading h3,
+.side-menu .most-viewed-block .archive-block-heading h3 {
+  font-size: 15px !important;
+}
+
+.side-menu .archive-item {
+  padding: 10px 0 !important;
+}
+
+.side-menu .archive-item strong {
+  font-size: 13px !important;
+}
+
+.side-menu .most-viewed-item {
+  grid-template-columns: 25px 1fr auto !important;
+  gap: 8px !important;
+  padding: 10px 0 !important;
+}
+
+.side-menu .most-title span {
+  font-size: 12px !important;
+}
+
+
+/* =====================================================
+   HIDE ARCHIVE / MOST VIEWED HEADINGS FROM MAIN PAGE
+===================================================== */
+
+.archive-section,
+.most-viewed-section {
+  scroll-margin-top: 80px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .side-menu .archive-heading h2 {
+    font-size: 20px !important;
+  }
+
+  .side-menu .archive-block,
+  .side-menu .most-viewed-block {
+    padding: 12px !important;
+  }
+
+}
