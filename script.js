@@ -1,7 +1,6 @@
 /* =====================================================
    SHADAT FATIH LITERARY ARCHIVE
-   FINAL SCRIPT.JS
-   VIEWS + MOST VIEWED + YEARLY ARCHIVE
+   FIXED SCRIPT.JS - YEARLY ARCHIVE & MOST VIEWED
 ===================================================== */
 
 "use strict";
@@ -67,7 +66,7 @@ function initMenu() {
   });
 
 
-  /* YEARLY ARCHIVE / MOST VIEWED */
+  /* YEARLY ARCHIVE / MOST VIEWED TOGGLE */
 
   mainNav
     .querySelectorAll(".menu-group-title[data-toggle]")
@@ -86,42 +85,20 @@ function initMenu() {
 
         if (!target) return;
 
-
         const isOpen =
-          target.classList.toggle("active");
-
+          target.classList.toggle("open");
 
         button.setAttribute(
           "aria-expanded",
           isOpen ? "true" : "false"
         );
 
-
         const arrow =
           button.querySelector(".menu-arrow");
 
-
         if (arrow) {
-
           arrow.textContent =
             isOpen ? "−" : "+";
-
-        }
-
-
-        /*
-         * Ensures submenu actually becomes visible
-         * even if CSS is hiding it.
-         */
-
-        if (isOpen) {
-
-          target.style.display = "block";
-
-        } else {
-
-          target.style.display = "";
-
         }
 
       });
@@ -129,7 +106,103 @@ function initMenu() {
     });
 
 
-  /* MAIN LINKS */
+  /* ARCHIVE YEAR TOGGLE */
+
+  document.addEventListener("click", event => {
+
+    if (event.target.hasAttribute("data-archive-toggle")) {
+
+      const button =
+        event.target;
+
+      const id =
+        button.getAttribute("data-archive-toggle");
+
+      const target =
+        document.getElementById(id);
+
+      if (!target) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const isOpen =
+        target.classList.toggle("active");
+
+      button.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
+      );
+
+      const spans =
+        button.querySelectorAll("span");
+
+      if (spans.length > 1) {
+        spans[1].textContent =
+          isOpen ? "−" : "+";
+      }
+
+      if (isOpen) {
+        target.style.display = "block";
+      } else {
+        target.style.display = "";
+      }
+
+    }
+
+  });
+
+
+  /* MOST VIEWED FOLDER TOGGLE */
+
+  document.addEventListener("click", event => {
+
+    if (event.target.hasAttribute("data-most-toggle")) {
+
+      const button =
+        event.target.closest("button[data-most-toggle]");
+
+      if (!button) return;
+
+      const id =
+        button.getAttribute("data-most-toggle");
+
+      const target =
+        document.getElementById(id);
+
+      if (!target) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const isOpen =
+        target.classList.toggle("active");
+
+      button.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
+      );
+
+      const spans =
+        button.querySelectorAll("span");
+
+      if (spans.length > 1) {
+        spans[1].textContent =
+          isOpen ? "−" : "+";
+      }
+
+      if (isOpen) {
+        target.style.display = "block";
+      } else {
+        target.style.display = "";
+      }
+
+    }
+
+  });
+
+
+  /* MAIN LINKS - CLOSE MENU */
 
   mainNav
     .querySelectorAll(".menu-main-links a")
@@ -250,7 +323,7 @@ function escapeHtml(value) {
 
 
 /* =====================================================
-   DATE
+   DATE FUNCTIONS
 ===================================================== */
 
 function formatDate(dateValue) {
@@ -275,40 +348,30 @@ function formatDate(dateValue) {
 
 }
 
-
-/* =====================================================
-   MONTH
-===================================================== */
-
 function getMonth(dateValue) {
 
-  if (!dateValue) return "";
+  if (!dateValue) return null;
 
   const date =
     new Date(dateValue);
 
   if (Number.isNaN(date.getTime())) {
-    return "";
+    return null;
   }
 
   return date.getMonth();
 
 }
 
-
-/* =====================================================
-   YEAR
-===================================================== */
-
 function getYear(dateValue) {
 
-  if (!dateValue) return "";
+  if (!dateValue) return null;
 
   const date =
     new Date(dateValue);
 
   if (Number.isNaN(date.getTime())) {
-    return "";
+    return null;
   }
 
   return date.getFullYear();
@@ -1097,7 +1160,7 @@ async function loadNovels() {
 
 
 /* =====================================================
-   YEARLY ARCHIVE
+   YEARLY ARCHIVE - বছর/মাস/ধরন অনুযায়ী সংগঠিত
 ===================================================== */
 
 async function loadYearlyArchive() {
@@ -1109,7 +1172,6 @@ async function loadYearlyArchive() {
 
   if (!container) return;
 
-
   try {
 
     const [
@@ -1121,255 +1183,165 @@ async function loadYearlyArchive() {
 
         window.supabaseClient
           .from("poems")
-          .select(
-            "id,title,created_at,published"
-          )
-          .eq(
-            "published",
-            true
-          )
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
-          ),
+          .select("id,title,created_at,published")
+          .eq("published", true)
+          .order("created_at", { ascending: false }),
 
         window.supabaseClient
           .from("stories")
-          .select(
-            "id,title,created_at,published"
-          )
-          .eq(
-            "published",
-            true
-          )
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
-          ),
+          .select("id,title,created_at,published")
+          .eq("published", true)
+          .order("created_at", { ascending: false }),
 
         window.supabaseClient
           .from("novels")
-          .select(
-            "id,title,created_at,published"
-          )
-          .eq(
-            "published",
-            true
-          )
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
-          )
+          .select("id,title,created_at,published")
+          .eq("published", true)
+          .order("created_at", { ascending: false })
 
       ]);
 
+    if (poemsResult.error) throw poemsResult.error;
+    if (storiesResult.error) throw storiesResult.error;
+    if (novelsResult.error) throw novelsResult.error;
 
-    if (poemsResult.error)
-      throw poemsResult.error;
-
-    if (storiesResult.error)
-      throw storiesResult.error;
-
-    if (novelsResult.error)
-      throw novelsResult.error;
-
-
-    const all = [
+    const allItems = [
 
       ...(poemsResult.data || [])
-        .map(item => ({
-          ...item,
-          type: "poem"
-        })),
+        .map(item => ({ ...item, type: "poem" })),
 
       ...(storiesResult.data || [])
-        .map(item => ({
-          ...item,
-          type: "story"
-        })),
+        .map(item => ({ ...item, type: "story" })),
 
       ...(novelsResult.data || [])
-        .map(item => ({
-          ...item,
-          type: "novel"
-        }))
+        .map(item => ({ ...item, type: "novel" }))
 
     ];
 
-
-    if (!all.length) {
+    if (!allItems.length) {
 
       container.innerHTML = `
-        <p>
-          এখনো কোনো প্রকাশিত লেখা নেই।
-        </p>
+        <p>এখনো কোনো প্রকাশিত লেখা নেই।</p>
       `;
 
       return;
 
     }
 
+    /* বছর এবং মাস অনুযায়ী সংগঠিত করুন */
 
-    const years = {};
+    const yearData = {};
 
+    allItems.forEach(item => {
 
-    all.forEach(item => {
+      const year = getYear(item.created_at);
+      const month = getMonth(item.created_at);
 
-      const year =
-        getYear(item.created_at);
+      if (year === null || month === null) return;
 
-      const month =
-        getMonth(item.created_at);
-
-
-      if (!year && year !== 0) return;
-
-      if (month === "" && month !== 0) return;
-
-
-      if (!years[year]) {
-        years[year] = {};
+      if (!yearData[year]) {
+        yearData[year] = {};
       }
 
-
-      if (!years[year][month]) {
-        years[year][month] = [];
+      if (!yearData[year][month]) {
+        yearData[year][month] = [];
       }
 
-
-      years[year][month].push(item);
+      yearData[year][month].push(item);
 
     });
 
+    /* বছর সর্বোচ্চ থেকে নিম্নতম অনুযায়ী সাজান */
 
-    const sortedYears =
-      Object.keys(years)
-        .sort(
-          (a, b) =>
-            Number(b) - Number(a)
-        );
+    const sortedYears = Object.keys(yearData)
+      .map(Number)
+      .sort((a, b) => b - a);
 
+    /* HTML তৈরি করুন */
 
-    container.innerHTML =
-      sortedYears
-        .map(year => {
+    container.innerHTML = sortedYears
+      .map(year => {
 
-          const months =
-            years[year];
+        const monthData = yearData[year];
 
+        const sortedMonths = Object.keys(monthData)
+          .map(Number)
+          .sort((a, b) => b - a);
 
-          const sortedMonths =
-            Object.keys(months)
-              .sort(
-                (a, b) =>
-                  Number(b) - Number(a)
-              );
+        return `
 
+          <div class="archive-year-folder">
 
-          return `
+            <button
+              type="button"
+              class="archive-year-btn"
+              data-archive-toggle="archive-year-${year}"
+              aria-expanded="false"
+            >
 
-            <div class="archive-year">
+              <span>${year}</span>
+              <span>+</span>
 
-              <button
-                type="button"
-                class="archive-year-title"
-                data-archive-toggle="year-${year}"
-                aria-expanded="false"
-              >
+            </button>
 
-                <span>
-                  ${escapeHtml(year)}
-                </span>
+            <div
+              id="archive-year-${year}"
+              class="archive-year-content"
+            >
 
-                <span>
-                  +
-                </span>
+              ${sortedMonths
+                .map(month => {
 
-              </button>
+                  const items = monthData[month];
+                  const monthName = BANGLA_MONTHS[month];
 
+                  return `
 
-              <div
-                class="archive-year-content"
-                id="year-${year}"
-              >
+                    <div class="archive-month-folder">
 
-                ${sortedMonths
-                  .map(month => {
+                      <button
+                        type="button"
+                        class="archive-month-btn"
+                        data-archive-toggle="archive-month-${year}-${month}"
+                        aria-expanded="false"
+                      >
 
-                    const items =
-                      months[month];
+                        <span>${monthName}</span>
+                        <span>+</span>
 
+                      </button>
 
-                    return `
+                      <div
+                        id="archive-month-${year}-${month}"
+                        class="archive-month-content"
+                      >
 
-                      <div class="archive-month">
-
-                        <button
-                          type="button"
-                          class="archive-month-title"
-                          data-archive-toggle="month-${year}-${month}"
-                          aria-expanded="false"
-                        >
-
-                          <span>
-                            ${BANGLA_MONTHS[
-                              Number(month)
-                            ]}
-                          </span>
-
-                          <span>
-                            +
-                          </span>
-
-                        </button>
-
-
-                        <div
-                          class="archive-month-content"
-                          id="month-${year}-${month}"
-                        >
-
-                          ${renderArchiveTypes(items)}
-
-                        </div>
+                        ${renderArchiveItems(items)}
 
                       </div>
 
-                    `;
+                    </div>
 
-                  })
-                  .join("")}
+                  `;
 
-              </div>
+                })
+                .join("")}
 
             </div>
 
-          `;
+          </div>
 
-        })
-        .join("");
+        `;
 
-
-    initArchiveToggles();
-
+      })
+      .join("");
 
   } catch (error) {
 
-    console.error(
-      "Yearly Archive Error:",
-      error
-    );
+    console.error("Yearly Archive Error:", error);
 
     container.innerHTML = `
-      <p>
-        Archive লোড করা যায়নি।
-      </p>
+      <p>Archive লোড করা যায়নি: ${escapeHtml(error.message)}</p>
     `;
 
   }
@@ -1378,160 +1350,132 @@ async function loadYearlyArchive() {
 
 
 /* =====================================================
-   ARCHIVE TYPES
+   ARCHIVE ITEMS RENDER - ধরন অনুযায়ী
 ===================================================== */
 
-function renderArchiveTypes(items) {
+function renderArchiveItems(items) {
 
-  const types = {
+  if (!items.length) return "";
+
+  /* আইটেম টাইপ অনুযায়ী গ্রুপ করুন */
+
+  const grouped = {
     poem: [],
     story: [],
     novel: []
   };
 
-
   items.forEach(item => {
-
-    if (types[item.type]) {
-
-      types[item.type].push(item);
-
+    if (grouped[item.type]) {
+      grouped[item.type].push(item);
     }
-
   });
 
+  let html = "";
 
-  return Object.keys(types)
-    .filter(
-      type =>
-        types[type].length > 0
-    )
-    .map(type => {
+  if (grouped.poem.length > 0) {
+    html += `
 
-      return `
+      <div class="archive-type-section">
 
-        <div class="archive-type">
+        <div class="archive-type-label">
+          কবিতা
+        </div>
 
-          <div class="archive-type-title">
-            ${typeLabel(type)}
-          </div>
+        <div class="archive-items-list">
 
+          ${grouped.poem
+            .map(item => `
 
-          <div class="archive-type-items">
+              <a
+                href="${typeUrl("poem", item.id)}"
+                class="archive-item-link"
+                title="${escapeHtml(item.title)}"
+              >
 
-            ${types[type]
-              .map(item => `
+                ${escapeHtml(item.title)}
 
-                <a
-                  href="${typeUrl(
-                    type,
-                    item.id
-                  )}"
-                  class="menu-sub-link archive-item-link"
-                >
+              </a>
 
-                  <span>
-                    ${escapeHtml(item.title)}
-                  </span>
-
-                </a>
-
-              `)
-              .join("")}
-
-          </div>
+            `)
+            .join("")}
 
         </div>
 
-      `;
+      </div>
 
-    })
-    .join("");
+    `;
+  }
 
-}
+  if (grouped.story.length > 0) {
+    html += `
 
+      <div class="archive-type-section">
 
-/* =====================================================
-   ARCHIVE TOGGLES
-===================================================== */
+        <div class="archive-type-label">
+          গল্প
+        </div>
 
-function initArchiveToggles() {
+        <div class="archive-items-list">
 
-  document
-    .querySelectorAll(
-      "[data-archive-toggle]"
-    )
-    .forEach(button => {
+          ${grouped.story
+            .map(item => `
 
+              <a
+                href="${typeUrl("story", item.id)}"
+                class="archive-item-link"
+                title="${escapeHtml(item.title)}"
+              >
 
-      button.addEventListener(
-        "click",
-        event => {
+                ${escapeHtml(item.title)}
 
-          event.preventDefault();
-          event.stopPropagation();
+              </a>
 
+            `)
+            .join("")}
 
-          const id =
-            button.getAttribute(
-              "data-archive-toggle"
-            );
+        </div>
 
+      </div>
 
-          const target =
-            document.getElementById(id);
+    `;
+  }
 
+  if (grouped.novel.length > 0) {
+    html += `
 
-          if (!target) return;
+      <div class="archive-type-section">
 
+        <div class="archive-type-label">
+          উপন্যাস
+        </div>
 
-          const isOpen =
-            target.classList.toggle(
-              "active"
-            );
+        <div class="archive-items-list">
 
+          ${grouped.novel
+            .map(item => `
 
-          button.setAttribute(
-            "aria-expanded",
-            isOpen ? "true" : "false"
-          );
+              <a
+                href="${typeUrl("novel", item.id)}"
+                class="archive-item-link"
+                title="${escapeHtml(item.title)}"
+              >
 
+                ${escapeHtml(item.title)}
 
-          const spans =
-            button.querySelectorAll(
-              "span"
-            );
+              </a>
 
+            `)
+            .join("")}
 
-          if (spans.length > 1) {
+        </div>
 
-            spans[1].textContent =
-              isOpen ? "−" : "+";
+      </div>
 
-          }
+    `;
+  }
 
-
-          /*
-           * Force visibility so the nested
-           * year/month archive works reliably.
-           */
-
-          if (isOpen) {
-
-            target.style.display =
-              "block";
-
-          } else {
-
-            target.style.display =
-              "";
-
-          }
-
-        }
-      );
-
-    });
+  return html;
 
 }
 
@@ -1542,32 +1486,18 @@ function initArchiveToggles() {
 
 async function loadMostViewed() {
 
-  const poemList =
-    document.getElementById(
-      "mostPoemsList"
-    );
+  const poemFolder =
+    document.getElementById("most-poems-folder");
 
-  const storyList =
-    document.getElementById(
-      "mostStoriesList"
-    );
+  const storyFolder =
+    document.getElementById("most-stories-folder");
 
-  const novelList =
-    document.getElementById(
-      "mostNovelsList"
-    );
+  const novelFolder =
+    document.getElementById("most-novels-folder");
 
-
-  if (
-    !poemList &&
-    !storyList &&
-    !novelList
-  ) {
-
+  if (!poemFolder && !storyFolder && !novelFolder) {
     return;
-
   }
-
 
   try {
 
@@ -1580,123 +1510,75 @@ async function loadMostViewed() {
 
         window.supabaseClient
           .from("poems")
-          .select(
-            "id,title,views"
-          )
-          .eq(
-            "published",
-            true
-          )
-          .order(
-            "views",
-            {
-              ascending: false,
-              nullsFirst: false
-            }
-          )
+          .select("id,title,views")
+          .eq("published", true)
+          .order("views", {
+            ascending: false,
+            nullsFirst: false
+          })
           .limit(5),
-
 
         window.supabaseClient
           .from("stories")
-          .select(
-            "id,title,views"
-          )
-          .eq(
-            "published",
-            true
-          )
-          .order(
-            "views",
-            {
-              ascending: false,
-              nullsFirst: false
-            }
-          )
+          .select("id,title,views")
+          .eq("published", true)
+          .order("views", {
+            ascending: false,
+            nullsFirst: false
+          })
           .limit(5),
-
 
         window.supabaseClient
           .from("novels")
-          .select(
-            "id,title,views"
-          )
-          .eq(
-            "published",
-            true
-          )
-          .order(
-            "views",
-            {
-              ascending: false,
-              nullsFirst: false
-            }
-          )
+          .select("id,title,views")
+          .eq("published", true)
+          .order("views", {
+            ascending: false,
+            nullsFirst: false
+          })
           .limit(5)
 
       ]);
 
+    if (poemsResult.error) throw poemsResult.error;
+    if (storiesResult.error) throw storiesResult.error;
+    if (novelsResult.error) throw novelsResult.error;
 
-    if (poemsResult.error)
-      throw poemsResult.error;
-
-    if (storiesResult.error)
-      throw storiesResult.error;
-
-    if (novelsResult.error)
-      throw novelsResult.error;
-
-
-    renderMostMenu(
-      poemList,
+    renderMostViewedFolder(
+      poemFolder,
       poemsResult.data || [],
       "poem"
     );
 
-
-    renderMostMenu(
-      storyList,
+    renderMostViewedFolder(
+      storyFolder,
       storiesResult.data || [],
       "story"
     );
 
-
-    renderMostMenu(
-      novelList,
+    renderMostViewedFolder(
+      novelFolder,
       novelsResult.data || [],
       "novel"
     );
 
-
   } catch (error) {
 
-    console.error(
-      "Most Viewed Error:",
-      error
-    );
+    console.error("Most Viewed Error:", error);
 
-
-    if (poemList) {
-
-      poemList.innerHTML =
+    if (poemFolder) {
+      poemFolder.innerHTML =
         "<p>লোড করা যায়নি।</p>";
-
     }
 
-
-    if (storyList) {
-
-      storyList.innerHTML =
+    if (storyFolder) {
+      storyFolder.innerHTML =
         "<p>লোড করা যায়নি।</p>";
-
     }
 
-
-    if (novelList) {
-
-      novelList.innerHTML =
+    if (novelFolder) {
+      novelFolder.innerHTML =
         "<p>লোড করা যায়নি।</p>";
-
     }
 
   }
@@ -1705,10 +1587,10 @@ async function loadMostViewed() {
 
 
 /* =====================================================
-   MOST VIEWED MENU RENDER
+   RENDER MOST VIEWED FOLDER
 ===================================================== */
 
-function renderMostMenu(
+function renderMostViewedFolder(
   container,
   data,
   type
@@ -1716,40 +1598,34 @@ function renderMostMenu(
 
   if (!container) return;
 
-
   if (!data.length) {
 
     container.innerHTML = `
-      <p>
-        এখনো কোনো লেখা নেই।
-      </p>
+      <p>এখনো কোনো লেখা নেই।</p>
     `;
 
     return;
 
   }
 
-
-  container.innerHTML =
-    data.map((item, index) => `
+  container.innerHTML = data
+    .map((item, index) => `
 
       <a
-        href="${typeUrl(
-          type,
-          item.id
-        )}"
-        class="menu-sub-link most-item-link"
+        href="${typeUrl(type, item.id)}"
+        class="most-viewed-item"
+        title="${escapeHtml(item.title)}"
       >
 
         <span class="most-rank">
           ${String(index + 1).padStart(2, "0")}
         </span>
 
-        <span class="most-item-title">
+        <span class="most-title">
           ${escapeHtml(item.title)}
         </span>
 
-        <span class="most-item-views">
+        <span class="most-views">
           ◉ ${Number(
             item.views || 0
           ).toLocaleString("en-US")}
@@ -1757,7 +1633,8 @@ function renderMostMenu(
 
       </a>
 
-    `).join("");
+    `)
+    .join("");
 
 }
 
@@ -1773,9 +1650,7 @@ async function loadWebsiteViews() {
       "totalWebsiteViews"
     );
 
-
   if (!element) return;
-
 
   try {
 
@@ -1789,7 +1664,6 @@ async function loadWebsiteViews() {
         .eq("id", 1)
         .maybeSingle();
 
-
     if (error) {
 
       console.warn(
@@ -1800,7 +1674,6 @@ async function loadWebsiteViews() {
       return;
 
     }
-
 
     if (data) {
 
@@ -1839,7 +1712,6 @@ function initReveal() {
       ".author-grid"
     );
 
-
   if (
     !("IntersectionObserver" in window)
   ) {
@@ -1852,7 +1724,6 @@ function initReveal() {
     return;
 
   }
-
 
   const observer =
     new IntersectionObserver(
@@ -1881,7 +1752,6 @@ function initReveal() {
         threshold: 0.08
       }
     );
-
 
   elements.forEach(element => {
 
