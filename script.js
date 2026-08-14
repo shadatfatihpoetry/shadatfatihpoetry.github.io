@@ -4,17 +4,36 @@
 ===================================================== */
 
 "use strict";
+/* =====================================================
+   SUPABASE CONNECTION TEST
+===================================================== */
 
+if (!window.supabaseClient) {
+  console.error("Supabase client not found.");
+} else {
+  console.log("Supabase client connected successfully.");
+}
 /* =====================================================
    DOM READY
 ===================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+
   initMenu();
+  initYear();
+
+  await Promise.allSettled([
+    loadPoetry(),
+    loadStories(),
+    loadNovels()
+  ]);
+
   loadYearlyArchive();
   loadMostViewed();
   loadWebsiteViews();
+
   initReveal();
+
 });
 
 
