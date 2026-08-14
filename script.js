@@ -1,6 +1,6 @@
 /* =====================================================
-   SHADAT FATIH YEARLY ARCHIVE
-   নতুন স্ট্রাকচার: Year → Type → Month → Titles
+   SHADAT FATIH — YEARLY ARCHIVE WITH HIERARCHICAL STRUCTURE
+   Year → Type (Poems/Stories/Novels) → Month → Titles
 ===================================================== */
 
 "use strict";
@@ -10,73 +10,37 @@
 ===================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-  initArchiveMenu();
+  initMenu();
   loadYearlyArchive();
   loadMostViewed();
   loadWebsiteViews();
+  initReveal();
 });
 
 
 /* =====================================================
-   ARCHIVE MENU TOGGLE
+   MENU INITIALIZATION
 ===================================================== */
 
-function initArchiveMenu() {
+function initMenu() {
   const menuToggle = document.getElementById("menuToggle");
   const mainNav = document.getElementById("mainNav");
 
   if (!menuToggle || !mainNav) return;
 
-  menuToggle.addEventListener("click", event => {
+  // Toggle menu on button click
+  menuToggle.addEventListener("click", (event) => {
     event.stopPropagation();
     const isOpen = mainNav.classList.toggle("active");
     menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     mainNav.setAttribute("aria-hidden", isOpen ? "false" : "true");
   });
 
-  /* YEARLY ARCHIVE TOGGLE */
-  mainNav.querySelectorAll(".menu-group-title[data-toggle]").forEach(button => {
-    button.addEventListener("click", event => {
-      event.preventDefault();
-      event.stopPropagation();
+  // Initialize all toggles for menu groups
+  initArchiveToggles();
 
-      const targetId = button.getAttribute("data-toggle");
-      const target = document.getElementById(targetId);
-      if (!target) return;
-
-      const isOpen = target.classList.toggle("open");
-      button.setAttribute("aria-expanded", isOpen ? "true" : "false");
-
-      const arrow = button.querySelector(".menu-arrow");
-      if (arrow) arrow.textContent = isOpen ? "−" : "+";
-
-      target.style.display = isOpen ? "block" : "";
-    });
-  });
-
-  /* ARCHIVE ITEM TOGGLES */
-  document.addEventListener("click", event => {
-    const btn = event.target.closest("[data-archive-toggle]");
-    if (!btn) return;
-
-    const toggleId = btn.getAttribute("data-archive-toggle");
-    const target = document.getElementById(toggleId);
-    if (!target) return;
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    const isOpen = target.classList.toggle("open");
-    btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
-
-    const arrow = btn.querySelector(".menu-arrow");
-    if (arrow) arrow.textContent = isOpen ? "−" : "+";
-
-    target.style.display = isOpen ? "block" : "";
-  });
-
-  /* CLOSE OUTSIDE */
-  document.addEventListener("click", event => {
+  // Close menu when clicking outside
+  document.addEventListener("click", (event) => {
     if (!mainNav.contains(event.target) && !menuToggle.contains(event.target)) {
       mainNav.classList.remove("active");
       menuToggle.setAttribute("aria-expanded", "false");
@@ -84,13 +48,37 @@ function initArchiveMenu() {
     }
   });
 
-  /* ESCAPE KEY */
-  document.addEventListener("keydown", event => {
-    if (event.key === "Escape") {
+  // Close on Escape
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && mainNav.classList.contains("active")) {
       mainNav.classList.remove("active");
       menuToggle.setAttribute("aria-expanded", "false");
       mainNav.setAttribute("aria-hidden", "true");
     }
+  });
+}
+
+function initArchiveToggles() {
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-toggle], [data-archive-toggle]");
+    if (!button) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    const toggleId = button.getAttribute("data-toggle") || button.getAttribute("data-archive-toggle");
+    if (!toggleId) return;
+
+    const target = document.getElementById(toggleId);
+    if (!target) return;
+
+    const isOpen = target.classList.toggle("open");
+    button.setAttribute("aria-expanded", isOpen ? "true" : "false");
+
+    const arrow = button.querySelector(".menu-arrow");
+    if (arrow) arrow.textContent = isOpen ? "−" : "+";
+
+    target.style.display = isOpen ? "block" : "none";
   });
 }
 
@@ -99,32 +87,53 @@ function initArchiveMenu() {
    UTILITY FUNCTIONS
 ===================================================== */
 
-function escapeHtml(text) {
-  if (!text) return "";
-  return String(text)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+function escapeHtml(value) {
+  if (!value) return "";
+  const div = document.createElement("div");
+  div.textContent = value;
+  return div.innerHTML;
 }
 
-function getYear(dateValue) {
-  if (!dateValue) return null;
+function formatDate(dateValue) {
+  if (!dateValue) return "";
   const date = new Date(dateValue);
-  return Number.isNaN(date.getTime()) ? null : date.getFullYear();
+  if (isNaN(date.getTime())) return "";
+  
+  const options = { year: "numeric", month: "short", day: "numeric" };
+  return date.toLocaleDateString("bn-BD", options);
 }
 
 function getMonth(dateValue) {
   if (!dateValue) return null;
   const date = new Date(dateValue);
-  return Number.isNaN(date.getTime()) ? null : date.getMonth();
+  return isNaN(date.getTime()) ? null : date.getMonth();
+}
+
+function getYear(dateValue) {
+  if (!dateValue) return null;
+  const date = new Date(dateValue);
+  return isNaN(date.getTime()) ? null : date.getFullYear();
 }
 
 const MONTHS = [
   "January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
+
+function typeLabel(type) {
+  const labels = { poem: "Poems", story: "Stories", novel: "Novels" };
+  return labels[type] || type;
+}
+
+function getContentUrl(type, id) {
+  const paths = {
+    poem: "poem.html",
+    story: "story.html",
+    novel: "novel.html"
+  };
+  const basePath = paths[type] || "index.html";
+  return `${basePath}?id=${encodeURIComponent(id)}`;
+}
 
 
 /* =====================================================
@@ -137,6 +146,7 @@ async function loadYearlyArchive() {
   if (!container) return;
 
   try {
+    // Fetch all published content
     const [poemsRes, storiesRes, novelsRes] = await Promise.all([
       window.supabaseClient
         .from("poems")
@@ -156,65 +166,63 @@ async function loadYearlyArchive() {
     if (storiesRes.error) throw storiesRes.error;
     if (novelsRes.error) throw novelsRes.error;
 
+    // Organize data: Year → Type → Month → Items
+    const yearMap = {};
     const allData = {
       poem: poemsRes.data || [],
       story: storiesRes.data || [],
       novel: novelsRes.data || []
     };
 
-    /* Organize by Year → Type → Month */
-    const yearMap = {};
-
     Object.entries(allData).forEach(([type, items]) => {
-      items.forEach(item => {
+      items.forEach((item) => {
         const year = getYear(item.created_at);
         const month = getMonth(item.created_at);
 
         if (year === null || month === null) return;
 
-        if (!yearMap[year]) yearMap[year] = { poem: {}, story: {}, novel: {} };
-        if (!yearMap[year][type][month]) yearMap[year][type][month] = [];
+        if (!yearMap[year]) {
+          yearMap[year] = { poem: {}, story: {}, novel: {} };
+        }
+        if (!yearMap[year][type][month]) {
+          yearMap[year][type][month] = [];
+        }
 
         yearMap[year][type][month].push(item);
       });
     });
 
-    /* Sort years descending */
+    // Sort years in descending order
     const years = Object.keys(yearMap)
       .map(Number)
       .sort((a, b) => b - a);
 
-    if (!years.length) {
-      container.innerHTML = `<p>No published content yet.</p>`;
+    if (years.length === 0) {
+      container.innerHTML = '<p class="archive-empty">No published content yet.</p>';
       return;
     }
 
-    /* Render years */
-    container.innerHTML = years
-      .map(year => renderYear(year, yearMap[year]))
-      .join("");
+    // Render years
+    container.innerHTML = years.map((year) => renderYear(year, yearMap[year])).join("");
 
   } catch (error) {
-    console.error("Archive Error:", error);
-    container.innerHTML = `<p>Failed to load archive.</p>`;
+    console.error("Archive Load Error:", error);
+    container.innerHTML = '<p class="archive-error">Failed to load archive.</p>';
   }
 }
 
-
-/* =====================================================
-   RENDER YEAR
-===================================================== */
-
 function renderYear(year, typeMap) {
   const types = ["poem", "story", "novel"];
-  const typeLabels = { poem: "Poems", story: "Stories", novel: "Novels" };
+  const typeHasContent = types.some((type) => Object.keys(typeMap[type]).length > 0);
 
-  let typeContent = "";
-  types.forEach(type => {
-    if (Object.keys(typeMap[type]).length > 0) {
-      typeContent += renderType(year, type, typeMap[type], typeLabels[type]);
-    }
-  });
+  if (!typeHasContent) return "";
+
+  const typeContent = types
+    .map((type) => {
+      if (Object.keys(typeMap[type]).length === 0) return "";
+      return renderType(year, type, typeMap[type]);
+    })
+    .join("");
 
   return `
     <div class="archive-year">
@@ -224,7 +232,7 @@ function renderYear(year, typeMap) {
         data-archive-toggle="archive-year-${year}"
         aria-expanded="false"
       >
-        <span>${year}</span>
+        <span class="archive-year-label">${year}</span>
         <span class="menu-arrow">+</span>
       </button>
 
@@ -235,18 +243,14 @@ function renderYear(year, typeMap) {
   `;
 }
 
-
-/* =====================================================
-   RENDER TYPE (Poems/Stories/Novels)
-===================================================== */
-
-function renderType(year, type, monthMap, label) {
+function renderType(year, type, monthMap) {
+  const label = typeLabel(type);
   const months = Object.keys(monthMap)
     .map(Number)
     .sort((a, b) => b - a);
 
   const monthContent = months
-    .map(month => renderMonth(year, type, month, monthMap[month]))
+    .map((month) => renderMonth(year, type, month, monthMap[month]))
     .join("");
 
   return `
@@ -257,7 +261,7 @@ function renderType(year, type, monthMap, label) {
         data-archive-toggle="archive-type-${year}-${type}"
         aria-expanded="false"
       >
-        <span>${label}</span>
+        <span class="archive-type-label">${label}</span>
         <span class="menu-arrow">+</span>
       </button>
 
@@ -268,17 +272,13 @@ function renderType(year, type, monthMap, label) {
   `;
 }
 
-
-/* =====================================================
-   RENDER MONTH
-===================================================== */
-
 function renderMonth(year, type, month, items) {
   const monthName = MONTHS[month];
+  const monthId = `archive-month-${year}-${type}-${month}`;
 
   const itemsHtml = items
-    .map(item => {
-      const url = `${type}.html?id=${encodeURIComponent(item.id)}`;
+    .map((item) => {
+      const url = getContentUrl(type, item.id);
       return `
         <a href="${url}" class="archive-item">
           ${escapeHtml(item.title)}
@@ -292,14 +292,14 @@ function renderMonth(year, type, month, items) {
       <button
         type="button"
         class="archive-month-btn"
-        data-archive-toggle="archive-month-${year}-${type}-${month}"
+        data-archive-toggle="${monthId}"
         aria-expanded="false"
       >
-        <span>${monthName}</span>
+        <span class="archive-month-label">${monthName}</span>
         <span class="menu-arrow">+</span>
       </button>
 
-      <div id="archive-month-${year}-${type}-${month}" class="archive-month-content">
+      <div id="${monthId}" class="archive-month-content">
         ${itemsHtml}
       </div>
     </div>
@@ -312,11 +312,11 @@ function renderMonth(year, type, month, items) {
 ===================================================== */
 
 async function loadMostViewed() {
-  const poemFolder = document.getElementById("most-poems-folder");
-  const storyFolder = document.getElementById("most-stories-folder");
-  const novelFolder = document.getElementById("most-novels-folder");
+  const poemContainer = document.getElementById("most-poems-folder");
+  const storyContainer = document.getElementById("most-stories-folder");
+  const novelContainer = document.getElementById("most-novels-folder");
 
-  if (!poemFolder && !storyFolder && !novelFolder) return;
+  if (!poemContainer && !storyContainer && !novelContainer) return;
 
   try {
     const [poemsRes, storiesRes, novelsRes] = await Promise.all([
@@ -344,30 +344,32 @@ async function loadMostViewed() {
     if (storiesRes.error) throw storiesRes.error;
     if (novelsRes.error) throw novelsRes.error;
 
-    renderMostViewedFolder(poemFolder, poemsRes.data || [], "poem");
-    renderMostViewedFolder(storyFolder, storiesRes.data || [], "story");
-    renderMostViewedFolder(novelFolder, novelsRes.data || [], "novel");
+    renderMostMenu(poemContainer, poemsRes.data || [], "poem");
+    renderMostMenu(storyContainer, storiesRes.data || [], "story");
+    renderMostMenu(novelContainer, novelsRes.data || [], "novel");
 
   } catch (error) {
     console.error("Most Viewed Error:", error);
   }
 }
 
-function renderMostViewedFolder(container, data, type) {
+function renderMostMenu(container, items, type) {
   if (!container) return;
 
-  if (!data.length) {
-    container.innerHTML = `<p>No content yet.</p>`;
+  if (!items.length) {
+    container.innerHTML = '<p>No content yet.</p>';
     return;
   }
 
-  container.innerHTML = data
+  container.innerHTML = items
     .map((item, idx) => {
-      const url = `${type}.html?id=${encodeURIComponent(item.id)}`;
+      const url = getContentUrl(type, item.id);
       const views = Number(item.views || 0).toLocaleString("en-US");
+      const rank = String(idx + 1).padStart(2, "0");
+
       return `
         <a href="${url}" class="menu-most-viewed-item">
-          <span class="most-rank">${String(idx + 1).padStart(2, "0")}</span>
+          <span class="most-rank">${rank}</span>
           <span class="most-title">${escapeHtml(item.title)}</span>
           <span class="most-views">◉ ${views}</span>
         </a>
@@ -393,9 +395,36 @@ async function loadWebsiteViews() {
       .maybeSingle();
 
     if (data) {
-      element.textContent = Number(data.views || 0).toLocaleString("en-US");
+      const views = Number(data.views || 0).toLocaleString("en-US");
+      element.textContent = views;
+    } else {
+      element.textContent = "0";
     }
   } catch (error) {
-    console.warn("Views Error:", error);
+    console.warn("Website Views Error:", error);
+    element.textContent = "0";
   }
+}
+
+
+/* =====================================================
+   REVEAL ANIMATION
+===================================================== */
+
+function initReveal() {
+  // Simple reveal animation for content
+  const reveals = document.querySelectorAll(".reveal");
+  
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  reveals.forEach((el) => observer.observe(el));
 }
