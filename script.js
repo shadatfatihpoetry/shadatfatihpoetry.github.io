@@ -1,19 +1,14 @@
 /* =====================================================
    SHADAT FATIH LITERARY ARCHIVE
    FINAL SCRIPT.JS
-   CONTENT + VIEWS + YEARLY ARCHIVE + MOST VIEWED
+   - 3 DOT MENU
+   - YEARLY ARCHIVE
+   - MOST VIEWED
+   - POETRY / STORIES / NOVELS
+   - WEBSITE VIEWS
 ===================================================== */
 
 "use strict";
-
-
-/* =====================================================
-   SUPABASE CONNECTION CHECK
-===================================================== */
-
-if (!window.supabaseClient) {
-  console.error("Supabase client not found.");
-}
 
 
 /* =====================================================
@@ -26,8 +21,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   initYear();
 
   /*
-   * Load main writings independently.
-   * One failure will not stop the others.
+   * Load main content independently.
+   * One failed query will not stop the others.
    */
   await Promise.allSettled([
     loadPoetry(),
@@ -36,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   ]);
 
   /*
-   * Load menu data.
+   * Load menu data
    */
   await Promise.allSettled([
     loadYearlyArchive(),
@@ -47,6 +42,25 @@ document.addEventListener("DOMContentLoaded", async () => {
   initReveal();
 
 });
+
+
+/* =====================================================
+   SUPABASE CHECK
+===================================================== */
+
+if (!window.supabaseClient) {
+
+  console.error(
+    "Supabase client not found."
+  );
+
+} else {
+
+  console.log(
+    "Supabase client connected successfully."
+  );
+
+}
 
 
 /* =====================================================
@@ -61,15 +75,12 @@ function initMenu() {
   const mainNav =
     document.getElementById("mainNav");
 
-  if (!menuToggle || !mainNav) {
-    console.warn("Menu elements not found.");
-    return;
-  }
+  if (!menuToggle || !mainNav) return;
 
 
-  /* -----------------------------------------------------
+  /* ---------------------------------------------
      MAIN 3-DOT MENU
-  ----------------------------------------------------- */
+  --------------------------------------------- */
 
   menuToggle.addEventListener("click", event => {
 
@@ -92,175 +103,271 @@ function initMenu() {
   });
 
 
-  /* -----------------------------------------------------
+  /* ---------------------------------------------
      YEARLY ARCHIVE + MOST VIEWED
-  ----------------------------------------------------- */
+     EVENT DELEGATION
+  --------------------------------------------- */
 
-  mainNav
-    .querySelectorAll(
-      ".menu-group-title[data-toggle]"
-    )
-    .forEach(button => {
+  mainNav.addEventListener("click", event => {
 
-      button.addEventListener("click", event => {
+    const button =
+      event.target.closest(
+        ".menu-group-title"
+      );
 
-        event.preventDefault();
-        event.stopPropagation();
+    if (!button) return;
 
-        const targetId =
-          button.getAttribute("data-toggle");
+    event.preventDefault();
+    event.stopPropagation();
 
-        const target =
-          document.getElementById(targetId);
+    const targetId =
+      button.getAttribute(
+        "data-toggle"
+      );
 
-        if (!target) return;
+    if (!targetId) return;
 
-        const isOpen =
-          target.classList.toggle("active");
+    const target =
+      document.getElementById(targetId);
 
-        button.setAttribute(
-          "aria-expanded",
-          isOpen ? "true" : "false"
-        );
-
-        const arrow =
-          button.querySelector(".menu-arrow");
-
-        if (arrow) {
-          arrow.textContent =
-            isOpen ? "−" : "+";
-        }
-
-        /*
-         * Force visibility.
-         */
-        target.style.display =
-          isOpen ? "block" : "";
-
-      });
-
-    });
+    if (!target) return;
 
 
-  /* -----------------------------------------------------
+    const isOpen =
+      target.classList.toggle("active");
+
+
+    button.setAttribute(
+      "aria-expanded",
+      isOpen ? "true" : "false"
+    );
+
+
+    const arrow =
+      button.querySelector(
+        ".menu-arrow"
+      );
+
+    if (arrow) {
+
+      arrow.textContent =
+        isOpen ? "−" : "+";
+
+    }
+
+
+    target.style.display =
+      isOpen ? "block" : "";
+
+  });
+
+
+  /* ---------------------------------------------
      MOST VIEWED FOLDERS
-     Poems / Stories / Novels
-  ----------------------------------------------------- */
+     POEMS / STORIES / NOVELS
+  --------------------------------------------- */
+
+  mainNav.addEventListener("click", event => {
+
+    const button =
+      event.target.closest(
+        ".most-folder-toggle"
+      );
+
+    if (!button) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    const targetId =
+      button.getAttribute(
+        "data-most-toggle"
+      );
+
+    if (!targetId) return;
+
+    const target =
+      document.getElementById(targetId);
+
+    if (!target) return;
+
+
+    const isOpen =
+      target.classList.toggle("active");
+
+
+    button.setAttribute(
+      "aria-expanded",
+      isOpen ? "true" : "false"
+    );
+
+
+    const spans =
+      button.querySelectorAll(
+        "span"
+      );
+
+    if (spans.length > 1) {
+
+      spans[1].textContent =
+        isOpen ? "−" : "+";
+
+    }
+
+
+    target.style.display =
+      isOpen ? "block" : "";
+
+  });
+
+
+  /* ---------------------------------------------
+     ARCHIVE YEAR / MONTH / TYPE
+     EVENT DELEGATION
+  --------------------------------------------- */
+
+  mainNav.addEventListener("click", event => {
+
+    const button =
+      event.target.closest(
+        "[data-archive-toggle]"
+      );
+
+    if (!button) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    const targetId =
+      button.getAttribute(
+        "data-archive-toggle"
+      );
+
+    if (!targetId) return;
+
+    const target =
+      document.getElementById(targetId);
+
+    if (!target) return;
+
+
+    const isOpen =
+      target.classList.toggle("active");
+
+
+    button.setAttribute(
+      "aria-expanded",
+      isOpen ? "true" : "false"
+    );
+
+
+    const arrow =
+      button.querySelector(
+        ".menu-arrow"
+      );
+
+    if (arrow) {
+
+      arrow.textContent =
+        isOpen ? "−" : "+";
+
+    }
+
+
+    target.style.display =
+      isOpen ? "block" : "";
+
+  });
+
+
+  /* ---------------------------------------------
+     MAIN LINKS
+  --------------------------------------------- */
 
   mainNav
     .querySelectorAll(
-      "[data-most-toggle]"
+      ".menu-main-links a"
     )
-    .forEach(button => {
-
-      button.addEventListener("click", event => {
-
-        event.preventDefault();
-        event.stopPropagation();
-
-        const targetId =
-          button.getAttribute(
-            "data-most-toggle"
-          );
-
-        const target =
-          document.getElementById(targetId);
-
-        if (!target) return;
-
-        const isOpen =
-          target.classList.toggle("active");
-
-        button.setAttribute(
-          "aria-expanded",
-          isOpen ? "true" : "false"
-        );
-
-        const spans =
-          button.querySelectorAll("span");
-
-        if (spans.length > 1) {
-
-          spans[1].textContent =
-            isOpen ? "−" : "+";
-
-        }
-
-        target.style.display =
-          isOpen ? "block" : "";
-
-      });
-
-    });
-
-
-  /* -----------------------------------------------------
-     MAIN NAV LINKS
-  ----------------------------------------------------- */
-
-  mainNav
-    .querySelectorAll(".menu-main-links a")
     .forEach(link => {
 
-      link.addEventListener("click", () => {
+      link.addEventListener(
+        "click",
+        () => {
 
-        closeMainMenu();
+          closeMainMenu(
+            mainNav,
+            menuToggle
+          );
 
-      });
+        }
+      );
 
     });
 
 
-  /* -----------------------------------------------------
+  /* ---------------------------------------------
      CLOSE OUTSIDE
-  ----------------------------------------------------- */
+  --------------------------------------------- */
 
-  document.addEventListener("click", event => {
+  document.addEventListener(
+    "click",
+    event => {
 
-    if (
-      !mainNav.contains(event.target) &&
-      !menuToggle.contains(event.target)
-    ) {
+      if (
+        !mainNav.contains(
+          event.target
+        ) &&
+        !menuToggle.contains(
+          event.target
+        )
+      ) {
 
-      closeMainMenu();
+        closeMainMenu(
+          mainNav,
+          menuToggle
+        );
+
+      }
 
     }
+  );
 
-  });
 
-
-  /* -----------------------------------------------------
+  /* ---------------------------------------------
      ESCAPE
-  ----------------------------------------------------- */
+  --------------------------------------------- */
 
-  document.addEventListener("keydown", event => {
+  document.addEventListener(
+    "keydown",
+    event => {
 
-    if (event.key === "Escape") {
+      if (event.key === "Escape") {
 
-      closeMainMenu();
+        closeMainMenu(
+          mainNav,
+          menuToggle
+        );
+
+      }
 
     }
-
-  });
+  );
 
 }
 
 
 /* =====================================================
-   CLOSE MAIN MENU
+   CLOSE MENU
 ===================================================== */
 
-function closeMainMenu() {
+function closeMainMenu(
+  mainNav,
+  menuToggle
+) {
 
-  const menuToggle =
-    document.getElementById("menuToggle");
-
-  const mainNav =
-    document.getElementById("mainNav");
-
-  if (!menuToggle || !mainNav) return;
-
-  mainNav.classList.remove("active");
+  mainNav.classList.remove(
+    "active"
+  );
 
   menuToggle.setAttribute(
     "aria-expanded",
@@ -282,7 +389,9 @@ function closeMainMenu() {
 function initYear() {
 
   const year =
-    document.getElementById("year");
+    document.getElementById(
+      "year"
+    );
 
   if (year) {
 
@@ -295,7 +404,7 @@ function initYear() {
 
 
 /* =====================================================
-   SECURITY
+   ESCAPE HTML
 ===================================================== */
 
 function escapeHtml(value) {
@@ -304,15 +413,32 @@ function escapeHtml(value) {
     value === null ||
     value === undefined
   ) {
+
     return "";
+
   }
 
   return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
 
 }
 
@@ -328,8 +454,14 @@ function formatDate(dateValue) {
   const date =
     new Date(dateValue);
 
-  if (Number.isNaN(date.getTime())) {
+  if (
+    Number.isNaN(
+      date.getTime()
+    )
+  ) {
+
     return "";
+
   }
 
   return date.toLocaleDateString(
@@ -345,7 +477,7 @@ function formatDate(dateValue) {
 
 
 /* =====================================================
-   YEAR
+   YEAR / MONTH
 ===================================================== */
 
 function getYear(dateValue) {
@@ -355,18 +487,20 @@ function getYear(dateValue) {
   const date =
     new Date(dateValue);
 
-  if (Number.isNaN(date.getTime())) {
+  if (
+    Number.isNaN(
+      date.getTime()
+    )
+  ) {
+
     return null;
+
   }
 
   return date.getFullYear();
 
 }
 
-
-/* =====================================================
-   MONTH
-===================================================== */
 
 function getMonth(dateValue) {
 
@@ -375,8 +509,14 @@ function getMonth(dateValue) {
   const date =
     new Date(dateValue);
 
-  if (Number.isNaN(date.getTime())) {
+  if (
+    Number.isNaN(
+      date.getTime()
+    )
+  ) {
+
     return null;
+
   }
 
   return date.getMonth();
@@ -385,7 +525,7 @@ function getMonth(dateValue) {
 
 
 /* =====================================================
-   BANGLA MONTHS
+   MONTHS
 ===================================================== */
 
 const BANGLA_MONTHS = [
@@ -412,30 +552,16 @@ const BANGLA_MONTHS = [
 
 function typeLabel(type) {
 
-  if (type === "poem") {
+  if (type === "poem")
     return "কবিতা";
-  }
 
-  if (type === "story") {
+  if (type === "story")
     return "গল্প";
-  }
 
-  if (type === "novel") {
+  if (type === "novel")
     return "উপন্যাস";
-  }
 
   return type;
-
-}
-
-
-/* =====================================================
-   TYPE URL
-===================================================== */
-
-function typeUrl(type, id) {
-
-  return `${type}.html?id=${encodeURIComponent(id)}`;
 
 }
 
@@ -444,7 +570,10 @@ function typeUrl(type, id) {
    CONTENT URL
 ===================================================== */
 
-function getContentUrl(type, id) {
+function typeUrl(
+  type,
+  id
+) {
 
   return `${type}.html?id=${encodeURIComponent(id)}`;
 
@@ -452,13 +581,15 @@ function getContentUrl(type, id) {
 
 
 /* =====================================================
-   TOTAL VIEWS DISPLAY
+   TOTAL VIEWS
 ===================================================== */
 
 function totalViews(item) {
 
   const views =
-    Number(item?.views || 0);
+    Number(
+      item?.views || 0
+    );
 
   return `
 
@@ -480,160 +611,20 @@ function totalViews(item) {
 
 
 /* =====================================================
-   TOAST
-===================================================== */
-
-function showToast(message) {
-
-  let toast =
-    document.getElementById("sf-toast");
-
-  if (!toast) {
-
-    toast =
-      document.createElement("div");
-
-    toast.id =
-      "sf-toast";
-
-    toast.className =
-      "sf-toast";
-
-    document.body.appendChild(toast);
-
-  }
-
-  toast.textContent =
-    message;
-
-  toast.classList.add("show");
-
-  clearTimeout(
-    window.sfToastTimer
-  );
-
-  window.sfToastTimer =
-    setTimeout(() => {
-
-      toast.classList.remove("show");
-
-    }, 2200);
-
-}
-
-
-/* =====================================================
-   COPY LINK
-===================================================== */
-
-async function copyLink(url) {
-
-  try {
-
-    if (
-      navigator.clipboard &&
-      window.isSecureContext
-    ) {
-
-      await navigator.clipboard.writeText(url);
-
-    } else {
-
-      const textarea =
-        document.createElement("textarea");
-
-      textarea.value =
-        url;
-
-      textarea.style.position =
-        "fixed";
-
-      textarea.style.opacity =
-        "0";
-
-      document.body.appendChild(
-        textarea
-      );
-
-      textarea.focus();
-      textarea.select();
-
-      document.execCommand("copy");
-
-      textarea.remove();
-
-    }
-
-    showToast("লিংক কপি হয়েছে");
-
-  } catch (error) {
-
-    console.error(
-      "Copy Error:",
-      error
-    );
-
-    showToast("লিংক কপি করা যায়নি");
-
-  }
-
-}
-
-
-/* =====================================================
-   SHARE
-===================================================== */
-
-async function shareContent(title, url) {
-
-  if (navigator.share) {
-
-    try {
-
-      await navigator.share({
-        title: title,
-        url: url
-      });
-
-    } catch (error) {
-
-      /*
-       * User cancelled sharing.
-       */
-    }
-
-    return;
-
-  }
-
-  await copyLink(url);
-
-}
-
-
-/* =====================================================
-   COMMENT
-===================================================== */
-
-function openComment(type, id) {
-
-  const url =
-    `${type}.html?id=${encodeURIComponent(id)}#comments`;
-
-  window.location.href =
-    url;
-
-}
-
-
-/* =====================================================
    ACTION BUTTONS
 ===================================================== */
 
-function actionButtons(type, id, title) {
+function actionButtons(
+  type,
+  id,
+  title
+) {
 
   const url =
-    getContentUrl(type, id);
+    typeUrl(
+      type,
+      id
+    );
 
   return `
 
@@ -642,18 +633,14 @@ function actionButtons(type, id, title) {
       <button
         type="button"
         class="action-btn"
-        onclick='openComment(
-          ${JSON.stringify(type)},
-          ${JSON.stringify(String(id))}
-        )'
-        title="Comment"
+        onclick="openComment(
+          '${escapeHtml(type)}',
+          '${escapeHtml(id)}'
+        )"
       >
 
         <span>◌</span>
-
-        <small>
-          Comment
-        </small>
+        <small>Comment</small>
 
       </button>
 
@@ -661,18 +648,14 @@ function actionButtons(type, id, title) {
       <button
         type="button"
         class="action-btn"
-        onclick='shareContent(
+        onclick="shareContent(
           ${JSON.stringify(title)},
           ${JSON.stringify(url)}
-        )'
-        title="Share"
+        )"
       >
 
         <span>↗</span>
-
-        <small>
-          Share
-        </small>
+        <small>Share</small>
 
       </button>
 
@@ -680,17 +663,13 @@ function actionButtons(type, id, title) {
       <button
         type="button"
         class="action-btn"
-        onclick='copyLink(
+        onclick="copyLink(
           ${JSON.stringify(url)}
-        )'
-        title="Copy Link"
+        )"
       >
 
         <span>⛓</span>
-
-        <small>
-          Copy
-        </small>
+        <small>Copy</small>
 
       </button>
 
@@ -717,13 +696,6 @@ async function loadPoetry() {
 
   try {
 
-    if (!window.supabaseClient) {
-      throw new Error(
-        "Supabase connection not found."
-      );
-    }
-
-
     const {
       data,
       error
@@ -745,20 +717,19 @@ async function loadPoetry() {
         );
 
 
-    if (error) {
-      throw error;
-    }
+    if (error) throw error;
 
 
-    if (!data || data.length === 0) {
+    if (
+      !data ||
+      data.length === 0
+    ) {
 
       container.innerHTML = `
 
         <div class="empty-card">
 
-          <span>
-            POETRY
-          </span>
+          <span>POETRY</span>
 
           <h3>
             শীঘ্রই আসছে
@@ -778,21 +749,24 @@ async function loadPoetry() {
 
 
     container.innerHTML =
-      data.map((poem, index) => {
-
-        return `
+      data.map(
+        (poem, index) => `
 
           <article class="writing-card">
 
             <div class="card-number">
-              ${String(index + 1).padStart(2, "0")}
+              ${String(
+                index + 1
+              ).padStart(2, "0")}
             </div>
 
 
             <div class="writing-card-content">
 
               <div class="published-date">
-                ${formatDate(poem.created_at)}
+                ${formatDate(
+                  poem.created_at
+                )}
               </div>
 
 
@@ -802,7 +776,9 @@ async function loadPoetry() {
 
 
               <h3>
-                ${escapeHtml(poem.title)}
+                ${escapeHtml(
+                  poem.title
+                )}
               </h3>
 
 
@@ -810,7 +786,9 @@ async function loadPoetry() {
                 poem.excerpt
                   ? `
                     <p class="writing-excerpt">
-                      ${escapeHtml(poem.excerpt)}
+                      ${escapeHtml(
+                        poem.excerpt
+                      )}
                     </p>
                   `
                   : ""
@@ -841,9 +819,8 @@ async function loadPoetry() {
 
           </article>
 
-        `;
-
-      }).join("");
+        `
+      ).join("");
 
 
   } catch (error) {
@@ -857,16 +834,16 @@ async function loadPoetry() {
 
       <div class="error-card">
 
-        <span>
-          POETRY
-        </span>
+        <span>POETRY</span>
 
         <h3>
           কবিতা লোড করা যায়নি
         </h3>
 
         <p>
-          ${escapeHtml(error.message)}
+          ${escapeHtml(
+            error.message
+          )}
         </p>
 
       </div>
@@ -894,13 +871,6 @@ async function loadStories() {
 
   try {
 
-    if (!window.supabaseClient) {
-      throw new Error(
-        "Supabase connection not found."
-      );
-    }
-
-
     const {
       data,
       error
@@ -922,12 +892,13 @@ async function loadStories() {
         );
 
 
-    if (error) {
-      throw error;
-    }
+    if (error) throw error;
 
 
-    if (!data || data.length === 0) {
+    if (
+      !data ||
+      data.length === 0
+    ) {
 
       container.innerHTML = `
 
@@ -955,24 +926,30 @@ async function loadStories() {
 
 
     container.innerHTML =
-      data.map((story, index) => {
-
-        return `
+      data.map(
+        (story, index) => `
 
           <article class="story-card">
 
             <div class="published-date">
-              ${formatDate(story.created_at)}
+              ${formatDate(
+                story.created_at
+              )}
             </div>
 
 
             <span>
-              STORY ${String(index + 1).padStart(2, "0")}
+              STORY
+              ${String(
+                index + 1
+              ).padStart(2, "0")}
             </span>
 
 
             <h3>
-              ${escapeHtml(story.title)}
+              ${escapeHtml(
+                story.title
+              )}
             </h3>
 
 
@@ -980,7 +957,9 @@ async function loadStories() {
               story.excerpt
                 ? `
                   <p>
-                    ${escapeHtml(story.excerpt)}
+                    ${escapeHtml(
+                      story.excerpt
+                    )}
                   </p>
                 `
                 : ""
@@ -1009,9 +988,8 @@ async function loadStories() {
 
           </article>
 
-        `;
-
-      }).join("");
+        `
+      ).join("");
 
 
   } catch (error) {
@@ -1034,7 +1012,9 @@ async function loadStories() {
         </h3>
 
         <p>
-          ${escapeHtml(error.message)}
+          ${escapeHtml(
+            error.message
+          )}
         </p>
 
       </div>
@@ -1062,13 +1042,6 @@ async function loadNovels() {
 
   try {
 
-    if (!window.supabaseClient) {
-      throw new Error(
-        "Supabase connection not found."
-      );
-    }
-
-
     const {
       data,
       error
@@ -1090,12 +1063,13 @@ async function loadNovels() {
         );
 
 
-    if (error) {
-      throw error;
-    }
+    if (error) throw error;
 
 
-    if (!data || data.length === 0) {
+    if (
+      !data ||
+      data.length === 0
+    ) {
 
       container.innerHTML = `
 
@@ -1123,26 +1097,32 @@ async function loadNovels() {
 
 
     container.innerHTML =
-      data.map((novel, index) => {
-
-        return `
+      data.map(
+        (novel, index) => `
 
           <article class="novel-card">
 
             <div class="novel-info">
 
               <div class="published-date">
-                ${formatDate(novel.created_at)}
+                ${formatDate(
+                  novel.created_at
+                )}
               </div>
 
 
               <p class="card-label">
-                NOVEL ${String(index + 1).padStart(2, "0")}
+                NOVEL
+                ${String(
+                  index + 1
+                ).padStart(2, "0")}
               </p>
 
 
               <h3>
-                ${escapeHtml(novel.title)}
+                ${escapeHtml(
+                  novel.title
+                )}
               </h3>
 
 
@@ -1150,7 +1130,9 @@ async function loadNovels() {
                 novel.excerpt
                   ? `
                     <p>
-                      ${escapeHtml(novel.excerpt)}
+                      ${escapeHtml(
+                        novel.excerpt
+                      )}
                     </p>
                   `
                   : ""
@@ -1181,9 +1163,8 @@ async function loadNovels() {
 
           </article>
 
-        `;
-
-      }).join("");
+        `
+      ).join("");
 
 
   } catch (error) {
@@ -1206,7 +1187,9 @@ async function loadNovels() {
         </h3>
 
         <p>
-          ${escapeHtml(error.message)}
+          ${escapeHtml(
+            error.message
+          )}
         </p>
 
       </div>
@@ -1235,13 +1218,6 @@ async function loadYearlyArchive() {
 
   try {
 
-    if (!window.supabaseClient) {
-      throw new Error(
-        "Supabase connection not found."
-      );
-    }
-
-
     const [
       poemsResult,
       storiesResult,
@@ -1252,7 +1228,7 @@ async function loadYearlyArchive() {
         window.supabaseClient
           .from("poems")
           .select(
-            "id,title,created_at,published"
+            "id,title,created_at"
           )
           .eq(
             "published",
@@ -1262,7 +1238,7 @@ async function loadYearlyArchive() {
         window.supabaseClient
           .from("stories")
           .select(
-            "id,title,created_at,published"
+            "id,title,created_at"
           )
           .eq(
             "published",
@@ -1272,7 +1248,7 @@ async function loadYearlyArchive() {
         window.supabaseClient
           .from("novels")
           .select(
-            "id,title,created_at,published"
+            "id,title,created_at"
           )
           .eq(
             "published",
@@ -1282,17 +1258,14 @@ async function loadYearlyArchive() {
       ]);
 
 
-    if (poemsResult.error) {
+    if (poemsResult.error)
       throw poemsResult.error;
-    }
 
-    if (storiesResult.error) {
+    if (storiesResult.error)
       throw storiesResult.error;
-    }
 
-    if (novelsResult.error) {
+    if (novelsResult.error)
       throw novelsResult.error;
-    }
 
 
     const all = [
@@ -1321,7 +1294,7 @@ async function loadYearlyArchive() {
     if (!all.length) {
 
       container.innerHTML = `
-        <p class="archive-empty">
+        <p>
           এখনো কোনো প্রকাশিত লেখা নেই।
         </p>
       `;
@@ -1332,13 +1305,7 @@ async function loadYearlyArchive() {
 
 
     /*
-     * Structure:
-     *
-     * Year
-     *   Month
-     *     Poem
-     *     Story
-     *     Novel
+     * Year → Month → Type → Items
      */
 
     const years = {};
@@ -1347,38 +1314,39 @@ async function loadYearlyArchive() {
     all.forEach(item => {
 
       const year =
-        getYear(item.created_at);
+        getYear(
+          item.created_at
+        );
 
       const month =
-        getMonth(item.created_at);
+        getMonth(
+          item.created_at
+        );
 
 
       if (
         year === null ||
         month === null
-      ) {
-        return;
-      }
+      ) return;
 
 
       if (!years[year]) {
+
         years[year] = {};
+
       }
 
 
       if (!years[year][month]) {
 
-        years[year][month] = {
-          poem: [],
-          story: [],
-          novel: []
-        };
+        years[year][month] = [];
 
       }
 
 
-      years[year][month][item.type]
-        .push(item);
+      years[year][month].push(
+        item
+      );
 
     });
 
@@ -1387,7 +1355,8 @@ async function loadYearlyArchive() {
       Object.keys(years)
         .sort(
           (a, b) =>
-            Number(b) - Number(a)
+            Number(b) -
+            Number(a)
         );
 
 
@@ -1395,16 +1364,69 @@ async function loadYearlyArchive() {
       sortedYears
         .map(year => {
 
-          return renderArchiveYear(
-            year,
-            years[year]
-          );
+          const months =
+            years[year];
+
+
+          const sortedMonths =
+            Object.keys(months)
+              .sort(
+                (a, b) =>
+                  Number(b) -
+                  Number(a)
+              );
+
+
+          return `
+
+            <div class="archive-year">
+
+              <button
+                type="button"
+                class="archive-year-btn"
+                data-archive-toggle="archive-year-${year}"
+                aria-expanded="false"
+              >
+
+                <span>
+                  ${escapeHtml(year)}
+                </span>
+
+                <span class="menu-arrow">
+                  +
+                </span>
+
+              </button>
+
+
+              <div
+                id="archive-year-${year}"
+                class="archive-year-content"
+              >
+
+                ${sortedMonths
+                  .map(month => {
+
+                    const items =
+                      months[month];
+
+                    return renderArchiveMonth(
+                      year,
+                      month,
+                      items
+                    );
+
+                  })
+                  .join("")}
+
+              </div>
+
+            </div>
+
+          `;
 
         })
         .join("");
-
-
-    initGeneratedArchiveToggles();
 
 
   } catch (error) {
@@ -1415,11 +1437,9 @@ async function loadYearlyArchive() {
     );
 
     container.innerHTML = `
-
-      <p class="archive-error">
+      <p>
         Archive লোড করা যায়নি।
       </p>
-
     `;
 
   }
@@ -1428,114 +1448,41 @@ async function loadYearlyArchive() {
 
 
 /* =====================================================
-   RENDER ARCHIVE YEAR
-===================================================== */
-
-function renderArchiveYear(
-  year,
-  monthMap
-) {
-
-  const sortedMonths =
-    Object.keys(monthMap)
-      .sort(
-        (a, b) =>
-          Number(b) - Number(a)
-      );
-
-
-  const monthHTML =
-    sortedMonths
-      .map(month => {
-
-        return renderArchiveMonth(
-          year,
-          month,
-          monthMap[month]
-        );
-
-      })
-      .join("");
-
-
-  return `
-
-    <div class="archive-year">
-
-      <button
-        type="button"
-        class="archive-year-title"
-        data-archive-toggle="archive-year-${year}"
-        aria-expanded="false"
-      >
-
-        <span>
-          ${escapeHtml(year)}
-        </span>
-
-        <span class="menu-arrow">
-          +
-        </span>
-
-      </button>
-
-
-      <div
-        id="archive-year-${year}"
-        class="archive-year-content"
-      >
-
-        ${monthHTML}
-
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   RENDER ARCHIVE MONTH
+   ARCHIVE MONTH
 ===================================================== */
 
 function renderArchiveMonth(
   year,
   month,
-  typeMap
+  items
 ) {
 
   const monthId =
     `archive-month-${year}-${month}`;
 
 
-  const types = [
-    "poem",
-    "story",
-    "novel"
-  ];
+  const grouped = {
+
+    poem: [],
+    story: [],
+    novel: []
+
+  };
 
 
-  const typeHTML =
-    types
-      .filter(type => {
+  items.forEach(item => {
 
-        return (
-          typeMap[type] &&
-          typeMap[type].length > 0
-        );
+    if (
+      grouped[item.type]
+    ) {
 
-      })
-      .map(type => {
+      grouped[item.type].push(
+        item
+      );
 
-        return renderArchiveType(
-          type,
-          typeMap[type]
-        );
+    }
 
-      })
-      .join("");
+  });
 
 
   return `
@@ -1544,7 +1491,7 @@ function renderArchiveMonth(
 
       <button
         type="button"
-        class="archive-month-title"
+        class="archive-month-btn"
         data-archive-toggle="${monthId}"
         aria-expanded="false"
       >
@@ -1567,7 +1514,9 @@ function renderArchiveMonth(
         class="archive-month-content"
       >
 
-        ${typeHTML}
+        ${renderArchiveTypes(
+          grouped
+        )}
 
       </div>
 
@@ -1579,161 +1528,88 @@ function renderArchiveMonth(
 
 
 /* =====================================================
-   RENDER ARCHIVE TYPE
+   ARCHIVE TYPES
 ===================================================== */
 
-function renderArchiveType(
-  type,
-  items
+function renderArchiveTypes(
+  grouped
 ) {
 
-  const typeId =
-    `archive-type-${type}-${Date.now()}-${Math.random()
-      .toString(36)
-      .substring(2, 7)}`;
+  const types = [
+    "poem",
+    "story",
+    "novel"
+  ];
 
 
-  const itemsHTML =
-    items
-      .sort(
-        (a, b) =>
-          new Date(b.created_at) -
-          new Date(a.created_at)
-      )
-      .map(item => {
+  return types
+    .filter(
+      type =>
+        grouped[type].length > 0
+    )
+    .map(type => {
 
-        return `
+      const typeId =
+        `archive-type-${type}-${Date.now()}-${Math.random()
+          .toString(36)
+          .slice(2, 7)}`;
 
-          <a
-            href="${typeUrl(
-              type,
-              item.id
-            )}"
-            class="menu-sub-link archive-item-link"
+
+      return `
+
+        <div class="archive-type">
+
+          <button
+            type="button"
+            class="archive-type-btn"
+            data-archive-toggle="${typeId}"
+            aria-expanded="false"
           >
 
             <span>
-              ${escapeHtml(item.title)}
+              ${typeLabel(type)}
             </span>
 
-          </a>
+            <span class="menu-arrow">
+              +
+            </span>
 
-        `;
-
-      })
-      .join("");
-
-
-  return `
-
-    <div class="archive-type">
-
-      <button
-        type="button"
-        class="archive-type-title"
-        data-archive-toggle="${typeId}"
-        aria-expanded="false"
-      >
-
-        <span>
-          ${typeLabel(type)}
-        </span>
-
-        <span class="menu-arrow">
-          +
-        </span>
-
-      </button>
+          </button>
 
 
-      <div
-        id="${typeId}"
-        class="archive-type-content"
-      >
+          <div
+            id="${typeId}"
+            class="archive-type-content"
+          >
 
-        ${itemsHTML}
+            ${grouped[type]
+              .map(item => `
 
-      </div>
+                <a
+                  href="${typeUrl(
+                    type,
+                    item.id
+                  )}"
+                  class="archive-item"
+                >
 
-    </div>
+                  ${escapeHtml(
+                    item.title
+                  )}
 
-  `;
+                </a>
 
-}
+              `)
+              .join("")}
 
+          </div>
 
-/* =====================================================
-   GENERATED ARCHIVE TOGGLES
-===================================================== */
+        </div>
 
-function initGeneratedArchiveToggles() {
+      `;
 
-  document
-    .querySelectorAll(
-      "#archiveYears [data-archive-toggle]"
-    )
-    .forEach(button => {
-
-      button.addEventListener(
-        "click",
-        event => {
-
-          event.preventDefault();
-          event.stopPropagation();
-
-
-          const targetId =
-            button.getAttribute(
-              "data-archive-toggle"
-            );
-
-
-          const target =
-            document.getElementById(
-              targetId
-            );
-
-
-          if (!target) return;
-
-
-          const isOpen =
-            target.classList.toggle(
-              "active"
-            );
-
-
-          button.setAttribute(
-            "aria-expanded",
-            isOpen
-              ? "true"
-              : "false"
-          );
-
-
-          const arrow =
-            button.querySelector(
-              ".menu-arrow"
-            );
-
-
-          if (arrow) {
-
-            arrow.textContent =
-              isOpen ? "−" : "+";
-
-          }
-
-
-          target.style.display =
-            isOpen
-              ? "block"
-              : "";
-
-        }
-      );
-
-    });
+    })
+    .join("");
 
 }
 
@@ -1764,19 +1640,10 @@ async function loadMostViewed() {
     !poemContainer &&
     !storyContainer &&
     !novelContainer
-  ) {
-    return;
-  }
+  ) return;
 
 
   try {
-
-    if (!window.supabaseClient) {
-      throw new Error(
-        "Supabase connection not found."
-      );
-    }
-
 
     const [
       poemsResult,
@@ -1803,7 +1670,6 @@ async function loadMostViewed() {
           )
           .limit(5),
 
-
         window.supabaseClient
           .from("stories")
           .select(
@@ -1821,7 +1687,6 @@ async function loadMostViewed() {
             }
           )
           .limit(5),
-
 
         window.supabaseClient
           .from("novels")
@@ -1844,34 +1709,31 @@ async function loadMostViewed() {
       ]);
 
 
-    if (poemsResult.error) {
+    if (poemsResult.error)
       throw poemsResult.error;
-    }
 
-    if (storiesResult.error) {
+    if (storiesResult.error)
       throw storiesResult.error;
-    }
 
-    if (novelsResult.error) {
+    if (novelsResult.error)
       throw novelsResult.error;
-    }
 
 
-    renderMostMenu(
+    renderMostViewed(
       poemContainer,
       poemsResult.data || [],
       "poem"
     );
 
 
-    renderMostMenu(
+    renderMostViewed(
       storyContainer,
       storiesResult.data || [],
       "story"
     );
 
 
-    renderMostMenu(
+    renderMostViewed(
       novelContainer,
       novelsResult.data || [],
       "novel"
@@ -1885,29 +1747,6 @@ async function loadMostViewed() {
       error
     );
 
-
-    const errorHTML = `
-      <p class="most-error">
-        লোড করা যায়নি।
-      </p>
-    `;
-
-
-    if (poemContainer) {
-      poemContainer.innerHTML =
-        errorHTML;
-    }
-
-    if (storyContainer) {
-      storyContainer.innerHTML =
-        errorHTML;
-    }
-
-    if (novelContainer) {
-      novelContainer.innerHTML =
-        errorHTML;
-    }
-
   }
 
 }
@@ -1917,16 +1756,16 @@ async function loadMostViewed() {
    MOST VIEWED RENDER
 ===================================================== */
 
-function renderMostMenu(
+function renderMostViewed(
   container,
-  data,
+  items,
   type
 ) {
 
   if (!container) return;
 
 
-  if (!data.length) {
+  if (!items.length) {
 
     container.innerHTML = `
       <p>
@@ -1940,8 +1779,8 @@ function renderMostMenu(
 
 
   container.innerHTML =
-    data
-      .map((item, index) => {
+    items.map(
+      (item, index) => {
 
         const views =
           Number(
@@ -1983,14 +1822,14 @@ function renderMostMenu(
 
         `;
 
-      })
-      .join("");
+      }
+    ).join("");
 
 }
 
 
 /* =====================================================
-   WEBSITE TOTAL VIEWS
+   WEBSITE VIEWS
 ===================================================== */
 
 async function loadWebsiteViews() {
@@ -2004,13 +1843,6 @@ async function loadWebsiteViews() {
 
 
   try {
-
-    if (!window.supabaseClient) {
-      throw new Error(
-        "Supabase connection not found."
-      );
-    }
-
 
     const {
       data,
@@ -2027,7 +1859,14 @@ async function loadWebsiteViews() {
 
 
     if (error) {
-      throw error;
+
+      console.warn(
+        "Website Views:",
+        error.message
+      );
+
+      return;
+
     }
 
 
@@ -2040,13 +1879,7 @@ async function loadWebsiteViews() {
           "en-US"
         );
 
-    } else {
-
-      element.textContent =
-        "0";
-
     }
-
 
   } catch (error) {
 
@@ -2055,8 +1888,52 @@ async function loadWebsiteViews() {
       error
     );
 
-    element.textContent =
-      "0";
+  }
+
+}
+
+
+/* =====================================================
+   COPY LINK
+===================================================== */
+
+async function copyLink(url) {
+
+  try {
+
+    await navigator.clipboard.writeText(
+      url
+    );
+
+    showToast(
+      "লিংক কপি হয়েছে"
+    );
+
+  } catch (error) {
+
+    const textarea =
+      document.createElement(
+        "textarea"
+      );
+
+    textarea.value =
+      url;
+
+    document.body.appendChild(
+      textarea
+    );
+
+    textarea.select();
+
+    document.execCommand(
+      "copy"
+    );
+
+    textarea.remove();
+
+    showToast(
+      "লিংক কপি হয়েছে"
+    );
 
   }
 
@@ -2064,7 +1941,122 @@ async function loadWebsiteViews() {
 
 
 /* =====================================================
-   SCROLL REVEAL
+   SHARE
+===================================================== */
+
+async function shareContent(
+  title,
+  url
+) {
+
+  if (
+    navigator.share
+  ) {
+
+    try {
+
+      await navigator.share({
+        title,
+        url
+      });
+
+    } catch (error) {
+
+      /* cancelled */
+
+    }
+
+    return;
+
+  }
+
+
+  await copyLink(
+    url
+  );
+
+}
+
+
+/* =====================================================
+   COMMENT
+===================================================== */
+
+function openComment(
+  type,
+  id
+) {
+
+  window.location.href =
+    `${type}.html?id=${encodeURIComponent(id)}#comments`;
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(
+  message
+) {
+
+  let toast =
+    document.getElementById(
+      "sf-toast"
+    );
+
+
+  if (!toast) {
+
+    toast =
+      document.createElement(
+        "div"
+      );
+
+    toast.id =
+      "sf-toast";
+
+    toast.className =
+      "sf-toast";
+
+    document.body.appendChild(
+      toast
+    );
+
+  }
+
+
+  toast.textContent =
+    message;
+
+  toast.classList.add(
+    "show"
+  );
+
+
+  clearTimeout(
+    window.sfToastTimer
+  );
+
+
+  window.sfToastTimer =
+    setTimeout(
+      () => {
+
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+      2200
+    );
+
+}
+
+
+/* =====================================================
+   REVEAL
 ===================================================== */
 
 function initReveal() {
@@ -2085,11 +2077,10 @@ function initReveal() {
   ) {
 
     elements.forEach(
-      element => {
+      element =>
         element.classList.add(
           "show"
-        );
-      }
+        )
     );
 
     return;
@@ -2101,23 +2092,25 @@ function initReveal() {
     new IntersectionObserver(
       entries => {
 
-        entries.forEach(entry => {
+        entries.forEach(
+          entry => {
 
-          if (
-            entry.isIntersecting
-          ) {
+            if (
+              entry.isIntersecting
+            ) {
 
-            entry.target.classList.add(
-              "show"
-            );
+              entry.target.classList.add(
+                "show"
+              );
 
-            observer.unobserve(
-              entry.target
-            );
+              observer.unobserve(
+                entry.target
+              );
+
+            }
 
           }
-
-        });
+        );
 
       },
       {
@@ -2126,17 +2119,19 @@ function initReveal() {
     );
 
 
-  elements.forEach(element => {
+  elements.forEach(
+    element => {
 
-    element.classList.add(
-      "reveal"
-    );
+      element.classList.add(
+        "reveal"
+      );
 
-    observer.observe(
-      element
-    );
+      observer.observe(
+        element
+      );
 
-  });
+    }
+  );
 
 }
 
