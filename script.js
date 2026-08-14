@@ -1,6 +1,6 @@
 /* =====================================================
-   SHADAT FATIH LITERARY ARCHIVE
-   FINAL SCRIPT.JS
+   SHADAT FATIH LITERARY ARCHIVE FINAL SCRIPT.JS
+
    - 3 DOT MENU
    - YEARLY ARCHIVE
    - MOST VIEWED
@@ -9,7 +9,6 @@
 ===================================================== */
 
 "use strict";
-
 
 /* =====================================================
    DOM READY
@@ -24,6 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
    * Load main content independently.
    * One failed query will not stop the others.
    */
+
   await Promise.allSettled([
     loadPoetry(),
     loadStories(),
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   /*
    * Load menu data
    */
+
   await Promise.allSettled([
     loadYearlyArchive(),
     loadMostViewed(),
@@ -104,8 +105,7 @@ function initMenu() {
 
 
   /* ---------------------------------------------
-     YEARLY ARCHIVE + MOST VIEWED
-     EVENT DELEGATION
+     YEARLY ARCHIVE + MOST VIEWED EVENT DELEGATION
   --------------------------------------------- */
 
   mainNav.addEventListener("click", event => {
@@ -132,16 +132,13 @@ function initMenu() {
 
     if (!target) return;
 
-
     const isOpen =
       target.classList.toggle("active");
-
 
     button.setAttribute(
       "aria-expanded",
       isOpen ? "true" : "false"
     );
-
 
     const arrow =
       button.querySelector(
@@ -154,7 +151,6 @@ function initMenu() {
         isOpen ? "−" : "+";
 
     }
-
 
     target.style.display =
       isOpen ? "block" : "";
@@ -191,16 +187,13 @@ function initMenu() {
 
     if (!target) return;
 
-
     const isOpen =
       target.classList.toggle("active");
-
 
     button.setAttribute(
       "aria-expanded",
       isOpen ? "true" : "false"
     );
-
 
     const spans =
       button.querySelectorAll(
@@ -213,7 +206,6 @@ function initMenu() {
         isOpen ? "−" : "+";
 
     }
-
 
     target.style.display =
       isOpen ? "block" : "";
@@ -250,16 +242,13 @@ function initMenu() {
 
     if (!target) return;
 
-
     const isOpen =
       target.classList.toggle("active");
-
 
     button.setAttribute(
       "aria-expanded",
       isOpen ? "true" : "false"
     );
-
 
     const arrow =
       button.querySelector(
@@ -272,7 +261,6 @@ function initMenu() {
         isOpen ? "−" : "+";
 
     }
-
 
     target.style.display =
       isOpen ? "block" : "";
@@ -419,26 +407,11 @@ function escapeHtml(value) {
   }
 
   return String(value)
-    .replaceAll(
-      "&",
-      "&amp;"
-    )
-    .replaceAll(
-      "<",
-      "&lt;"
-    )
-    .replaceAll(
-      ">",
-      "&gt;"
-    )
-    .replaceAll(
-      '"',
-      "&quot;"
-    )
-    .replaceAll(
-      "'",
-      "&#039;"
-    );
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 
 }
 
@@ -592,7 +565,6 @@ function totalViews(item) {
     );
 
   return `
-
     <div class="total-views">
 
       <span class="views-icon">
@@ -604,7 +576,6 @@ function totalViews(item) {
       </span>
 
     </div>
-
   `;
 
 }
@@ -612,7 +583,7 @@ function totalViews(item) {
 
 /* =====================================================
    ACTION BUTTONS
-   PREMIUM ANIMATED SVG ICONS
+   PREMIUM SVG ICONS
 ===================================================== */
 
 function actionButtons(
@@ -635,7 +606,7 @@ function actionButtons(
 
       <button
         type="button"
-        class="action-btn action-comment"
+        class="action-btn"
         aria-label="Comment"
         title="Comment"
         onclick="openComment(
@@ -644,50 +615,30 @@ function actionButtons(
         )"
       >
 
-        <span class="action-icon">
+        <span>
 
           <svg
             viewBox="0 0 24 24"
+            width="18"
+            height="18"
             fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
             aria-hidden="true"
           >
 
             <path
-              d="M20 11.5
-                 C20 16.194 16.194 20 11.5 20
-                 C9.95 20 8.5 19.59 7.24 18.88
-                 L4 20
-                 L5.12 16.76
-                 C4.41 15.5 4 14.05 4 12.5
-                 C4 7.806 7.806 4 12.5 4
-                 C16.642 4 20 7.358 20 11.5Z"
-              stroke="currentColor"
-              stroke-width="1.7"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              d="M20 11.5a8 8 0 0 1-8 8
+                 8.4 8.4 0 0 1-3.4-.72
+                 L4 20l1.22-3.72
+                 A8 8 0 1 1 20 11.5Z"
             />
 
-            <circle
-              cx="8.5"
-              cy="12"
-              r="0.8"
-              fill="currentColor"
-            />
-
-            <circle
-              cx="12.5"
-              cy="12"
-              r="0.8"
-              fill="currentColor"
-            />
-
-            <circle
-              cx="16.5"
-              cy="12"
-              r="0.8"
-              fill="currentColor"
-            />
+            <path d="M8 11.5h.01" />
+            <path d="M12 11.5h.01" />
+            <path d="M16 11.5h.01" />
 
           </svg>
 
@@ -704,7 +655,7 @@ function actionButtons(
 
       <button
         type="button"
-        class="action-btn action-share"
+        class="action-btn"
         aria-label="Share"
         title="Share"
         onclick="shareContent(
@@ -713,53 +664,44 @@ function actionButtons(
         )"
       >
 
-        <span class="action-icon">
+        <span>
 
           <svg
             viewBox="0 0 24 24"
+            width="18"
+            height="18"
             fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
             aria-hidden="true"
           >
 
             <circle
               cx="18"
               cy="5"
-              r="2.4"
-              stroke="currentColor"
-              stroke-width="1.7"
+              r="2.2"
             />
 
             <circle
               cx="6"
               cy="12"
-              r="2.4"
-              stroke="currentColor"
-              stroke-width="1.7"
+              r="2.2"
             />
 
             <circle
               cx="18"
               cy="19"
-              r="2.4"
-              stroke="currentColor"
-              stroke-width="1.7"
+              r="2.2"
             />
 
             <path
-              d="M8.2 10.9
-                 L15.8 6.5"
-              stroke="currentColor"
-              stroke-width="1.7"
-              stroke-linecap="round"
+              d="M8 11l7.8-4.5"
             />
 
             <path
-              d="M8.2 13.1
-                 L15.8 17.5"
-              stroke="currentColor"
-              stroke-width="1.7"
-              stroke-linecap="round"
+              d="M8 13l7.8 4.5"
             />
 
           </svg>
@@ -777,7 +719,7 @@ function actionButtons(
 
       <button
         type="button"
-        class="action-btn action-copy"
+        class="action-btn"
         aria-label="Copy Link"
         title="Copy Link"
         onclick="copyLink(
@@ -785,47 +727,36 @@ function actionButtons(
         )"
       >
 
-        <span class="action-icon">
+        <span>
 
           <svg
             viewBox="0 0 24 24"
+            width="18"
+            height="18"
             fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
             aria-hidden="true"
           >
 
             <path
-              d="M9.5 14.5
-                 L14.5 9.5"
-              stroke="currentColor"
-              stroke-width="1.7"
-              stroke-linecap="round"
+              d="M9.5 14.5l5-5"
             />
 
             <path
-              d="M8.1 17.9
-                 L6.7 19.3
-                 C5.4 20.6 3.3 20.6 2 19.3
-                 C0.7 18 0.7 15.9 2 14.6
-                 L5.7 10.9
-                 C7 9.6 9.1 9.6 10.4 10.9"
-              stroke="currentColor"
-              stroke-width="1.7"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              d="M7.2 17.8l-1.1 1.1
+                 a3.3 3.3 0 0 1-4.7-4.7
+                 l3.1-3.1
+                 a3.3 3.3 0 0 1 4.7 0"
             />
 
             <path
-              d="M15.9 6.1
-                 L17.3 4.7
-                 C18.6 3.4 20.7 3.4 22 4.7
-                 C23.3 6 23.3 8.1 22 9.4
-                 L18.3 13.1
-                 C17 14.4 14.9 14.4 13.6 13.1"
-              stroke="currentColor"
-              stroke-width="1.7"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              d="M16.8 6.2l1.1-1.1
+                 a3.3 3.3 0 0 1 4.7 4.7
+                 l-3.1 3.1
+                 a3.3 3.3 0 0 1-4.7 0"
             />
 
           </svg>
@@ -842,7 +773,174 @@ function actionButtons(
 
   `;
 
-}   
+}
+
+
+/* =====================================================
+   POETRY
+===================================================== */
+
+async function loadPoetry() {
+
+  const container =
+    document.getElementById(
+      "poetry-list"
+    );
+
+  if (!container) return;
+
+  try {
+
+    const {
+      data,
+      error
+    } =
+      await window.supabaseClient
+        .from("poems")
+        .select(
+          "id,title,content,excerpt,created_at,published,views"
+        )
+        .eq(
+          "published",
+          true
+        )
+        .order(
+          "created_at",
+          {
+            ascending: false
+          }
+        );
+
+    if (error) throw error;
+
+    if (
+      !data ||
+      data.length === 0
+    ) {
+
+      container.innerHTML = `
+
+        <div class="empty-card">
+
+          <span>
+            POETRY
+          </span>
+
+          <h3>
+            শীঘ্রই আসছে
+          </h3>
+
+          <p>
+            নতুন কবিতা খুব শীঘ্রই প্রকাশিত হবে।
+          </p>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+    container.innerHTML =
+      data.map(
+        (poem, index) => `
+
+          <article class="writing-card">
+
+            <div class="card-number">
+              ${String(
+                index + 1
+              ).padStart(2, "0")}
+            </div>
+
+            <div class="writing-card-content">
+
+              <div class="published-date">
+                ${formatDate(
+                  poem.created_at
+                )}
+              </div>
+
+              <p class="card-label">
+                POETRY
+              </p>
+
+              <h3>
+                ${escapeHtml(
+                  poem.title
+                )}
+              </h3>
+
+              ${
+                poem.excerpt
+                  ? `
+                    <p class="writing-excerpt">
+                      ${escapeHtml(
+                        poem.excerpt
+                      )}
+                    </p>
+                  `
+                  : ""
+              }
+
+              ${totalViews(poem)}
+
+              <a
+                href="${typeUrl(
+                  "poem",
+                  poem.id
+                )}"
+                class="text-link"
+              >
+                কবিতা পড়ুন →
+              </a>
+
+              ${actionButtons(
+                "poem",
+                poem.id,
+                poem.title
+              )}
+
+            </div>
+
+          </article>
+
+        `
+      ).join("");
+
+  } catch (error) {
+
+    console.error(
+      "Poetry Error:",
+      error
+    );
+
+    container.innerHTML = `
+
+      <div class="error-card">
+
+        <span>
+          POETRY
+        </span>
+
+        <h3>
+          কবিতা লোড করা যায়নি
+        </h3>
+
+        <p>
+          ${escapeHtml(
+            error.message
+          )}
+        </p>
+
+      </div>
+
+    `;
+
+  }
+
+}
 
 
 /* =====================================================
@@ -857,7 +955,6 @@ async function loadStories() {
     );
 
   if (!container) return;
-
 
   try {
 
@@ -881,9 +978,7 @@ async function loadStories() {
           }
         );
 
-
     if (error) throw error;
-
 
     if (
       !data ||
@@ -914,7 +1009,6 @@ async function loadStories() {
 
     }
 
-
     container.innerHTML =
       data.map(
         (story, index) => `
@@ -927,7 +1021,6 @@ async function loadStories() {
               )}
             </div>
 
-
             <span>
               STORY
               ${String(
@@ -935,13 +1028,11 @@ async function loadStories() {
               ).padStart(2, "0")}
             </span>
 
-
             <h3>
               ${escapeHtml(
                 story.title
               )}
             </h3>
-
 
             ${
               story.excerpt
@@ -955,9 +1046,7 @@ async function loadStories() {
                 : ""
             }
 
-
             ${totalViews(story)}
-
 
             <a
               href="${typeUrl(
@@ -969,7 +1058,6 @@ async function loadStories() {
               গল্প পড়ুন ↗
             </a>
 
-
             ${actionButtons(
               "story",
               story.id,
@@ -980,7 +1068,6 @@ async function loadStories() {
 
         `
       ).join("");
-
 
   } catch (error) {
 
@@ -1029,7 +1116,6 @@ async function loadNovels() {
 
   if (!container) return;
 
-
   try {
 
     const {
@@ -1052,9 +1138,7 @@ async function loadNovels() {
           }
         );
 
-
     if (error) throw error;
-
 
     if (
       !data ||
@@ -1085,7 +1169,6 @@ async function loadNovels() {
 
     }
 
-
     container.innerHTML =
       data.map(
         (novel, index) => `
@@ -1100,7 +1183,6 @@ async function loadNovels() {
                 )}
               </div>
 
-
               <p class="card-label">
                 NOVEL
                 ${String(
@@ -1108,13 +1190,11 @@ async function loadNovels() {
                 ).padStart(2, "0")}
               </p>
 
-
               <h3>
                 ${escapeHtml(
                   novel.title
                 )}
               </h3>
-
 
               ${
                 novel.excerpt
@@ -1128,9 +1208,7 @@ async function loadNovels() {
                   : ""
               }
 
-
               ${totalViews(novel)}
-
 
               <a
                 href="${typeUrl(
@@ -1141,7 +1219,6 @@ async function loadNovels() {
               >
                 উপন্যাস পড়ুন →
               </a>
-
 
               ${actionButtons(
                 "novel",
@@ -1155,7 +1232,6 @@ async function loadNovels() {
 
         `
       ).join("");
-
 
   } catch (error) {
 
@@ -1205,7 +1281,6 @@ async function loadYearlyArchive() {
 
   if (!container) return;
 
-
   try {
 
     const [
@@ -1247,7 +1322,6 @@ async function loadYearlyArchive() {
 
       ]);
 
-
     if (poemsResult.error)
       throw poemsResult.error;
 
@@ -1256,7 +1330,6 @@ async function loadYearlyArchive() {
 
     if (novelsResult.error)
       throw novelsResult.error;
-
 
     const all = [
 
@@ -1280,26 +1353,25 @@ async function loadYearlyArchive() {
 
     ];
 
-
     if (!all.length) {
 
       container.innerHTML = `
+
         <p>
           এখনো কোনো প্রকাশিত লেখা নেই।
         </p>
+
       `;
 
       return;
 
     }
 
-
     /*
      * Year → Month → Type → Items
      */
 
     const years = {};
-
 
     all.forEach(item => {
 
@@ -1313,12 +1385,10 @@ async function loadYearlyArchive() {
           item.created_at
         );
 
-
       if (
         year === null ||
         month === null
       ) return;
-
 
       if (!years[year]) {
 
@@ -1326,20 +1396,17 @@ async function loadYearlyArchive() {
 
       }
 
-
       if (!years[year][month]) {
 
         years[year][month] = [];
 
       }
 
-
       years[year][month].push(
         item
       );
 
     });
-
 
     const sortedYears =
       Object.keys(years)
@@ -1349,14 +1416,12 @@ async function loadYearlyArchive() {
             Number(a)
         );
 
-
     container.innerHTML =
       sortedYears
         .map(year => {
 
           const months =
             years[year];
-
 
           const sortedMonths =
             Object.keys(months)
@@ -1365,7 +1430,6 @@ async function loadYearlyArchive() {
                   Number(b) -
                   Number(a)
               );
-
 
           return `
 
@@ -1387,7 +1451,6 @@ async function loadYearlyArchive() {
                 </span>
 
               </button>
-
 
               <div
                 id="archive-year-${year}"
@@ -1418,7 +1481,6 @@ async function loadYearlyArchive() {
         })
         .join("");
 
-
   } catch (error) {
 
     console.error(
@@ -1427,9 +1489,11 @@ async function loadYearlyArchive() {
     );
 
     container.innerHTML = `
+
       <p>
         Archive লোড করা যায়নি।
       </p>
+
     `;
 
   }
@@ -1450,7 +1514,6 @@ function renderArchiveMonth(
   const monthId =
     `archive-month-${year}-${month}`;
 
-
   const grouped = {
 
     poem: [],
@@ -1458,7 +1521,6 @@ function renderArchiveMonth(
     novel: []
 
   };
-
 
   items.forEach(item => {
 
@@ -1473,7 +1535,6 @@ function renderArchiveMonth(
     }
 
   });
-
 
   return `
 
@@ -1497,7 +1558,6 @@ function renderArchiveMonth(
         </span>
 
       </button>
-
 
       <div
         id="${monthId}"
@@ -1531,7 +1591,6 @@ function renderArchiveTypes(
     "novel"
   ];
 
-
   return types
     .filter(
       type =>
@@ -1543,7 +1602,6 @@ function renderArchiveTypes(
         `archive-type-${type}-${Date.now()}-${Math.random()
           .toString(36)
           .slice(2, 7)}`;
-
 
       return `
 
@@ -1565,7 +1623,6 @@ function renderArchiveTypes(
             </span>
 
           </button>
-
 
           <div
             id="${typeId}"
@@ -1625,13 +1682,11 @@ async function loadMostViewed() {
       "most-novels-folder"
     );
 
-
   if (
     !poemContainer &&
     !storyContainer &&
     !novelContainer
   ) return;
-
 
   try {
 
@@ -1698,7 +1753,6 @@ async function loadMostViewed() {
 
       ]);
 
-
     if (poemsResult.error)
       throw poemsResult.error;
 
@@ -1708,13 +1762,11 @@ async function loadMostViewed() {
     if (novelsResult.error)
       throw novelsResult.error;
 
-
     renderMostViewed(
       poemContainer,
       poemsResult.data || [],
       "poem"
     );
-
 
     renderMostViewed(
       storyContainer,
@@ -1722,13 +1774,11 @@ async function loadMostViewed() {
       "story"
     );
 
-
     renderMostViewed(
       novelContainer,
       novelsResult.data || [],
       "novel"
     );
-
 
   } catch (error) {
 
@@ -1754,19 +1804,19 @@ function renderMostViewed(
 
   if (!container) return;
 
-
   if (!items.length) {
 
     container.innerHTML = `
+
       <p>
         এখনো কোনো লেখা নেই।
       </p>
+
     `;
 
     return;
 
   }
-
 
   container.innerHTML =
     items.map(
@@ -1778,7 +1828,6 @@ function renderMostViewed(
           ).toLocaleString(
             "en-US"
           );
-
 
         return `
 
@@ -1796,13 +1845,11 @@ function renderMostViewed(
               ).padStart(2, "0")}
             </span>
 
-
             <span class="most-title">
               ${escapeHtml(
                 item.title
               )}
             </span>
-
 
             <span class="most-views">
               ◉ ${views}
@@ -1831,7 +1878,6 @@ async function loadWebsiteViews() {
 
   if (!element) return;
 
-
   try {
 
     const {
@@ -1847,7 +1893,6 @@ async function loadWebsiteViews() {
         )
         .maybeSingle();
 
-
     if (error) {
 
       console.warn(
@@ -1858,7 +1903,6 @@ async function loadWebsiteViews() {
       return;
 
     }
-
 
     if (data) {
 
@@ -1906,8 +1950,7 @@ async function copyLink(url) {
         "textarea"
       );
 
-    textarea.value =
-      url;
+    textarea.value = url;
 
     document.body.appendChild(
       textarea
@@ -1939,9 +1982,7 @@ async function shareContent(
   url
 ) {
 
-  if (
-    navigator.share
-  ) {
+  if (navigator.share) {
 
     try {
 
@@ -1959,7 +2000,6 @@ async function shareContent(
     return;
 
   }
-
 
   await copyLink(
     url
@@ -1996,7 +2036,6 @@ function showToast(
       "sf-toast"
     );
 
-
   if (!toast) {
 
     toast =
@@ -2016,7 +2055,6 @@ function showToast(
 
   }
 
-
   toast.textContent =
     message;
 
@@ -2024,11 +2062,9 @@ function showToast(
     "show"
   );
 
-
   clearTimeout(
     window.sfToastTimer
   );
-
 
   window.sfToastTimer =
     setTimeout(
@@ -2061,7 +2097,6 @@ function initReveal() {
       ".author-grid"
     );
 
-
   if (
     !("IntersectionObserver" in window)
   ) {
@@ -2076,7 +2111,6 @@ function initReveal() {
     return;
 
   }
-
 
   const observer =
     new IntersectionObserver(
@@ -2107,7 +2141,6 @@ function initReveal() {
         threshold: 0.08
       }
     );
-
 
   elements.forEach(
     element => {
