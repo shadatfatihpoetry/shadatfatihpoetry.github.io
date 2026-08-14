@@ -612,7 +612,7 @@ function totalViews(item) {
 
 /* =====================================================
    ACTION BUTTONS
-   PREMIUM ICONS
+   PREMIUM SVG ICONS
 ===================================================== */
 
 function actionButtons(
@@ -631,45 +631,137 @@ function actionButtons(
 
     <div class="writing-actions">
 
+      <!-- COMMENT -->
+
       <button
         type="button"
         class="action-btn"
+        aria-label="Comment"
+        title="Comment"
         onclick="openComment(
           '${escapeHtml(type)}',
           '${escapeHtml(id)}'
         )"
       >
 
-        <span>◌</span>
+        <span>
+
+          <svg
+            viewBox="0 0 24 24"
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path
+              d="M20 11.5a8 8 0 0 1-8 8
+                 8.4 8.4 0 0 1-3.4-.72
+                 L4 20l1.22-3.72
+                 A8 8 0 1 1 20 11.5Z"
+            />
+            <path d="M8 11.5h.01" />
+            <path d="M12 11.5h.01" />
+            <path d="M16 11.5h.01" />
+          </svg>
+
+        </span>
+
         <small>Comment</small>
 
       </button>
 
 
+      <!-- SHARE -->
+
       <button
         type="button"
         class="action-btn"
+        aria-label="Share"
+        title="Share"
         onclick="shareContent(
           ${JSON.stringify(title)},
           ${JSON.stringify(url)}
         )"
       >
 
-        <span>↗</span>
+        <span>
+
+          <svg
+            viewBox="0 0 24 24"
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="18" cy="5" r="2.2" />
+            <circle cx="6" cy="12" r="2.2" />
+            <circle cx="18" cy="19" r="2.2" />
+
+            <path d="M8 11l7.8-4.5" />
+            <path d="M8 13l7.8 4.5" />
+          </svg>
+
+        </span>
+
         <small>Share</small>
 
       </button>
 
 
+      <!-- COPY LINK -->
+
       <button
         type="button"
         class="action-btn"
+        aria-label="Copy Link"
+        title="Copy Link"
         onclick="copyLink(
           ${JSON.stringify(url)}
         )"
       >
 
-        <span>⛓</span>
+        <span>
+
+          <svg
+            viewBox="0 0 24 24"
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path
+              d="M9.5 14.5l5-5"
+            />
+
+            <path
+              d="M7.2 17.8l-1.1 1.1
+                 a3.3 3.3 0 0 1-4.7-4.7
+                 l3.1-3.1
+                 a3.3 3.3 0 0 1 4.7 0"
+            />
+
+            <path
+              d="M16.8 6.2l1.1-1.1
+                 a3.3 3.3 0 0 1 4.7 4.7
+                 l-3.1 3.1
+                 a3.3 3.3 0 0 1-4.7 0"
+            />
+          </svg>
+
+        </span>
+
         <small>Copy</small>
 
       </button>
