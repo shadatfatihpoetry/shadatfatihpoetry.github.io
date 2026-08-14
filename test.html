@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supabase Test</title>
+</head>
+
+<body>
+
+  <h2>Supabase Connection Test</h2>
+
+  <p id="result">Testing...</p>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL =
+      "https://ooxbtwxqumaixvrwsllg.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_dNAV-kJ5rv_-BH6GhYVg_1xbRUNdy";
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+
+    async function testSupabase() {
+
+      const result =
+        document.getElementById("result");
+
+      try {
+
+        const { data, error } =
+          await supabaseClient
+            .from("poems")
+            .select("id")
+            .limit(1);
+
+        if (error) {
+
+          result.textContent =
+            "ERROR: " + error.message;
+
+          console.error(error);
+
+          return;
+        }
+
+        result.textContent =
+          "SUCCESS — Supabase is connected!";
+
+        console.log(data);
+
+      } catch (error) {
+
+        result.textContent =
+          "ERROR: " + error.message;
+
+        console.error(error);
+      }
+    }
+
+    testSupabase();
+  </script>
+
+</body>
+</html>
