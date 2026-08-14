@@ -1,6 +1,7 @@
 /* =====================================================
    SHADAT FATIH LITERARY ARCHIVE
-   FIXED SCRIPT.JS - YEARLY ARCHIVE & MOST VIEWED
+   FIXED SCRIPT V2 - YEARLY ARCHIVE & MOST VIEWED
+   হায়ারার্কি: বছর → মাস → ধরন → লেখা
 ===================================================== */
 
 "use strict";
@@ -101,54 +102,73 @@ function initMenu() {
             isOpen ? "−" : "+";
         }
 
+        if (isOpen) {
+          target.style.display = "block";
+        } else {
+          target.style.display = "";
+        }
+
       });
 
     });
 
 
-  /* ARCHIVE YEAR TOGGLE */
+  /* ARCHIVE YEAR BUTTON TOGGLE */
 
   document.addEventListener("click", event => {
 
-    if (event.target.hasAttribute("data-archive-toggle")) {
+    const btn = event.target.closest("[data-year-toggle]");
+    
+    if (!btn) return;
 
-      const button =
-        event.target;
+    const yearId = btn.getAttribute("data-year-toggle");
+    const target = document.getElementById(yearId);
 
-      const id =
-        button.getAttribute("data-archive-toggle");
+    if (!target) return;
 
-      const target =
-        document.getElementById(id);
+    event.preventDefault();
+    event.stopPropagation();
 
-      if (!target) return;
+    const isOpen = target.classList.toggle("active");
 
-      event.preventDefault();
-      event.stopPropagation();
+    btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
 
-      const isOpen =
-        target.classList.toggle("active");
-
-      button.setAttribute(
-        "aria-expanded",
-        isOpen ? "true" : "false"
-      );
-
-      const spans =
-        button.querySelectorAll("span");
-
-      if (spans.length > 1) {
-        spans[1].textContent =
-          isOpen ? "−" : "+";
-      }
-
-      if (isOpen) {
-        target.style.display = "block";
-      } else {
-        target.style.display = "";
-      }
-
+    const arrow = btn.querySelector(".menu-arrow");
+    if (arrow) {
+      arrow.textContent = isOpen ? "−" : "+";
     }
+
+    target.style.display = isOpen ? "block" : "";
+
+  });
+
+
+  /* ARCHIVE MONTH BUTTON TOGGLE */
+
+  document.addEventListener("click", event => {
+
+    const btn = event.target.closest("[data-month-toggle]");
+    
+    if (!btn) return;
+
+    const monthId = btn.getAttribute("data-month-toggle");
+    const target = document.getElementById(monthId);
+
+    if (!target) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    const isOpen = target.classList.toggle("active");
+
+    btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+
+    const arrow = btn.querySelector(".menu-arrow");
+    if (arrow) {
+      arrow.textContent = isOpen ? "−" : "+";
+    }
+
+    target.style.display = isOpen ? "block" : "";
 
   });
 
@@ -157,47 +177,28 @@ function initMenu() {
 
   document.addEventListener("click", event => {
 
-    if (event.target.hasAttribute("data-most-toggle")) {
+    const btn = event.target.closest("[data-most-toggle]");
+    
+    if (!btn) return;
 
-      const button =
-        event.target.closest("button[data-most-toggle]");
+    const folderId = btn.getAttribute("data-most-toggle");
+    const target = document.getElementById(folderId);
 
-      if (!button) return;
+    if (!target) return;
 
-      const id =
-        button.getAttribute("data-most-toggle");
+    event.preventDefault();
+    event.stopPropagation();
 
-      const target =
-        document.getElementById(id);
+    const isOpen = target.classList.toggle("active");
 
-      if (!target) return;
+    btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
 
-      event.preventDefault();
-      event.stopPropagation();
-
-      const isOpen =
-        target.classList.toggle("active");
-
-      button.setAttribute(
-        "aria-expanded",
-        isOpen ? "true" : "false"
-      );
-
-      const spans =
-        button.querySelectorAll("span");
-
-      if (spans.length > 1) {
-        spans[1].textContent =
-          isOpen ? "−" : "+";
-      }
-
-      if (isOpen) {
-        target.style.display = "block";
-      } else {
-        target.style.display = "";
-      }
-
+    const arrow = btn.querySelector(".menu-arrow");
+    if (arrow) {
+      arrow.textContent = isOpen ? "−" : "+";
     }
+
+    target.style.display = isOpen ? "block" : "";
 
   });
 
@@ -1160,25 +1161,20 @@ async function loadNovels() {
 
 
 /* =====================================================
-   YEARLY ARCHIVE - বছর/মাস/ধরন অনুযায়ী সংগঠিত
+   YEARLY ARCHIVE
+   হায়ারার্কি: বছর → মাস → ধরন (কবিতা/গল্প/উপন্যাস)
 ===================================================== */
 
 async function loadYearlyArchive() {
 
   const container =
-    document.getElementById(
-      "archiveYears"
-    );
+    document.getElementById("archiveYears");
 
   if (!container) return;
 
   try {
 
-    const [
-      poemsResult,
-      storiesResult,
-      novelsResult
-    ] =
+    const [poemsResult, storiesResult, novelsResult] =
       await Promise.all([
 
         window.supabaseClient
@@ -1257,7 +1253,7 @@ async function loadYearlyArchive() {
       .map(Number)
       .sort((a, b) => b - a);
 
-    /* HTML তৈরি করুন */
+    /* HTML তৈরি করুন - হায়ারার্কি স্ট্রাকচার */
 
     container.innerHTML = sortedYears
       .map(year => {
@@ -1270,23 +1266,23 @@ async function loadYearlyArchive() {
 
         return `
 
-          <div class="archive-year-folder">
+          <div class="menu-archive-year">
 
             <button
               type="button"
-              class="archive-year-btn"
-              data-archive-toggle="archive-year-${year}"
+              class="menu-archive-year-btn"
+              data-year-toggle="archive-year-${year}"
               aria-expanded="false"
             >
 
               <span>${year}</span>
-              <span>+</span>
+              <span class="menu-arrow">+</span>
 
             </button>
 
             <div
               id="archive-year-${year}"
-              class="archive-year-content"
+              class="menu-archive-year-content"
             >
 
               ${sortedMonths
@@ -1297,26 +1293,26 @@ async function loadYearlyArchive() {
 
                   return `
 
-                    <div class="archive-month-folder">
+                    <div class="menu-archive-month">
 
                       <button
                         type="button"
-                        class="archive-month-btn"
-                        data-archive-toggle="archive-month-${year}-${month}"
+                        class="menu-archive-month-btn"
+                        data-month-toggle="archive-month-${year}-${month}"
                         aria-expanded="false"
                       >
 
                         <span>${monthName}</span>
-                        <span>+</span>
+                        <span class="menu-arrow">+</span>
 
                       </button>
 
                       <div
                         id="archive-month-${year}-${month}"
-                        class="archive-month-content"
+                        class="menu-archive-month-content"
                       >
 
-                        ${renderArchiveItems(items)}
+                        ${renderArchiveItemsByType(items)}
 
                       </div>
 
@@ -1350,14 +1346,13 @@ async function loadYearlyArchive() {
 
 
 /* =====================================================
-   ARCHIVE ITEMS RENDER - ধরন অনুযায়ী
+   ARCHIVE ITEMS BY TYPE
+   প্রতিটি মাসে: কবিতা, গল্প, উপন্যাস আলাদাভাবে
 ===================================================== */
 
-function renderArchiveItems(items) {
+function renderArchiveItemsByType(items) {
 
   if (!items.length) return "";
-
-  /* আইটেম টাইপ অনুযায়ী গ্রুপ করুন */
 
   const grouped = {
     poem: [],
@@ -1373,24 +1368,24 @@ function renderArchiveItems(items) {
 
   let html = "";
 
+  /* কবিতা */
   if (grouped.poem.length > 0) {
     html += `
 
-      <div class="archive-type-section">
+      <div class="menu-archive-type">
 
-        <div class="archive-type-label">
+        <div class="menu-archive-type-label">
           কবিতা
         </div>
 
-        <div class="archive-items-list">
+        <div class="menu-archive-type-items">
 
           ${grouped.poem
             .map(item => `
 
               <a
                 href="${typeUrl("poem", item.id)}"
-                class="archive-item-link"
-                title="${escapeHtml(item.title)}"
+                class="menu-archive-link"
               >
 
                 ${escapeHtml(item.title)}
@@ -1407,24 +1402,24 @@ function renderArchiveItems(items) {
     `;
   }
 
+  /* গল্প */
   if (grouped.story.length > 0) {
     html += `
 
-      <div class="archive-type-section">
+      <div class="menu-archive-type">
 
-        <div class="archive-type-label">
+        <div class="menu-archive-type-label">
           গল্প
         </div>
 
-        <div class="archive-items-list">
+        <div class="menu-archive-type-items">
 
           ${grouped.story
             .map(item => `
 
               <a
                 href="${typeUrl("story", item.id)}"
-                class="archive-item-link"
-                title="${escapeHtml(item.title)}"
+                class="menu-archive-link"
               >
 
                 ${escapeHtml(item.title)}
@@ -1441,24 +1436,24 @@ function renderArchiveItems(items) {
     `;
   }
 
+  /* উপন্যাস */
   if (grouped.novel.length > 0) {
     html += `
 
-      <div class="archive-type-section">
+      <div class="menu-archive-type">
 
-        <div class="archive-type-label">
+        <div class="menu-archive-type-label">
           উপন্যাস
         </div>
 
-        <div class="archive-items-list">
+        <div class="menu-archive-type-items">
 
           ${grouped.novel
             .map(item => `
 
               <a
                 href="${typeUrl("novel", item.id)}"
-                class="archive-item-link"
-                title="${escapeHtml(item.title)}"
+                class="menu-archive-link"
               >
 
                 ${escapeHtml(item.title)}
@@ -1482,6 +1477,7 @@ function renderArchiveItems(items) {
 
 /* =====================================================
    MOST VIEWED
+   হায়ারার্কি: ধরন (কবিতা/গল্প/উপন্যাস) → শীর্ষ ৫
 ===================================================== */
 
 async function loadMostViewed() {
@@ -1501,11 +1497,7 @@ async function loadMostViewed() {
 
   try {
 
-    const [
-      poemsResult,
-      storiesResult,
-      novelsResult
-    ] =
+    const [poemsResult, storiesResult, novelsResult] =
       await Promise.all([
 
         window.supabaseClient
@@ -1613,7 +1605,7 @@ function renderMostViewedFolder(
 
       <a
         href="${typeUrl(type, item.id)}"
-        class="most-viewed-item"
+        class="menu-most-viewed-item"
         title="${escapeHtml(item.title)}"
       >
 
