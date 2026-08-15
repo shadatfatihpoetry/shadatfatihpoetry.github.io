@@ -2052,6 +2052,32 @@ async function loadWebsiteViews() {
 
   try {
 
+    /*
+     * Count this website visit
+     */
+
+    const {
+      error: incrementError
+    } =
+      await window.supabaseClient
+        .rpc(
+          "increment_site_views"
+        );
+
+    if (incrementError) {
+
+      console.warn(
+        "Website View Increment:",
+        incrementError.message
+      );
+
+    }
+
+
+    /*
+     * Load updated total views
+     */
+
     const {
       data,
       error
@@ -2097,7 +2123,6 @@ async function loadWebsiteViews() {
   }
 
 }
-
 
 /* =====================================================
    COPY LINK
