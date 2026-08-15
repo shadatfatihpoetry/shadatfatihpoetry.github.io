@@ -4164,3 +4164,181 @@ body,
     font-weight: 700 !important;
   }
 }
+
+/* =====================================================
+   FINAL APPLE-STYLE ENGLISH FONT OVERRIDE
+   ONLY ENGLISH TYPOGRAPHY
+===================================================== */
+
+:root {
+  --apple-font:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+}
+
+
+/* SITE TITLE */
+.site-title {
+  font-family: var(--apple-font) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.8px !important;
+}
+
+
+/* ENGLISH MAIN HEADINGS */
+.hero h1,
+.intro h2,
+.section-top h2,
+.author-info h2,
+.quote-container blockquote,
+.comment-box h3 {
+  font-family: var(--apple-font) !important;
+  font-weight: 700 !important;
+  letter-spacing: -1.5px !important;
+}
+
+
+/* ENGLISH MENU */
+.menu-profile h3,
+.menu-group-title,
+.menu-main-links a,
+.menu-folder-btn,
+.menu-month-btn,
+.menu-archive-heading,
+.menu-most-title,
+.menu-most-folder-btn,
+.menu-most-info a {
+  font-family: var(--apple-font) !important;
+}
+
+
+/* ENGLISH LABELS */
+.eyebrow,
+.card-label,
+.published-date,
+.website-views span,
+.menu-archive-heading,
+.menu-most-title,
+.hero-caption,
+.footer-inner p {
+  font-family: var(--apple-font) !important;
+  font-weight: 600 !important;
+}
+
+
+/* ENGLISH DESCRIPTION */
+.hero-text,
+.section-top > p,
+.intro p:last-child,
+.writing-excerpt,
+.story-card > p,
+.novel-card p,
+.menu-profile p,
+.comment-box-subtitle {
+  font-family: var(--apple-font) !important;
+  font-weight: 400 !important;
+}
+
+
+/* BUTTONS / LINKS */
+.hero-button,
+.text-link,
+.home-action,
+.action-btn,
+.floating-socials a,
+.comment-cancel,
+.comment-submit {
+  font-family: var(--apple-font) !important;
+}
+
+
+/* VIEW / DATE / NUMBER */
+.view-count,
+.view-count span,
+.view-count strong,
+.view-count small,
+.total-views,
+.total-views strong,
+.card-number,
+.menu-most-rank,
+.menu-most-views,
+.menu-archive-item small {
+  font-family: var(--apple-font) !important;
+}
+
+
+/* FOOTER */
+.footer-inner strong {
+  font-family: var(--apple-font) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.5px !important;
+}
+
+
+/* =====================================================
+   BANGLA — KEEP EXISTING FONT
+===================================================== */
+
+body,
+.writing-card h3,
+.story-card h3,
+.novel-card h3,
+.poem-reader .poem-body,
+.poem-reader .novel-body,
+.poem-reader .chapter-content {
+  font-family: "Noto Serif Bengali", serif;
+}
+
+
+/* =====================================================
+   APPLE-STYLE WEIGHTS
+===================================================== */
+
+.menu-group-title,
+.menu-folder-btn,
+.menu-most-folder-btn {
+  font-weight: 600 !important;
+}
+
+.menu-main-links a,
+.menu-month-btn,
+.menu-most-info a {
+  font-weight: 500 !important;
+}
+
+.writing-excerpt,
+.story-card > p,
+.novel-card p,
+.section-top > p,
+.intro p:last-child {
+  font-weight: 400 !important;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .site-title {
+    font-family: var(--apple-font) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.6px !important;
+  }
+
+  .hero h1,
+  .intro h2,
+  .section-top h2,
+  .author-info h2,
+  .quote-container blockquote {
+    font-family: var(--apple-font) !important;
+    font-weight: 700 !important;
+    letter-spacing: -1px !important;
+  }
+}
