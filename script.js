@@ -63,9 +63,12 @@ if (!window.supabaseClient) {
 
 }
 
-
 /* =====================================================
    MENU
+   - Android/WebView Back Support
+   - 3 DOT MENU
+   - YEARLY ARCHIVE
+   - MOST VIEWED
 ===================================================== */
 
 function initMenu() {
@@ -80,192 +83,346 @@ function initMenu() {
 
 
   /* ---------------------------------------------
-     MAIN 3-DOT MENU
+     CREATE BROWSER HISTORY FOR MENU STATES
   --------------------------------------------- */
 
-  menuToggle.addEventListener("click", event => {
+  function pushMenuHistory() {
 
-    event.preventDefault();
-    event.stopPropagation();
+    history.pushState(
+      {
+        sfMenu: true
+      },
+      "",
+      window.location.href
+    );
 
-    const isOpen =
-      mainNav.classList.toggle("active");
+  }
+
+
+  /* ---------------------------------------------
+     CLOSE ALL OPEN MENU SECTIONS
+  --------------------------------------------- */
+
+  function closeAllMenuSections() {
+
+    /* Main menu */
+
+    mainNav.classList.remove("active");
 
     menuToggle.setAttribute(
       "aria-expanded",
-      isOpen ? "true" : "false"
+      "false"
     );
 
     mainNav.setAttribute(
       "aria-hidden",
-      isOpen ? "false" : "true"
+      "true"
     );
 
-  });
+
+    /* Yearly Archive / Most Viewed / folders */
+
+    mainNav
+      .querySelectorAll(
+        ".active"
+      )
+      .forEach(element => {
+
+        element.classList.remove(
+          "active"
+        );
+
+      });
+
+
+    /* Reset display */
+
+    mainNav
+      .querySelectorAll(
+        ".archive-year-content, " +
+        ".archive-month-content, " +
+        ".archive-type-content, " +
+        ".most-folder-content"
+      )
+      .forEach(element => {
+
+        element.style.display = "";
+
+      });
+
+
+    /* Reset arrows */
+
+    mainNav
+      .querySelectorAll(
+        ".menu-arrow"
+      )
+      .forEach(arrow => {
+
+        arrow.textContent = "+";
+
+      });
+
+
+    /* Reset aria-expanded */
+
+    mainNav
+      .querySelectorAll(
+        "[aria-expanded]"
+      )
+      .forEach(element => {
+
+        element.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+      });
+
+  }
 
 
   /* ---------------------------------------------
-     YEARLY ARCHIVE + MOST VIEWED EVENT DELEGATION
+     MAIN 3-DOT MENU
   --------------------------------------------- */
 
-  mainNav.addEventListener("click", event => {
+  menuToggle.addEventListener(
+    "click",
+    event => {
 
-    const button =
-      event.target.closest(
-        ".menu-group-title"
+      event.preventDefault();
+      event.stopPropagation();
+
+      const isOpen =
+        mainNav.classList.toggle(
+          "active"
+        );
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
       );
 
-    if (!button) return;
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    const targetId =
-      button.getAttribute(
-        "data-toggle"
+      mainNav.setAttribute(
+        "aria-hidden",
+        isOpen ? "false" : "true"
       );
 
-    if (!targetId) return;
 
-    const target =
-      document.getElementById(targetId);
+      /*
+       * Opening menu creates browser history.
+       * Android Back can now close the menu.
+       */
 
-    if (!target) return;
+      if (isOpen) {
 
-    const isOpen =
-      target.classList.toggle("active");
+        pushMenuHistory();
 
-    button.setAttribute(
-      "aria-expanded",
-      isOpen ? "true" : "false"
-    );
-
-    const arrow =
-      button.querySelector(
-        ".menu-arrow"
-      );
-
-    if (arrow) {
-
-      arrow.textContent =
-        isOpen ? "−" : "+";
+      }
 
     }
+  );
 
-    target.style.display =
-      isOpen ? "block" : "";
 
-  });
+  /* ---------------------------------------------
+     YEARLY ARCHIVE
+  --------------------------------------------- */
+
+  mainNav.addEventListener(
+    "click",
+    event => {
+
+      const button =
+        event.target.closest(
+          ".menu-group-title"
+        );
+
+      if (!button) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const targetId =
+        button.getAttribute(
+          "data-toggle"
+        );
+
+      if (!targetId) return;
+
+      const target =
+        document.getElementById(
+          targetId
+        );
+
+      if (!target) return;
+
+      const isOpen =
+        target.classList.toggle(
+          "active"
+        );
+
+      button.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
+      );
+
+      const arrow =
+        button.querySelector(
+          ".menu-arrow"
+        );
+
+      if (arrow) {
+
+        arrow.textContent =
+          isOpen ? "−" : "+";
+
+      }
+
+      target.style.display =
+        isOpen ? "block" : "";
+
+      if (isOpen) {
+
+        pushMenuHistory();
+
+      }
+
+    }
+  );
 
 
   /* ---------------------------------------------
      MOST VIEWED FOLDERS
-     POEMS / STORIES / NOVELS
   --------------------------------------------- */
 
-  mainNav.addEventListener("click", event => {
+  mainNav.addEventListener(
+    "click",
+    event => {
 
-    const button =
-      event.target.closest(
-        ".most-folder-toggle"
+      const button =
+        event.target.closest(
+          ".most-folder-toggle"
+        );
+
+      if (!button) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const targetId =
+        button.getAttribute(
+          "data-most-toggle"
+        );
+
+      if (!targetId) return;
+
+      const target =
+        document.getElementById(
+          targetId
+        );
+
+      if (!target) return;
+
+      const isOpen =
+        target.classList.toggle(
+          "active"
+        );
+
+      button.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
       );
 
-    if (!button) return;
+      const spans =
+        button.querySelectorAll(
+          "span"
+        );
 
-    event.preventDefault();
-    event.stopPropagation();
+      if (spans.length > 1) {
 
-    const targetId =
-      button.getAttribute(
-        "data-most-toggle"
-      );
+        spans[1].textContent =
+          isOpen ? "−" : "+";
 
-    if (!targetId) return;
+      }
 
-    const target =
-      document.getElementById(targetId);
+      target.style.display =
+        isOpen ? "block" : "";
 
-    if (!target) return;
+      if (isOpen) {
 
-    const isOpen =
-      target.classList.toggle("active");
+        pushMenuHistory();
 
-    button.setAttribute(
-      "aria-expanded",
-      isOpen ? "true" : "false"
-    );
-
-    const spans =
-      button.querySelectorAll(
-        "span"
-      );
-
-    if (spans.length > 1) {
-
-      spans[1].textContent =
-        isOpen ? "−" : "+";
+      }
 
     }
-
-    target.style.display =
-      isOpen ? "block" : "";
-
-  });
+  );
 
 
   /* ---------------------------------------------
      ARCHIVE YEAR / MONTH / TYPE
-     EVENT DELEGATION
   --------------------------------------------- */
 
-  mainNav.addEventListener("click", event => {
+  mainNav.addEventListener(
+    "click",
+    event => {
 
-    const button =
-      event.target.closest(
-        "[data-archive-toggle]"
+      const button =
+        event.target.closest(
+          "[data-archive-toggle]"
+        );
+
+      if (!button) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const targetId =
+        button.getAttribute(
+          "data-archive-toggle"
+        );
+
+      if (!targetId) return;
+
+      const target =
+        document.getElementById(
+          targetId
+        );
+
+      if (!target) return;
+
+      const isOpen =
+        target.classList.toggle(
+          "active"
+        );
+
+      button.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
       );
 
-    if (!button) return;
+      const arrow =
+        button.querySelector(
+          ".menu-arrow"
+        );
 
-    event.preventDefault();
-    event.stopPropagation();
+      if (arrow) {
 
-    const targetId =
-      button.getAttribute(
-        "data-archive-toggle"
-      );
+        arrow.textContent =
+          isOpen ? "−" : "+";
 
-    if (!targetId) return;
+      }
 
-    const target =
-      document.getElementById(targetId);
+      target.style.display =
+        isOpen ? "block" : "";
 
-    if (!target) return;
+      if (isOpen) {
 
-    const isOpen =
-      target.classList.toggle("active");
+        pushMenuHistory();
 
-    button.setAttribute(
-      "aria-expanded",
-      isOpen ? "true" : "false"
-    );
-
-    const arrow =
-      button.querySelector(
-        ".menu-arrow"
-      );
-
-    if (arrow) {
-
-      arrow.textContent =
-        isOpen ? "−" : "+";
+      }
 
     }
-
-    target.style.display =
-      isOpen ? "block" : "";
-
-  });
+  );
 
 
   /* ---------------------------------------------
@@ -341,12 +498,27 @@ function initMenu() {
     }
   );
 
+
+  /* ---------------------------------------------
+     ANDROID / WEBVIEW BACK
+  --------------------------------------------- */
+
+  window.addEventListener(
+    "popstate",
+    () => {
+
+      closeAllMenuSections();
+
+    }
+  );
+
 }
 
 
 /* =====================================================
    CLOSE MENU
 ===================================================== */
+
 
 function closeMainMenu(
   mainNav,
