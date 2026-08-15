@@ -4812,82 +4812,188 @@ textarea::placeholder {
   }
 }
 
-/* =========================================
-   Mobile Reader & Poem Page Responsive Fix
-   ========================================= */
+/* =======================================================
+   HOME & READER PAGE RESPONSIVE + APPLE STYLE UI FIX
+   ======================================================= */
 
-/* Reader Card Container */
-.reader-card, 
-.card, 
-.poem-card, 
-.container {
+/* Universal Box Sizing & Container Padding */
+*, *::before, *::after {
   box-sizing: border-box !important;
-  max-width: 650px !important;
-  width: 100% !important;
-  margin: 0 auto !important;
-  padding: 24px 18px !important;
-  overflow-x: hidden !important;
 }
 
-/* Category & Date Header Alignment */
-.category, .poem-category, .poetry-tag {
-  text-align: center !important;
+body {
+  margin: 0;
+  padding: 0 16px;
+  background-color: #fafafa;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Header / Top Bar Fix --- */
+header, .header, .top-bar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 16px 8px !important;
+  max-width: 650px !important;
+  margin: 0 auto !important;
+}
+
+/* --- Main Containers & Cards --- */
+main, .main-container, .reader-card, .poem-card {
+  max-width: 620px !important;
+  width: 100% !important;
+  margin: 0 auto 30px auto !important;
+  padding: 24px 20px !important; /* ভেতরের নিরাপদ প্যাডিং */
+  background: #ffffff !important;
+  border-radius: 24px !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
+  overflow: hidden !important;
+}
+
+/* --- Poetry Tag / Border Clean Styling --- */
+.poetry-tag, 
+.badge,
+.tag-poetry {
+  display: inline-block !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  padding: 6px 14px !important;
+  border-radius: 8px !important;
   font-size: 0.75rem !important;
-  letter-spacing: 2px !important;
+  letter-spacing: 0.18em !important;
   text-transform: uppercase !important;
+  color: #52525b !important;
+  background: #fafafa !important;
+  margin: 8px 0 16px 0 !important;
+}
+
+/* --- Metadata (Date & Views) --- */
+.meta-date, .date, .poem-date {
+  font-size: 0.8rem !important;
+  color: #8c857b !important;
+  display: inline-block !important;
   margin-bottom: 8px !important;
 }
 
-.date, .poem-date {
+.views-pill, .view-count {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  border: 1px solid #d4af37 !important;
+  border-radius: 30px !important;
+  padding: 4px 14px !important;
   font-size: 0.8rem !important;
-  color: #71717a !important;
-  margin-bottom: 16px !important;
+  color: #7a6217 !important;
 }
 
-/* Main Poem Title */
+/* --- Titles --- */
 h1, .poem-title, .title {
-  font-size: 1.6rem !important;
+  font-size: 1.55rem !important;
+  font-weight: 700 !important;
   line-height: 1.4 !important;
-  text-align: center !important;
-  margin: 12px 0 24px 0 !important;
-  word-wrap: break-word !important;
+  color: #18181b !important;
+  margin: 14px 0 20px 0 !important;
+  word-break: break-word !important;
 }
 
-/* Poem Content Area */
-.poem-body, 
-.poem-text, 
-.content, 
-.poem-content, 
-article p {
+/* --- Poem Content Body --- */
+.poem-body, .poem-text, .content {
   font-size: 1.05rem !important;
-  line-height: 1.8 !important;
+  line-height: 1.85 !important;
+  color: #27272a !important;
   text-align: left !important;
-  padding: 0 4px !important;
-  margin: 0 0 24px 0 !important;
+  margin: 20px 0 28px 0 !important;
   white-space: pre-line !important;
   word-break: break-word !important;
-  box-sizing: border-box !important;
 }
 
-/* Action Buttons (Comment, Share, Copy Link) */
-.action-buttons, 
-.btn-group, 
-.buttons {
+/* --- Read More Link (Home Page) --- */
+.read-more, .read-btn, a.read-poem {
+  display: inline-block !important;
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+  color: #18181b !important;
+  text-decoration: none !important;
+  margin: 8px 0 16px 0 !important;
+  transition: opacity 0.2s ease !important;
+}
+
+.read-more:hover {
+  opacity: 0.7 !important;
+}
+
+/* --- Home Page Action Icons / Circular Buttons --- */
+.home-actions, .card-footer-icons {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin-top: 14px !important;
+}
+
+.home-actions a, 
+.home-actions button,
+.icon-btn {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 50% !important;
+  background-color: #581c87 !important; /* পার্পল ব্যাকগ্রাউন্ড */
+  color: #ffffff !important; /* আইকন দৃশ্যমান করতে উজ্জ্বল সাদা */
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: none !important;
+  text-decoration: none !important;
+  transition: transform 0.15s ease, opacity 0.15s ease !important;
+}
+
+.home-actions a svg, 
+.home-actions button svg,
+.icon-btn svg {
+  fill: currentColor !important;
+  stroke: currentColor !important;
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.home-actions a:active,
+.icon-btn:active {
+  transform: scale(0.92) !important;
+}
+
+/* --- Reader Page Action Buttons (Capsule Style) --- */
+.action-buttons, .reader-actions {
   display: flex !important;
   flex-wrap: wrap !important;
   gap: 8px !important;
   justify-content: center !important;
-  margin-top: 24px !important;
-  padding-top: 16px !important;
+  margin-top: 28px !important;
+  padding-top: 18px !important;
+  border-top: 1px solid #f4f4f5 !important;
 }
 
 .action-buttons button, 
-.action-buttons a, 
-.btn {
-  flex: 1 1 auto !important;
+.action-buttons a,
+.reader-btn {
+  flex: 1 1 calc(33.333% - 10px) !important;
   min-width: 90px !important;
-  padding: 10px 14px !important;
+  height: 42px !important;
+  padding: 0 12px !important;
   font-size: 0.85rem !important;
-  border-radius: 12px !important;
-  text-align: center !important;
+  font-weight: 500 !important;
+  border-radius: 14px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  background-color: #581c87 !important;
+  color: #ffffff !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.action-buttons button svg,
+.action-buttons a svg {
+  width: 15px !important;
+  height: 15px !important;
+  fill: #ffffff !important;
 }
