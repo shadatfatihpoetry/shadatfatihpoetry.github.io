@@ -4821,41 +4821,15 @@ html, body {
   margin: 0 !important;
   padding: 0 !important;
   width: 100% !important;
-  max-width: 100% !important;
+  max-width: 100vw !important;
   overflow-x: hidden !important;
-  background: #fbfbfd !important; /* ক্লিন অ্যাপল লাইট ব্যাকগ্রাউন্ড, কোনো কালো সাইডবার থাকবে না */
-  /* ফন্ট ফ্যামিলি রাখা হয়নি যাতে আপনার আসল বাংলা ফন্ট সরাসরি লোড হয় */
+  background: #fbfbfd !important; /* ক্লিন অ্যাপল লাইট ব্যাকগ্রাউন্ড */
 }
 
-/* ২. চিপা মার্জিন ফিক্স: ফুল-স্ক্রিন রেসপন্সিভ কন্টেইনার */
-#home, .hero-section, main, .container, .main-container {
-  width: 100% !important;
-  max-width: 100% !important; /* চিপা ভাব দূর করে স্ক্রিন বরাবর ফুল-উইডথ */
-  margin: 0 !important;
-  padding: 10px 12px !important;
-  box-sizing: border-box !important;
-}
-
-/* ৩. Apple Liquid Glass Card (সাদা ব্লক সরিয়ে প্রিমিয়াম ফ্রস্টেড গ্লাস) */
-.poem-card, 
-.reader-card, 
-article, 
-.card {
-  width: 100% !important;
-  max-width: 100% !important;
-  background: rgba(255, 255, 255, 0.75) !important;
-  backdrop-filter: blur(25px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.5) !important;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04) !important;
-  border-radius: 20px !important;
-  padding: 22px 16px !important;
-  margin-bottom: 20px !important;
-  box-sizing: border-box !important;
-}
-
-/* ৪. হেডার বার ও বাটন অ্যালাইনমেন্ট */
+/* ২. হেডার বার ও টাইটেল স্পেসিং */
 header, .header, .top-bar {
+  position: relative !important;
+  z-index: 10 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
@@ -4877,6 +4851,49 @@ header, .header, .top-bar {
   align-items: center !important;
   justify-content: center !important;
   cursor: pointer;
+}
+
+/* ৩. স্ক্রিন জোড়া ফুল-উইডথ পার্পল হিরো সেকশন (কোনো সাদা সাইডবার ও টাইটেল বারে ওভারল্যাপ হবে না) */
+#home, .hero-section, .hero {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  margin-top: 6px !important; /* টাইটেল বার থেকে নিচ নামাতে */
+  padding: 24px 16px !important; /* লেখার চারপাশে নিরাপদ প্যাডিং */
+  box-sizing: border-box !important;
+}
+
+.hero h1, .hero-title, .hero h2 {
+  margin-top: 0 !important;
+  padding-top: 4px !important;
+  line-height: 1.4 !important;
+  word-break: break-word !important;
+}
+
+/* ৪. মেইন কন্টেইনার ও Apple Liquid Glass Card */
+main, .container, .main-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding: 10px 12px !important;
+  box-sizing: border-box !important;
+}
+
+.poem-card, 
+.reader-card, 
+article, 
+.card {
+  width: 100% !important;
+  max-width: 100% !important;
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04) !important;
+  border-radius: 20px !important;
+  padding: 22px 16px !important;
+  margin-bottom: 20px !important;
+  box-sizing: border-box !important;
 }
 
 /* ৫. Homepage-এর Comment, Share, Copy Link আইকন ও বেগুনি কালার */
