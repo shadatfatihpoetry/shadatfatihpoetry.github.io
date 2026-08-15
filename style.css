@@ -3838,271 +3838,422 @@ a:focus-visible {
 }
 
 /* =========================================================
-   SHADAT FATIH — DEEP PURPLE + BLACK THEME
-   Add this at the VERY END of style.css
+   SHADAT FATIH
+   DEEP PURPLE × APPLE PREMIUM WHITE
+   LIQUID GLASS SYSTEM
+   ---------------------------------------------------------
+   Visual theme only.
+   HTML / JS / Content remain unchanged.
+   ========================================================= */
+
+
+/* =========================================================
+   01 — DESIGN TOKENS
    ========================================================= */
 
 :root {
-  --deep-purple: #3b0b6f;
-  --purple: #5b21b6;
-  --violet: #7c3aed;
-  --light-purple: #a78bfa;
 
-  --black: #08060d;
-  --black-2: #0d0a12;
-  --black-3: #15101d;
+  /* Purple system */
+  --sf-purple-900: #2a0754;
+  --sf-purple-800: #3b0b72;
+  --sf-purple-700: #4c1d95;
+  --sf-purple-600: #5b21b6;
+  --sf-purple-500: #6d28d9;
+  --sf-purple-400: #7c3aed;
+  --sf-purple-300: #a78bfa;
 
-  --white: #ffffff;
-  --soft-white: #eee9f7;
-  --muted: #aaa1b8;
+  /* Apple-like neutrals */
+  --sf-white: #ffffff;
+  --sf-white-soft: #fbfbfd;
+  --sf-gray-50: #f7f7f9;
+  --sf-gray-100: #f1f1f4;
+  --sf-gray-200: #e5e5ea;
+  --sf-gray-500: #6e6e73;
+  --sf-black: #1d1d1f;
 
-  --purple-border: rgba(124, 58, 237, 0.45);
-  --purple-glow: rgba(124, 58, 237, 0.28);
+  /* Glass */
+  --sf-glass-white: rgba(255,255,255,.68);
+  --sf-glass-light: rgba(255,255,255,.48);
+  --sf-glass-dark: rgba(25,10,45,.58);
+
+  /* Borders */
+  --sf-border-light: rgba(255,255,255,.62);
+  --sf-border-purple: rgba(109,40,217,.22);
+
+  /* Shadows */
+  --sf-shadow-soft:
+    0 10px 35px rgba(42,7,84,.08);
+
+  --sf-shadow-glass:
+    0 15px 45px rgba(42,7,84,.12);
+
+  --sf-shadow-purple:
+    0 18px 50px rgba(91,33,182,.18);
+
+  /* Radius */
+  --sf-radius-sm: 12px;
+  --sf-radius-md: 18px;
+  --sf-radius-lg: 24px;
+  --sf-radius-xl: 30px;
 }
 
 
 /* =========================================================
-   GLOBAL
+   02 — GLOBAL FOUNDATION
    ========================================================= */
 
 html {
-  background: var(--black);
+  background: #ffffff !important;
+  scroll-behavior: smooth;
 }
 
 body {
   background:
     radial-gradient(
       circle at 50% -10%,
-      rgba(91, 33, 182, 0.18),
-      transparent 45%
+      rgba(124,58,237,.08),
+      transparent 32%
     ),
-    var(--black) !important;
+    #ffffff !important;
 
-  color: var(--soft-white);
+  color: var(--sf-black) !important;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 
 /* =========================================================
-   LINKS
-   ========================================================= */
-
-a {
-  color: inherit;
-}
-
-a:hover {
-  color: var(--light-purple);
-}
-
-
-/* =========================================================
-   HEADER / NAVIGATION
+   03 — APPLE PREMIUM NAVIGATION
    ========================================================= */
 
 header,
 nav,
 .navbar,
 .site-header {
-  background: rgba(8, 6, 13, 0.94) !important;
-  color: var(--white);
+
+  background:
+    rgba(255,255,255,.72) !important;
+
+  backdrop-filter:
+    blur(24px)
+    saturate(180%) !important;
+
+  -webkit-backdrop-filter:
+    blur(24px)
+    saturate(180%) !important;
+
+  border-bottom:
+    1px solid rgba(91,33,182,.10) !important;
+
+  box-shadow:
+    0 8px 30px rgba(42,7,84,.05);
 }
 
 header a,
 nav a,
 .navbar a,
 .site-header a {
-  color: #eeeaff !important;
+
+  color: #242026 !important;
+
+  transition:
+    color .25s ease,
+    opacity .25s ease;
 }
 
 header a:hover,
 nav a:hover,
 .navbar a:hover,
 .site-header a:hover {
-  color: var(--light-purple) !important;
+
+  color: var(--sf-purple-500) !important;
 }
 
 
 /* =========================================================
-   HOMEPAGE HERO
+   04 — HOMEPAGE HERO
    ========================================================= */
 
 .hero {
+
   position: relative;
   overflow: hidden;
 
   background:
+
     radial-gradient(
-      circle at 50% 25%,
-      #7c3aed 0%,
-      #5b21b6 35%,
-      #3b0b6f 68%,
-      #10051d 100%
+      circle at 78% 18%,
+      rgba(167,139,250,.38),
+      transparent 28%
+    ),
+
+    radial-gradient(
+      circle at 10% 90%,
+      rgba(255,255,255,.12),
+      transparent 30%
+    ),
+
+    linear-gradient(
+      135deg,
+      var(--sf-purple-900) 0%,
+      var(--sf-purple-700) 48%,
+      var(--sf-purple-500) 100%
     ) !important;
 
-  color: #fff !important;
+  color: #ffffff !important;
 }
+
+
+/* Liquid light */
 
 .hero::before {
+
   content: "";
+
   position: absolute;
 
-  width: 500px;
-  height: 500px;
+  width: 520px;
+  height: 520px;
 
-  left: -180px;
-  bottom: -250px;
+  right: -190px;
+  top: -230px;
 
   border-radius: 50%;
 
-  background: rgba(124, 58, 237, 0.18);
+  background:
+    rgba(255,255,255,.13);
 
   filter: blur(70px);
 
   pointer-events: none;
 }
+
+
+/* Second liquid glow */
 
 .hero::after {
+
   content: "";
 
   position: absolute;
 
-  width: 450px;
-  height: 450px;
+  width: 350px;
+  height: 350px;
 
-  right: -180px;
-  top: -180px;
+  left: -170px;
+  bottom: -180px;
 
   border-radius: 50%;
 
-  background: rgba(167, 139, 250, 0.12);
+  background:
+    rgba(167,139,250,.18);
 
-  filter: blur(70px);
+  filter: blur(55px);
 
   pointer-events: none;
 }
+
 
 .hero-content,
 .hero-text,
 .hero-image {
+
   position: relative;
   z-index: 2;
 }
 
+
 .hero h1,
 .hero h2,
 .hero h3 {
+
   color: #ffffff !important;
 }
 
 .hero p {
-  color: rgba(255, 255, 255, 0.82) !important;
+
+  color:
+    rgba(255,255,255,.84) !important;
 }
 
 .hero .eyebrow {
-  color: #d8c8ff !important;
+
+  color:
+    #ddd6fe !important;
 }
 
 
 /* =========================================================
-   HERO BUTTON
+   05 — LIQUID GLASS HERO BUTTON
    ========================================================= */
 
 .hero-button,
-.hero button,
 .hero .btn {
-  background: #ffffff !important;
-  color: #3b0b6f !important;
 
-  border: 1px solid #ffffff !important;
+  background:
+    rgba(255,255,255,.16) !important;
+
+  color:
+    #ffffff !important;
+
+  border:
+    1px solid rgba(255,255,255,.48) !important;
+
+  backdrop-filter:
+    blur(18px)
+    saturate(160%) !important;
+
+  -webkit-backdrop-filter:
+    blur(18px)
+    saturate(160%) !important;
 
   box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.22);
+    inset 0 1px 0 rgba(255,255,255,.35),
+    0 10px 35px rgba(20,5,45,.18);
 
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease;
+    transform .28s ease,
+    background .28s ease,
+    box-shadow .28s ease;
 }
 
 .hero-button:hover,
-.hero button:hover,
 .hero .btn:hover {
-  background: #a78bfa !important;
-  color: #ffffff !important;
 
-  transform: translateY(-2px);
+  background:
+    rgba(255,255,255,.28) !important;
+
+  color:
+    #ffffff !important;
+
+  transform:
+    translateY(-3px);
 
   box-shadow:
-    0 12px 35px rgba(124, 58, 237, 0.4);
+    inset 0 1px 0 rgba(255,255,255,.5),
+    0 16px 40px rgba(20,5,45,.25);
 }
 
 
 /* =========================================================
-   GENERAL SECTIONS
+   06 — PREMIUM WHITE SECTIONS
    ========================================================= */
 
-section {
-  border-color: var(--purple-border);
-}
-
 .content-section.light {
+
   background:
     linear-gradient(
       180deg,
-      #110b18 0%,
-      #09070d 100%
+      #ffffff 0%,
+      #fbfbfd 100%
     ) !important;
 
-  color: var(--soft-white) !important;
+  color:
+    var(--sf-black) !important;
 }
 
+
 .content-section.dark {
+
   background:
     linear-gradient(
       135deg,
-      #08060d 0%,
-      #160b25 55%,
-      #08060d 100%
+      #f8f6fb,
+      #ffffff
     ) !important;
 
-  color: var(--soft-white) !important;
+  color:
+    var(--sf-black) !important;
 }
 
-.content-section h1,
-.content-section h2,
-.content-section h3,
-.content-section h4 {
-  color: #ffffff !important;
+
+section h1,
+section h2,
+section h3,
+section h4 {
+
+  color:
+    var(--sf-black) !important;
 }
 
-.content-section p {
-  color: #c9c1d2;
+section p {
+
+  color:
+    var(--sf-gray-500) !important;
 }
 
 
 /* =========================================================
-   POETRY SECTION
+   07 — POETRY
    ========================================================= */
 
 .poetry-section,
 .poem-section {
-  background:
-    linear-gradient(
-      135deg,
-      #0b0710 0%,
-      #210b3d 50%,
-      #0b0710 100%
-    ) !important;
-}
 
-.poetry-section h2,
-.poem-section h2 {
-  color: #ffffff !important;
+  background:
+
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(124,58,237,.07),
+      transparent 30%
+    ),
+
+    #ffffff !important;
 }
 
 
 /* =========================================================
-   POETRY / STORY / NOVEL CARDS
+   08 — STORIES
+   ========================================================= */
+
+.story-section,
+.stories-section {
+
+  background:
+
+    linear-gradient(
+      180deg,
+      #ffffff,
+      #f8f6fb
+    ) !important;
+}
+
+
+/* =========================================================
+   09 — NOVELS
+   ========================================================= */
+
+.novel-section {
+
+  background:
+
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(109,40,217,.09),
+      transparent 30%
+    ),
+
+    linear-gradient(
+      135deg,
+      #f8f5fc,
+      #ffffff
+    ) !important;
+
+  color:
+    var(--sf-black) !important;
+}
+
+.novel-section h2,
+.novel-section h3 {
+
+  color:
+    var(--sf-black) !important;
+}
+
+
+/* =========================================================
+   10 — LIQUID GLASS CARDS
    ========================================================= */
 
 .poem-card,
@@ -4110,137 +4261,169 @@ section {
 .story-card,
 .novel-card,
 .card {
+
   background:
+
     linear-gradient(
-      145deg,
-      #17111f,
-      #0b080f
+      135deg,
+      rgba(255,255,255,.88),
+      rgba(255,255,255,.62)
     ) !important;
 
-  color: var(--soft-white) !important;
+  backdrop-filter:
+    blur(22px)
+    saturate(150%) !important;
 
-  border: 1px solid var(--purple-border) !important;
+  -webkit-backdrop-filter:
+    blur(22px)
+    saturate(150%) !important;
+
+  border:
+    1px solid
+    rgba(91,33,182,.13) !important;
+
+  border-radius:
+    var(--sf-radius-md);
 
   box-shadow:
-    0 10px 35px rgba(0, 0, 0, 0.32);
+
+    inset 0 1px 0
+    rgba(255,255,255,.85),
+
+    0 12px 40px
+    rgba(42,7,84,.07);
+
+  color:
+    var(--sf-black) !important;
 
   transition:
-    transform 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
+    transform .3s cubic-bezier(.2,.8,.2,1),
+    box-shadow .3s ease,
+    border-color .3s ease;
 }
+
 
 .poem-card:hover,
 .poetry-card:hover,
 .story-card:hover,
 .novel-card:hover,
 .card:hover {
-  transform: translateY(-4px);
 
-  border-color: rgba(167, 139, 250, 0.75) !important;
+  transform:
+    translateY(-6px);
+
+  border-color:
+    rgba(109,40,217,.30) !important;
 
   box-shadow:
-    0 15px 45px rgba(91, 33, 182, 0.28);
+
+    inset 0 1px 0
+    rgba(255,255,255,.9),
+
+    0 20px 55px
+    rgba(91,33,182,.14);
 }
+
 
 .poem-card h3,
 .poetry-card h3,
 .story-card h3,
 .novel-card h3,
 .card h3 {
-  color: #ffffff !important;
+
+  color:
+    var(--sf-black) !important;
 }
+
 
 .poem-card p,
 .poetry-card p,
 .story-card p,
 .novel-card p,
 .card p {
-  color: #bdb3c8 !important;
+
+  color:
+    var(--sf-gray-500) !important;
 }
 
 
 /* =========================================================
-   NOVEL SECTION
-   ========================================================= */
-
-.novel-section {
-  background:
-    linear-gradient(
-      135deg,
-      #0a070d 0%,
-      #1d0b32 45%,
-      #08060d 100%
-    ) !important;
-
-  color: #ffffff !important;
-}
-
-.novel-section h2,
-.novel-section h3 {
-  color: #ffffff !important;
-}
-
-
-/* =========================================================
-   STORY SECTION
-   ========================================================= */
-
-.story-section,
-.stories-section {
-  background:
-    linear-gradient(
-      180deg,
-      #100a16,
-      #08060d
-    ) !important;
-
-  color: #ffffff !important;
-}
-
-
-/* =========================================================
-   CATEGORY / TAG / BADGES
+   11 — PURPLE TAGS / CATEGORY
    ========================================================= */
 
 .category,
 .tag,
 .badge,
 .label {
-  background: rgba(124, 58, 237, 0.14) !important;
 
-  color: #c4b5fd !important;
+  background:
+    rgba(124,58,237,.08) !important;
 
-  border: 1px solid rgba(124, 58, 237, 0.38) !important;
+  color:
+    var(--sf-purple-600) !important;
+
+  border:
+    1px solid
+    rgba(124,58,237,.16) !important;
+
+  backdrop-filter:
+    blur(10px);
 }
 
 
 /* =========================================================
-   BUTTONS
+   12 — PREMIUM PURPLE BUTTONS
    ========================================================= */
 
 button,
 .btn,
 .button {
-  background: var(--purple) !important;
-  color: #ffffff !important;
 
-  border-color: var(--violet) !important;
+  background:
+    linear-gradient(
+      135deg,
+      var(--sf-purple-600),
+      var(--sf-purple-500)
+    ) !important;
+
+  color:
+    #ffffff !important;
+
+  border:
+    1px solid
+    rgba(255,255,255,.18) !important;
+
+  border-radius:
+    var(--sf-radius-sm);
+
+  box-shadow:
+    0 8px 25px
+    rgba(91,33,182,.18);
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    filter .25s ease;
 }
 
 button:hover,
 .btn:hover,
 .button:hover {
-  background: var(--violet) !important;
-  color: #ffffff !important;
+
+  filter:
+    brightness(1.08);
+
+  transform:
+    translateY(-2px);
 
   box-shadow:
-    0 8px 25px rgba(124, 58, 237, 0.3);
+    0 13px 32px
+    rgba(91,33,182,.25);
 }
 
 
 /* =========================================================
-   POEM / STORY / NOVEL READER PAGE
+   13 — READER PAGES
    ========================================================= */
 
 .poem-page,
@@ -4248,34 +4431,59 @@ button:hover,
 .reader-page,
 .story-page,
 .novel-page {
+
   background:
     radial-gradient(
       circle at 50% 0%,
-      rgba(91, 33, 182, 0.22),
-      transparent 42%
+      rgba(124,58,237,.055),
+      transparent 35%
     ),
-    #08060d !important;
 
-  color: #eee9f7 !important;
+    #ffffff !important;
+
+  color:
+    #29262c !important;
 }
 
 
-/* Reader container */
+/* =========================================================
+   14 — READER GLASS CONTAINER
+   ========================================================= */
 
 .poem-reader,
 .reader-page {
-  background:
-    linear-gradient(
-      145deg,
-      #0b080f,
-      #160b23
-    ) !important;
 
-  border-color: var(--purple-border) !important;
+  background:
+    rgba(255,255,255,.76) !important;
+
+  backdrop-filter:
+    blur(24px)
+    saturate(150%) !important;
+
+  -webkit-backdrop-filter:
+    blur(24px)
+    saturate(150%) !important;
+
+  border:
+    1px solid
+    rgba(91,33,182,.12) !important;
+
+  border-radius:
+    var(--sf-radius-lg);
+
+  box-shadow:
+
+    inset 0 1px 0
+    rgba(255,255,255,.9),
+
+    0 18px 55px
+    rgba(42,7,84,.08);
 }
 
 
-/* Reader title */
+/* =========================================================
+   15 — READER TYPOGRAPHY
+   ========================================================= */
 
 .poem-page h1,
 .poem-page h2,
@@ -4285,18 +4493,20 @@ button:hover,
 .reader-page h2,
 .story-page h1,
 .novel-page h1 {
-  color: #ffffff !important;
+
+  color:
+    var(--sf-black) !important;
 }
 
-
-/* Reader paragraph */
 
 .poem-page p,
 .poem-reader p,
 .reader-page p,
 .story-page p,
 .novel-page p {
-  color: #ddd6e7 !important;
+
+  color:
+    #353238 !important;
 }
 
 
@@ -4307,7 +4517,9 @@ button:hover,
 .reader-page a,
 .story-page a,
 .novel-page a {
-  color: #a78bfa;
+
+  color:
+    var(--sf-purple-600) !important;
 }
 
 .poem-page a:hover,
@@ -4315,12 +4527,14 @@ button:hover,
 .reader-page a:hover,
 .story-page a:hover,
 .novel-page a:hover {
-  color: #c4b5fd;
+
+  color:
+    var(--sf-purple-400) !important;
 }
 
 
 /* =========================================================
-   READER DIVIDERS
+   16 — DIVIDERS
    ========================================================= */
 
 .poem-page hr,
@@ -4328,174 +4542,255 @@ button:hover,
 .reader-page hr,
 .story-page hr,
 .novel-page hr {
-  border: 0;
+
+  border:
+    0 !important;
 
   border-top:
-    1px solid rgba(124, 58, 237, 0.28);
+    1px solid
+    rgba(91,33,182,.12) !important;
 }
 
 
 /* =========================================================
-   BLOCKQUOTE / QUOTES
+   17 — QUOTES
    ========================================================= */
 
 blockquote {
+
   background:
     linear-gradient(
       135deg,
-      #160b23,
-      #0b080f
+      rgba(124,58,237,.06),
+      rgba(255,255,255,.75)
     ) !important;
 
-  color: #ddd6e7 !important;
+  color:
+    #353238 !important;
 
   border-left:
-    3px solid #7c3aed !important;
+    3px solid
+    var(--sf-purple-500) !important;
+
+  border-radius:
+    0 var(--sf-radius-sm)
+    var(--sf-radius-sm) 0;
 
   box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.25);
+    0 8px 25px
+    rgba(42,7,84,.05);
 }
 
 
 /* =========================================================
-   INPUT / SEARCH
+   18 — AUTHOR SECTION
+   ========================================================= */
+
+.author-section {
+
+  background:
+
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(124,58,237,.08),
+      transparent 30%
+    ),
+
+    #ffffff !important;
+
+  color:
+    var(--sf-black) !important;
+}
+
+.author-section h2,
+.author-section h3 {
+
+  color:
+    var(--sf-black) !important;
+}
+
+.author-section p {
+
+  color:
+    var(--sf-gray-500) !important;
+}
+
+
+/* =========================================================
+   19 — FOOTER
+   Deep purple glass feeling
+   ========================================================= */
+
+footer {
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #2a0754,
+      #3b0b72
+    ) !important;
+
+  color:
+    rgba(255,255,255,.72) !important;
+
+  border-top:
+    1px solid
+    rgba(255,255,255,.10) !important;
+}
+
+footer h2,
+footer h3,
+footer strong {
+
+  color:
+    #ffffff !important;
+}
+
+footer a {
+
+  color:
+    #ddd6fe !important;
+}
+
+footer a:hover {
+
+  color:
+    #ffffff !important;
+}
+
+
+/* =========================================================
+   20 — SEARCH / INPUT
    ========================================================= */
 
 input,
 textarea,
 select {
-  background: #100c15 !important;
 
-  color: #ffffff !important;
+  background:
+    rgba(255,255,255,.72) !important;
+
+  color:
+    var(--sf-black) !important;
 
   border:
-    1px solid rgba(124, 58, 237, 0.35) !important;
+    1px solid
+    rgba(91,33,182,.14) !important;
+
+  border-radius:
+    var(--sf-radius-sm);
+
+  backdrop-filter:
+    blur(16px);
 }
 
 input:focus,
 textarea:focus,
 select:focus {
-  border-color: #7c3aed !important;
 
-  outline: none !important;
+  outline:
+    none !important;
+
+  border-color:
+    rgba(109,40,217,.45) !important;
 
   box-shadow:
-    0 0 0 3px rgba(124, 58, 237, 0.12);
+    0 0 0 4px
+    rgba(124,58,237,.08);
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #81768d !important;
+
+  color:
+    #8a858d !important;
 }
 
 
 /* =========================================================
-   AUTHOR SECTION
+   21 — IMAGE GLASS EFFECT
    ========================================================= */
 
-.author-section {
-  background:
-    linear-gradient(
-      135deg,
-      #09070d,
-      #1c0b30
-    ) !important;
+.hero-image img {
 
-  color: #ffffff !important;
-}
-
-.author-section h2,
-.author-section h3 {
-  color: #ffffff !important;
-}
-
-.author-section p {
-  color: #c8bfce !important;
-}
-
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-footer {
-  background:
-    linear-gradient(
-      180deg,
-      #0c0811,
-      #050408
-    ) !important;
-
-  color: #aaa1b8 !important;
-
-  border-top:
-    1px solid rgba(124, 58, 237, 0.22);
-}
-
-footer a {
-  color: #b9a4df !important;
-}
-
-footer a:hover {
-  color: #ffffff !important;
-}
-
-
-/* =========================================================
-   PURPLE GLOW UTILITY
-   ========================================================= */
-
-.purple-glow {
   box-shadow:
-    0 0 35px rgba(124, 58, 237, 0.22);
+    0 25px 70px
+    rgba(42,7,84,.20);
+
+  border-radius:
+    var(--sf-radius-lg);
 }
 
 
 /* =========================================================
-   SCROLLBAR
+   22 — SELECTION
+   ========================================================= */
+
+::selection {
+
+  background:
+    var(--sf-purple-500);
+
+  color:
+    #ffffff;
+}
+
+
+/* =========================================================
+   23 — SCROLLBAR
    ========================================================= */
 
 ::-webkit-scrollbar {
-  width: 9px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #08060d;
+  background:
+    #f5f3f7;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3b1767;
-  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #a78bfa,
+      #5b21b6
+    );
+
+  border-radius:
+    20px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6d28d9;
+
+  background:
+    #5b21b6;
 }
 
 
 /* =========================================================
-   MOBILE
+   24 — MOBILE
    ========================================================= */
 
 @media (max-width: 768px) {
 
   .hero {
-    background:
-      radial-gradient(
-        circle at 50% 15%,
-        #6d28d9 0%,
-        #4c1d95 45%,
-        #10051d 100%
-      ) !important;
-  }
 
-  .content-section.light,
-  .content-section.dark {
     background:
+
+      radial-gradient(
+        circle at 80% 10%,
+        rgba(167,139,250,.35),
+        transparent 30%
+      ),
+
       linear-gradient(
-        180deg,
-        #100a16,
-        #08060d
+        145deg,
+        #3b0b72,
+        #5b21b6,
+        #6d28d9
       ) !important;
   }
 
@@ -4504,8 +4799,15 @@ footer a:hover {
   .story-card,
   .novel-card,
   .card {
-    box-shadow:
-      0 8px 25px rgba(0, 0, 0, 0.28);
+
+    border-radius:
+      16px;
   }
 
+  .poem-reader,
+  .reader-page {
+
+    border-radius:
+      18px;
+  }
 }
