@@ -4812,3 +4812,82 @@ textarea::placeholder {
   }
 }
 
+/* =========================================
+   Mobile Reader & Poem Page Responsive Fix
+   ========================================= */
+
+/* Reader Card Container */
+.reader-card, 
+.card, 
+.poem-card, 
+.container {
+  box-sizing: border-box !important;
+  max-width: 650px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 24px 18px !important;
+  overflow-x: hidden !important;
+}
+
+/* Category & Date Header Alignment */
+.category, .poem-category, .poetry-tag {
+  text-align: center !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 8px !important;
+}
+
+.date, .poem-date {
+  font-size: 0.8rem !important;
+  color: #71717a !important;
+  margin-bottom: 16px !important;
+}
+
+/* Main Poem Title */
+h1, .poem-title, .title {
+  font-size: 1.6rem !important;
+  line-height: 1.4 !important;
+  text-align: center !important;
+  margin: 12px 0 24px 0 !important;
+  word-wrap: break-word !important;
+}
+
+/* Poem Content Area */
+.poem-body, 
+.poem-text, 
+.content, 
+.poem-content, 
+article p {
+  font-size: 1.05rem !important;
+  line-height: 1.8 !important;
+  text-align: left !important;
+  padding: 0 4px !important;
+  margin: 0 0 24px 0 !important;
+  white-space: pre-line !important;
+  word-break: break-word !important;
+  box-sizing: border-box !important;
+}
+
+/* Action Buttons (Comment, Share, Copy Link) */
+.action-buttons, 
+.btn-group, 
+.buttons {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  justify-content: center !important;
+  margin-top: 24px !important;
+  padding-top: 16px !important;
+}
+
+.action-buttons button, 
+.action-buttons a, 
+.btn {
+  flex: 1 1 auto !important;
+  min-width: 90px !important;
+  padding: 10px 14px !important;
+  font-size: 0.85rem !important;
+  border-radius: 12px !important;
+  text-align: center !important;
+}
