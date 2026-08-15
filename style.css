@@ -4945,3 +4945,27 @@ article,
   letter-spacing: 0.12em !important;
   background: rgba(255, 255, 255, 0.6) !important;
 }
+
+/* =========================================================
+   HERO TOP OVERLAP & EDGE-TO-EDGE FIX ONLY
+   ========================================================= */
+
+.hero, 
+.hero-section, 
+#home {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  /* 76px ফিক্সড ন্যাভবারের ঠিক নিচ থেকে নিরাপদ স্পেস */
+  padding-top: 100px !important; 
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  box-sizing: border-box !important;
+}
+
+.hero h1, 
+.hero h2, 
+.hero-title {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
