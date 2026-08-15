@@ -4813,72 +4813,78 @@ textarea::placeholder {
 }
 
 /* =========================================================
-   APPLE PREMIUM LIQUID GLASS & RESPONSIVE UI UPDATE
+   100% FIXED: FULL-WIDTH, BENGALI FONT SAFE & CLEAN LIQUID GLASS
    ========================================================= */
 
-/* ১. হোমপেজ যাতে চিপা না দেখায় (Full Width with Safe Padding) */
-body {
-  margin: 0;
-  padding: 0 12px !important;
-  background: #0f0c20 !important; /* ডিপ লাক্সারি ডার্ক ব্লার ব্যাকড্রপ */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+/* ১. ব্যাকগ্রাউন্ড ফিক্স: ডার্ক/কালো বর্ডার সম্পূর্ণ দূর করা */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  background: #fbfbfd !important; /* ক্লিন অ্যাপল লাইট ব্যাকগ্রাউন্ড, কোনো কালো সাইডবার থাকবে না */
+  /* ফন্ট ফ্যামিলি রাখা হয়নি যাতে আপনার আসল বাংলা ফন্ট সরাসরি লোড হয় */
 }
 
-main, .container, .main-container {
+/* ২. চিপা মার্জিন ফিক্স: ফুল-স্ক্রিন রেসপন্সিভ কন্টেইনার */
+#home, .hero-section, main, .container, .main-container {
   width: 100% !important;
-  max-width: 100% !important; /* চিপা ভাব দূর করা হয়েছে */
-  margin: 0 auto 30px auto !important;
-  padding: 10px 4px !important;
+  max-width: 100% !important; /* চিপা ভাব দূর করে স্ক্রিন বরাবর ফুল-উইডথ */
+  margin: 0 !important;
+  padding: 10px 12px !important;
   box-sizing: border-box !important;
 }
 
-/* ২. Apple Premium Liquid Glass Card (সাদা অংশ বাদ দিয়ে ফ্রস্টেড গ্লাস) */
+/* ৩. Apple Liquid Glass Card (সাদা ব্লক সরিয়ে প্রিমিয়াম ফ্রস্টেড গ্লাস) */
 .poem-card, 
 .reader-card, 
 article, 
 .card {
-  background: rgba(255, 255, 255, 0.72) !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  background: rgba(255, 255, 255, 0.75) !important;
   backdrop-filter: blur(25px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.45) !important;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08) !important;
-  border-radius: 24px !important;
-  padding: 24px 20px !important;
-  margin-bottom: 24px !important;
-  overflow: hidden !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04) !important;
+  border-radius: 20px !important;
+  padding: 22px 16px !important;
+  margin-bottom: 20px !important;
   box-sizing: border-box !important;
 }
 
-/* ৩. হেডার বার ও থ্রি-ডট আইকন বাটন */
+/* ৪. হেডার বার ও বাটন অ্যালাইনমেন্ট */
 header, .header, .top-bar {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  padding: 12px 10px !important;
+  padding: 12px 14px !important;
   width: 100% !important;
+  box-sizing: border-box !important;
   background: transparent !important;
 }
 
-.theme-toggle, .menu-btn, .top-right-btn {
+.theme-toggle, .menu-btn, .top-right-btn, .premium-menu-btn {
   width: 40px !important;
   height: 40px !important;
   border-radius: 50% !important;
-  background: rgba(255, 255, 255, 0.85) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
   backdrop-filter: blur(10px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.6) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   cursor: pointer;
 }
 
-/* ৪. Homepage-এর Comment, Share, Copy Link আইকন ও কালার ফিক্স */
+/* ৫. Homepage-এর Comment, Share, Copy Link আইকন ও বেগুনি কালার */
 .home-actions, .card-footer-icons {
   display: flex !important;
   align-items: center !important;
   gap: 12px !important;
-  margin-top: 18px !important;
+  margin-top: 16px !important;
 }
 
 .home-actions a, 
@@ -4887,8 +4893,8 @@ header, .header, .top-bar {
   width: 38px !important;
   height: 38px !important;
   border-radius: 50% !important;
-  background: rgba(124, 58, 237, 0.12) !important; /* হালকা সফট পার্পল গ্লাস */
-  color: #6d28d9 !important; /* প্রিমিয়াম স্পষ্ট বেগুনি আইকন */
+  background: rgba(124, 58, 237, 0.12) !important;
+  color: #6d28d9 !important;
   border: 1px solid rgba(124, 58, 237, 0.2) !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -4908,11 +4914,11 @@ header, .header, .top-bar {
 
 .home-actions a:active,
 .icon-btn:active {
-  transform: scale(0.9) !important;
+  transform: scale(0.92) !important;
   background: rgba(124, 58, 237, 0.25) !important;
 }
 
-/* ৫. Poetry Tag & Typography Spacing */
+/* ৬. Poetry ট্যাগ স্টাইল */
 .tag, .poetry-tag {
   display: inline-block !important;
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
@@ -4920,13 +4926,5 @@ header, .header, .top-bar {
   border-radius: 20px !important;
   font-size: 0.72rem !important;
   letter-spacing: 0.12em !important;
-  background: rgba(255, 255, 255, 0.5) !important;
-}
-
-h1, .poem-title {
-  font-size: 1.6rem !important;
-  font-weight: 700 !important;
-  line-height: 1.35 !important;
-  color: #111827 !important;
-  margin: 12px 0 16px 0 !important;
+  background: rgba(255, 255, 255, 0.6) !important;
 }
