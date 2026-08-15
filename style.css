@@ -3836,3 +3836,331 @@ a:focus-visible {
   }
 
 }
+
+
+/* =====================================================
+   APPLE-STYLE ENGLISH TYPOGRAPHY
+   ONLY ENGLISH TEXT — EVERYTHING ELSE UNCHANGED
+===================================================== */
+
+/* Main English headings */
+.eyebrow,
+.card-label,
+.menu-archive-heading,
+.menu-most-title,
+.website-views span,
+.published-date,
+.hero-caption,
+.footer-inner p {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Segoe UI",
+    Arial,
+    sans-serif !important;
+
+  font-weight: 600;
+  letter-spacing: 1.4px;
+}
+
+
+/* Large English headings */
+.hero h1,
+.intro h2,
+.section-top h2,
+.author-info h2,
+.quote-container blockquote {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Segoe UI",
+    Arial,
+    sans-serif !important;
+
+  font-weight: 700;
+  letter-spacing: -1.8px;
+}
+
+
+/* Site title */
+.site-title {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Segoe UI",
+    Arial,
+    sans-serif !important;
+
+  font-weight: 700 !important;
+  letter-spacing: -0.8px !important;
+}
+
+
+/* English menu typography */
+.menu-profile h3,
+.menu-group-title,
+.menu-main-links a,
+.menu-folder-btn,
+.menu-month-btn,
+.menu-archive-item,
+.menu-most-folder-btn,
+.menu-most-info a {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "Segoe UI",
+    Arial,
+    sans-serif;
+}
+
+
+/* Menu main headings */
+.menu-profile h3 {
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.menu-group-title {
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+.menu-main-links a {
+  font-weight: 500;
+}
+
+.menu-folder-btn {
+  font-weight: 600;
+}
+
+.menu-month-btn {
+  font-weight: 500;
+}
+
+.menu-archive-item {
+  font-weight: 400;
+}
+
+.menu-most-folder-btn {
+  font-weight: 600;
+}
+
+.menu-most-info a {
+  font-weight: 500;
+}
+
+
+/* English descriptions / supporting text */
+.hero-text,
+.section-top > p,
+.intro p:last-child,
+.writing-excerpt,
+.story-card > p,
+.novel-card p,
+.menu-profile p,
+.comment-box-subtitle,
+.comment-form-group label,
+.comment-cancel,
+.comment-submit {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "Segoe UI",
+    Arial,
+    sans-serif;
+}
+
+
+/* Light / medium description weight */
+.hero-text,
+.section-top > p,
+.intro p:last-child,
+.writing-excerpt,
+.story-card > p,
+.novel-card p,
+.comment-box-subtitle {
+  font-weight: 400;
+}
+
+
+/* Buttons and links */
+.hero-button,
+.text-link,
+.home-action,
+.action-btn,
+.floating-socials a {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "Segoe UI",
+    Arial,
+    sans-serif;
+}
+
+
+/* View counter */
+.view-count,
+.total-views,
+.view-count span,
+.view-count strong,
+.view-count small {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "Segoe UI",
+    Arial,
+    sans-serif !important;
+}
+
+
+/* Number / archive metadata */
+.card-number,
+.menu-most-rank,
+.menu-most-views,
+.menu-archive-item small {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Segoe UI",
+    Arial,
+    sans-serif !important;
+}
+
+
+/* Footer */
+.footer-inner strong {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Segoe UI",
+    Arial,
+    sans-serif !important;
+
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+
+
+/* Comment modal */
+.comment-box h3 {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Segoe UI",
+    Arial,
+    sans-serif !important;
+
+  font-weight: 700;
+  letter-spacing: -0.8px;
+}
+
+.comment-form-group label,
+.comment-cancel,
+.comment-submit {
+  font-weight: 600;
+}
+
+
+/* =====================================================
+   APPLE-STYLE WEIGHT SYSTEM
+===================================================== */
+
+.eyebrow,
+.card-label,
+.menu-archive-heading,
+.menu-most-title {
+  font-weight: 700;
+}
+
+.menu-group-title,
+.menu-folder-btn,
+.menu-most-folder-btn {
+  font-weight: 600;
+}
+
+.menu-main-links a,
+.menu-month-btn,
+.menu-most-info a {
+  font-weight: 500;
+}
+
+.menu-archive-item,
+.menu-profile p,
+.writing-excerpt,
+.story-card > p,
+.novel-card p,
+.section-top > p,
+.intro p:last-child {
+  font-weight: 400;
+}
+
+
+/* =====================================================
+   KEEP BANGLA TYPOGRAPHY CLEAN
+   English styling does NOT change Bengali content
+===================================================== */
+
+body,
+.poem-reader .poem-body,
+.poem-reader .novel-body,
+.poem-reader .chapter-content,
+.writing-card h3,
+.story-card h3,
+.novel-card h3 {
+  font-family:
+    "Noto Serif Bengali",
+    serif;
+}
+
+
+/* =====================================================
+   APPLE-LIKE RESPONSIVE HEADINGS
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .hero h1 {
+    font-weight: 700;
+    letter-spacing: -1.2px;
+  }
+
+  .intro h2,
+  .section-top h2,
+  .author-info h2,
+  .quote-container blockquote {
+    letter-spacing: -1px;
+  }
+
+  .site-title {
+    font-weight: 700 !important;
+    letter-spacing: -0.5px !important;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .hero h1 {
+    letter-spacing: -0.8px;
+  }
+
+  .site-title {
+    font-weight: 700 !important;
+  }
+}
