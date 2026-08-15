@@ -4812,188 +4812,121 @@ textarea::placeholder {
   }
 }
 
-/* =======================================================
-   HOME & READER PAGE RESPONSIVE + APPLE STYLE UI FIX
-   ======================================================= */
+/* =========================================================
+   APPLE PREMIUM LIQUID GLASS & RESPONSIVE UI UPDATE
+   ========================================================= */
 
-/* Universal Box Sizing & Container Padding */
-*, *::before, *::after {
+/* ১. হোমপেজ যাতে চিপা না দেখায় (Full Width with Safe Padding) */
+body {
+  margin: 0;
+  padding: 0 12px !important;
+  background: #0f0c20 !important; /* ডিপ লাক্সারি ডার্ক ব্লার ব্যাকড্রপ */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+main, .container, .main-container {
+  width: 100% !important;
+  max-width: 100% !important; /* চিপা ভাব দূর করা হয়েছে */
+  margin: 0 auto 30px auto !important;
+  padding: 10px 4px !important;
   box-sizing: border-box !important;
 }
 
-body {
-  margin: 0;
-  padding: 0 16px;
-  background-color: #fafafa;
-  -webkit-font-smoothing: antialiased;
+/* ২. Apple Premium Liquid Glass Card (সাদা অংশ বাদ দিয়ে ফ্রস্টেড গ্লাস) */
+.poem-card, 
+.reader-card, 
+article, 
+.card {
+  background: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08) !important;
+  border-radius: 24px !important;
+  padding: 24px 20px !important;
+  margin-bottom: 24px !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
 }
 
-/* --- Header / Top Bar Fix --- */
+/* ৩. হেডার বার ও থ্রি-ডট আইকন বাটন */
 header, .header, .top-bar {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  padding: 16px 8px !important;
-  max-width: 650px !important;
-  margin: 0 auto !important;
-}
-
-/* --- Main Containers & Cards --- */
-main, .main-container, .reader-card, .poem-card {
-  max-width: 620px !important;
+  padding: 12px 10px !important;
   width: 100% !important;
-  margin: 0 auto 30px auto !important;
-  padding: 24px 20px !important; /* ভেতরের নিরাপদ প্যাডিং */
-  background: #ffffff !important;
-  border-radius: 24px !important;
-  border: 1px solid rgba(0, 0, 0, 0.06) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
-  overflow: hidden !important;
+  background: transparent !important;
 }
 
-/* --- Poetry Tag / Border Clean Styling --- */
-.poetry-tag, 
-.badge,
-.tag-poetry {
-  display: inline-block !important;
-  border: 1px solid rgba(0, 0, 0, 0.12) !important;
-  padding: 6px 14px !important;
-  border-radius: 8px !important;
-  font-size: 0.75rem !important;
-  letter-spacing: 0.18em !important;
-  text-transform: uppercase !important;
-  color: #52525b !important;
-  background: #fafafa !important;
-  margin: 8px 0 16px 0 !important;
-}
-
-/* --- Metadata (Date & Views) --- */
-.meta-date, .date, .poem-date {
-  font-size: 0.8rem !important;
-  color: #8c857b !important;
-  display: inline-block !important;
-  margin-bottom: 8px !important;
-}
-
-.views-pill, .view-count {
+.theme-toggle, .menu-btn, .top-right-btn {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
   display: inline-flex !important;
   align-items: center !important;
-  gap: 6px !important;
-  border: 1px solid #d4af37 !important;
-  border-radius: 30px !important;
-  padding: 4px 14px !important;
-  font-size: 0.8rem !important;
-  color: #7a6217 !important;
+  justify-content: center !important;
+  cursor: pointer;
 }
 
-/* --- Titles --- */
-h1, .poem-title, .title {
-  font-size: 1.55rem !important;
-  font-weight: 700 !important;
-  line-height: 1.4 !important;
-  color: #18181b !important;
-  margin: 14px 0 20px 0 !important;
-  word-break: break-word !important;
-}
-
-/* --- Poem Content Body --- */
-.poem-body, .poem-text, .content {
-  font-size: 1.05rem !important;
-  line-height: 1.85 !important;
-  color: #27272a !important;
-  text-align: left !important;
-  margin: 20px 0 28px 0 !important;
-  white-space: pre-line !important;
-  word-break: break-word !important;
-}
-
-/* --- Read More Link (Home Page) --- */
-.read-more, .read-btn, a.read-poem {
-  display: inline-block !important;
-  font-size: 0.95rem !important;
-  font-weight: 500 !important;
-  color: #18181b !important;
-  text-decoration: none !important;
-  margin: 8px 0 16px 0 !important;
-  transition: opacity 0.2s ease !important;
-}
-
-.read-more:hover {
-  opacity: 0.7 !important;
-}
-
-/* --- Home Page Action Icons / Circular Buttons --- */
+/* ৪. Homepage-এর Comment, Share, Copy Link আইকন ও কালার ফিক্স */
 .home-actions, .card-footer-icons {
   display: flex !important;
   align-items: center !important;
-  gap: 10px !important;
-  margin-top: 14px !important;
+  gap: 12px !important;
+  margin-top: 18px !important;
 }
 
 .home-actions a, 
-.home-actions button,
+.home-actions button, 
 .icon-btn {
   width: 38px !important;
   height: 38px !important;
   border-radius: 50% !important;
-  background-color: #581c87 !important; /* পার্পল ব্যাকগ্রাউন্ড */
-  color: #ffffff !important; /* আইকন দৃশ্যমান করতে উজ্জ্বল সাদা */
+  background: rgba(124, 58, 237, 0.12) !important; /* হালকা সফট পার্পল গ্লাস */
+  color: #6d28d9 !important; /* প্রিমিয়াম স্পষ্ট বেগুনি আইকন */
+  border: 1px solid rgba(124, 58, 237, 0.2) !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  border: none !important;
+  transition: all 0.2s ease !important;
   text-decoration: none !important;
-  transition: transform 0.15s ease, opacity 0.15s ease !important;
 }
 
 .home-actions a svg, 
-.home-actions button svg,
+.home-actions button svg, 
 .icon-btn svg {
-  fill: currentColor !important;
-  stroke: currentColor !important;
-  width: 16px !important;
-  height: 16px !important;
+  fill: #6d28d9 !important;
+  stroke: #6d28d9 !important;
+  width: 17px !important;
+  height: 17px !important;
 }
 
 .home-actions a:active,
 .icon-btn:active {
-  transform: scale(0.92) !important;
+  transform: scale(0.9) !important;
+  background: rgba(124, 58, 237, 0.25) !important;
 }
 
-/* --- Reader Page Action Buttons (Capsule Style) --- */
-.action-buttons, .reader-actions {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 8px !important;
-  justify-content: center !important;
-  margin-top: 28px !important;
-  padding-top: 18px !important;
-  border-top: 1px solid #f4f4f5 !important;
+/* ৫. Poetry Tag & Typography Spacing */
+.tag, .poetry-tag {
+  display: inline-block !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  padding: 4px 12px !important;
+  border-radius: 20px !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.12em !important;
+  background: rgba(255, 255, 255, 0.5) !important;
 }
 
-.action-buttons button, 
-.action-buttons a,
-.reader-btn {
-  flex: 1 1 calc(33.333% - 10px) !important;
-  min-width: 90px !important;
-  height: 42px !important;
-  padding: 0 12px !important;
-  font-size: 0.85rem !important;
-  font-weight: 500 !important;
-  border-radius: 14px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 6px !important;
-  background-color: #581c87 !important;
-  color: #ffffff !important;
-  border: none !important;
-  text-decoration: none !important;
-}
-
-.action-buttons button svg,
-.action-buttons a svg {
-  width: 15px !important;
-  height: 15px !important;
-  fill: #ffffff !important;
+h1, .poem-title {
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  color: #111827 !important;
+  margin: 12px 0 16px 0 !important;
 }
