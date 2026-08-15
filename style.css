@@ -3837,114 +3837,675 @@ a:focus-visible {
 
 }
 
-/* =====================================================
-   SHADAT FATIH — HOMEPAGE PURPLE THEME
-   Only Hero/Homepage color changed
-   Everything else remains unchanged
-===================================================== */
+/* =========================================================
+   SHADAT FATIH — DEEP PURPLE + BLACK THEME
+   Add this at the VERY END of style.css
+   ========================================================= */
 
-.hero {
+:root {
+  --deep-purple: #3b0b6f;
+  --purple: #5b21b6;
+  --violet: #7c3aed;
+  --light-purple: #a78bfa;
+
+  --black: #08060d;
+  --black-2: #0d0a12;
+  --black-3: #15101d;
+
+  --white: #ffffff;
+  --soft-white: #eee9f7;
+  --muted: #aaa1b8;
+
+  --purple-border: rgba(124, 58, 237, 0.45);
+  --purple-glow: rgba(124, 58, 237, 0.28);
+}
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+html {
+  background: var(--black);
+}
+
+body {
   background:
     radial-gradient(
-      circle at 50% 20%,
-      rgba(150, 105, 255, 0.95) 0%,
-      rgba(111, 54, 214, 0.92) 38%,
-      rgba(76, 30, 170, 0.98) 72%,
-      rgba(49, 18, 112, 1) 100%
-    ) !important;
+      circle at 50% -10%,
+      rgba(91, 33, 182, 0.18),
+      transparent 45%
+    ),
+    var(--black) !important;
 
-  color: #ffffff;
+  color: var(--soft-white);
 }
 
-/* Hero small title */
-.hero .eyebrow {
-  color: rgba(255, 255, 255, 0.82);
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+a {
+  color: inherit;
 }
 
-/* Main heading */
-.hero h1 {
-  color: #ffffff;
+a:hover {
+  color: var(--light-purple);
 }
 
-.hero h1 em {
-  color: #ffffff;
+
+/* =========================================================
+   HEADER / NAVIGATION
+   ========================================================= */
+
+header,
+nav,
+.navbar,
+.site-header {
+  background: rgba(8, 6, 13, 0.94) !important;
+  color: var(--white);
 }
 
-/* Hero description */
-.hero-text {
-  color: rgba(255, 255, 255, 0.82);
+header a,
+nav a,
+.navbar a,
+.site-header a {
+  color: #eeeaff !important;
 }
 
-/* Main button */
-.hero-button {
-  border-color: #ffffff;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition:
-    background 0.25s ease,
-    color 0.25s ease,
-    transform 0.25s ease;
+header a:hover,
+nav a:hover,
+.navbar a:hover,
+.site-header a:hover {
+  color: var(--light-purple) !important;
 }
 
-.hero-button:hover {
-  background: #ffffff;
-  color: #5b24bd;
-  border-color: #ffffff;
-  transform: translateY(-2px);
-}
 
-/* Hero image — keep image itself unchanged */
-.hero-image img {
-  box-shadow:
-    0 25px 70px rgba(25, 5, 70, 0.28);
-}
-
-/* Caption stays elegant on purple */
-.hero-caption {
-  background: rgba(20, 8, 45, 0.68);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-/* Subtle purple glow behind hero */
-.hero::before {
-  content: "";
-  position: absolute;
-  width: 420px;
-  height: 420px;
-  left: -160px;
-  bottom: -180px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  filter: blur(20px);
-  pointer-events: none;
-}
+/* =========================================================
+   HOMEPAGE HERO
+   ========================================================= */
 
 .hero {
   position: relative;
   overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      #7c3aed 0%,
+      #5b21b6 35%,
+      #3b0b6f 68%,
+      #10051d 100%
+    ) !important;
+
+  color: #fff !important;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  left: -180px;
+  bottom: -250px;
+
+  border-radius: 50%;
+
+  background: rgba(124, 58, 237, 0.18);
+
+  filter: blur(70px);
+
+  pointer-events: none;
+}
+
+.hero::after {
+  content: "";
+
+  position: absolute;
+
+  width: 450px;
+  height: 450px;
+
+  right: -180px;
+  top: -180px;
+
+  border-radius: 50%;
+
+  background: rgba(167, 139, 250, 0.12);
+
+  filter: blur(70px);
+
+  pointer-events: none;
 }
 
 .hero-content,
+.hero-text,
 .hero-image {
   position: relative;
   z-index: 2;
 }
 
-/* Mobile — same purple theme */
+.hero h1,
+.hero h2,
+.hero h3 {
+  color: #ffffff !important;
+}
+
+.hero p {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.hero .eyebrow {
+  color: #d8c8ff !important;
+}
+
+
+/* =========================================================
+   HERO BUTTON
+   ========================================================= */
+
+.hero-button,
+.hero button,
+.hero .btn {
+  background: #ffffff !important;
+  color: #3b0b6f !important;
+
+  border: 1px solid #ffffff !important;
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.22);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.hero-button:hover,
+.hero button:hover,
+.hero .btn:hover {
+  background: #a78bfa !important;
+  color: #ffffff !important;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 35px rgba(124, 58, 237, 0.4);
+}
+
+
+/* =========================================================
+   GENERAL SECTIONS
+   ========================================================= */
+
+section {
+  border-color: var(--purple-border);
+}
+
+.content-section.light {
+  background:
+    linear-gradient(
+      180deg,
+      #110b18 0%,
+      #09070d 100%
+    ) !important;
+
+  color: var(--soft-white) !important;
+}
+
+.content-section.dark {
+  background:
+    linear-gradient(
+      135deg,
+      #08060d 0%,
+      #160b25 55%,
+      #08060d 100%
+    ) !important;
+
+  color: var(--soft-white) !important;
+}
+
+.content-section h1,
+.content-section h2,
+.content-section h3,
+.content-section h4 {
+  color: #ffffff !important;
+}
+
+.content-section p {
+  color: #c9c1d2;
+}
+
+
+/* =========================================================
+   POETRY SECTION
+   ========================================================= */
+
+.poetry-section,
+.poem-section {
+  background:
+    linear-gradient(
+      135deg,
+      #0b0710 0%,
+      #210b3d 50%,
+      #0b0710 100%
+    ) !important;
+}
+
+.poetry-section h2,
+.poem-section h2 {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   POETRY / STORY / NOVEL CARDS
+   ========================================================= */
+
+.poem-card,
+.poetry-card,
+.story-card,
+.novel-card,
+.card {
+  background:
+    linear-gradient(
+      145deg,
+      #17111f,
+      #0b080f
+    ) !important;
+
+  color: var(--soft-white) !important;
+
+  border: 1px solid var(--purple-border) !important;
+
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.32);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.poem-card:hover,
+.poetry-card:hover,
+.story-card:hover,
+.novel-card:hover,
+.card:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(167, 139, 250, 0.75) !important;
+
+  box-shadow:
+    0 15px 45px rgba(91, 33, 182, 0.28);
+}
+
+.poem-card h3,
+.poetry-card h3,
+.story-card h3,
+.novel-card h3,
+.card h3 {
+  color: #ffffff !important;
+}
+
+.poem-card p,
+.poetry-card p,
+.story-card p,
+.novel-card p,
+.card p {
+  color: #bdb3c8 !important;
+}
+
+
+/* =========================================================
+   NOVEL SECTION
+   ========================================================= */
+
+.novel-section {
+  background:
+    linear-gradient(
+      135deg,
+      #0a070d 0%,
+      #1d0b32 45%,
+      #08060d 100%
+    ) !important;
+
+  color: #ffffff !important;
+}
+
+.novel-section h2,
+.novel-section h3 {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   STORY SECTION
+   ========================================================= */
+
+.story-section,
+.stories-section {
+  background:
+    linear-gradient(
+      180deg,
+      #100a16,
+      #08060d
+    ) !important;
+
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   CATEGORY / TAG / BADGES
+   ========================================================= */
+
+.category,
+.tag,
+.badge,
+.label {
+  background: rgba(124, 58, 237, 0.14) !important;
+
+  color: #c4b5fd !important;
+
+  border: 1px solid rgba(124, 58, 237, 0.38) !important;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+button,
+.btn,
+.button {
+  background: var(--purple) !important;
+  color: #ffffff !important;
+
+  border-color: var(--violet) !important;
+}
+
+button:hover,
+.btn:hover,
+.button:hover {
+  background: var(--violet) !important;
+  color: #ffffff !important;
+
+  box-shadow:
+    0 8px 25px rgba(124, 58, 237, 0.3);
+}
+
+
+/* =========================================================
+   POEM / STORY / NOVEL READER PAGE
+   ========================================================= */
+
+.poem-page,
+.poem-reader,
+.reader-page,
+.story-page,
+.novel-page {
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(91, 33, 182, 0.22),
+      transparent 42%
+    ),
+    #08060d !important;
+
+  color: #eee9f7 !important;
+}
+
+
+/* Reader container */
+
+.poem-reader,
+.reader-page {
+  background:
+    linear-gradient(
+      145deg,
+      #0b080f,
+      #160b23
+    ) !important;
+
+  border-color: var(--purple-border) !important;
+}
+
+
+/* Reader title */
+
+.poem-page h1,
+.poem-page h2,
+.poem-reader h1,
+.poem-reader h2,
+.reader-page h1,
+.reader-page h2,
+.story-page h1,
+.novel-page h1 {
+  color: #ffffff !important;
+}
+
+
+/* Reader paragraph */
+
+.poem-page p,
+.poem-reader p,
+.reader-page p,
+.story-page p,
+.novel-page p {
+  color: #ddd6e7 !important;
+}
+
+
+/* Reader links */
+
+.poem-page a,
+.poem-reader a,
+.reader-page a,
+.story-page a,
+.novel-page a {
+  color: #a78bfa;
+}
+
+.poem-page a:hover,
+.poem-reader a:hover,
+.reader-page a:hover,
+.story-page a:hover,
+.novel-page a:hover {
+  color: #c4b5fd;
+}
+
+
+/* =========================================================
+   READER DIVIDERS
+   ========================================================= */
+
+.poem-page hr,
+.poem-reader hr,
+.reader-page hr,
+.story-page hr,
+.novel-page hr {
+  border: 0;
+
+  border-top:
+    1px solid rgba(124, 58, 237, 0.28);
+}
+
+
+/* =========================================================
+   BLOCKQUOTE / QUOTES
+   ========================================================= */
+
+blockquote {
+  background:
+    linear-gradient(
+      135deg,
+      #160b23,
+      #0b080f
+    ) !important;
+
+  color: #ddd6e7 !important;
+
+  border-left:
+    3px solid #7c3aed !important;
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   INPUT / SEARCH
+   ========================================================= */
+
+input,
+textarea,
+select {
+  background: #100c15 !important;
+
+  color: #ffffff !important;
+
+  border:
+    1px solid rgba(124, 58, 237, 0.35) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #7c3aed !important;
+
+  outline: none !important;
+
+  box-shadow:
+    0 0 0 3px rgba(124, 58, 237, 0.12);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #81768d !important;
+}
+
+
+/* =========================================================
+   AUTHOR SECTION
+   ========================================================= */
+
+.author-section {
+  background:
+    linear-gradient(
+      135deg,
+      #09070d,
+      #1c0b30
+    ) !important;
+
+  color: #ffffff !important;
+}
+
+.author-section h2,
+.author-section h3 {
+  color: #ffffff !important;
+}
+
+.author-section p {
+  color: #c8bfce !important;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+  background:
+    linear-gradient(
+      180deg,
+      #0c0811,
+      #050408
+    ) !important;
+
+  color: #aaa1b8 !important;
+
+  border-top:
+    1px solid rgba(124, 58, 237, 0.22);
+}
+
+footer a {
+  color: #b9a4df !important;
+}
+
+footer a:hover {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   PURPLE GLOW UTILITY
+   ========================================================= */
+
+.purple-glow {
+  box-shadow:
+    0 0 35px rgba(124, 58, 237, 0.22);
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #08060d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b1767;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6d28d9;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width: 768px) {
+
   .hero {
     background:
       radial-gradient(
         circle at 50% 15%,
-        #8d5cf2 0%,
-        #6d36d9 42%,
-        #4b1fae 100%
+        #6d28d9 0%,
+        #4c1d95 45%,
+        #10051d 100%
       ) !important;
   }
 
-  .hero-button {
-    background: rgba(255, 255, 255, 0.12);
+  .content-section.light,
+  .content-section.dark {
+    background:
+      linear-gradient(
+        180deg,
+        #100a16,
+        #08060d
+      ) !important;
   }
+
+  .poem-card,
+  .poetry-card,
+  .story-card,
+  .novel-card,
+  .card {
+    box-shadow:
+      0 8px 25px rgba(0, 0, 0, 0.28);
+  }
+
 }
