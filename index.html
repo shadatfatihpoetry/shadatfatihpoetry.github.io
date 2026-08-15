@@ -11,7 +11,8 @@
   >
 
   <title>Shadat Fatih — কবিতা, গল্প ও উপন্যাস</title>
-
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#000000">
   <meta
     name="description"
     content="Shadat Fatih-এর কবিতা, গল্প ও উপন্যাসের নিজস্ব সাহিত্যভুবন।"
@@ -849,6 +850,16 @@ window.supabaseClient =
 
 <script src="script.js"></script>
 
-
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .catch(error => {
+        console.error("Service Worker registration failed:", error);
+      });
+  });
+}
+</script>
+  
 </body>
 </html>
