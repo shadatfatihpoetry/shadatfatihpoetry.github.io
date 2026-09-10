@@ -697,3 +697,17 @@ a {
     scroll-behavior: auto !important;
   }
 }
+
+/* =========================================
+   MODAL VISIBILITY FIX
+   Keep admin dialogs hidden until activated
+========================================= */
+
+.modal {
+  display: none !important;
+}
+
+.modal.active {
+  display: flex !important;
+}
+
