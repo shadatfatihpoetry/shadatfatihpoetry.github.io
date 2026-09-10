@@ -1,0 +1,4971 @@
+/* =====================================================
+   SHADAT FATIH — COMPLETE PREMIUM RESPONSIVE STYLE
+   Archive + Most Viewed inside 3-dot menu
+===================================================== */
+
+:root {
+  --black: #111111;
+  --dark: #181818;
+  --dark-2: #222222;
+  --white: #ffffff;
+  --cream: #f7f4ee;
+  --paper: #fbfaf7;
+  --text: #202020;
+  --muted: #777777;
+  --line: #dedad2;
+  --gold: #b08a45;
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+
+  --menu-width: 360px;
+  --max-width: 1180px;
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--text);
+  font-family: "Noto Serif Bengali", serif;
+  line-height: 1.8;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+
+  width: 100% !important;
+  height: 76px !important;
+
+  z-index: 9990 !important;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.nav-inner {
+  position: relative !important;
+
+  width: 100% !important;
+  max-width: 1200px !important;
+  height: 76px !important;
+
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.brand-logo {
+  position: static !important;
+
+  width: 46px !important;
+  height: 46px !important;
+
+  flex: 0 0 46px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border-radius: 50%;
+  overflow: hidden;
+
+  display: block;
+
+  z-index: 5;
+}
+
+.brand-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+/* =====================================================
+   SITE TITLE
+===================================================== */
+
+.site-title {
+  position: absolute !important;
+
+  left: 50% !important;
+  top: 50% !important;
+
+  transform: translate(-50%, -50%) !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  max-width: calc(100vw - 170px);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif !important;
+
+  font-size: clamp(25px, 3vw, 40px) !important;
+  font-weight: 700 !important;
+
+  line-height: 1 !important;
+  letter-spacing: 0.3px;
+
+  text-align: center;
+
+  z-index: 2;
+}
+
+
+/* =====================================================
+   THREE DOT MENU
+===================================================== */
+
+.menu-btn {
+  position: static !important;
+
+  width: 50px !important;
+  height: 50px !important;
+
+  min-width: 50px !important;
+  min-height: 50px !important;
+
+  flex: 0 0 50px !important;
+
+  margin-left: auto !important;
+  margin-right: 0 !important;
+
+  padding: 0 !important;
+
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: transparent;
+
+  color: var(--black);
+
+  font-family: Arial, sans-serif;
+  font-size: 30px;
+  line-height: 1;
+
+  z-index: 5;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.menu-btn:hover {
+  background: #eeeeee;
+}
+
+.menu-btn:active {
+  transform: scale(0.92);
+}
+
+
+/* =====================================================
+   SIDE MENU
+===================================================== */
+
+.side-menu {
+  position: fixed;
+
+  top: 76px;
+  right: 0;
+
+  width: var(--menu-width);
+  max-width: calc(100vw - 18px);
+
+  height: calc(100vh - 76px);
+
+  padding: 28px 24px 40px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  background: #ffffff;
+
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+
+  box-shadow:
+    -20px 0 50px rgba(0, 0, 0, 0.12);
+
+  transform: translateX(105%);
+
+  visibility: hidden;
+  opacity: 0;
+
+  transition:
+    transform 0.35s cubic-bezier(.22,.61,.36,1),
+    opacity 0.25s ease,
+    visibility 0.35s ease;
+
+  z-index: 10000;
+}
+
+.side-menu.active {
+  transform: translateX(0);
+  visibility: visible;
+  opacity: 1;
+}
+
+.side-menu::-webkit-scrollbar {
+  width: 5px;
+}
+
+.side-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.side-menu::-webkit-scrollbar-thumb {
+  background: #c8c8c8;
+  border-radius: 20px;
+}
+
+
+/* =====================================================
+   MENU PROFILE
+===================================================== */
+
+.menu-profile {
+  text-align: center;
+  padding: 5px 0 18px;
+}
+
+.menu-profile-image {
+  width: 92px;
+  height: 92px;
+
+  margin: 0 auto 12px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  border: 3px solid #ffffff;
+
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.15);
+
+  background: #eeeeee;
+}
+
+.menu-profile h3 {
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
+
+  font-size: 21px;
+  font-weight: 600;
+
+  line-height: 1.4;
+}
+
+.menu-profile p {
+  margin-top: 4px;
+
+  color: var(--muted);
+
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+
+/* =====================================================
+   MENU DIVIDER
+===================================================== */
+
+.menu-divider {
+  width: 100%;
+  height: 1px;
+
+  background: var(--line);
+
+  margin: 18px 0;
+}
+
+
+/* =====================================================
+   WEBSITE VIEWS
+===================================================== */
+
+.website-views {
+  width: 100%;
+
+  padding: 10px 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+.website-views span {
+  color: var(--muted);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 1.2px;
+
+  text-transform: uppercase;
+}
+
+.website-views strong {
+  min-width: 35px;
+
+  color: var(--black);
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 21px;
+  font-weight: 600;
+
+  text-align: right;
+}
+
+
+/* =====================================================
+   NORMAL MENU
+===================================================== */
+
+.menu-group {
+  margin-bottom: 7px;
+}
+
+.menu-group-title {
+  width: 100%;
+
+  padding: 13px 2px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--black);
+
+  font-size: 16px;
+  font-weight: 600;
+
+  text-align: left;
+}
+
+.menu-group-title:hover {
+  color: var(--gold);
+}
+
+.menu-arrow {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--line);
+
+  border-radius: 50%;
+
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+.menu-submenu {
+  max-height: 0;
+
+  overflow: hidden;
+
+  padding-left: 10px;
+
+  opacity: 0;
+
+  transition:
+    max-height 0.3s ease,
+    opacity 0.25s ease;
+}
+
+.menu-submenu.open {
+  max-height: 400px;
+  opacity: 1;
+}
+
+.menu-sub-link {
+  display: block;
+
+  padding: 8px 12px;
+
+  color: #666666;
+
+  font-size: 14px;
+
+  border-left: 1px solid #dddddd;
+}
+
+.menu-sub-link:hover {
+  color: var(--black);
+  border-color: var(--gold);
+  padding-left: 17px;
+}
+
+
+/* =====================================================
+   MAIN MENU LINKS
+===================================================== */
+
+.menu-main-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-main-links a {
+  padding: 11px 2px;
+
+  border-bottom: 1px solid #eeeeee;
+
+  font-size: 15px;
+}
+
+.menu-main-links a:hover {
+  color: var(--gold);
+  padding-left: 7px;
+}
+
+
+/* =====================================================
+   ARCHIVE MENU
+===================================================== */
+
+.menu-archive-area {
+  margin-top: 18px;
+
+  padding-top: 8px;
+
+  border-top: 1px solid var(--line);
+}
+
+.menu-archive-heading {
+  padding: 8px 2px 12px;
+
+  color: var(--muted);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 1.8px;
+
+  text-transform: uppercase;
+}
+
+.menu-folder {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.menu-folder-btn {
+  width: 100%;
+
+  min-height: 44px;
+
+  padding: 9px 4px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--black);
+
+  text-align: left;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.menu-folder-btn:hover {
+  color: var(--gold);
+}
+
+.menu-folder-left {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  min-width: 0;
+}
+
+.menu-folder-icon {
+  width: 22px;
+  height: 18px;
+
+  position: relative;
+
+  display: inline-block;
+
+  border: 1px solid #bdb7ad;
+
+  border-radius: 2px;
+
+  background: #f8f5ef;
+
+  flex-shrink: 0;
+}
+
+.menu-folder-icon::before {
+  content: "";
+
+  position: absolute;
+
+  left: 2px;
+  top: -4px;
+
+  width: 9px;
+  height: 5px;
+
+  border: 1px solid #bdb7ad;
+
+  border-bottom: 0;
+
+  border-radius: 2px 2px 0 0;
+
+  background: #f8f5ef;
+}
+
+.menu-folder-arrow {
+  font-family: Arial, sans-serif;
+
+  font-size: 15px;
+
+  color: #888888;
+
+  transition: transform 0.25s ease;
+}
+
+.menu-folder.open > .menu-folder-btn .menu-folder-arrow {
+  transform: rotate(90deg);
+}
+
+.menu-folder-content {
+  max-height: 0;
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  padding-left: 31px;
+
+  transition:
+    max-height 0.35s ease,
+    opacity 0.25s ease;
+}
+
+.menu-folder.open > .menu-folder-content {
+  max-height: 3000px;
+  opacity: 1;
+}
+
+.menu-month {
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+.menu-month-btn {
+  width: 100%;
+
+  min-height: 38px;
+
+  padding: 7px 5px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  border: 0;
+
+  border-left: 1px solid #dedad2;
+
+  background: transparent;
+
+  color: #555555;
+
+  font-size: 13px;
+
+  text-align: left;
+}
+
+.menu-month-btn:hover {
+  color: var(--black);
+  padding-left: 10px;
+}
+
+.menu-month-arrow {
+  font-family: Arial, sans-serif;
+
+  font-size: 13px;
+
+  color: #999999;
+
+  transition: transform 0.2s ease;
+}
+
+.menu-month.open .menu-month-arrow {
+  transform: rotate(90deg);
+}
+
+.menu-month-content {
+  max-height: 0;
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  padding-left: 14px;
+
+  transition:
+    max-height 0.3s ease,
+    opacity 0.25s ease;
+}
+
+.menu-month.open .menu-month-content {
+  max-height: 1500px;
+  opacity: 1;
+}
+
+.menu-archive-item {
+  display: block;
+
+  padding: 7px 8px;
+
+  border-left: 1px solid #e3e0da;
+
+  color: #777777;
+
+  font-size: 12px;
+
+  line-height: 1.6;
+}
+
+.menu-archive-item:hover {
+  color: var(--black);
+
+  border-color: var(--gold);
+
+  padding-left: 13px;
+}
+
+.menu-archive-item small {
+  display: block;
+
+  margin-top: 1px;
+
+  color: #aaa;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 8px;
+}
+
+
+/* =====================================================
+   MOST VIEWED MENU
+===================================================== */
+
+.menu-most-viewed {
+  margin-top: 20px;
+
+  padding-top: 15px;
+
+  border-top: 1px solid var(--line);
+}
+
+.menu-most-title {
+  padding: 8px 2px 12px;
+
+  color: var(--muted);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 1.8px;
+
+  text-transform: uppercase;
+}
+
+.menu-most-folder {
+  margin-bottom: 4px;
+}
+
+.menu-most-folder-btn {
+  width: 100%;
+
+  min-height: 42px;
+
+  padding: 8px 4px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--black);
+
+  font-size: 14px;
+  font-weight: 600;
+
+  text-align: left;
+}
+
+.menu-most-folder-btn:hover {
+  color: var(--gold);
+}
+
+.menu-most-folder-arrow {
+  font-family: Arial, sans-serif;
+
+  color: #999999;
+
+  font-size: 14px;
+
+  transition: transform 0.2s ease;
+}
+
+.menu-most-folder.open .menu-most-folder-arrow {
+  transform: rotate(90deg);
+}
+
+.menu-most-content {
+  max-height: 0;
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  padding-left: 13px;
+
+  transition:
+    max-height 0.3s ease,
+    opacity 0.25s ease;
+}
+
+.menu-most-folder.open .menu-most-content {
+  max-height: 1200px;
+  opacity: 1;
+}
+
+.menu-most-item {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 9px;
+
+  padding: 8px 5px;
+
+  border-left: 1px solid #e3e0da;
+}
+
+.menu-most-item:hover {
+  border-color: var(--gold);
+}
+
+.menu-most-rank {
+  width: 18px;
+
+  flex-shrink: 0;
+
+  color: #aaa;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+}
+
+.menu-most-info {
+  min-width: 0;
+}
+
+.menu-most-info a {
+  display: block;
+
+  color: #555555;
+
+  font-size: 12px;
+
+  line-height: 1.55;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.menu-most-info a:hover {
+  color: var(--black);
+}
+
+.menu-most-views {
+  display: block;
+
+  margin-top: 1px;
+
+  color: #aaa;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 8px;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+main {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+  width: 100%;
+
+  max-width: 1400px;
+
+  min-height: 100vh;
+
+  margin: 0 auto;
+
+  padding:
+    120px
+    max(20px, calc((100% - var(--max-width)) / 2));
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 0.85fr);
+
+  align-items: center;
+
+  gap: 70px;
+
+  background: var(--cream);
+}
+
+.hero-content {
+  min-width: 0;
+
+  width: 100%;
+  max-width: 650px;
+}
+
+.eyebrow {
+  margin-bottom: 14px;
+
+  color: var(--gold);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 2.2px;
+}
+
+.hero h1 {
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
+
+  font-size: clamp(48px, 7vw, 88px);
+
+  font-weight: 600;
+
+  line-height: 1.08;
+
+  letter-spacing: -2px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  font-weight: 500;
+}
+
+.hero-text {
+  margin-top: 26px;
+
+  color: #686868;
+
+  font-size: 17px;
+
+  line-height: 2;
+}
+
+.hero-button {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-top: 30px;
+
+  padding: 13px 20px;
+
+  border: 1px solid var(--black);
+
+  font-size: 14px;
+}
+
+.hero-button:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.hero-image {
+  position: relative;
+
+  width: 100%;
+  max-width: 470px;
+
+  margin-left: auto;
+}
+
+.hero-image img {
+  width: 100%;
+
+  aspect-ratio: 4 / 5;
+
+  object-fit: cover;
+}
+
+.hero-caption {
+  position: absolute;
+
+  bottom: 15px;
+  left: 15px;
+  right: 15px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 12px 14px;
+
+  background: rgba(0, 0, 0, 0.65);
+
+  color: white;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 1.3px;
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.intro {
+  padding: 130px 20px;
+
+  background: var(--black);
+
+  color: var(--white);
+
+  text-align: center;
+}
+
+.intro-inner {
+  width: min(100%, 800px);
+  margin: auto;
+}
+
+.intro h2 {
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
+
+  font-size: clamp(34px, 5vw, 58px);
+
+  line-height: 1.35;
+}
+
+.intro h2 em {
+  color: #c5b99e;
+  font-style: italic;
+}
+
+.intro p:last-child {
+  max-width: 620px;
+
+  margin: 25px auto 0;
+
+  color: #aaaaaa;
+
+  font-size: 15px;
+}
+
+
+/* =====================================================
+   CONTENT SECTIONS
+===================================================== */
+
+.content-section {
+  width: 100%;
+
+  padding: 110px 20px;
+}
+
+.content-section.light {
+  background: var(--paper);
+  color: var(--text);
+}
+
+.content-section.dark {
+  background: var(--dark);
+  color: var(--white);
+}
+
+.section-container {
+  width: min(100%, var(--max-width));
+
+  margin: auto;
+}
+
+.section-top {
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 40px;
+
+  margin-bottom: 60px;
+}
+
+.section-top h2,
+.author-info h2 {
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
+
+  font-size: clamp(38px, 5vw, 64px);
+
+  line-height: 1.2;
+}
+
+.section-top > p {
+  max-width: 310px;
+
+  color: var(--muted);
+
+  font-size: 14px;
+}
+
+
+/* =====================================================
+   WRITING LIST
+===================================================== */
+
+.writing-list {
+  width: 100%;
+}
+
+.writing-card {
+  position: relative;
+
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: 105px minmax(0, 1fr);
+
+  gap: 38px;
+
+  padding: 52px 0;
+
+  border-top: 1px solid rgba(17, 17, 17, 0.14);
+
+  transition:
+    padding-left 0.35s ease,
+    padding-right 0.35s ease;
+}
+
+.writing-card:hover {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.card-number {
+  color: #b9b3a8;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: clamp(38px, 5vw, 58px);
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing: -2px;
+}
+
+.writing-card:hover .card-number {
+  color: var(--gold);
+  transform: translateY(-3px);
+}
+
+.writing-card-content {
+  position: relative;
+  min-width: 0;
+}
+
+.published-date {
+  margin-bottom: 10px;
+
+  color: #8b877f;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 1.4px;
+
+  text-transform: uppercase;
+}
+
+.card-label {
+  display: inline-flex;
+
+  align-items: center;
+
+  min-height: 24px;
+
+  padding: 4px 9px;
+
+  border: 1px solid rgba(176, 138, 69, 0.35);
+
+  color: var(--gold);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.8px;
+
+  line-height: 1;
+
+  text-transform: uppercase;
+}
+
+.writing-card h3,
+.story-card h3,
+.novel-card h3 {
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
+
+  font-weight: 500;
+
+  line-height: 1.35;
+}
+
+.writing-card h3 {
+  margin-top: 13px;
+
+  max-width: 760px;
+
+  font-size: clamp(27px, 3.2vw, 40px);
+
+  letter-spacing: -0.4px;
+}
+
+.writing-card:hover h3 {
+  color: #7c612e;
+}
+
+.writing-excerpt,
+.story-card > p,
+.novel-card p {
+  max-width: 700px;
+
+  margin-top: 13px;
+
+  color: var(--muted);
+
+  font-size: 14px;
+
+  line-height: 1.9;
+}
+
+
+/* =====================================================
+   VIEW COUNT
+===================================================== */
+
+.view-count {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 6px;
+
+  color: #777777;
+
+  white-space: nowrap;
+
+  font-family: Arial, sans-serif;
+}
+
+.view-count span {
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+.view-count strong {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.view-count small {
+  font-size: 10px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.5px;
+}
+
+.writing-card-content > .view-count,
+.story-card > .view-count,
+.novel-info > .view-count,
+.total-views {
+  position: absolute;
+
+  top: 2px;
+  right: 0;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  color: #77736f;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 10px;
+
+  white-space: nowrap;
+}
+
+.writing-card-content > .view-count strong,
+.story-card > .view-count strong,
+.novel-info > .view-count strong,
+.total-views strong {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.dark .view-count,
+.dark .total-views {
+  color: #999999;
+}
+
+.dark .view-count strong,
+.dark .total-views strong {
+  color: #dddddd;
+}
+
+
+/* =====================================================
+   CARD BOTTOM
+===================================================== */
+
+.card-bottom {
+  margin-top: 28px;
+
+  padding-top: 18px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+.text-link {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  border: 0;
+
+  font-family:
+    "Noto Serif Bengali",
+    serif;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.text-link:hover {
+  color: var(--gold);
+}
+
+
+/* =====================================================
+   PREMIUM ACTION BUTTONS
+===================================================== */
+
+.writing-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  margin-top: 17px;
+
+  padding-top: 0;
+
+  border-top: 0;
+}
+
+.action-btn {
+  position: relative;
+
+  width: 36px;
+  height: 36px;
+
+  min-width: 36px;
+
+  padding: 0;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: 1px solid transparent;
+
+  border-radius: 50%;
+
+  background: transparent;
+
+  color: #334155;
+
+  opacity: 0.62;
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+  transition:
+    opacity 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.action-btn::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -120%;
+
+  width: 80%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(49, 92, 114, 0.10),
+      transparent
+    );
+
+  transform: skewX(-20deg);
+
+  transition: left 0.55s ease;
+}
+
+.action-btn:hover::before {
+  left: 130%;
+}
+
+.action-btn:hover {
+  opacity: 1;
+
+  border-color:
+    rgba(176, 138, 69, 0.35);
+
+  background:
+    rgba(176, 138, 69, 0.06);
+
+  transform:
+    translateY(-2px);
+}
+
+.action-btn span {
+  position: relative;
+
+  z-index: 2;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 19px;
+  height: 19px;
+
+  color: #315c72;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 15px;
+
+  line-height: 1;
+}
+
+.action-btn small {
+  display: none;
+}
+
+.action-btn:active {
+  transform:
+    translateY(-1px)
+    scale(0.95);
+}
+
+
+/* =====================================================
+   HOME ACTION BUTTONS
+===================================================== */
+
+.home-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+
+  margin-top: 20px;
+}
+
+.home-action {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 7px 15px 7px 8px;
+
+  border: 1px solid rgba(80, 80, 80, 0.16);
+
+  border-radius: 30px;
+
+  background: rgba(255, 255, 255, 0.72);
+
+  color: #242424;
+
+  font-family:
+    "Noto Serif Bengali",
+    serif;
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
+
+  backdrop-filter: blur(8px);
+}
+
+.home-action-icon {
+  width: 34px;
+  height: 34px;
+
+  min-width: 34px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  box-shadow:
+    0 5px 14px rgba(0,0,0,.16);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.home-action.comment .home-action-icon {
+  background:
+    linear-gradient(
+      135deg,
+      #5b4b8a,
+      #8c6fc4
+    );
+}
+
+.home-action.share .home-action-icon {
+  background:
+    linear-gradient(
+      135deg,
+      #147d92,
+      #29a6b8
+    );
+}
+
+.home-action.copy .home-action-icon {
+  background:
+    linear-gradient(
+      135deg,
+      #3d566e,
+      #66849f
+    );
+}
+
+.home-action:hover {
+  transform: translateY(-3px);
+
+  background:
+    rgba(255,255,255,.95);
+
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.12);
+
+  border-color:
+    rgba(70,70,70,.25);
+}
+
+.home-action:hover .home-action-icon {
+  transform:
+    rotate(8deg)
+    scale(1.1);
+
+  box-shadow:
+    0 7px 20px rgba(0,0,0,.22);
+}
+
+.home-action:active {
+  transform:
+    translateY(-1px)
+    scale(.97);
+}
+
+
+/* =====================================================
+   STORIES
+===================================================== */
+
+.story-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 1px;
+
+  background: rgba(255,255,255,0.12);
+}
+
+.story-card {
+  position: relative;
+
+  min-width: 0;
+
+  padding: 46px 42px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #191919 0%,
+      #161616 100%
+    );
+
+  color: #ffffff;
+
+  transition:
+    transform 0.35s ease,
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.story-card:hover {
+  z-index: 2;
+
+  transform: translateY(-5px);
+
+  background: #1c1c1c;
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.22);
+}
+
+.story-card > span {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 5px 9px;
+
+  border: 1px solid rgba(176,138,69,0.38);
+
+  color: #c0a36e;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.8px;
+
+  text-transform: uppercase;
+}
+
+.story-card .published-date {
+  margin-top: 20px;
+  color: #777777;
+}
+
+.story-card h3 {
+  margin-top: 9px;
+
+  font-size: clamp(25px, 3vw, 34px);
+}
+
+.story-card:hover h3 {
+  color: #d2b77f;
+}
+
+.story-card > p {
+  max-width: 580px;
+
+  margin-top: 13px;
+
+  color: #969696;
+
+  line-height: 1.9;
+}
+
+.story-card > .view-count {
+  top: 42px;
+  right: 42px;
+
+  color: #777777;
+}
+
+.story-card .card-bottom {
+  margin-top: 30px;
+
+  padding-top: 18px;
+
+  border-top:
+    1px solid
+    rgba(255,255,255,0.08);
+}
+
+.story-card .text-link {
+  color: #e1ded8;
+}
+
+.story-card .text-link:hover {
+  color: #c4a66d;
+}
+
+.story-card .writing-actions {
+  margin-top: 15px;
+}
+
+.story-card .action-btn {
+  color: #dddddd;
+}
+
+.story-card .action-btn span {
+  color: #dddddd;
+}
+
+.story-card .action-btn:hover {
+  color: #ffffff;
+
+  border-color:
+    rgba(255,255,255,0.18);
+
+  background:
+    rgba(255,255,255,0.05);
+}
+
+
+/* =====================================================
+   NOVELS
+===================================================== */
+
+.novel-section {
+  background: #e9e4da;
+}
+
+.novel-section .section-container {
+  width: min(1200px, calc(100% - 40px));
+
+  margin: 0 auto;
+}
+
+.novel-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 24px;
+
+  margin: 0 auto;
+}
+
+.novel-card {
+  position: relative;
+
+  width: 100%;
+
+  min-width: 0;
+
+  padding: 46px 42px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #faf8f3 0%,
+      #f4f0e8 100%
+    );
+
+  border: 1px solid rgba(120,105,80,0.18);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.novel-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(176,138,69,0.35);
+
+  box-shadow:
+    0 22px 55px rgba(50,45,35,0.14);
+}
+
+.novel-info {
+  position: relative;
+
+  min-width: 0;
+
+  width: 100%;
+}
+
+.novel-card .card-label,
+.novel-card > span {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 5px 9px;
+
+  border: 1px solid rgba(176,138,69,0.35);
+
+  color: var(--gold);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.8px;
+
+  text-transform: uppercase;
+}
+
+.novel-card .published-date {
+  margin-top: 17px;
+}
+
+.novel-card h3 {
+  margin-top: 10px;
+
+  font-size: clamp(26px, 3vw, 37px);
+}
+
+.novel-card:hover h3 {
+  color: #816632;
+}
+
+.novel-card p {
+  max-width: 650px;
+
+  margin-top: 13px;
+
+  color: #77736c;
+
+  line-height: 1.9;
+}
+
+.novel-info > .view-count {
+  top: 0;
+  right: 0;
+
+  color: #77736c;
+}
+
+.novel-card .card-bottom {
+  margin-top: 30px;
+
+  padding-top: 18px;
+
+  border-top:
+    1px solid
+    rgba(0,0,0,0.08);
+}
+
+.novel-card .text-link {
+  border: 0;
+}
+
+.novel-card .text-link:hover {
+  color: var(--gold);
+}
+
+
+/* =====================================================
+   PREMIUM MICRO DETAILS
+===================================================== */
+
+.writing-card-content::after,
+.story-card::after,
+.novel-card::after {
+  content: "";
+
+  position: absolute;
+
+  width: 0;
+
+  height: 1px;
+
+  left: 0;
+
+  bottom: 0;
+
+  background: var(--gold);
+
+  transition: width 0.4s ease;
+}
+
+.writing-card:hover .writing-card-content::after,
+.story-card:hover::after,
+.novel-card:hover::after {
+  width: 55px;
+}
+
+
+/* =====================================================
+   QUOTE
+===================================================== */
+
+.quote-section {
+  padding: 150px 20px;
+
+  background: var(--cream);
+
+  text-align: center;
+}
+
+.quote-container {
+  width: min(100%, 800px);
+
+  margin: auto;
+}
+
+.quote-symbol {
+  display: block;
+
+  color: var(--gold);
+
+  font-family: Georgia, serif;
+
+  font-size: 75px;
+
+  line-height: 0.7;
+}
+
+.quote-container blockquote {
+  margin-top: 25px;
+
+  font-family:
+    "Playfair Display",
+    "Noto Serif Bengali",
+    serif;
+
+  font-size: clamp(32px, 5vw, 58px);
+
+  line-height: 1.35;
+}
+
+.quote-container blockquote em {
+  font-style: italic;
+}
+
+.quote-container > p {
+  margin-top: 22px;
+
+  color: var(--muted);
+
+  font-size: 13px;
+}
+
+
+/* =====================================================
+   AUTHOR
+===================================================== */
+
+.author-section {
+  padding: 110px 20px;
+
+  background: var(--paper);
+}
+
+.author-grid {
+  display: grid;
+
+  grid-template-columns:
+    0.8fr 1.2fr;
+
+  gap: 70px;
+
+  align-items: center;
+}
+
+.author-photo img {
+  width: 100%;
+
+  max-width: 430px;
+
+  aspect-ratio: 4 / 5;
+
+  object-fit: cover;
+}
+
+.author-info h2 {
+  margin-bottom: 22px;
+}
+
+.author-info > p:not(.eyebrow) {
+  max-width: 600px;
+
+  color: var(--muted);
+
+  font-size: 15px;
+}
+
+.floating-socials {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 30px;
+}
+
+.floating-socials a {
+  padding: 7px 12px;
+
+  border: 1px solid var(--line);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 10px;
+}
+
+.floating-socials a:hover {
+  background: var(--black);
+  color: white;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+  padding: 35px 20px;
+
+  background: #0d0d0d;
+
+  color: white;
+}
+
+.footer-inner {
+  width: min(100%, var(--max-width));
+
+  margin: auto;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+.footer-inner strong {
+  font-family: "Playfair Display", serif;
+
+  font-size: 18px;
+}
+
+.footer-inner p {
+  color: #777777;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 1px;
+}
+
+
+/* =====================================================
+   LOADING / EMPTY / ERROR
+===================================================== */
+
+.loading-state,
+.empty-state,
+.error-state {
+  width: 100%;
+
+  padding: 40px 20px;
+
+  text-align: center;
+
+  color: var(--muted);
+
+  border: 1px dashed var(--line);
+}
+
+.error-state {
+  color: #9b4444;
+}
+
+.error-state p {
+  margin-top: 5px;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 11px;
+}
+
+
+/* =====================================================
+   COMMENT MODAL
+===================================================== */
+
+.comment-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.65);
+
+  z-index: 20000;
+
+  backdrop-filter: blur(8px);
+}
+
+.comment-overlay.active {
+  display: flex;
+}
+
+.comment-box {
+  width: min(100%, 520px);
+
+  padding: 30px;
+
+  background: #fff;
+
+  border: 1px solid #ddd;
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.25);
+}
+
+.comment-box h3 {
+  margin-bottom: 5px;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 27px;
+}
+
+.comment-box-subtitle {
+  margin-bottom: 22px;
+
+  color: #777;
+
+  font-size: 13px;
+}
+
+.comment-form-group {
+  margin-bottom: 15px;
+}
+
+.comment-form-group label {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #555;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.5px;
+}
+
+.comment-form-group input,
+.comment-form-group textarea {
+  width: 100%;
+
+  padding: 11px 13px;
+
+  border: 1px solid #ddd;
+
+  border-radius: 7px;
+
+  background: #fafafa;
+
+  color: #222;
+
+  outline: none;
+}
+
+.comment-form-group textarea {
+  min-height: 120px;
+
+  resize: vertical;
+}
+
+.comment-form-group input:focus,
+.comment-form-group textarea:focus {
+  border-color: var(--gold);
+
+  background: #fff;
+}
+
+.comment-submit-row {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  margin-top: 20px;
+}
+
+.comment-cancel,
+.comment-submit {
+  padding: 9px 16px;
+
+  border-radius: 20px;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.comment-cancel {
+  border: 1px solid #ddd;
+
+  background: #fff;
+
+  color: #666;
+}
+
+.comment-submit {
+  border: 1px solid #111;
+
+  background: #111;
+
+  color: #fff;
+}
+
+
+/* =====================================================
+   READER PAGE
+===================================================== */
+
+.poem-page {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 80px 20px;
+}
+
+.poem-reader {
+  width: 100%;
+  max-width: 900px;
+
+  margin: 0 auto;
+}
+
+.poem-reader h1 {
+  text-align: center;
+
+  margin: 15px 0 25px;
+}
+
+.poem-reader .eyebrow {
+  text-align: center;
+}
+
+.poem-reader .poem-excerpt {
+  max-width: 700px;
+
+  margin: 0 auto 40px;
+
+  text-align: center;
+}
+
+.poem-reader .poem-body,
+.poem-reader .novel-body {
+  width: 100%;
+  max-width: 850px;
+
+  margin: 40px auto;
+
+  text-align: left;
+
+  line-height: 2.1;
+
+  overflow-wrap: break-word;
+}
+
+.poem-reader .novel-chapters {
+  width: 100%;
+  max-width: 850px;
+
+  margin: 40px auto;
+}
+
+.poem-reader .chapter-card {
+  width: 100%;
+
+  margin-bottom: 50px;
+
+  padding-bottom: 40px;
+
+  border-bottom:
+    1px solid
+    rgba(0,0,0,.15);
+}
+
+.poem-reader .chapter-number {
+  text-align: center;
+
+  margin-bottom: 10px;
+
+  font-size: 13px;
+
+  letter-spacing: 2px;
+
+  opacity: .6;
+}
+
+.poem-reader .chapter-title {
+  text-align: center;
+
+  margin: 0 0 30px;
+}
+
+.poem-reader .chapter-content {
+  text-align: left;
+
+  line-height: 2.1;
+
+  overflow-wrap: break-word;
+}
+
+.poem-reader > .text-link {
+  display: block;
+
+  width: fit-content;
+
+  margin: 50px auto 0;
+}
+
+
+/* =====================================================
+   REVEAL
+===================================================== */
+
+.reveal {
+  opacity: 0;
+
+  transform: translateY(30px);
+
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+
+/* =====================================================
+   HIDE ARCHIVE / MOST VIEWED MAIN SECTIONS
+===================================================== */
+
+body > .archive-section,
+main > .archive-section,
+section.archive-section {
+  display: none !important;
+}
+
+body > .most-viewed-section,
+main > .most-viewed-section,
+section.most-viewed-section {
+  display: none !important;
+}
+
+.archive-section,
+.most-viewed-section {
+  scroll-margin-top: 80px;
+}
+
+
+/* =====================================================
+   ARCHIVE INSIDE SIDE MENU
+===================================================== */
+
+.side-menu .archive-section,
+.side-menu .most-viewed-section {
+  display: block !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  background: transparent !important;
+  color: var(--text) !important;
+}
+
+.side-menu .archive-heading {
+  margin-bottom: 15px !important;
+}
+
+.side-menu .archive-heading h2 {
+  font-size: 22px !important;
+}
+
+.side-menu .archive-block,
+.side-menu .most-viewed-block {
+  margin-bottom: 12px !important;
+  padding: 15px !important;
+}
+
+.side-menu .archive-block-heading h3,
+.side-menu .most-viewed-block .archive-block-heading h3 {
+  font-size: 15px !important;
+}
+
+.side-menu .archive-item {
+  padding: 10px 0 !important;
+}
+
+.side-menu .archive-item strong {
+  font-size: 13px !important;
+}
+
+.side-menu .most-viewed-item {
+  grid-template-columns:
+    25px 1fr auto !important;
+
+  gap: 8px !important;
+
+  padding: 10px 0 !important;
+}
+
+.side-menu .most-title span {
+  font-size: 12px !important;
+}
+
+
+/* =====================================================
+   MOBILE — 768px
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .navbar {
+    height: 68px !important;
+  }
+
+  .nav-inner {
+    height: 68px !important;
+    padding: 0 16px !important;
+  }
+
+  .brand-logo {
+    width: 42px !important;
+    height: 42px !important;
+
+    flex-basis: 42px !important;
+  }
+
+  .site-title {
+    font-size: 27px !important;
+
+    max-width: calc(100vw - 150px);
+  }
+
+  .menu-btn {
+    width: 46px !important;
+    height: 46px !important;
+
+    min-width: 46px !important;
+    min-height: 46px !important;
+
+    flex-basis: 46px !important;
+  }
+
+
+  /* SIDE MENU */
+
+  .side-menu {
+    top: 68px;
+
+    width: min(350px, 90vw);
+
+    height: calc(100vh - 68px);
+
+    padding: 25px 20px 35px;
+  }
+
+
+  /* HERO */
+
+  .hero {
+    min-height: auto;
+
+    width: 100%;
+
+    padding:
+      105px 18px 60px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 35px;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+
+    order: 1;
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 12vw, 65px);
+
+    letter-spacing: -1px;
+  }
+
+  .hero-text {
+    font-size: 15px;
+  }
+
+  .hero-image {
+    width: 100%;
+    max-width: 100%;
+
+    order: 2;
+
+    margin-left: 0;
+  }
+
+  .hero-image img {
+    width: 100%;
+    max-width: 100%;
+
+    max-height: 520px;
+
+    object-fit: cover;
+  }
+
+
+  /* INTRO */
+
+  .intro {
+    padding: 90px 20px;
+  }
+
+  .intro h2 {
+    font-size: clamp(30px, 8vw, 45px);
+  }
+
+
+  /* SECTIONS */
+
+  .content-section,
+  .author-section {
+    width: 100%;
+
+    padding: 80px 18px;
+  }
+
+  .section-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .section-top {
+    display: block;
+
+    margin-bottom: 40px;
+  }
+
+  .section-top > p {
+    margin-top: 15px;
+  }
+
+
+  /* POETRY */
+
+  .writing-card {
+    width: 100%;
+
+    grid-template-columns:
+      52px minmax(0, 1fr);
+
+    gap: 18px;
+
+    padding: 38px 0;
+  }
+
+  .card-number {
+    font-size: 36px;
+  }
+
+  .writing-card h3 {
+    font-size: 26px;
+
+    padding-right: 55px;
+  }
+
+  .writing-card-content > .view-count {
+    top: 2px;
+    right: 0;
+  }
+
+  .writing-card .card-bottom {
+    align-items: flex-start;
+
+    gap: 16px;
+  }
+
+  .writing-actions {
+    margin-top: 10px;
+  }
+
+
+  /* STORIES */
+
+  .story-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .story-card {
+    padding: 35px 25px;
+  }
+
+  .story-card > .view-count {
+    top: 35px;
+    right: 25px;
+  }
+
+  .story-card h3 {
+    padding-right: 45px;
+
+    font-size: 26px;
+  }
+
+
+  /* NOVELS */
+
+  .novel-section .section-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .novel-grid {
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+  }
+
+  .novel-card {
+    padding: 35px 25px;
+  }
+
+  .novel-card h3 {
+    padding-right: 45px;
+
+    font-size: 27px;
+  }
+
+
+  /* ARCHIVE MENU */
+
+  .menu-archive-area {
+    margin-top: 15px;
+  }
+
+  .menu-folder-content {
+    padding-left: 26px;
+  }
+
+  .menu-month-content {
+    padding-left: 10px;
+  }
+
+  .side-menu .archive-heading h2 {
+    font-size: 20px !important;
+  }
+
+  .side-menu .archive-block,
+  .side-menu .most-viewed-block {
+    padding: 12px !important;
+  }
+
+
+  /* AUTHOR */
+
+  .author-grid {
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+  }
+
+  .author-photo img {
+    max-width: 100%;
+  }
+
+
+  /* QUOTE */
+
+  .quote-section {
+    padding: 100px 20px;
+  }
+
+
+  /* COMMENT */
+
+  .comment-box {
+    padding: 24px 20px;
+  }
+
+
+  /* FOOTER */
+
+  .footer-inner {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+
+  /* READER */
+
+  .poem-page {
+    padding: 55px 18px;
+  }
+
+  .poem-reader {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .poem-reader h1 {
+    font-size: clamp(28px, 8vw, 38px);
+  }
+
+  .poem-reader .poem-body,
+  .poem-reader .novel-body,
+  .poem-reader .chapter-content {
+    font-size: 17px;
+
+    line-height: 2;
+  }
+
+
+  /* HOME ACTIONS */
+
+  .home-actions {
+    gap: 8px;
+  }
+
+  .home-action {
+    padding:
+      6px 12px 6px 7px;
+
+    font-size: 13px;
+  }
+
+  .home-action-icon {
+    width: 32px;
+    height: 32px;
+
+    min-width: 32px;
+
+    font-size: 15px;
+  }
+}
+
+
+/* =====================================================
+   SMALL MOBILE — 480px
+===================================================== */
+
+@media (max-width: 480px) {
+
+  .nav-inner {
+    padding: 0 12px !important;
+  }
+
+  .brand-logo {
+    width: 40px !important;
+    height: 40px !important;
+
+    flex-basis: 40px !important;
+  }
+
+  .site-title {
+    font-size: 22px !important;
+
+    max-width: calc(100vw - 130px);
+  }
+
+  .menu-btn {
+    width: 42px !important;
+    height: 42px !important;
+
+    min-width: 42px !important;
+    min-height: 42px !important;
+
+    flex-basis: 42px !important;
+  }
+
+
+  /* HERO */
+
+  .hero {
+    width: 100%;
+
+    padding-left: 12px;
+    padding-right: 12px;
+
+    gap: 30px;
+  }
+
+
+  /* SECTIONS */
+
+  .content-section,
+  .author-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+
+  /* POETRY */
+
+  .writing-card {
+    grid-template-columns:
+      40px minmax(0, 1fr);
+
+    gap: 13px;
+
+    padding: 32px 0;
+  }
+
+  .card-number {
+    font-size: 30px;
+
+    letter-spacing: -1px;
+  }
+
+  .writing-card h3 {
+    font-size: 24px;
+
+    padding-right: 48px;
+  }
+
+  .writing-excerpt {
+    font-size: 13px;
+  }
+
+  .writing-card .card-bottom {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 10px;
+  }
+
+  .action-btn {
+    width: 34px;
+    height: 34px;
+
+    min-width: 34px;
+  }
+
+
+  /* STORY */
+
+  .story-card {
+    padding: 30px 21px;
+  }
+
+  .story-card > .view-count {
+    top: 30px;
+    right: 21px;
+  }
+
+  .story-card h3 {
+    font-size: 24px;
+  }
+
+
+  /* NOVEL */
+
+  .novel-card {
+    padding: 30px 21px;
+  }
+
+  .novel-card h3 {
+    font-size: 25px;
+  }
+
+
+  /* MENU */
+
+  .side-menu {
+    width: min(350px, 94vw);
+
+    padding-left: 17px;
+    padding-right: 17px;
+  }
+
+  .menu-folder-btn {
+    font-size: 14px;
+  }
+
+  .menu-month-btn {
+    font-size: 12px;
+  }
+
+  .menu-archive-item {
+    font-size: 11px;
+  }
+
+
+  /* READER */
+
+  .poem-page {
+    padding: 45px 15px;
+  }
+
+  .poem-reader .poem-body,
+  .poem-reader .novel-body,
+  .poem-reader .chapter-content {
+    font-size: 16px;
+
+    line-height: 1.95;
+  }
+
+
+  /* HERO CAPTION */
+
+  .hero-caption {
+    font-size: 8px;
+  }
+
+
+  /* HOME ACTIONS */
+
+  .home-actions {
+    gap: 7px;
+  }
+
+  .home-action {
+    padding:
+      6px 10px 6px 6px;
+
+    font-size: 12px;
+  }
+
+  .home-action-icon {
+    width: 31px;
+    height: 31px;
+
+    min-width: 31px;
+
+    font-size: 14px;
+  }
+
+
+  /* ACTIONS */
+
+  .writing-actions {
+    gap: 5px;
+  }
+
+  .action-btn {
+    padding: 0;
+  }
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+===================================================== */
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--gold);
+
+  outline-offset: 3px;
+}
+
+
+/* =====================================================
+   REDUCE MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =====================================================
+   PREMIUM ACTION ICONS
+   COMMENT • SHARE • COPY LINK
+===================================================== */
+
+.writing-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 18px;
+}
+
+/* BUTTON */
+
+.action-btn {
+  position: relative;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(176, 138, 69, 0.28);
+  border-radius: 50%;
+
+  background: rgba(176, 138, 69, 0.07);
+
+  color: #8a6a32;
+
+  box-shadow:
+    0 4px 14px rgba(80, 60, 20, 0.08);
+
+  overflow: hidden;
+
+  opacity: 1;
+
+  transition:
+    transform 0.3s cubic-bezier(.22,.61,.36,1),
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    color 0.3s ease;
+}
+
+
+/* SHINE ANIMATION */
+
+.action-btn::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -130%;
+
+  width: 70%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,0.45),
+      transparent
+    );
+
+  transform: skewX(-20deg);
+
+  transition: left 0.55s ease;
+}
+
+.action-btn:hover::before {
+  left: 140%;
+}
+
+
+/* ICON */
+
+.action-btn span {
+  position: relative;
+
+  z-index: 2;
+
+  width: 20px;
+  height: 20px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #8a6a32;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 17px;
+  font-weight: 600;
+
+  line-height: 1;
+
+  transition:
+    transform 0.35s cubic-bezier(.22,.61,.36,1),
+    color 0.3s ease;
+}
+
+
+/* HOVER */
+
+.action-btn:hover {
+  transform:
+    translateY(-4px)
+    scale(1.06);
+
+  background:
+    rgba(176, 138, 69, 0.14);
+
+  border-color:
+    rgba(176, 138, 69, 0.55);
+
+  color: #6f531f;
+
+  box-shadow:
+    0 10px 25px rgba(110, 80, 25, 0.16);
+}
+
+.action-btn:hover span {
+  color: #6f531f;
+}
+
+
+/* CLICK */
+
+.action-btn:active {
+  transform:
+    translateY(-1px)
+    scale(0.92);
+
+  box-shadow:
+    0 4px 10px rgba(80, 60, 20, 0.12);
+}
+
+
+/* =====================================================
+   INDIVIDUAL ICON ANIMATIONS
+===================================================== */
+
+/* COMMENT */
+
+.action-btn:nth-child(1):hover span {
+  animation:
+    premiumComment 0.65s ease;
+}
+
+@keyframes premiumComment {
+
+  0% {
+    transform: scale(1);
+  }
+
+  35% {
+    transform:
+      scale(1.22)
+      rotate(-5deg);
+  }
+
+  65% {
+    transform:
+      scale(0.92)
+      rotate(4deg);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+/* SHARE */
+
+.action-btn:nth-child(2):hover span {
+  animation:
+    premiumShare 0.65s ease;
+}
+
+@keyframes premiumShare {
+
+  0% {
+    transform: translate(0,0);
+  }
+
+  35% {
+    transform:
+      translate(3px,-3px)
+      rotate(-8deg)
+      scale(1.12);
+  }
+
+  65% {
+    transform:
+      translate(-1px,1px)
+      rotate(4deg);
+  }
+
+  100% {
+    transform: translate(0,0);
+  }
+}
+
+
+/* COPY */
+
+.action-btn:nth-child(3):hover span {
+  animation:
+    premiumCopy 0.65s ease;
+}
+
+@keyframes premiumCopy {
+
+  0% {
+    transform: scale(1);
+  }
+
+  35% {
+    transform:
+      scale(1.2)
+      rotate(5deg);
+  }
+
+  65% {
+    transform:
+      scale(0.9)
+      rotate(-4deg);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+/* =====================================================
+   DARK STORY CARDS
+===================================================== */
+
+.story-card .action-btn {
+  background: rgba(176, 138, 69, 0.10);
+
+  border-color:
+    rgba(176, 138, 69, 0.30);
+
+  color: #c19b58;
+
+  box-shadow:
+    0 4px 15px rgba(0,0,0,0.18);
+}
+
+.story-card .action-btn span {
+  color: #c19b58;
+}
+
+.story-card .action-btn:hover {
+  background:
+    rgba(176, 138, 69, 0.18);
+
+  border-color:
+    rgba(193, 155, 88, 0.65);
+
+  color: #d6b675;
+
+  box-shadow:
+    0 10px 28px rgba(0,0,0,0.25);
+}
+
+.story-card .action-btn:hover span {
+  color: #d6b675;
+}
+
+
+/* =====================================================
+   NOVEL CARDS
+===================================================== */
+
+.novel-card .action-btn {
+  background:
+    rgba(176, 138, 69, 0.07);
+
+  border-color:
+    rgba(176, 138, 69, 0.28);
+
+  color: #80622e;
+}
+
+.novel-card .action-btn span {
+  color: #80622e;
+}
+
+.novel-card .action-btn:hover {
+  background:
+    rgba(176, 138, 69, 0.14);
+
+  border-color:
+    rgba(176, 138, 69, 0.55);
+
+  color: #624a20;
+
+  box-shadow:
+    0 10px 25px rgba(100,75,25,0.14);
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .writing-actions {
+    gap: 8px;
+  }
+
+  .action-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .action-btn span {
+    font-size: 16px;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .writing-actions {
+    gap: 7px;
+  }
+
+  .action-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .action-btn span {
+    width: 18px;
+    height: 18px;
+
+    font-size: 15px;
+  }
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .action-btn,
+  .action-btn span {
+    animation: none !important;
+    transition: none !important;
+  }
+
+}
+
+/* =====================================================
+   HOMEPAGE — PREMIUM COMMENT / SHARE / COPY
+===================================================== */
+
+.home-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+
+/* BUTTON */
+
+.home-action {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 6px 15px 6px 7px;
+
+  border: 1px solid rgba(176, 138, 69, 0.30);
+  border-radius: 30px;
+
+  background: rgba(176, 138, 69, 0.07);
+
+  color: #705524;
+
+  box-shadow:
+    0 5px 16px rgba(90, 65, 20, 0.08);
+
+  overflow: hidden;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  transition:
+    transform 0.3s cubic-bezier(.22,.61,.36,1),
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* SHINE */
+
+.home-action::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -130%;
+
+  width: 75%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,0.45),
+      transparent
+    );
+
+  transform: skewX(-20deg);
+
+  transition: left 0.55s ease;
+}
+
+.home-action:hover::before {
+  left: 140%;
+}
+
+
+/* CIRCULAR ICON */
+
+.home-action-icon {
+  position: relative;
+  z-index: 2;
+
+  width: 35px;
+  height: 35px;
+
+  min-width: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  box-shadow:
+    0 5px 15px rgba(80,60,20,0.18);
+
+  transition:
+    transform 0.35s cubic-bezier(.22,.61,.36,1),
+    box-shadow 0.35s ease;
+}
+
+
+/* COMMENT */
+
+.home-action.comment .home-action-icon {
+  background:
+    linear-gradient(
+      135deg,
+      #70542a,
+      #b08a45
+    );
+}
+
+
+/* SHARE */
+
+.home-action.share .home-action-icon {
+  background:
+    linear-gradient(
+      135deg,
+      #315c72,
+      #568ba0
+    );
+}
+
+
+/* COPY */
+
+.home-action.copy .home-action-icon {
+  background:
+    linear-gradient(
+      135deg,
+      #3f4650,
+      #737b86
+    );
+}
+
+
+/* HOVER */
+
+.home-action:hover {
+  transform:
+    translateY(-4px);
+
+  background:
+    rgba(176, 138, 69, 0.13);
+
+  border-color:
+    rgba(176, 138, 69, 0.55);
+
+  box-shadow:
+    0 12px 28px rgba(80,60,20,0.14);
+}
+
+
+.home-action:hover .home-action-icon {
+  transform:
+    scale(1.12)
+    rotate(6deg);
+
+  box-shadow:
+    0 8px 22px rgba(70,50,20,0.25);
+}
+
+
+/* =====================================================
+   ICON ANIMATIONS
+===================================================== */
+
+.home-action.comment:hover .home-action-icon {
+  animation:
+    homePremiumComment 0.65s ease;
+}
+
+@keyframes homePremiumComment {
+
+  0% {
+    transform: scale(1);
+  }
+
+  35% {
+    transform:
+      scale(1.22)
+      rotate(-6deg);
+  }
+
+  65% {
+    transform:
+      scale(.94)
+      rotate(4deg);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+.home-action.share:hover .home-action-icon {
+  animation:
+    homePremiumShare 0.65s ease;
+}
+
+@keyframes homePremiumShare {
+
+  0% {
+    transform: translate(0,0);
+  }
+
+  35% {
+    transform:
+      translate(3px,-4px)
+      rotate(-8deg)
+      scale(1.12);
+  }
+
+  65% {
+    transform:
+      translate(-1px,1px)
+      rotate(4deg);
+  }
+
+  100% {
+    transform: translate(0,0);
+  }
+}
+
+
+.home-action.copy:hover .home-action-icon {
+  animation:
+    homePremiumCopy 0.65s ease;
+}
+
+@keyframes homePremiumCopy {
+
+  0% {
+    transform: scale(1);
+  }
+
+  35% {
+    transform:
+      scale(1.2)
+      rotate(5deg);
+  }
+
+  65% {
+    transform:
+      scale(.92)
+      rotate(-4deg);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+/* =====================================================
+   CLICK EFFECT
+===================================================== */
+
+.home-action:active {
+  transform:
+    translateY(-1px)
+    scale(.96);
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+  .home-actions {
+    gap: 8px;
+  }
+
+  .home-action {
+    padding:
+      6px 12px 6px 6px;
+
+    font-size: 13px;
+  }
+
+  .home-action-icon {
+    width: 32px;
+    height: 32px;
+
+    min-width: 32px;
+
+    font-size: 15px;
+  }
+}
+
+
+/* =====================================================
+   REDUCE MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .home-action,
+  .home-action-icon {
+    animation: none !important;
+    transition: none !important;
+  }
+
+}
+
+/* =========================================================
+   SHADAT FATIH
+   DEEP PURPLE × APPLE PREMIUM WHITE
+   LIQUID GLASS SYSTEM
+   ---------------------------------------------------------
+   Visual theme only.
+   HTML / JS / Content remain unchanged.
+   ========================================================= */
+
+
+/* =========================================================
+   01 — DESIGN TOKENS
+   ========================================================= */
+
+:root {
+
+  /* Purple system */
+  --sf-purple-900: #2a0754;
+  --sf-purple-800: #3b0b72;
+  --sf-purple-700: #4c1d95;
+  --sf-purple-600: #5b21b6;
+  --sf-purple-500: #6d28d9;
+  --sf-purple-400: #7c3aed;
+  --sf-purple-300: #a78bfa;
+
+  /* Apple-like neutrals */
+  --sf-white: #ffffff;
+  --sf-white-soft: #fbfbfd;
+  --sf-gray-50: #f7f7f9;
+  --sf-gray-100: #f1f1f4;
+  --sf-gray-200: #e5e5ea;
+  --sf-gray-500: #6e6e73;
+  --sf-black: #1d1d1f;
+
+  /* Glass */
+  --sf-glass-white: rgba(255,255,255,.68);
+  --sf-glass-light: rgba(255,255,255,.48);
+  --sf-glass-dark: rgba(25,10,45,.58);
+
+  /* Borders */
+  --sf-border-light: rgba(255,255,255,.62);
+  --sf-border-purple: rgba(109,40,217,.22);
+
+  /* Shadows */
+  --sf-shadow-soft:
+    0 10px 35px rgba(42,7,84,.08);
+
+  --sf-shadow-glass:
+    0 15px 45px rgba(42,7,84,.12);
+
+  --sf-shadow-purple:
+    0 18px 50px rgba(91,33,182,.18);
+
+  /* Radius */
+  --sf-radius-sm: 12px;
+  --sf-radius-md: 18px;
+  --sf-radius-lg: 24px;
+  --sf-radius-xl: 30px;
+}
+
+
+/* =========================================================
+   02 — GLOBAL FOUNDATION
+   ========================================================= */
+
+html {
+  background: #ffffff !important;
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(124,58,237,.08),
+      transparent 32%
+    ),
+    #ffffff !important;
+
+  color: var(--sf-black) !important;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+
+/* =========================================================
+   03 — APPLE PREMIUM NAVIGATION
+   ========================================================= */
+
+header,
+nav,
+.navbar,
+.site-header {
+
+  background:
+    rgba(255,255,255,.72) !important;
+
+  backdrop-filter:
+    blur(24px)
+    saturate(180%) !important;
+
+  -webkit-backdrop-filter:
+    blur(24px)
+    saturate(180%) !important;
+
+  border-bottom:
+    1px solid rgba(91,33,182,.10) !important;
+
+  box-shadow:
+    0 8px 30px rgba(42,7,84,.05);
+}
+
+header a,
+nav a,
+.navbar a,
+.site-header a {
+
+  color: #242026 !important;
+
+  transition:
+    color .25s ease,
+    opacity .25s ease;
+}
+
+header a:hover,
+nav a:hover,
+.navbar a:hover,
+.site-header a:hover {
+
+  color: var(--sf-purple-500) !important;
+}
+
+
+/* =========================================================
+   04 — HOMEPAGE HERO
+   ========================================================= */
+
+.hero {
+
+  position: relative;
+  overflow: hidden;
+
+  background:
+
+    radial-gradient(
+      circle at 78% 18%,
+      rgba(167,139,250,.38),
+      transparent 28%
+    ),
+
+    radial-gradient(
+      circle at 10% 90%,
+      rgba(255,255,255,.12),
+      transparent 30%
+    ),
+
+    linear-gradient(
+      135deg,
+      var(--sf-purple-900) 0%,
+      var(--sf-purple-700) 48%,
+      var(--sf-purple-500) 100%
+    ) !important;
+
+  color: #ffffff !important;
+}
+
+
+/* Liquid light */
+
+.hero::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 520px;
+  height: 520px;
+
+  right: -190px;
+  top: -230px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255,255,255,.13);
+
+  filter: blur(70px);
+
+  pointer-events: none;
+}
+
+
+/* Second liquid glow */
+
+.hero::after {
+
+  content: "";
+
+  position: absolute;
+
+  width: 350px;
+  height: 350px;
+
+  left: -170px;
+  bottom: -180px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(167,139,250,.18);
+
+  filter: blur(55px);
+
+  pointer-events: none;
+}
+
+
+.hero-content,
+.hero-text,
+.hero-image {
+
+  position: relative;
+  z-index: 2;
+}
+
+
+.hero h1,
+.hero h2,
+.hero h3 {
+
+  color: #ffffff !important;
+}
+
+.hero p {
+
+  color:
+    rgba(255,255,255,.84) !important;
+}
+
+.hero .eyebrow {
+
+  color:
+    #ddd6fe !important;
+}
+
+
+/* =========================================================
+   05 — LIQUID GLASS HERO BUTTON
+   ========================================================= */
+
+.hero-button,
+.hero .btn {
+
+  background:
+    rgba(255,255,255,.16) !important;
+
+  color:
+    #ffffff !important;
+
+  border:
+    1px solid rgba(255,255,255,.48) !important;
+
+  backdrop-filter:
+    blur(18px)
+    saturate(160%) !important;
+
+  -webkit-backdrop-filter:
+    blur(18px)
+    saturate(160%) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.35),
+    0 10px 35px rgba(20,5,45,.18);
+
+  transition:
+    transform .28s ease,
+    background .28s ease,
+    box-shadow .28s ease;
+}
+
+.hero-button:hover,
+.hero .btn:hover {
+
+  background:
+    rgba(255,255,255,.28) !important;
+
+  color:
+    #ffffff !important;
+
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.5),
+    0 16px 40px rgba(20,5,45,.25);
+}
+
+
+/* =========================================================
+   06 — PREMIUM WHITE SECTIONS
+   ========================================================= */
+
+.content-section.light {
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #fbfbfd 100%
+    ) !important;
+
+  color:
+    var(--sf-black) !important;
+}
+
+
+.content-section.dark {
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8f6fb,
+      #ffffff
+    ) !important;
+
+  color:
+    var(--sf-black) !important;
+}
+
+
+section h1,
+section h2,
+section h3,
+section h4 {
+
+  color:
+    var(--sf-black) !important;
+}
+
+section p {
+
+  color:
+    var(--sf-gray-500) !important;
+}
+
+
+/* =========================================================
+   07 — POETRY
+   ========================================================= */
+
+.poetry-section,
+.poem-section {
+
+  background:
+
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(124,58,237,.07),
+      transparent 30%
+    ),
+
+    #ffffff !important;
+}
+
+
+/* =========================================================
+   08 — STORIES
+   ========================================================= */
+
+.story-section,
+.stories-section {
+
+  background:
+
+    linear-gradient(
+      180deg,
+      #ffffff,
+      #f8f6fb
+    ) !important;
+}
+
+
+/* =========================================================
+   09 — NOVELS
+   ========================================================= */
+
+.novel-section {
+
+  background:
+
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(109,40,217,.09),
+      transparent 30%
+    ),
+
+    linear-gradient(
+      135deg,
+      #f8f5fc,
+      #ffffff
+    ) !important;
+
+  color:
+    var(--sf-black) !important;
+}
+
+.novel-section h2,
+.novel-section h3 {
+
+  color:
+    var(--sf-black) !important;
+}
+
+
+/* =========================================================
+   10 — LIQUID GLASS CARDS
+   ========================================================= */
+
+.poem-card,
+.poetry-card,
+.story-card,
+.novel-card,
+.card {
+
+  background:
+
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.88),
+      rgba(255,255,255,.62)
+    ) !important;
+
+  backdrop-filter:
+    blur(22px)
+    saturate(150%) !important;
+
+  -webkit-backdrop-filter:
+    blur(22px)
+    saturate(150%) !important;
+
+  border:
+    1px solid
+    rgba(91,33,182,.13) !important;
+
+  border-radius:
+    var(--sf-radius-md);
+
+  box-shadow:
+
+    inset 0 1px 0
+    rgba(255,255,255,.85),
+
+    0 12px 40px
+    rgba(42,7,84,.07);
+
+  color:
+    var(--sf-black) !important;
+
+  transition:
+    transform .3s cubic-bezier(.2,.8,.2,1),
+    box-shadow .3s ease,
+    border-color .3s ease;
+}
+
+
+.poem-card:hover,
+.poetry-card:hover,
+.story-card:hover,
+.novel-card:hover,
+.card:hover {
+
+  transform:
+    translateY(-6px);
+
+  border-color:
+    rgba(109,40,217,.30) !important;
+
+  box-shadow:
+
+    inset 0 1px 0
+    rgba(255,255,255,.9),
+
+    0 20px 55px
+    rgba(91,33,182,.14);
+}
+
+
+.poem-card h3,
+.poetry-card h3,
+.story-card h3,
+.novel-card h3,
+.card h3 {
+
+  color:
+    var(--sf-black) !important;
+}
+
+
+.poem-card p,
+.poetry-card p,
+.story-card p,
+.novel-card p,
+.card p {
+
+  color:
+    var(--sf-gray-500) !important;
+}
+
+
+/* =========================================================
+   11 — PURPLE TAGS / CATEGORY
+   ========================================================= */
+
+.category,
+.tag,
+.badge,
+.label {
+
+  background:
+    rgba(124,58,237,.08) !important;
+
+  color:
+    var(--sf-purple-600) !important;
+
+  border:
+    1px solid
+    rgba(124,58,237,.16) !important;
+
+  backdrop-filter:
+    blur(10px);
+}
+
+
+/* =========================================================
+   12 — PREMIUM PURPLE BUTTONS
+   ========================================================= */
+
+button,
+.btn,
+.button {
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--sf-purple-600),
+      var(--sf-purple-500)
+    ) !important;
+
+  color:
+    #ffffff !important;
+
+  border:
+    1px solid
+    rgba(255,255,255,.18) !important;
+
+  border-radius:
+    var(--sf-radius-sm);
+
+  box-shadow:
+    0 8px 25px
+    rgba(91,33,182,.18);
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    filter .25s ease;
+}
+
+button:hover,
+.btn:hover,
+.button:hover {
+
+  filter:
+    brightness(1.08);
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 13px 32px
+    rgba(91,33,182,.25);
+}
+
+
+/* =========================================================
+   13 — READER PAGES
+   ========================================================= */
+
+.poem-page,
+.poem-reader,
+.reader-page,
+.story-page,
+.novel-page {
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(124,58,237,.055),
+      transparent 35%
+    ),
+
+    #ffffff !important;
+
+  color:
+    #29262c !important;
+}
+
+
+/* =========================================================
+   14 — READER GLASS CONTAINER
+   ========================================================= */
+
+.poem-reader,
+.reader-page {
+
+  background:
+    rgba(255,255,255,.76) !important;
+
+  backdrop-filter:
+    blur(24px)
+    saturate(150%) !important;
+
+  -webkit-backdrop-filter:
+    blur(24px)
+    saturate(150%) !important;
+
+  border:
+    1px solid
+    rgba(91,33,182,.12) !important;
+
+  border-radius:
+    var(--sf-radius-lg);
+
+  box-shadow:
+
+    inset 0 1px 0
+    rgba(255,255,255,.9),
+
+    0 18px 55px
+    rgba(42,7,84,.08);
+}
+
+
+/* =========================================================
+   15 — READER TYPOGRAPHY
+   ========================================================= */
+
+.poem-page h1,
+.poem-page h2,
+.poem-reader h1,
+.poem-reader h2,
+.reader-page h1,
+.reader-page h2,
+.story-page h1,
+.novel-page h1 {
+
+  color:
+    var(--sf-black) !important;
+}
+
+
+.poem-page p,
+.poem-reader p,
+.reader-page p,
+.story-page p,
+.novel-page p {
+
+  color:
+    #353238 !important;
+}
+
+
+/* Reader links */
+
+.poem-page a,
+.poem-reader a,
+.reader-page a,
+.story-page a,
+.novel-page a {
+
+  color:
+    var(--sf-purple-600) !important;
+}
+
+.poem-page a:hover,
+.poem-reader a:hover,
+.reader-page a:hover,
+.story-page a:hover,
+.novel-page a:hover {
+
+  color:
+    var(--sf-purple-400) !important;
+}
+
+
+/* =========================================================
+   16 — DIVIDERS
+   ========================================================= */
+
+.poem-page hr,
+.poem-reader hr,
+.reader-page hr,
+.story-page hr,
+.novel-page hr {
+
+  border:
+    0 !important;
+
+  border-top:
+    1px solid
+    rgba(91,33,182,.12) !important;
+}
+
+
+/* =========================================================
+   17 — QUOTES
+   ========================================================= */
+
+blockquote {
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(124,58,237,.06),
+      rgba(255,255,255,.75)
+    ) !important;
+
+  color:
+    #353238 !important;
+
+  border-left:
+    3px solid
+    var(--sf-purple-500) !important;
+
+  border-radius:
+    0 var(--sf-radius-sm)
+    var(--sf-radius-sm) 0;
+
+  box-shadow:
+    0 8px 25px
+    rgba(42,7,84,.05);
+}
+
+
+/* =========================================================
+   18 — AUTHOR SECTION
+   ========================================================= */
+
+.author-section {
+
+  background:
+
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(124,58,237,.08),
+      transparent 30%
+    ),
+
+    #ffffff !important;
+
+  color:
+    var(--sf-black) !important;
+}
+
+.author-section h2,
+.author-section h3 {
+
+  color:
+    var(--sf-black) !important;
+}
+
+.author-section p {
+
+  color:
+    var(--sf-gray-500) !important;
+}
+
+
+/* =========================================================
+   19 — FOOTER
+   Deep purple glass feeling
+   ========================================================= */
+
+footer {
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #2a0754,
+      #3b0b72
+    ) !important;
+
+  color:
+    rgba(255,255,255,.72) !important;
+
+  border-top:
+    1px solid
+    rgba(255,255,255,.10) !important;
+}
+
+footer h2,
+footer h3,
+footer strong {
+
+  color:
+    #ffffff !important;
+}
+
+footer a {
+
+  color:
+    #ddd6fe !important;
+}
+
+footer a:hover {
+
+  color:
+    #ffffff !important;
+}
+
+
+/* =========================================================
+   20 — SEARCH / INPUT
+   ========================================================= */
+
+input,
+textarea,
+select {
+
+  background:
+    rgba(255,255,255,.72) !important;
+
+  color:
+    var(--sf-black) !important;
+
+  border:
+    1px solid
+    rgba(91,33,182,.14) !important;
+
+  border-radius:
+    var(--sf-radius-sm);
+
+  backdrop-filter:
+    blur(16px);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+
+  outline:
+    none !important;
+
+  border-color:
+    rgba(109,40,217,.45) !important;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(124,58,237,.08);
+}
+
+input::placeholder,
+textarea::placeholder {
+
+  color:
+    #8a858d !important;
+}
+
+
+/* =========================================================
+   21 — IMAGE GLASS EFFECT
+   ========================================================= */
+
+.hero-image img {
+
+  box-shadow:
+    0 25px 70px
+    rgba(42,7,84,.20);
+
+  border-radius:
+    var(--sf-radius-lg);
+}
+
+
+/* =========================================================
+   22 — SELECTION
+   ========================================================= */
+
+::selection {
+
+  background:
+    var(--sf-purple-500);
+
+  color:
+    #ffffff;
+}
+
+
+/* =========================================================
+   23 — SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background:
+    #f5f3f7;
+}
+
+::-webkit-scrollbar-thumb {
+
+  background:
+    linear-gradient(
+      180deg,
+      #a78bfa,
+      #5b21b6
+    );
+
+  border-radius:
+    20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+
+  background:
+    #5b21b6;
+}
+
+
+/* =========================================================
+   24 — MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .hero {
+
+    background:
+
+      radial-gradient(
+        circle at 80% 10%,
+        rgba(167,139,250,.35),
+        transparent 30%
+      ),
+
+      linear-gradient(
+        145deg,
+        #3b0b72,
+        #5b21b6,
+        #6d28d9
+      ) !important;
+  }
+
+  .poem-card,
+  .poetry-card,
+  .story-card,
+  .novel-card,
+  .card {
+
+    border-radius:
+      16px;
+  }
+
+  .poem-reader,
+  .reader-page {
+
+    border-radius:
+      18px;
+  }
+}
+
+/* =========================================================
+   100% FIXED: FULL-WIDTH, BENGALI FONT SAFE & CLEAN LIQUID GLASS
+   ========================================================= */
+
+/* ১. ব্যাকগ্রাউন্ড ফিক্স: ডার্ক/কালো বর্ডার সম্পূর্ণ দূর করা */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+  background: #fbfbfd !important; /* ক্লিন অ্যাপল লাইট ব্যাকগ্রাউন্ড */
+}
+
+/* ২. হেডার বার ও টাইটেল স্পেসিং */
+header, .header, .top-bar {
+  position: relative !important;
+  z-index: 10 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 12px 14px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  background: transparent !important;
+}
+
+.theme-toggle, .menu-btn, .top-right-btn, .premium-menu-btn {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer;
+}
+
+/* ৩. স্ক্রিন জোড়া ফুল-উইডথ পার্পল হিরো সেকশন (কোনো সাদা সাইডবার ও টাইটেল বারে ওভারল্যাপ হবে না) */
+#home, .hero-section, .hero {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  margin-top: 6px !important; /* টাইটেল বার থেকে নিচ নামাতে */
+  padding: 24px 16px !important; /* লেখার চারপাশে নিরাপদ প্যাডিং */
+  box-sizing: border-box !important;
+}
+
+.hero h1, .hero-title, .hero h2 {
+  margin-top: 0 !important;
+  padding-top: 4px !important;
+  line-height: 1.4 !important;
+  word-break: break-word !important;
+}
+
+/* ৪. মেইন কন্টেইনার ও Apple Liquid Glass Card */
+main, .container, .main-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding: 10px 12px !important;
+  box-sizing: border-box !important;
+}
+
+.poem-card, 
+.reader-card, 
+article, 
+.card {
+  width: 100% !important;
+  max-width: 100% !important;
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04) !important;
+  border-radius: 20px !important;
+  padding: 22px 16px !important;
+  margin-bottom: 20px !important;
+  box-sizing: border-box !important;
+}
+
+/* ৫. Homepage-এর Comment, Share, Copy Link আইকন ও বেগুনি কালার */
+.home-actions, .card-footer-icons {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-top: 16px !important;
+}
+
+.home-actions a, 
+.home-actions button, 
+.icon-btn {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 50% !important;
+  background: rgba(124, 58, 237, 0.12) !important;
+  color: #6d28d9 !important;
+  border: 1px solid rgba(124, 58, 237, 0.2) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+  text-decoration: none !important;
+}
+
+.home-actions a svg, 
+.home-actions button svg, 
+.icon-btn svg {
+  fill: #6d28d9 !important;
+  stroke: #6d28d9 !important;
+  width: 17px !important;
+  height: 17px !important;
+}
+
+.home-actions a:active,
+.icon-btn:active {
+  transform: scale(0.92) !important;
+  background: rgba(124, 58, 237, 0.25) !important;
+}
+
+/* ৬. Poetry ট্যাগ স্টাইল */
+.tag, .poetry-tag {
+  display: inline-block !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  padding: 4px 12px !important;
+  border-radius: 20px !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.12em !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* =========================================================
+   HERO TOP OVERLAP & EDGE-TO-EDGE FIX ONLY
+   ========================================================= */
+
+.hero, 
+.hero-section, 
+#home {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  /* 76px ফিক্সড ন্যাভবারের ঠিক নিচ থেকে নিরাপদ স্পেস */
+  padding-top: 100px !important; 
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  box-sizing: border-box !important;
+}
+
+.hero h1, 
+.hero h2, 
+.hero-title {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
