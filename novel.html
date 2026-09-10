@@ -551,6 +551,85 @@ function formatText(text) {
 
 
 /* =================================================
+   SHOW CHAPTER
+================================================= */
+
+function showChapter(chapterId) {
+
+  const chapter =
+    window.__novelChapters?.find(
+      item =>
+        String(item.id) ===
+        String(chapterId)
+    );
+
+  if (!chapter) {
+    return;
+  }
+
+  const chapterHtml = `
+    <section
+      id="chapter-${escapeHtml(chapter.id)}"
+      class="novel-chapter-reader"
+    >
+
+      <p class="eyebrow">
+        অধ্যায় ${chapter.chapter_number}
+      </p>
+
+      <h2>
+        ${escapeHtml(chapter.title)}
+      </h2>
+
+      <div class="poem-body">
+        ${formatText(chapter.content)}
+      </div>
+
+    </section>
+  `;
+
+  const existing =
+    document.getElementById(
+      "chapter-reader"
+    );
+
+  if (existing) {
+    existing.innerHTML =
+      chapterHtml;
+  } else {
+    const wrapper =
+      document.createElement("div");
+
+    wrapper.id =
+      "chapter-reader";
+
+    wrapper.innerHTML =
+      chapterHtml;
+
+    const container =
+      document.getElementById(
+        "novel-content"
+      );
+
+    if (container) {
+      container.appendChild(
+        wrapper
+      );
+    }
+  }
+
+  document
+    .getElementById(
+      `chapter-${chapter.id}`
+    )
+    ?.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+}
+
+
+/* =================================================
    DATE
 ================================================= */
 
@@ -925,6 +1004,42 @@ async function loadNovel() {
 
 
     /* =================================================
+       CHAPTERS
+    ================================================= */
+
+    const {
+      data: chapters,
+      error: chaptersError
+    } = await supabaseClient
+      .from("chapters")
+      .select(
+        "id, chapter_number, title, content, published, created_at"
+      )
+      .eq(
+        "novel_id",
+        data.id
+      )
+      .eq(
+        "published",
+        true
+      )
+      .order(
+        "chapter_number",
+        { ascending: true }
+      );
+
+    if (chaptersError) {
+      console.error(
+        "Chapter loading error:",
+        chaptersError
+      );
+    }
+
+    window.__novelChapters =
+      chapters || [];
+
+
+    /* =================================================
        VIEW
     ================================================= */
 
@@ -1032,13 +1147,66 @@ async function loadNovel() {
            NOVEL CONTENT
       ========================================== -->
 
-      <div class="poem-body">
+      <div
+        id="novel-content"
+        class="poem-body"
+      >
 
         ${formatText(
           data.content
         )}
 
       </div>
+
+
+
+      <!-- =========================================
+           CHAPTERS
+      ========================================== -->
+
+      ${
+        chapters && chapters.length
+          ? `
+            <section class="novel-chapters">
+
+              <h2>
+                অধ্যায়সমূহ
+              </h2>
+
+              <div class="chapter-list">
+
+                ${chapters.map(
+                  (chapter) => `
+                    <a
+                      href="#chapter-${chapter.id}"
+                      class="chapter-item"
+                      onclick="showChapter('${chapter.id}'); return false;"
+                    >
+
+                      <span>
+                        অধ্যায় ${chapter.chapter_number}
+                      </span>
+
+                      <strong>
+                        ${escapeHtml(
+                          chapter.title
+                        )}
+                      </strong>
+
+                      <span>
+                        →
+                      </span>
+
+                    </a>
+                  `
+                ).join("")}
+
+              </div>
+
+            </section>
+          `
+          : ""
+      }
 
 
 
