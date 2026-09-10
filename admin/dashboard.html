@@ -2289,10 +2289,10 @@ async function loadChapters() {
 
             <button
               type="button"
-              onclick="toggleChapterPublish(
-                ${chapter.id},
+              onclick='toggleChapterPublish(
+                "${chapter.id}",
                 ${chapter.published === true}
-              )"
+              )' 
             >
 
               ${
@@ -2307,9 +2307,9 @@ async function loadChapters() {
             <button
               type="button"
               class="delete"
-              onclick="deleteChapter(
-                ${chapter.id}
-              )"
+              onclick='deleteChapter(
+                "${chapter.id}"
+              )' 
             >
               Delete
             </button>
