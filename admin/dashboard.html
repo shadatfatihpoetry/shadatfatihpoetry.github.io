@@ -2095,7 +2095,7 @@ window.manageChapters =
 async function(novelId) {
 
   currentNovelId =
-    Number(novelId);
+    String(novelId || "").trim();
 
 
   if (!currentNovelId) {
@@ -2112,7 +2112,7 @@ async function(novelId) {
   const novel =
     contents.find(
       item =>
-        Number(item.id) ===
+        String(item.id) ===
         currentNovelId
     );
 
