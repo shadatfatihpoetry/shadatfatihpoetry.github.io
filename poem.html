@@ -1,519 +1,51 @@
 <!DOCTYPE html>
 <html lang="bn">
-
 <head>
-
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shadat Fatih — কবিতা</title>
-<!-- Google Fonts: Kalpurush / Noto Serif Bengali / Tiro Bangla -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
-
-  <link
-    rel="stylesheet"
-    href="style.css"
-    <link rel="stylesheet" href="premium.css">
-  <link rel="stylesheet" href="premium-design.css">
-  >
-
+  <meta name="theme-color" content="#faf9f6">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
   <style>
-
-    /* =================================================
-       PREMIUM READER ACTIONS
-    ================================================= */
-
-    .reader-top {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      margin-bottom: 22px;
-    }
-
-    .view-counter {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-
-      font-family: "Playfair Display", serif;
-      font-size: 14px;
-      letter-spacing: 1.5px;
-
-      color: #8f7540;
-
-      padding: 8px 14px;
-
-      border: 1px solid rgba(143,117,64,.35);
-      border-radius: 30px;
-
-      background: rgba(255,255,255,.45);
-    }
-
-    .view-icon {
-      font-size: 16px;
-      line-height: 1;
-    }
-
-
-    /* =================================================
-   PREMIUM READER ACTIONS
-================================================= */
-
-.reader-actions {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-
-  margin-top: 38px;
-  padding-top: 22px;
-
-  border-top: 1px solid rgba(0,0,0,.10);
-}
-
-
-/* ACTION BUTTON */
-
-.reader-action {
-
-  position: relative;
-
-  appearance: none;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 9px;
-
-  min-width: 48px;
-  min-height: 44px;
-
-  padding: 9px 15px;
-
-  border: 1px solid rgba(0,0,0,.12);
-  border-radius: 14px;
-
-  background:
-    rgba(255,255,255,.55);
-
-  color: #292929;
-
-  font-family:
-    "Noto Serif Bengali",
-    serif;
-
-  font-size: 13px;
-
-  cursor: pointer;
-
-  overflow: hidden;
-
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-
-  transition:
-    transform .28s cubic-bezier(.22,.61,.36,1),
-    border-color .28s ease,
-    background .28s ease,
-    box-shadow .28s ease,
-    color .28s ease;
-}
-
-
-/* GOLD SHINE */
-
-.reader-action::before {
-
-  content: "";
-
-  position: absolute;
-
-  top: 0;
-  left: -120%;
-
-  width: 80%;
-  height: 100%;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(176,138,69,.13),
-      transparent
-    );
-
-  transform: skewX(-20deg);
-
-  transition:
-    left .6s ease;
-
-}
-
-
-/* HOVER */
-
-.reader-action:hover {
-
-  transform:
-    translateY(-4px);
-
-  border-color:
-    rgba(176,138,69,.55);
-
-  color:
-    #9c8147;
-
-  background:
-    rgba(255,255,255,.85);
-
-  box-shadow:
-    0 10px 25px rgba(0,0,0,.08),
-    0 0 0 3px rgba(176,138,69,.04);
-
-}
-
-
-.reader-action:hover::before {
-
-  left: 130%;
-
-}
-
-
-/* CLICK */
-
-.reader-action:active {
-
-  transform:
-    translateY(-1px)
-    scale(.96);
-
-}
-
-
-/* =================================================
-   PREMIUM ICON
-================================================= */
-
-.action-icon {
-
-  position: relative;
-
-  width: 23px;
-  height: 23px;
-
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-
-  color:
-    #9c8147;
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size: 17px;
-
-  line-height: 1;
-
-  transition:
-    transform .3s cubic-bezier(.22,.61,.36,1),
-    color .3s ease;
-}
-
-
-/* ICON ANIMATION */
-
-.reader-action:hover .action-icon {
-
-  transform:
-    scale(1.15)
-    rotate(-4deg);
-
-  color:
-    #b08a45;
-
-}
-
-
-/* COMMENT ICON */
-
-.reader-action:first-child:hover .action-icon {
-
-  animation:
-    commentFloat .65s ease;
-
-}
-
-
-/* SHARE ICON */
-
-.reader-action:nth-child(2):hover .action-icon {
-
-  animation:
-    shareFly .65s ease;
-
-}
-
-
-/* COPY ICON */
-
-.reader-action:nth-child(3):hover .action-icon {
-
-  animation:
-    copyPulse .65s ease;
-
-}
-
-
-/* =================================================
-   ANIMATIONS
-================================================= */
-
-@keyframes commentFloat {
-
-  0% {
-    transform: translateY(0) scale(1);
-  }
-
-  45% {
-    transform: translateY(-4px) scale(1.18);
-  }
-
-  100% {
-    transform: translateY(0) scale(1);
-  }
-
-}
-
-
-@keyframes shareFly {
-
-  0% {
-    transform: translate(0,0) rotate(0);
-  }
-
-  45% {
-    transform: translate(4px,-4px) rotate(-8deg);
-  }
-
-  100% {
-    transform: translate(0,0) rotate(0);
-  }
-
-}
-
-
-@keyframes copyPulse {
-
-  0% {
-    transform: scale(1);
-  }
-
-  45% {
-    transform: scale(1.22) rotate(5deg);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-
-}
-
-
-/* TEXT */
-
-.reader-action > span:last-child {
-
-  position: relative;
-
-  z-index: 2;
-
-  transition:
-    letter-spacing .25s ease;
-
-}
-
-
-.reader-action:hover > span:last-child {
-
-  letter-spacing:
-    .3px;
-
-}
-
-
-/* =================================================
-   MOBILE
-================================================= */
-
-@media (max-width: 600px) {
-
-  .reader-actions {
-
-    gap: 8px;
-
-    margin-top: 30px;
-    padding-top: 18px;
-
-  }
-
-  .reader-action {
-
-    min-height: 42px;
-
-    padding:
-      8px 12px;
-
-    border-radius: 12px;
-
-    font-size: 12px;
-
-  }
-
-  .action-icon {
-
-    width: 21px;
-    height: 21px;
-
-    font-size: 16px;
-
-  }
-
-}
-
-
-    /* =================================================
-       AUTHOR
-    ================================================= */
-
-    .reader-author {
-      margin-top: 28px;
-      font-family: "Playfair Display", serif;
-      font-size: 17px;
-    }
-
-
-
-
-    /* =================================================
-       TOAST
-    ================================================= */
-
     #sf-toast {
-      position: fixed;
-      left: 50%;
-      bottom: 25px;
-
-      transform: translateX(-50%) translateY(20px);
-
-      padding: 11px 18px;
-
-      background: #171717;
-      color: #fff;
-
-      border-radius: 30px;
-
-      font-size: 14px;
-
-      opacity: 0;
-      pointer-events: none;
-
-      transition: .25s ease;
-
-      z-index: 9999;
+      position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px);
+      background: #1d1d1f; color: #fff; padding: 12px 22px; border-radius: 980px;
+      font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: 13.5px;
+      opacity: 0; pointer-events: none; transition: all 0.35s cubic-bezier(0.16,1,0.3,1); z-index: 9999;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
     }
-
-    #sf-toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
+    #sf-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .poem-excerpt {
+      text-align: center; font-size: 16px; color: #6e6e73; margin: 12px auto 28px;
+      max-width: 420px; line-height: 1.6; font-style: italic;
     }
-
-
-    /* =================================================
-       MOBILE
-    ================================================= */
-
-    @media (max-width: 600px) {
-
-      .reader-top {
-        margin-bottom: 18px;
-      }
-
-      .view-counter {
-        font-size: 13px;
-        padding: 7px 12px;
-      }
-
-      .reader-actions {
-        gap: 7px;
-      }
-
-      .reader-action {
-        padding: 8px 11px;
-        font-size: 13px;
-      }
-
+    .reader-author {
+      text-align: center; margin-top: 40px; font-size: 14px; color: #86868b;
+      font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     }
-
+    .reader-author strong { color: #1d1d1f; }
+    .poem-page { min-height: 100vh; background: #faf9f6; }
+    .poem-reader { max-width: 640px; margin: 0 auto; padding: 100px 24px 80px; }
   </style>
-
 </head>
-
-
 <body>
-
-
 <main class="poem-page">
-
-  <article
-    class="poem-reader"
-    id="poem-content"
-  >
-
-    <p>
-      কবিতা লোড হচ্ছে...
-    </p>
-
+  <article class="poem-reader" id="poem-content">
+    <p style="text-align:center;color:#86868b;padding:60px 0;">কবিতা লোড হচ্ছে...</p>
   </article>
-
 </main>
 
-
-
-<!-- SUPABASE -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
 "use strict";
-
-const SUPABASE_URL =
-  "https://gwpesizyfwuwazpczmtz.supabase.co";
-
-const SUPABASE_PUBLISHABLE_KEY =
-  "sb_publishable_NQX9lVLLy85feejZaa1gaA_YhA2Mv4Z";
-
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
+const SUPABASE_URL = "https://gwpesizyfwuwazpczmtz.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_NQX9lVLLy85feejZaa1gaA_YhA2Mv4Z";
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 </script>
-
 <script>
-
 /* =================================================
    ESCAPE HTML
 ================================================= */
@@ -1073,9 +605,7 @@ const views =
 
 loadPoem();
 
+
 </script>
-
-
 </body>
-
 </html>
