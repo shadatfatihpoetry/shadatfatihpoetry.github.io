@@ -13,235 +13,369 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="editorial.css">
 </head>
+
 <body>
 
-<!-- NAVBAR -->
-<header class="navbar">
-  <div class="nav-inner">
-    <a href="#home" class="brand-logo" aria-label="Shadat Fatih Home">
+<header class="editorial-header">
+  <div class="editorial-header-inner">
+
+    <a href="#home" class="editorial-brand">
       <img src="shadat-fatih.jpg" alt="Shadat Fatih">
+      <span>SHADAT FATIH</span>
     </a>
-    <a href="#home" class="site-title">Shadat Fatih</a>
-    <button id="menuToggle" class="menu-btn premium-menu-btn" type="button" aria-label="Menu">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="#1d1d1f">
-        <circle cx="12" cy="5" r="2"></circle>
-        <circle cx="12" cy="12" r="2"></circle>
-        <circle cx="12" cy="19" r="2"></circle>
-      </svg>
+
+    <button id="menuToggle"
+            class="editorial-menu"
+            type="button"
+            aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
 
-    <!-- SIDE MENU -->
-    <aside id="mainNav" class="side-menu" aria-hidden="true">
-      <div class="menu-profile">
-        <img src="shadat-fatih.jpg" alt="Shadat Fatih" class="menu-profile-image">
-        <h3>Shadat Fatih</h3>
-        <p>“আমি নদীর মতো প্রবাহমান , আকাশের মতো রঙিন। আলোর মতো ক্ষণস্থায়ী, আয়নার মতো অমলিন.... 𓂃✍︎ শাহাদাৎ”</p>
+  </div>
+</header>
+
+<nav id="mainNav" class="editorial-drawer" aria-hidden="true">
+
+  <button id="menuClose"
+          class="editorial-drawer-close"
+          type="button"
+          aria-label="Close menu">
+    ×
+  </button>
+
+  <div class="drawer-inner">
+
+    <div class="drawer-profile">
+      <img src="shadat-fatih.jpg" alt="Shadat Fatih">
+      <p class="drawer-kicker">AUTHOR · POET · WRITER</p>
+      <h2>সাদাত ফাতিহ</h2>
+    </div>
+
+    <div class="drawer-links">
+
+      <a href="#home">প্রচ্ছদ</a>
+      <a href="#poetry">কবিতা</a>
+      <a href="#stories">গল্প</a>
+      <a href="#novels">উপন্যাস</a>
+      <a href="#author">লেখক</a>
+
+    </div>
+
+    <div class="drawer-meta">
+      <span>ARCHIVE</span>
+      <a href="#year-archive">বছরভিত্তিক সংগ্রহ</a>
+      <a href="#most-viewed">জনপ্রিয় লেখা</a>
+    </div>
+
+  </div>
+
+</nav>
+
+<main id="home">
+
+  <!-- HERO -->
+
+  <section class="editorial-hero">
+
+    <div class="editorial-hero-inner">
+
+      <div class="hero-copy">
+
+        <p class="eyebrow">
+          SHADAT FATIH · LITERARY ARCHIVE
+        </p>
+
+        <h1>
+          শব্দের ভেতর<br>
+          একটি পৃথিবী।
+        </h1>
+
+        <p class="hero-description">
+          কবিতা, গল্প ও উপন্যাসের মধ্য দিয়ে
+          মানুষের অনুভূতি, স্মৃতি এবং জীবনের
+          নীরব মুহূর্তগুলোকে ধরে রাখার একটি
+          ব্যক্তিগত সাহিত্যভুবন।
+        </p>
+
+        <a href="#poetry" class="hero-entry">
+          লেখার জগতে প্রবেশ
+          <span>→</span>
+        </a>
+
       </div>
 
-      <div class="menu-divider"></div>
-
-      <div class="website-views">
-        <span>TOTAL WEBSITE VIEWS</span>
-        <strong id="totalWebsiteViews">0</strong>
+      <div class="hero-portrait">
+        <div class="portrait-frame">
+          <img src="shadat-fatih.jpg" alt="সাদাত ফাতিহ">
+        </div>
+        <p>সাদাত ফাতিহ</p>
       </div>
 
-      <div class="menu-divider"></div>
+    </div>
 
-      <!-- YEARLY ARCHIVE -->
-      <div class="menu-group">
-        <button class="menu-group-title" type="button" data-toggle="yearArchive" aria-expanded="false">
-          <span>YEARLY ARCHIVE</span>
-          <span class="menu-arrow">+</span>
-        </button>
-        <div class="menu-submenu archive-menu" id="yearArchive">
-          <div id="archiveYears">
-            <p class="archive-loading">লোড হচ্ছে...</p>
-          </div>
+  </section>
+
+
+  <!-- AUTHOR INTRO -->
+
+  <section class="author-intro editorial-width">
+
+    <div class="section-index">01</div>
+
+    <div class="author-intro-content">
+
+      <p class="section-kicker">ABOUT THE WRITER</p>
+
+      <h2>
+        লেখার কাছে ফিরে আসা,
+        বারবার।
+      </h2>
+
+      <p>
+        কিছু লেখা জন্ম নেয় অভিজ্ঞতা থেকে,
+        কিছু লেখা নিঃশব্দ অনুভূতি থেকে।
+        এই আর্কাইভে সেইসব কবিতা, গল্প ও
+        উপন্যাস একসঙ্গে জমা থাকে—
+        সময়ের ভেতর পাঠকের কাছে ফিরে যাওয়ার জন্য।
+      </p>
+
+      <a href="#author" class="editorial-link">
+        লেখক সম্পর্কে →
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- POETRY -->
+
+  <section id="poetry" class="editorial-section poetry-editorial">
+
+    <div class="editorial-width">
+
+      <header class="content-heading">
+
+        <div>
+          <p class="section-kicker">01 · POETRY</p>
+          <h2>কবিতা</h2>
+        </div>
+
+        <p>
+          শব্দ, নীরবতা ও অনুভূতির
+          ছোট ছোট সমুদ্র।
+        </p>
+
+      </header>
+
+      <div id="poetry-list" class="editorial-list">
+        <div class="loading-state">
+          লেখা লোড হচ্ছে...
         </div>
       </div>
 
-      <!-- MOST VIEWED -->
-      <div class="menu-group">
-        <button class="menu-group-title" type="button" data-toggle="mostViewedMenu" aria-expanded="false">
-          <span>MOST VIEWED</span>
-          <span class="menu-arrow">+</span>
-        </button>
-        <div class="menu-submenu most-viewed-menu" id="mostViewedMenu">
-          <div class="most-menu-group">
-            <button type="button" class="most-menu-title most-folder-toggle" data-most-toggle="most-poems-folder" aria-expanded="false">
-              <span>কবিতা</span><span>+</span>
-            </button>
-            <div id="most-poems-folder" class="most-menu-list most-folder-content"></div>
-          </div>
-          <div class="most-menu-group">
-            <button type="button" class="most-menu-title most-folder-toggle" data-most-toggle="most-stories-folder" aria-expanded="false">
-              <span>গল্প</span><span>+</span>
-            </button>
-            <div id="most-stories-folder" class="most-menu-list most-folder-content"></div>
-          </div>
-          <div class="most-menu-group">
-            <button type="button" class="most-menu-title most-folder-toggle" data-most-toggle="most-novels-folder" aria-expanded="false">
-              <span>উপন্যাস</span><span>+</span>
-            </button>
-            <div id="most-novels-folder" class="most-menu-list most-folder-content"></div>
-          </div>
+    </div>
+
+  </section>
+
+
+  <!-- STORIES -->
+
+  <section id="stories" class="editorial-section stories-editorial">
+
+    <div class="editorial-width">
+
+      <header class="content-heading content-heading-light">
+
+        <div>
+          <p class="section-kicker">02 · STORIES</p>
+          <h2>গল্প</h2>
+        </div>
+
+        <p>
+          মানুষ ও জীবনের
+          বলা-না-বলা গল্পগুলো।
+        </p>
+
+      </header>
+
+      <div id="stories-container" class="editorial-list">
+        <div class="loading-state">
+          গল্প লোড হচ্ছে...
         </div>
       </div>
 
-      <div class="menu-divider"></div>
+    </div>
 
-      <nav class="menu-main-links">
-        <a href="#home">হোম</a>
+  </section>
+
+
+  <!-- NOVELS -->
+
+  <section id="novels" class="editorial-section novels-editorial">
+
+    <div class="editorial-width">
+
+      <header class="content-heading">
+
+        <div>
+          <p class="section-kicker">03 · NOVELS</p>
+          <h2>উপন্যাস</h2>
+        </div>
+
+        <p>
+          দীর্ঘ পাঠের জন্য
+          গল্পের বিস্তৃত পৃথিবী।
+        </p>
+
+      </header>
+
+      <div id="novels-container" class="editorial-list">
+        <div class="loading-state">
+          উপন্যাস লোড হচ্ছে...
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- YEAR ARCHIVE -->
+
+  <section id="year-archive" class="archive-editorial">
+
+    <div class="editorial-width">
+
+      <header class="content-heading">
+
+        <div>
+          <p class="section-kicker">ARCHIVE</p>
+          <h2>বছরভিত্তিক সংগ্রহ</h2>
+        </div>
+
+        <p>
+          সময়ের ধারাবাহিকতায়
+          প্রকাশিত লেখাগুলো।
+        </p>
+
+      </header>
+
+      <div id="archiveYears" class="archive-years"></div>
+
+      <div id="yearPoemsList"></div>
+      <div id="yearStoriesList"></div>
+      <div id="yearNovelsList"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- MOST VIEWED -->
+
+  <section id="most-viewed" class="popular-editorial">
+
+    <div class="editorial-width">
+
+      <header class="content-heading">
+
+        <div>
+          <p class="section-kicker">MOST READ</p>
+          <h2>জনপ্রিয় লেখা</h2>
+        </div>
+
+        <p>
+          পাঠকের কাছে সবচেয়ে বেশি
+          ফিরে আসা লেখাগুলো।
+        </p>
+
+      </header>
+
+      <div id="mostPoemsListHidden"></div>
+      <div id="mostStoriesListHidden"></div>
+      <div id="mostNovelsListHidden"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- AUTHOR -->
+
+  <section id="author" class="author-editorial">
+
+    <div class="editorial-width author-editorial-grid">
+
+      <div class="author-editorial-image">
+        <img src="shadat-fatih.jpg" alt="সাদাত ফাতিহ">
+      </div>
+
+      <div class="author-editorial-content">
+
+        <p class="section-kicker">THE AUTHOR</p>
+
+        <h2>সাদাত ফাতিহ</h2>
+
+        <p>
+          লেখালেখির ভেতর দিয়ে অনুভূতি,
+          মানুষ এবং সময়কে দেখার চেষ্টা।
+          কবিতা, গল্প ও উপন্যাস—
+          প্রতিটি লেখা তার নিজস্ব একটি
+          ছোট পৃথিবী।
+        </p>
+
+        <a href="#poetry" class="editorial-link">
+          লেখা পড়ুন →
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer class="editorial-footer">
+
+    <div class="editorial-width footer-grid">
+
+      <div>
+        <p class="footer-brand">SHADAT FATIH</p>
+        <p>
+          একটি ব্যক্তিগত সাহিত্য আর্কাইভ।
+        </p>
+      </div>
+
+      <div class="footer-links">
         <a href="#poetry">কবিতা</a>
         <a href="#stories">গল্প</a>
         <a href="#novels">উপন্যাস</a>
         <a href="#author">লেখক</a>
-      </nav>
-    </aside>
-  </div>
-</header>
-
-<main id="pageContent">
-
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <p class="eyebrow">SHADAT FATIH</p>
-      <h1>অনুভূতিগুলোকে কবিতা বলে<br><em>চালিয়ে দেয়া মানুষ।</em></h1>
-      <p class="hero-text">কবিতা, গল্প ও উপন্যাসের<br>একটি নিজস্ব সাহিত্যভুবন।</p>
-      <a href="#poetry" class="hero-button">লেখা আবিষ্কার করুন <span>↗</span></a>
-    </div>
-    <div class="hero-image">
-      <img src="shadat-fatih.jpg" alt="Shadat Fatih">
-      <div class="hero-caption">
-        <span>SHADAT FATIH</span>
-        <span>LITERARY ARCHIVE</span>
       </div>
-    </div>
-  </section>
 
-  <!-- INTRO -->
-  <section class="intro">
-    <div class="intro-inner">
-      <p class="eyebrow">A WORLD OF WORDS</p>
-      <h2>কিছু অনুভূতি বলা যায় না।<br><em>তাই তারা লেখা হয়ে থাকে।</em></h2>
-      <p>এই সাহিত্যভুবনে জমা থাকে অনুভূতি, স্মৃতি, কল্পনা ও জীবনের গল্প— কবিতা, গল্প এবং উপন্যাসের পাতায়।</p>
     </div>
-  </section>
 
-  <!-- POETRY -->
-  <section class="content-section light" id="poetry">
-    <div class="section-container">
-      <div class="section-top">
-        <div>
-          <p class="eyebrow">01 / POETRY</p>
-          <h2>কবিতা</h2>
-        </div>
-        <p>কিছু কথা ছন্দে বলা হয়,<br>কিছু কথা নীরবতায়।</p>
-      </div>
-      <div class="writing-list" id="poetry-list">
-        <div class="loading-state">কবিতা লোড হচ্ছে...</div>
-      </div>
+    <div class="footer-bottom">
+      <span>© SHADAT FATIH</span>
+      <span>ALL RIGHTS RESERVED</span>
     </div>
-  </section>
 
-  <!-- STORIES -->
-  <section class="content-section dark" id="stories">
-    <div class="section-container">
-      <div class="section-top">
-        <div>
-          <p class="eyebrow">02 / STORIES</p>
-          <h2>গল্প</h2>
-        </div>
-        <p>প্রতিটি গল্পের ভেতরে<br>লুকিয়ে থাকে আরেকটি জীবন।</p>
-      </div>
-      <div class="story-grid" id="stories-container">
-        <div class="loading-state">গল্প লোড হচ্ছে...</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- NOVELS -->
-  <section class="content-section novel-section" id="novels">
-    <div class="section-container">
-      <div class="section-top">
-        <div>
-          <p class="eyebrow">03 / NOVELS</p>
-          <h2>উপন্যাস</h2>
-        </div>
-        <p>দীর্ঘ গল্পের জন্য<br>একটি দীর্ঘ যাত্রা।</p>
-      </div>
-      <div class="novel-grid" id="novels-container">
-        <div class="loading-state">উপন্যাস লোড হচ্ছে...</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HIDDEN ARCHIVE (JS uses these) -->
-  <section class="archive-section archive-data-section" id="year-archive" hidden aria-hidden="true">
-    <div class="section-container">
-      <div id="yearPoemsList" class="archive-list"></div>
-      <div id="yearStoriesList" class="archive-list"></div>
-      <div id="yearNovelsList" class="archive-list"></div>
-    </div>
-  </section>
-
-  <section class="most-viewed-section most-data-section" id="most-viewed" hidden aria-hidden="true">
-    <div class="section-container">
-      <div id="mostPoemsListHidden" class="most-viewed-list"></div>
-      <div id="mostStoriesListHidden" class="most-viewed-list"></div>
-      <div id="mostNovelsListHidden" class="most-viewed-list"></div>
-    </div>
-  </section>
-
-  <!-- QUOTE -->
-  <section class="quote-section">
-    <div class="quote-container">
-      <span class="quote-symbol">“</span>
-      <blockquote>কিছু অনুভূতি<br><em>শুধু লেখাই যায়।</em></blockquote>
-      <p>— Shadat Fatih</p>
-    </div>
-  </section>
-
-  <!-- AUTHOR -->
-  <section class="author-section" id="author">
-    <div class="section-container">
-      <div class="author-grid">
-        <div class="author-photo">
-          <img src="hero.jpg" alt="Shadat Fatih">
-        </div>
-        <div class="author-info">
-          <p class="eyebrow">THE AUTHOR</p>
-          <h2>Shadat Fatih</h2>
-          <p>কবিতা, গল্প ও উপন্যাসের মাধ্যমে অনুভূতি, মানুষ এবং জীবনের বিভিন্ন গল্পকে শব্দে ধরে রাখার একটি ব্যক্তিগত সাহিত্যযাত্রা।</p>
-          <div class="floating-socials">
-            <a href="https://www.facebook.com/FatihShadatOfficial" target="_blank" rel="noopener">Facebook ↗</a>
-            <a href="https://www.instagram.com/shadatfatih" target="_blank" rel="noopener">Instagram ↗</a>
-            <a href="https://wa.me/8801601800222" target="_blank" rel="noopener">WhatsApp ↗</a>
-            <a href="mailto:helloshadat@hotmail.com">Email ↗</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div>
-        <strong>Shadat Fatih</strong>
-        <p>POETRY · STORIES · NOVELS</p>
-      </div>
-      <p>© <span id="year"></span> Shadat Fatih</p>
-    </div>
   </footer>
 
 </main>
 
-<!-- SUPABASE -->
+</body>
+
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 "use strict";
 const SUPABASE_URL = "https://gwpesizyfwuwazpczmtz.supabase.co";
@@ -250,6 +384,42 @@ window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBL
 </script>
 
 <script src="script.js"></script>
+
+<script>
+(function () {
+  const menu = document.getElementById("mainNav");
+  const openBtn = document.getElementById("menuToggle");
+  const closeBtn = document.getElementById("menuClose");
+
+  if (!menu || !openBtn || !closeBtn) return;
+
+  function openMenu() {
+    menu.classList.add("open");
+    menu.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMenu() {
+    menu.classList.remove("open");
+    menu.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  openBtn.addEventListener("click", openMenu);
+  closeBtn.addEventListener("click", closeMenu);
+
+  menu.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeMenu();
+    }
+  });
+})();
+</script>
+
 
 <script>
 /* Premium motion */
@@ -275,5 +445,4 @@ if ("serviceWorker" in navigator) {
   });
 }
 </script>
-</body>
 </html>
