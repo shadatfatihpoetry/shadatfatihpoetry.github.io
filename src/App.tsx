@@ -11,6 +11,7 @@ import { SupabaseSetupModal } from './pages/admin/SupabaseSetupModal';
 // Pages
 import { HomePage } from './pages/HomePage';
 import { PoemsPage } from './pages/PoemsPage';
+import { ArchivePage } from './pages/ArchivePage';
 import { PoemReadingPage } from './pages/PoemReadingPage';
 import { StoriesPage } from './pages/StoriesPage';
 import { StoryReadingPage } from './pages/StoryReadingPage';
@@ -27,6 +28,7 @@ function parseUrlToActivePage(path: string): ActivePage {
 
   if (clean === '/' || clean === '') return { type: 'home' };
   if (clean === '/poems') return { type: 'poems' };
+  if (clean === '/archive') return { type: 'archive' };
   if (clean.startsWith('/poem/')) {
     const id = clean.replace('/poem/', '');
     return { type: 'poem-detail', id };
@@ -68,6 +70,8 @@ function pageToUrl(page: ActivePage): string {
       return '/';
     case 'poems':
       return '/poems';
+    case 'archive':
+      return '/archive';
     case 'poem-detail':
       return `/poem/${page.id}`;
     case 'stories':
@@ -138,6 +142,8 @@ function MainApp() {
         return <HomePage onNavigate={handleNavigate} />;
       case 'poems':
         return <PoemsPage onNavigate={handleNavigate} />;
+      case 'archive':
+        return <ArchivePage onNavigate={handleNavigate} />;
       case 'poem-detail':
         return <PoemReadingPage id={activePage.id} onNavigate={handleNavigate} />;
       case 'stories':

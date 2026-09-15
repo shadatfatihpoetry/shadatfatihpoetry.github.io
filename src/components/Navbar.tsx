@@ -17,7 +17,7 @@ export function Navbar({ activePage, onNavigate, onOpenSearch }: NavbarProps) {
 
   const navLinks = [
     { label: 'হোম', type: 'home' as const },
-    { label: 'কবিতা', type: 'poems' as const },
+    { label: 'কবিতা', type: 'archive' as const },
     { label: 'গল্প', type: 'stories' as const },
     { label: 'উপন্যাস', type: 'novels' as const },
     { label: 'লেখক', type: 'author' as const },

@@ -64,6 +64,7 @@ export interface ReadingSettings {
 export type ActivePage = 
   | { type: 'home' }
   | { type: 'poems' }
+  | { type: 'archive' }
   | { type: 'poem-detail'; id: string }
   | { type: 'stories' }
   | { type: 'story-detail'; id: string }

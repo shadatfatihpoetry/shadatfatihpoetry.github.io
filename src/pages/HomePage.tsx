@@ -26,7 +26,17 @@ export function HomePage({ onNavigate }: HomePageProps) {
   }, [publishedPoems]);
 
   // Latest
-  const latestPoems = useMemo(() => publishedPoems.slice(0, 4), [publishedPoems]);
+  const latestPoems = useMemo(
+    () =>
+      [...publishedPoems]
+        .sort(
+          (a, b) =>
+            new Date(b.blogger_published_at || b.created_at).getTime() -
+            new Date(a.blogger_published_at || a.created_at).getTime()
+        )
+        .slice(0, 4),
+    [publishedPoems]
+  );
   const latestStories = useMemo(() => publishedStories.slice(0, 3), [publishedStories]);
   const latestNovels = useMemo(() => publishedNovels.slice(0, 2), [publishedNovels]);
 
@@ -213,6 +223,20 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   }}
                 />
               ))}
+            </div>
+
+            <div className="flex justify-center mt-8">
+              <button
+                type="button"
+                onClick={() => {
+                  onNavigate({ type: 'archive' });
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[#2b6777]/30 text-[#2b6777] dark:text-[#52ab98] hover:bg-[#2b6777] hover:text-white transition-all duration-200 font-serif text-sm font-semibold"
+              >
+                পরবর্তী লেখা
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </div>
           </section>
 
