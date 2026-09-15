@@ -44,3 +44,151 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(140, 39, 30, 0.4);
 }
+
+/* =========================================================
+   SHADAT FATIH POETRY — PREMIUM TEAL DESIGN SYSTEM
+   ========================================================= */
+
+:root {
+  --sf-primary: #2b6777;
+  --sf-secondary: #c8d8e4;
+  --sf-white: #ffffff;
+  --sf-light: #f2f2f2;
+  --sf-accent: #52ab98;
+  --sf-text: #2b6777;
+  --sf-muted: #527785;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Noto Sans Bengali", sans-serif;
+  background: var(--sf-light);
+  color: var(--sf-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Bengali literary headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-serif {
+  font-family: "Noto Serif Bengali", serif;
+}
+
+/* Brand typography */
+.font-brand {
+  font-family: "Noto Serif Bengali", serif;
+}
+
+/* Smooth page entrance */
+#root {
+  animation: sf-page-enter 0.65s ease-out both;
+}
+
+@keyframes sf-page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Premium card movement */
+[class*="rounded-"] {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Images */
+img {
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
+}
+
+/* Interactive cards */
+article:hover,
+.group:hover {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Buttons and links */
+button,
+a {
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+button:active,
+a:active {
+  transform: scale(0.97);
+}
+
+/* Premium focus */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--sf-accent);
+  outline-offset: 3px;
+}
+
+/* Text selection */
+::selection {
+  background: var(--sf-accent);
+  color: var(--sf-white);
+}
+
+/* Soft scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--sf-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sf-secondary);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sf-accent);
+}
+
+/* Respect reduced-motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+

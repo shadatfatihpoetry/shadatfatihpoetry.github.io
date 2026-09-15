@@ -46,21 +46,21 @@ export function HomePage({ onNavigate }: HomePageProps) {
       />
 
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden pt-12 pb-20 md:py-28 border-b border-[#EBE5DE] dark:border-[#221F1D]">
-        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none bg-[radial-gradient(#8C271E_1px,transparent_1px)] [background-size:24px_24px]" />
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#8C271E]/5 dark:bg-[#C94A3D]/5 rounded-full blur-3xl pointer-events-none" />
+      <section className="relative overflow-hidden pt-12 pb-20 md:py-28 border-b border-[#c8d8e4] dark:border-[#2b6777]">
+        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none bg-[radial-gradient(#2b6777_1px,transparent_1px)] [background-size:24px_24px]" />
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#2b6777]/5 dark:bg-[#52ab98]/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8C271E]/10 dark:bg-[#8C271E]/20 text-[#8C271E] dark:text-[#FFB4AB] text-xs font-semibold mb-6 tracking-wide">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2b6777]/10 dark:bg-[#2b6777]/20 text-[#2b6777] dark:text-[#52ab98] text-xs font-semibold mb-6 tracking-wide">
             <Feather className="w-3.5 h-3.5" />
             <span>শাহাদাৎ ফাতিহ সাহিত্য সম্ভার</span>
           </div>
 
-          <h1 className="font-brand text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#1F1C1A] dark:text-[#FAF7F2] mb-2">
+          <h1 className="font-brand text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#2b6777] dark:text-[#FAF7F2] mb-2">
             Shadat Fatih Poetry
           </h1>
 
-          <p className="font-serif text-2xl sm:text-3xl text-[#8C271E] dark:text-[#FFB4AB] font-bold tracking-normal mb-3">
+          <p className="font-serif text-2xl sm:text-3xl text-[#2b6777] dark:text-[#52ab98] font-bold tracking-normal mb-3">
             শাহাদাৎ ফাতিহ
           </p>
 
@@ -80,7 +80,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 onNavigate({ type: 'poems' });
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#8C271E] hover:bg-[#A32E24] text-white font-medium text-base shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#2b6777] hover:bg-[#A32E24] text-white font-medium text-base shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
             >
               <Feather className="w-4 h-4" />
               <span>কবিতা পড়ুন</span>
@@ -94,7 +94,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               }}
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white dark:bg-[#1E1A18] hover:bg-[#F4ECE3] dark:hover:bg-[#2A2421] text-[#2C2724] dark:text-[#EAE5DE] border border-[#DDD5CB] dark:border-[#352F2B] font-medium text-base shadow-xs hover:shadow-md transition-all duration-200"
             >
-              <BookOpen className="w-4 h-4 text-[#8C271E]" />
+              <BookOpen className="w-4 h-4 text-[#2b6777]" />
               <span>উপন্যাস পড়ুন</span>
             </button>
           </div>
@@ -106,11 +106,11 @@ export function HomePage({ onNavigate }: HomePageProps) {
         <section>
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 text-xs text-[#8C271E] dark:text-[#FFB4AB] font-bold tracking-wider mb-2">
+              <div className="inline-flex items-center gap-1.5 text-xs text-[#2b6777] dark:text-[#52ab98] font-bold tracking-wider mb-2">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>নির্বাচিত রচনা</span>
               </div>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1F1C1A] dark:text-[#FAF7F2]">
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2b6777] dark:text-[#FAF7F2]">
                 নির্বাচিত কবিতা
               </h2>
               <p className="text-sm text-[#736B63] dark:text-[#A8A096] mt-1">
@@ -123,7 +123,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 onNavigate({ type: 'poems' });
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#8C271E] dark:text-[#FFB4AB] hover:underline"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#2b6777] dark:text-[#52ab98] hover:underline"
             >
               <span>সব কবিতা দেখুন</span>
               <ArrowRight className="w-4 h-4" />
@@ -146,13 +146,13 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
         {/* LATEST NOVELS */}
         {latestNovels.length > 0 && (
-          <section className="bg-linear-to-b from-[#F5EFE9]/40 to-transparent dark:from-[#1A1715]/40 dark:to-transparent rounded-3xl p-6 sm:p-10 border border-[#EBE5DE]/80 dark:border-[#282321]/80">
+          <section className="bg-linear-to-b from-[#F5EFE9]/40 to-transparent dark:from-[#1A1715]/40 dark:to-transparent rounded-3xl p-6 sm:p-10 border border-[#c8d8e4]/80 dark:border-[#282321]/80">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
               <div>
-                <span className="text-xs font-bold text-[#8C271E] dark:text-[#FFB4AB] tracking-wider">
+                <span className="text-xs font-bold text-[#2b6777] dark:text-[#52ab98] tracking-wider">
                   ধারাবাহিক আখ্যান
                 </span>
-                <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1F1C1A] dark:text-[#FAF7F2] mt-1">
+                <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2b6777] dark:text-[#FAF7F2] mt-1">
                   সাম্প্রতিক উপন্যাস
                 </h2>
               </div>
@@ -162,7 +162,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   onNavigate({ type: 'novels' });
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#8C271E] dark:text-[#FFB4AB] hover:underline"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#2b6777] dark:text-[#52ab98] hover:underline"
               >
                 <span>সব উপন্যাস</span>
                 <ArrowRight className="w-4 h-4" />
@@ -189,15 +189,15 @@ export function HomePage({ onNavigate }: HomePageProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Latest Poems */}
           <section>
-            <div className="flex items-center justify-between mb-8 pb-3 border-b border-[#EBE5DE] dark:border-[#262220]">
-              <h2 className="font-serif text-2xl font-bold text-[#1F1C1A] dark:text-[#FAF7F2] flex items-center gap-2">
-                <Feather className="w-5 h-5 text-[#8C271E]" />
+            <div className="flex items-center justify-between mb-8 pb-3 border-b border-[#c8d8e4] dark:border-[#262220]">
+              <h2 className="font-serif text-2xl font-bold text-[#2b6777] dark:text-[#FAF7F2] flex items-center gap-2">
+                <Feather className="w-5 h-5 text-[#2b6777]" />
                 নতুন প্রকাশিত কবিতা
               </h2>
               <button
                 type="button"
                 onClick={() => onNavigate({ type: 'poems' })}
-                className="text-xs font-medium text-[#8C271E] dark:text-[#FFB4AB] hover:underline"
+                className="text-xs font-medium text-[#2b6777] dark:text-[#52ab98] hover:underline"
               >
                 সকল কবিতা
               </button>
@@ -218,15 +218,15 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
           {/* Latest Stories */}
           <section>
-            <div className="flex items-center justify-between mb-8 pb-3 border-b border-[#EBE5DE] dark:border-[#262220]">
-              <h2 className="font-serif text-2xl font-bold text-[#1F1C1A] dark:text-[#FAF7F2] flex items-center gap-2">
-                <BookOpen className="w-5 h-5 text-[#8C271E]" />
+            <div className="flex items-center justify-between mb-8 pb-3 border-b border-[#c8d8e4] dark:border-[#262220]">
+              <h2 className="font-serif text-2xl font-bold text-[#2b6777] dark:text-[#FAF7F2] flex items-center gap-2">
+                <BookOpen className="w-5 h-5 text-[#2b6777]" />
                 নতুন ছোটগল্প
               </h2>
               <button
                 type="button"
                 onClick={() => onNavigate({ type: 'stories' })}
-                className="text-xs font-medium text-[#8C271E] dark:text-[#FFB4AB] hover:underline"
+                className="text-xs font-medium text-[#2b6777] dark:text-[#52ab98] hover:underline"
               >
                 সকল গল্প
               </button>
@@ -247,10 +247,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
         </div>
 
         {/* POPULAR CONTENT SECTION */}
-        <section className="bg-white dark:bg-[#171514] border border-[#EBE5DE] dark:border-[#262220] rounded-2xl p-6 sm:p-10 shadow-xs">
-          <div className="flex items-center gap-2.5 mb-6 text-[#8C271E] dark:text-[#FFB4AB]">
+        <section className="bg-white dark:bg-[#171514] border border-[#c8d8e4] dark:border-[#262220] rounded-2xl p-6 sm:p-10 shadow-xs">
+          <div className="flex items-center gap-2.5 mb-6 text-[#2b6777] dark:text-[#52ab98]">
             <Flame className="w-5 h-5" />
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1F1C1A] dark:text-[#FAF7F2]">
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#2b6777] dark:text-[#FAF7F2]">
               পাঠকপ্রিয় রচনা
             </h2>
           </div>
@@ -268,19 +268,19 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   else onNavigate({ type: 'novel-detail', id: item.id });
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="group cursor-pointer p-5 rounded-xl border border-[#F2ECE4] dark:border-[#272321] hover:border-[#8C271E]/40 hover:bg-[#FAF7F2] dark:hover:bg-[#1E1A18] transition-all flex items-start gap-4"
+                className="group cursor-pointer p-5 rounded-xl border border-[#F2ECE4] dark:border-[#272321] hover:border-[#2b6777]/40 hover:bg-[#FAF7F2] dark:hover:bg-[#1E1A18] transition-all flex items-start gap-4"
               >
-                <span className="font-brand font-bold text-2xl text-[#8C271E]/30 group-hover:text-[#8C271E] transition-colors">
+                <span className="font-brand font-bold text-2xl text-[#2b6777]/30 group-hover:text-[#2b6777] transition-colors">
                   0{idx + 1}
                 </span>
                 <div className="space-y-1 grow">
                   <div className="flex items-center justify-between text-xs text-[#8A8178]">
-                    <span className="font-medium text-[#8C271E] dark:text-[#FFB4AB]">
+                    <span className="font-medium text-[#2b6777] dark:text-[#52ab98]">
                       {item.contentType === 'poem' ? 'কবিতা' : item.contentType === 'story' ? 'গল্প' : 'উপন্যাস'}
                     </span>
                     <span>{toBengaliNumber(item.views || 0)} পাঠক</span>
                   </div>
-                  <h3 className="font-serif font-bold text-lg text-[#1F1C1A] dark:text-[#EFECE8] group-hover:text-[#8C271E] transition-colors leading-snug">
+                  <h3 className="font-serif font-bold text-lg text-[#2b6777] dark:text-[#EFECE8] group-hover:text-[#2b6777] transition-colors leading-snug">
                     {item.title}
                   </h3>
                   <p className="text-xs text-[#736B63] dark:text-[#A8A096] line-clamp-2">
@@ -303,16 +303,16 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -bottom-3 -right-3 px-3 py-1 bg-[#8C271E] text-white text-xs font-semibold rounded-full shadow-md">
+              <div className="absolute -bottom-3 -right-3 px-3 py-1 bg-[#2b6777] text-white text-xs font-semibold rounded-full shadow-md">
                 কবি ও কথাশিল্পী
               </div>
             </div>
 
             <div className="text-center md:text-left space-y-4">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#8C271E] dark:text-[#FFB4AB]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#2b6777] dark:text-[#52ab98]">
                 লেখক পরিচিতি
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1F1C1A] dark:text-[#FAF7F2]">
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2b6777] dark:text-[#FAF7F2]">
                 শাহাদাৎ ফাতিহ
               </h2>
               <p className="font-serif text-[#524A42] dark:text-[#C7C0B7] text-base leading-relaxed">
@@ -325,7 +325,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                     onNavigate({ type: 'author' });
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#8C271E] hover:bg-[#A32E24] text-white text-sm font-medium transition-colors shadow-sm"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#2b6777] hover:bg-[#A32E24] text-white text-sm font-medium transition-colors shadow-sm"
                 >
                   <span>লেখক সম্পর্কে জানুন</span>
                   <ArrowRight className="w-4 h-4" />
