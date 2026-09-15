@@ -1,3 +1,5 @@
+import https from 'https';
+
 import { request } from 'https';
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
