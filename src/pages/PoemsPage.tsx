@@ -155,7 +155,7 @@ export function PoemsPage({ onNavigate }: PoemsPageProps) {
 
       {/* Pagination Controls */}
       {totalPages > 1 && (
-        <div className="flex justify-center items-center gap-2 pt-8">
+        <div className="flex flex-wrap justify-center items-center gap-1.5 sm:gap-2 pt-8 px-1">
           <button
             type="button"
             disabled={currentPage === 1}
@@ -163,27 +163,65 @@ export function PoemsPage({ onNavigate }: PoemsPageProps) {
               setCurrentPage((p) => Math.max(1, p - 1));
               window.scrollTo({ top: 200, behavior: 'smooth' });
             }}
-            className="px-4 py-2 rounded-xl text-xs font-medium border border-[#E5DFD7] dark:border-[#332D29] disabled:opacity-40 hover:bg-[#F2ECE4] dark:hover:bg-[#221E1C]"
+            className="px-3 sm:px-4 py-2 rounded-xl text-xs font-medium border border-[#E5DFD7] dark:border-[#332D29] disabled:opacity-40 hover:bg-[#F2ECE4] dark:hover:bg-[#221E1C] whitespace-nowrap"
           >
             পূর্ববর্তী
           </button>
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-            <button
-              key={page}
-              type="button"
-              onClick={() => {
-                setCurrentPage(page);
-                window.scrollTo({ top: 200, behavior: 'smooth' });
-              }}
-              className={`w-9 h-9 rounded-xl text-xs font-medium transition-colors ${
-                currentPage === page
-                  ? 'bg-[#8C271E] text-white'
-                  : 'border border-[#E5DFD7] dark:border-[#332D29] hover:bg-[#F2ECE4] dark:hover:bg-[#221E1C]'
-              }`}
-            >
-              {toBengaliNumber(page)}
-            </button>
-          ))}
+          {(() => {
+            const pageNumbers: (number | 'ellipsis')[] = [];
+
+            if (totalPages <= 5) {
+              for (let page = 1; page <= totalPages; page++) pageNumbers.push(page);
+            } else if (currentPage <= 3) {
+              pageNumbers.push(1, 2, 3, 4, 'ellipsis', totalPages);
+            } else if (currentPage >= totalPages - 2) {
+              pageNumbers.push(
+                1,
+                'ellipsis',
+                totalPages - 3,
+                totalPages - 2,
+                totalPages - 1,
+                totalPages
+              );
+            } else {
+              pageNumbers.push(
+                1,
+                'ellipsis',
+                currentPage - 1,
+                currentPage,
+                currentPage + 1,
+                'ellipsis',
+                totalPages
+              );
+            }
+
+            return pageNumbers.map((page, index) =>
+              page === 'ellipsis' ? (
+                <span
+                  key={`ellipsis-${index}`}
+                  className="w-7 sm:w-9 text-center text-xs text-[#8A8178]"
+                >
+                  …
+                </span>
+              ) : (
+                <button
+                  key={page}
+                  type="button"
+                  onClick={() => {
+                    setCurrentPage(page);
+                    window.scrollTo({ top: 200, behavior: 'smooth' });
+                  }}
+                  className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl text-xs font-medium transition-colors ${
+                    currentPage === page
+                      ? 'bg-[#2b6777] text-white'
+                      : 'border border-[#E5DFD7] dark:border-[#332D29] hover:bg-[#F2ECE4] dark:hover:bg-[#221E1C]'
+                  }`}
+                >
+                  {toBengaliNumber(page)}
+                </button>
+              )
+            );
+          })()}
           <button
             type="button"
             disabled={currentPage === totalPages}
@@ -191,7 +229,7 @@ export function PoemsPage({ onNavigate }: PoemsPageProps) {
               setCurrentPage((p) => Math.min(totalPages, p + 1));
               window.scrollTo({ top: 200, behavior: 'smooth' });
             }}
-            className="px-4 py-2 rounded-xl text-xs font-medium border border-[#E5DFD7] dark:border-[#332D29] disabled:opacity-40 hover:bg-[#F2ECE4] dark:hover:bg-[#221E1C]"
+            className="px-3 sm:px-4 py-2 rounded-xl text-xs font-medium border border-[#E5DFD7] dark:border-[#332D29] disabled:opacity-40 hover:bg-[#F2ECE4] dark:hover:bg-[#221E1C] whitespace-nowrap"
           >
             পরবর্তী
           </button>

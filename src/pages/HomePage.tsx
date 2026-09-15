@@ -5,7 +5,7 @@ import { StoryCard } from '../components/StoryCard';
 import { NovelCard } from '../components/NovelCard';
 import { ActivePage } from '../types';
 import { SEOHead } from '../components/SEOHead';
-import { Feather, BookOpen, Sparkles, Flame, ArrowRight, User } from 'lucide-react';
+import { Feather, BookOpen, Sparkles, Flame, ArrowRight, User, Facebook, Instagram, MessageCircle, AtSign } from 'lucide-react';
 import { toBengaliNumber } from '../utils/bengaliUtils';
 
 interface HomePageProps {
@@ -49,7 +49,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
   }, [publishedPoems, publishedStories, publishedNovels]);
 
   return (
-    <div className="min-h-screen space-y-20 pb-16">
+    <div className="w-full min-w-0 max-w-full overflow-x-hidden min-h-screen space-y-20 pb-16">
       <SEOHead
         title="প্রচ্ছদ"
         description="Shadat Fatih Poetry — বাংলা সাহিত্যের আধুনিক ডিজিটাল প্রকাশনা। শাহাদাৎ ফাতিহ-এর নির্বাচিত কবিতা, গল্প ও উপন্যাস।"
@@ -111,7 +111,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
         </div>
       </section>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 min-w-0">
         {/* FEATURED POETRY */}
         <section>
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
@@ -294,10 +294,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 }}
                 className="group cursor-pointer p-5 rounded-xl border border-[#F2ECE4] dark:border-[#272321] hover:border-[#2b6777]/40 hover:bg-[#FAF7F2] dark:hover:bg-[#1E1A18] transition-all flex items-start gap-4"
               >
-                <span className="font-brand font-bold text-2xl text-[#2b6777]/30 group-hover:text-[#2b6777] transition-colors">
-                  0{idx + 1}
+                <span className="font-brand font-bold text-2xl text-[#2b6777]/30 group-hover:text-[#2b6777] transition-colors tabular-nums shrink-0">
+                  {toBengaliNumber(idx + 1).padStart(2, '0')}
                 </span>
-                <div className="space-y-1 grow">
+                <div className="space-y-1 grow min-w-0">
                   <div className="flex items-center justify-between text-xs text-[#8A8178]">
                     <span className="font-medium text-[#2b6777] dark:text-[#52ab98]">
                       {item.contentType === 'poem' ? 'কবিতা' : item.contentType === 'story' ? 'গল্প' : 'উপন্যাস'}
@@ -313,6 +313,92 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+
+        {/* CONTACT SECTION */}
+        <section className="relative overflow-hidden rounded-3xl border border-[#c8d8e4] dark:border-[#2b6777]/40 bg-white dark:bg-[#171514] p-6 sm:p-10 lg:p-12 shadow-sm">
+          <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-[#52ab98]/10 blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -left-24 w-64 h-64 rounded-full bg-[#2b6777]/10 blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 text-center max-w-2xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#2b6777]/10 dark:bg-[#52ab98]/10 text-[#2b6777] dark:text-[#52ab98] text-xs font-bold tracking-wide">
+              <MessageCircle className="w-4 h-4" />
+              <span>যোগাযোগ</span>
+            </div>
+
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2b6777] dark:text-[#FAF7F2] mt-4">
+              শাহাদাৎ ফাতিহ-এর সঙ্গে যুক্ত থাকুন
+            </h2>
+
+            <p className="font-serif text-sm sm:text-base text-[#6E645B] dark:text-[#ABA298] mt-3 leading-relaxed">
+              সাহিত্য, কবিতা ও নতুন প্রকাশনার খবর পেতে সামাজিক যোগাযোগমাধ্যমে সঙ্গে থাকুন।
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+
+              <a
+                href="https://www.facebook.com/share/1LxGowX9at/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="sf-contact-card group flex items-center gap-4 p-4 rounded-2xl border border-[#E5DFD7] dark:border-[#302A27] bg-[#FAF8F5] dark:bg-[#1D1A18] text-left"
+              >
+                <span className="sf-contact-icon shrink-0 w-11 h-11 rounded-xl bg-[#2b6777] text-white flex items-center justify-center shadow-sm">
+                  <Facebook className="w-5 h-5" />
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-xs text-[#8A8178] dark:text-[#A8A096]">Facebook</span>
+                  <span className="block font-serif font-bold text-[#2b6777] dark:text-[#EFECE8] truncate">Shadat Fatih</span>
+                </span>
+              </a>
+
+              <a
+                href="https://wa.me/8801601800222"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="sf-contact-card group flex items-center gap-4 p-4 rounded-2xl border border-[#E5DFD7] dark:border-[#302A27] bg-[#FAF8F5] dark:bg-[#1D1A18] text-left"
+              >
+                <span className="sf-contact-icon shrink-0 w-11 h-11 rounded-xl bg-[#2b6777] text-white flex items-center justify-center shadow-sm">
+                  <MessageCircle className="w-5 h-5" />
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-xs text-[#8A8178] dark:text-[#A8A096]">WhatsApp</span>
+                  <span className="block font-serif font-bold text-[#2b6777] dark:text-[#EFECE8] truncate">Message Shadat Fatih</span>
+                </span>
+              </a>
+
+              <a
+                href="https://www.instagram.com/shadatfatih?stkn=MXZ0dHE0MnNhNnpzNQ=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="sf-contact-card group flex items-center gap-4 p-4 rounded-2xl border border-[#E5DFD7] dark:border-[#302A27] bg-[#FAF8F5] dark:bg-[#1D1A18] text-left"
+              >
+                <span className="sf-contact-icon shrink-0 w-11 h-11 rounded-xl bg-[#2b6777] text-white flex items-center justify-center shadow-sm">
+                  <Instagram className="w-5 h-5" />
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-xs text-[#8A8178] dark:text-[#A8A096]">Instagram</span>
+                  <span className="block font-serif font-bold text-[#2b6777] dark:text-[#EFECE8] truncate">@shadatfatih</span>
+                </span>
+              </a>
+
+              <a
+                href="https://x.com/ShadatFatihX"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="sf-contact-card group flex items-center gap-4 p-4 rounded-2xl border border-[#E5DFD7] dark:border-[#302A27] bg-[#FAF8F5] dark:bg-[#1D1A18] text-left"
+              >
+                <span className="sf-contact-icon shrink-0 w-11 h-11 rounded-xl bg-[#2b6777] text-white flex items-center justify-center shadow-sm">
+                  <AtSign className="w-5 h-5" />
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-xs text-[#8A8178] dark:text-[#A8A096]">X</span>
+                  <span className="block font-serif font-bold text-[#2b6777] dark:text-[#EFECE8] truncate">@ShadatFatihX</span>
+                </span>
+              </a>
+
+            </div>
           </div>
         </section>
 
@@ -356,6 +442,103 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 </button>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* CONTACT & SOCIAL SECTION */}
+        <section className="relative overflow-hidden rounded-3xl bg-linear-to-br from-[#173F4A] via-[#1F5663] to-[#2b6777] p-6 sm:p-10 lg:p-12 text-white shadow-xl">
+          <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-[#52ab98]/15 blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-white/5 blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+            <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 border border-white/10 text-xs font-semibold tracking-wide backdrop-blur-sm">
+              যোগাযোগ
+            </span>
+
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold mt-4">
+              শাহাদাৎ ফাতিহ-এর সঙ্গে যুক্ত থাকুন
+            </h2>
+
+            <p className="font-serif text-sm sm:text-base text-white/75 mt-3 leading-relaxed">
+              সাহিত্য, নতুন লেখা ও প্রকাশনার খবর পেতে সামাজিক যোগাযোগমাধ্যমে যুক্ত থাকুন।
+            </p>
+          </div>
+
+          <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <a
+              href="https://www.facebook.com/share/1LxGowX9at/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/8 backdrop-blur-sm p-4 transition-all duration-300 hover:-translate-y-1 hover:bg-white/15 hover:border-white/25 hover:shadow-lg"
+            >
+              <div className="w-11 h-11 shrink-0 rounded-xl bg-white/10 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
+                  <path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.6 1.7-1.6h1.8V3.8c-.3 0-1.4-.1-2.6-.1-2.6 0-4.3 1.6-4.3 4.4V10H7.3v3h2.8v8h3.4Z" />
+                </svg>
+              </div>
+              <div className="min-w-0">
+                <div className="font-semibold">Facebook</div>
+                <div className="text-xs text-white/60 mt-0.5">Follow the author</div>
+              </div>
+              <ArrowRight className="w-4 h-4 ml-auto opacity-50 transition-transform duration-300 group-hover:translate-x-1 group-hover:opacity-100" />
+            </a>
+
+            <a
+              href="https://wa.me/8801601800222"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/8 backdrop-blur-sm p-4 transition-all duration-300 hover:-translate-y-1 hover:bg-white/15 hover:border-white/25 hover:shadow-lg"
+            >
+              <div className="w-11 h-11 shrink-0 rounded-xl bg-white/10 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-none stroke-current" strokeWidth="1.8" aria-hidden="true">
+                  <path d="M20 11.5a8 8 0 0 1-11.9 7L4 20l1.5-3.9A8 8 0 1 1 20 11.5Z" />
+                  <path d="M8.5 8.7c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.5c.1.2.1.4 0 .6l-.5.6c.8 1.2 1.5 1.8 2.8 2.4l.5-.6c.2-.2.4-.2.6-.1l1.5.7c.3.1.4.3.3.6-.2.7-.8 1.3-1.5 1.4-1.1.1-2.9-.8-4.2-2-1.3-1.2-2.3-2.8-2.4-4 0-.4.2-.8.5-1.1Z" />
+                </svg>
+              </div>
+              <div className="min-w-0">
+                <div className="font-semibold">WhatsApp</div>
+                <div className="text-xs text-white/60 mt-0.5">Message Shadat Fatih</div>
+              </div>
+              <ArrowRight className="w-4 h-4 ml-auto opacity-50 transition-transform duration-300 group-hover:translate-x-1 group-hover:opacity-100" />
+            </a>
+
+            <a
+              href="https://www.instagram.com/shadatfatih?stkn=MXZ0dHE0MnNhNnpzNQ=="
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/8 backdrop-blur-sm p-4 transition-all duration-300 hover:-translate-y-1 hover:bg-white/15 hover:border-white/25 hover:shadow-lg"
+            >
+              <div className="w-11 h-11 shrink-0 rounded-xl bg-white/10 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-none stroke-current" strokeWidth="1.8" aria-hidden="true">
+                  <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.4" cy="6.7" r="1" className="fill-current stroke-none" />
+                </svg>
+              </div>
+              <div className="min-w-0">
+                <div className="font-semibold">Instagram</div>
+                <div className="text-xs text-white/60 mt-0.5">@shadatfatih</div>
+              </div>
+              <ArrowRight className="w-4 h-4 ml-auto opacity-50 transition-transform duration-300 group-hover:translate-x-1 group-hover:opacity-100" />
+            </a>
+
+            <a
+              href="https://x.com/ShadatFatihX"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/8 backdrop-blur-sm p-4 transition-all duration-300 hover:-translate-y-1 hover:bg-white/15 hover:border-white/25 hover:shadow-lg"
+            >
+              <div className="w-11 h-11 shrink-0 rounded-xl bg-white/10 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
+                  <path d="M18.9 2.5h3.7l-8.1 9.2 9.5 9.8h-7.4l-5.8-6-5.3 6H1.8l7.8-8.9L.5 2.5h7.6l5.2 5.5 5.6-5.5Zm-1.3 17.3h2L6.9 4.1H4.8l12.8 15.7Z" />
+                </svg>
+              </div>
+              <div className="min-w-0">
+                <div className="font-semibold">X</div>
+                <div className="text-xs text-white/60 mt-0.5">@ShadatFatihX</div>
+              </div>
+              <ArrowRight className="w-4 h-4 ml-auto opacity-50 transition-transform duration-300 group-hover:translate-x-1 group-hover:opacity-100" />
+            </a>
           </div>
         </section>
       </div>

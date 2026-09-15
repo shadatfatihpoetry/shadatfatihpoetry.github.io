@@ -192,3 +192,88 @@ select:focus-visible {
   }
 }
 
+
+
+/* =========================================================
+   RESPONSIVE LAYOUT SAFETY
+   ========================================================= */
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  body {
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  #root {
+    min-width: 0;
+    overflow-x: hidden;
+  }
+}
+
+/* Contact social cards */
+.sf-contact-card {
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.sf-contact-card::before {
+  content: "";
+  position: absolute;
+  inset: -60%;
+  background: radial-gradient(
+    circle,
+    rgba(82, 171, 152, 0.12) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+
+.sf-contact-card:hover::before {
+  opacity: 1;
+}
+
+.sf-contact-card:hover {
+  transform: translateY(-5px);
+}
+
+.sf-contact-icon {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+}
+
+.sf-contact-card:hover .sf-contact-icon {
+  transform: scale(1.08) rotate(-4deg);
+  box-shadow: 0 12px 28px rgba(43, 103, 119, 0.18);
+}
