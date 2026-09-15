@@ -33,7 +33,7 @@ export function Navbar({ activePage, onNavigate, onOpenSearch }: NavbarProps) {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#FAF8F5]/90 dark:bg-[#121110]/90 backdrop-blur-md border-b border-[#EBE5DE] dark:border-[#24201E] transition-colors duration-200">
+    <header className="sticky top-0 z-40 w-full bg-white/75 dark:bg-[#121110]/75 backdrop-blur-xl border-b border-[#DCE7EA]/70 dark:border-[#24201E] shadow-[0_4px_30px_rgba(43,103,119,0.05)] transition-all duration-500 sf-glass">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Brand Logo */}
@@ -41,14 +41,14 @@ export function Navbar({ activePage, onNavigate, onOpenSearch }: NavbarProps) {
             onClick={() => handleLinkClick('home')}
             className="cursor-pointer flex items-center gap-2.5 select-none group"
           >
-            <span className="w-9 h-9 rounded-xl bg-[#8C271E] flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform shrink-0">
+            <span className="w-9 h-9 rounded-xl bg-[#2b6777] flex items-center justify-center text-white shadow-[0_8px_20px_rgba(43,103,119,0.18)] group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500 shrink-0">
               <Feather className="w-4 h-4" />
             </span>
             <div className="flex flex-col">
-              <span className="font-brand font-semibold text-base sm:text-lg tracking-wide text-[#1F1C1A] dark:text-[#F3EFEB] group-hover:text-[#8C271E] dark:group-hover:text-[#E25C4F] transition-colors leading-tight">
+              <span className="font-brand font-semibold text-base sm:text-lg tracking-wide text-[#1F1C1A] dark:text-[#F3EFEB] group-hover:text-[#2b6777] dark:group-hover:text-[#52ab98] transition-colors leading-tight">
                 Shadat Fatih Poetry
               </span>
-              <span className="text-[12px] text-[#8C271E] dark:text-[#FFB4AB] font-serif font-medium leading-tight">
+              <span className="text-[12px] text-[#2b6777] dark:text-[#52ab98] font-serif font-medium leading-tight">
                 শাহাদাৎ ফাতিহ
               </span>
             </div>
@@ -63,7 +63,7 @@ export function Navbar({ activePage, onNavigate, onOpenSearch }: NavbarProps) {
                 onClick={() => handleLinkClick(item.type)}
                 className={`px-3.5 py-1.5 rounded-lg text-[15px] font-medium transition-all ${
                   isActive(item.type)
-                    ? 'text-[#8C271E] dark:text-[#FFB4AB] bg-[#8C271E]/10 dark:bg-[#8C271E]/20'
+                    ? 'text-[#2b6777] dark:text-[#52ab98] bg-[#8C271E]/10 dark:bg-[#8C271E]/20'
                     : 'text-[#544D46] dark:text-[#B8B0A6] hover:text-[#1F1C1A] dark:hover:text-white hover:bg-[#EFE9DF]/50 dark:hover:bg-[#25201E]'
                 }`}
               >
@@ -78,7 +78,7 @@ export function Navbar({ activePage, onNavigate, onOpenSearch }: NavbarProps) {
             <button
               type="button"
               onClick={onOpenSearch}
-              className="p-2 sm:px-3 sm:py-2 rounded-xl border border-[#E5DFD7] dark:border-[#2C2724] bg-white/60 dark:bg-[#1C1816] text-[#544D46] dark:text-[#C7C0B7] hover:text-[#8C271E] dark:hover:text-[#FFB4AB] hover:border-[#8C271E]/40 transition-colors flex items-center gap-2"
+              className="p-2 sm:px-3 sm:py-2 rounded-xl border border-[#E5DFD7] dark:border-[#2C2724] bg-white/60 dark:bg-[#1C1816] text-[#544D46] dark:text-[#C7C0B7] hover:text-[#2b6777] dark:hover:text-[#52ab98] hover:border-[#2b6777]/40 transition-colors flex items-center gap-2"
               title="সাহিত্যকর্ম খুঁজুন"
             >
               <Search className="w-4 h-4" />
@@ -89,7 +89,7 @@ export function Navbar({ activePage, onNavigate, onOpenSearch }: NavbarProps) {
             <button
               type="button"
               onClick={toggleTheme}
-              className="p-2 rounded-xl border border-[#E5DFD7] dark:border-[#2C2724] bg-white/60 dark:bg-[#1C1816] text-[#544D46] dark:text-[#C7C0B7] hover:text-[#8C271E] dark:hover:text-[#FFB4AB] transition-colors"
+              className="p-2 rounded-xl border border-[#E5DFD7] dark:border-[#2C2724] bg-white/60 dark:bg-[#1C1816] text-[#544D46] dark:text-[#C7C0B7] hover:text-[#2b6777] dark:hover:text-[#52ab98] transition-colors"
               title={theme === 'dark' ? 'উজ্জ্বল মোড' : 'ডার্ক মোড'}
             >
               {theme === 'dark' ? (
@@ -128,7 +128,13 @@ export function Navbar({ activePage, onNavigate, onOpenSearch }: NavbarProps) {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#FAF8F5] dark:bg-[#171514] border-b border-[#EBE5DE] dark:border-[#24201E] px-4 pt-2 pb-6 space-y-1 shadow-lg">
+        <div
+          className={`md:hidden bg-white/95 dark:bg-[#171514]/95 backdrop-blur-xl border-b border-[#DCE7EA] dark:border-[#24201E] px-4 pt-2 pb-6 space-y-1 shadow-lg transition-all duration-500 ease-out ${
+            mobileMenuOpen
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 -translate-y-3 pointer-events-none"
+          }`}
+        >
           {navLinks.map((item) => (
             <button
               key={item.type}
@@ -136,7 +142,7 @@ export function Navbar({ activePage, onNavigate, onOpenSearch }: NavbarProps) {
               onClick={() => handleLinkClick(item.type)}
               className={`w-full text-left px-4 py-3 rounded-xl text-base font-medium transition-colors ${
                 isActive(item.type)
-                  ? 'bg-[#8C271E]/10 dark:bg-[#8C271E]/20 text-[#8C271E] dark:text-[#FFB4AB]'
+                  ? 'bg-[#8C271E]/10 dark:bg-[#8C271E]/20 text-[#2b6777] dark:text-[#52ab98]'
                   : 'text-[#4A433D] dark:text-[#D4CCC2] hover:bg-[#EFE9DF]/50 dark:hover:bg-[#201C1A]'
               }`}
             >
@@ -146,7 +152,7 @@ export function Navbar({ activePage, onNavigate, onOpenSearch }: NavbarProps) {
           <button
             type="button"
             onClick={() => handleLinkClick('admin')}
-            className="w-full text-left px-4 py-3 rounded-xl text-base font-medium text-[#8C271E] dark:text-[#FFB4AB] flex items-center justify-between pt-3 border-t border-[#EFECE8] dark:border-[#25211F]"
+            className="w-full text-left px-4 py-3 rounded-xl text-base font-medium text-[#2b6777] dark:text-[#52ab98] flex items-center justify-between pt-3 border-t border-[#EFECE8] dark:border-[#25211F]"
           >
             <span>অ্যাডমিন ড্যাশবোর্ড</span>
             <ShieldCheck className="w-4 h-4" />

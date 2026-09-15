@@ -48,7 +48,7 @@ export function StoriesPage({ onNavigate }: StoriesPageProps) {
   }, [filteredStories, currentPage, itemsPerPage]);
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10 min-h-screen">
+    <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10 min-h-screen min-w-0 overflow-x-hidden sf-glow">
       <SEOHead
         title="গল্প সম্ভার"
         description="শাহাদাৎ ফাতিহ-এর প্রকাশিত ছোটগল্প সংকলন। জীবনের বহুমাত্রিক অভিজ্ঞতা ও মানবিক সম্পর্কের গভীর আখ্যান।"
@@ -56,23 +56,23 @@ export function StoriesPage({ onNavigate }: StoriesPageProps) {
       />
 
       <div className="text-center max-w-2xl mx-auto space-y-3">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#8C271E]/10 dark:bg-[#8C271E]/20 text-[#8C271E] dark:text-[#FFB4AB] text-xs font-semibold">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2b6777]/10 dark:bg-[#2b6777]/20 text-[#2b6777] dark:text-[#8ec9bd] text-xs font-semibold">
           <BookOpen className="w-3.5 h-3.5" />
           <span>কথাসাহিত্য</span>
         </div>
-        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1F1C1A] dark:text-[#FAF7F2]">
+        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#173b46] dark:text-[#F4F8F9]">
           গল্প সম্ভার
         </h1>
-        <p className="font-serif text-sm sm:text-base text-[#6E645B] dark:text-[#ABA298] leading-relaxed">
+        <p className="font-serif text-sm sm:text-base text-[#527785] dark:text-[#AFC4CA] leading-relaxed">
           প্রতিটি ছোটগল্প জীবনের এক একটি খণ্ডচিত্র। সমাজ, মানুষ, মনস্তত্ত্ব ও সম্পর্কের টানাপোড়েন নিয়ে রচিত অনন্য গল্পসমূহ।
         </p>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-white dark:bg-[#181615] border border-[#EBE5DE] dark:border-[#2C2724] rounded-2xl p-4 sm:p-5 shadow-xs">
+      <div className="sf-glass sf-premium-card rounded-2xl p-4 sm:p-5 shadow-[0_10px_40px_rgba(43,103,119,0.06)]">
         <div className="flex flex-col sm:flex-row gap-4 justify-between items-center">
           <div className="relative w-full sm:w-80">
-            <Search className="w-4 h-4 text-[#8A8178] absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-[#527785] absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={search}
@@ -81,12 +81,12 @@ export function StoriesPage({ onNavigate }: StoriesPageProps) {
                 setCurrentPage(1);
               }}
               placeholder="গল্প খুঁজুন..."
-              className="w-full pl-10 pr-4 py-2 text-sm rounded-xl border border-[#E5DFD7] dark:border-[#332D29] bg-[#FAF8F5] dark:bg-[#1E1A18] text-[#1F1C1A] dark:text-[#EFECE8] placeholder-[#9E958C] focus:outline-hidden focus:border-[#8C271E]"
+              className="w-full pl-10 pr-4 py-2 text-sm rounded-xl border border-[#DCE7EA] dark:border-[#303D41] bg-white/80 dark:bg-[#171D1F]/80 text-[#173b46] dark:text-[#EEF5F7] placeholder-[#7F969D] focus:outline-hidden focus:border-[#2b6777] focus:ring-4 focus:ring-[#2b6777]/10 transition-all duration-300"
             />
           </div>
 
           <div className="flex items-center gap-2 self-end sm:self-auto text-xs">
-            <span className="text-[#8A8178] flex items-center gap-1">
+            <span className="text-[#527785] flex items-center gap-1">
               <ArrowUpDown className="w-3.5 h-3.5" /> সাজান:
             </span>
             <button
@@ -95,10 +95,10 @@ export function StoriesPage({ onNavigate }: StoriesPageProps) {
                 setSortBy('latest');
                 setCurrentPage(1);
               }}
-              className={`px-3 py-1.5 rounded-lg font-medium transition-colors ${
+              className={`px-3 py-1.5 rounded-lg font-medium transition-all duration-300 ease-out hover:-translate-y-0.5 ${
                 sortBy === 'latest'
-                  ? 'bg-[#8C271E] text-white'
-                  : 'bg-[#F2ECE4] dark:bg-[#25201E] text-[#544D46] dark:text-[#BFB6AB]'
+                  ? 'bg-[#2b6777] text-white shadow-[0_6px_18px_rgba(43,103,119,0.22)]'
+                  : 'bg-[#eaf1f3] dark:bg-[#202A2D] text-[#496770] dark:text-[#B7C8CD] hover:bg-[#dce9ed]'
               }`}
             >
               নতুন
@@ -109,10 +109,10 @@ export function StoriesPage({ onNavigate }: StoriesPageProps) {
                 setSortBy('popular');
                 setCurrentPage(1);
               }}
-              className={`px-3 py-1.5 rounded-lg font-medium transition-colors ${
+              className={`px-3 py-1.5 rounded-lg font-medium transition-all duration-300 ease-out hover:-translate-y-0.5 ${
                 sortBy === 'popular'
-                  ? 'bg-[#8C271E] text-white'
-                  : 'bg-[#F2ECE4] dark:bg-[#25201E] text-[#544D46] dark:text-[#BFB6AB]'
+                  ? 'bg-[#2b6777] text-white shadow-[0_6px_18px_rgba(43,103,119,0.22)]'
+                  : 'bg-[#eaf1f3] dark:bg-[#202A2D] text-[#496770] dark:text-[#B7C8CD] hover:bg-[#dce9ed]'
               }`}
             >
               জনপ্রিয়
@@ -124,24 +124,31 @@ export function StoriesPage({ onNavigate }: StoriesPageProps) {
       {/* Grid of Stories */}
       {paginatedStories.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {paginatedStories.map((story) => (
-            <StoryCard
+          {paginatedStories.map((story, index) => (
+            <div
               key={story.id}
-              story={story}
-              onOpen={(id) => {
-                onNavigate({ type: 'story-detail', id });
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+              className="sf-premium-card"
+              style={{
+                animation: `sf-card-enter 650ms cubic-bezier(0.22, 1, 0.36, 1) ${index * 70}ms both`,
               }}
-            />
+            >
+              <StoryCard
+                story={story}
+                onOpen={(id) => {
+                  onNavigate({ type: 'story-detail', id });
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              />
+            </div>
           ))}
         </div>
       ) : (
-        <div className="text-center py-20 bg-white dark:bg-[#181615] rounded-2xl border border-[#EBE5DE] dark:border-[#262220]">
-          <BookOpen className="w-10 h-10 text-[#8C271E] opacity-40 mx-auto mb-3" />
-          <h3 className="font-serif text-xl font-bold text-[#1F1C1A] dark:text-[#EFECE8]">
+        <div className="text-center py-20 sf-glass rounded-2xl border border-[#DCE7EA] dark:border-[#303D41] shadow-[0_10px_40px_rgba(43,103,119,0.05)]">
+          <BookOpen className="w-10 h-10 text-[#2b6777] opacity-40 mx-auto mb-3" />
+          <h3 className="font-serif text-xl font-bold text-[#173b46] dark:text-[#EEF5F7]">
             কোনো গল্প খুঁজে পাওয়া যায়নি
           </h3>
-          <p className="text-sm text-[#736B63] dark:text-[#A8A096] mt-1">
+          <p className="text-sm text-[#527785] dark:text-[#AFC4CA] mt-1">
             অনুগ্রহ করে অন্য কোনো শব্দ দিয়ে অনুসন্ধান করুন।
           </p>
         </div>
@@ -157,7 +164,7 @@ export function StoriesPage({ onNavigate }: StoriesPageProps) {
               setCurrentPage((p) => Math.max(1, p - 1));
               window.scrollTo({ top: 200, behavior: 'smooth' });
             }}
-            className="px-4 py-2 rounded-xl text-xs font-medium border border-[#E5DFD7] dark:border-[#332D29] disabled:opacity-40 hover:bg-[#F2ECE4] dark:hover:bg-[#221E1C]"
+            className="px-4 py-2 rounded-xl text-xs font-medium border border-[#DCE7EA] dark:border-[#303D41] disabled:opacity-40 hover:bg-[#eaf1f3] dark:hover:bg-[#202A2D] hover:-translate-y-0.5 transition-all duration-300"
           >
             পূর্ববর্তী
           </button>
@@ -169,10 +176,10 @@ export function StoriesPage({ onNavigate }: StoriesPageProps) {
                 setCurrentPage(page);
                 window.scrollTo({ top: 200, behavior: 'smooth' });
               }}
-              className={`w-9 h-9 rounded-xl text-xs font-medium transition-colors ${
+              className={`w-9 h-9 rounded-xl text-xs font-medium transition-all duration-300 ease-out hover:-translate-y-0.5 ${
                 currentPage === page
-                  ? 'bg-[#8C271E] text-white'
-                  : 'border border-[#E5DFD7] dark:border-[#332D29] hover:bg-[#F2ECE4] dark:hover:bg-[#221E1C]'
+                  ? 'bg-[#2b6777] text-white shadow-[0_6px_18px_rgba(43,103,119,0.22)] scale-105'
+                  : 'border border-[#DCE7EA] dark:border-[#303D41] hover:bg-[#eaf1f3] dark:hover:bg-[#202A2D] hover:-translate-y-0.5'
               }`}
             >
               {toBengaliNumber(page)}
@@ -185,7 +192,7 @@ export function StoriesPage({ onNavigate }: StoriesPageProps) {
               setCurrentPage((p) => Math.min(totalPages, p + 1));
               window.scrollTo({ top: 200, behavior: 'smooth' });
             }}
-            className="px-4 py-2 rounded-xl text-xs font-medium border border-[#E5DFD7] dark:border-[#332D29] disabled:opacity-40 hover:bg-[#F2ECE4] dark:hover:bg-[#221E1C]"
+            className="px-4 py-2 rounded-xl text-xs font-medium border border-[#DCE7EA] dark:border-[#303D41] disabled:opacity-40 hover:bg-[#eaf1f3] dark:hover:bg-[#202A2D] hover:-translate-y-0.5 transition-all duration-300"
           >
             পরবর্তী
           </button>

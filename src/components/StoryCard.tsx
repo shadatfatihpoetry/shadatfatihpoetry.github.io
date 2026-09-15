@@ -11,7 +11,7 @@ export function StoryCard({ story, onOpen }: StoryCardProps) {
   return (
     <article
       onClick={() => onOpen(story.id)}
-      className="group cursor-pointer flex flex-col justify-between bg-white dark:bg-[#181615] border border-[#EBE5DE] dark:border-[#2C2724] rounded-2xl overflow-hidden hover:shadow-lg hover:border-[#8C271E]/30 dark:hover:border-[#C94A3D]/40 transition-all duration-300 transform hover:-translate-y-1"
+      className="group cursor-pointer flex flex-col justify-between bg-white dark:bg-[#181615] border border-[#EBE5DE] dark:border-[#2C2724] rounded-2xl overflow-hidden hover:shadow-lg hover:border-[#2b6777]/30 dark:hover:border-[#52ab98]/40 transition-all duration-500 ease-out transform hover:-translate-y-2 hover:shadow-[0_20px_55px_rgba(43,103,119,0.14)]"
     >
       <div>
         <div className="relative aspect-16/10 w-full overflow-hidden bg-[#EFECE8] dark:bg-[#201D1B]">
@@ -21,10 +21,10 @@ export function StoryCard({ story, onOpen }: StoryCardProps) {
               alt={story.title}
               loading="lazy"
               referrerPolicy="no-referrer"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-cover group-hover:scale-[1.045] transition-transform duration-700 ease-out"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-[#F4EBE2] to-[#D8C7B8] dark:from-[#25201E] dark:to-[#181412] text-[#8C271E] font-serif text-2xl">
+            <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-[#F4EBE2] to-[#D8C7B8] dark:from-[#25201E] dark:to-[#181412] text-[#2b6777] font-serif text-2xl">
               গল্প
             </div>
           )}
@@ -36,7 +36,7 @@ export function StoryCard({ story, onOpen }: StoryCardProps) {
             <span>{getReadingTime(story.content)}</span>
           </div>
 
-          <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1F1C1A] dark:text-[#F3EFEB] group-hover:text-[#8C271E] dark:group-hover:text-[#E25C4F] transition-colors leading-snug">
+          <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1F1C1A] dark:text-[#F3EFEB] group-hover:text-[#2b6777] dark:group-hover:text-[#52ab98] transition-colors leading-snug">
             {story.title}
           </h3>
           <p className="text-xs text-[#736B63] dark:text-[#A8A096] mt-1 mb-3">

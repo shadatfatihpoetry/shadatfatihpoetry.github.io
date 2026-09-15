@@ -58,17 +58,17 @@ export function StoryReadingPage({ id, onNavigate }: StoryReadingPageProps) {
 
   if (!story || !isAccessible) {
     return (
-      <div className="max-w-2xl mx-auto py-24 px-4 text-center space-y-4">
-        <h2 className="font-serif text-2xl font-bold text-[#1F1C1A] dark:text-[#F3EFEB]">
+      <div className="max-w-2xl mx-auto py-24 px-4 text-center space-y-4 sf-glass rounded-3xl">
+        <h2 className="font-serif text-2xl font-bold text-[#173b46] dark:text-[#EEF5F7]">
           পৃষ্ঠা খুঁজে পাওয়া যায়নি
         </h2>
-        <p className="text-sm text-[#736B63] dark:text-[#A8A096]">
+        <p className="text-sm text-[#527785] dark:text-[#AFC4CA]">
           কাঙ্ক্ষিত গল্পটি সরিয়ে নেওয়া হয়েছে বা উপলব্ধ নেই।
         </p>
         <button
           type="button"
           onClick={() => onNavigate({ type: 'stories' })}
-          className="px-5 py-2.5 rounded-xl bg-[#8C271E] text-white text-sm font-medium"
+          className="px-5 py-2.5 rounded-xl bg-[#2b6777] text-white text-sm font-medium sf-premium-button"
         >
           সকল গল্প দেখুন
         </button>
@@ -90,7 +90,7 @@ export function StoryReadingPage({ id, onNavigate }: StoryReadingPageProps) {
   }[settings.fontSize];
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen w-full min-w-0 max-w-full overflow-x-hidden pb-20 sf-glow">
       <SEOHead
         title={story.title}
         description={story.excerpt || `${story.title} — ছোটগল্প`}
@@ -105,12 +105,12 @@ export function StoryReadingPage({ id, onNavigate }: StoryReadingPageProps) {
         title={story.title}
       />
 
-      <main className={`mx-auto px-4 sm:px-6 transition-all duration-300 ${widthClasses}`}>
+      <main className={`mx-auto w-full min-w-0 px-4 sm:px-6 transition-all duration-500 ${widthClasses}`}>
         <div className="mb-6">
           <button
             type="button"
             onClick={() => onNavigate({ type: 'stories' })}
-            className="inline-flex items-center gap-1.5 text-xs text-[#7A7167] dark:text-[#A69E93] hover:text-[#8C271E] dark:hover:text-[#FFB4AB] transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs text-[#527785] dark:text-[#AFC4CA] hover:text-[#2b6777] dark:hover:text-[#52ab98] transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>সকল গল্পে ফিরে যান</span>
@@ -118,18 +118,18 @@ export function StoryReadingPage({ id, onNavigate }: StoryReadingPageProps) {
         </div>
 
         <header className="text-center space-y-4 mb-10">
-          <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-[#8C271E]/10 dark:bg-[#8C271E]/20 text-[#8C271E] dark:text-[#FFB4AB]">
+          <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-[#2b6777]/10 dark:bg-[#2b6777]/20 text-[#2b6777] dark:text-[#8ec9bd]">
             ছোটগল্প
           </span>
 
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1F1C1A] dark:text-[#FAF7F2] leading-tight">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#173b46] dark:text-[#EEF5F7] leading-tight">
             {story.title}
           </h1>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-[#8A8178] dark:text-[#A39A90] pt-1">
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-[#527785] dark:text-[#AFC4CA] pt-1">
             <span className="flex items-center gap-1">
-              <User className="w-3.5 h-3.5 text-[#8C271E]" />
-              <span className="font-medium text-[#4D453E] dark:text-[#DDD7D0]">শাহাদাৎ ফাতিহ</span>
+              <User className="w-3.5 h-3.5 text-[#2b6777]" />
+              <span className="font-medium text-[#365966] dark:text-[#D5E3E7]">শাহাদাৎ ফাতিহ</span>
             </span>
             <span>•</span>
             <span className="flex items-center gap-1">
@@ -148,11 +148,11 @@ export function StoryReadingPage({ id, onNavigate }: StoryReadingPageProps) {
             </span>
           </div>
 
-          <div className="w-20 h-0.5 bg-[#8C271E]/30 dark:bg-[#8C271E]/50 mx-auto mt-6" />
+          <div className="w-20 h-0.5 bg-[#2b6777]/30 dark:bg-[#52ab98]/50 mx-auto mt-6" />
         </header>
 
         {story.cover_url && (
-          <div className="mb-10 rounded-2xl overflow-hidden shadow-md max-h-96 border border-[#EAE4DC] dark:border-[#2C2724]">
+          <div className="mb-10 rounded-3xl overflow-hidden shadow-[0_18px_50px_rgba(43,103,119,0.12)] max-h-96 border border-[#DCE7EA] dark:border-[#303D41] sf-premium-card">
             <img
               src={story.cover_url}
               alt={story.title}
@@ -163,16 +163,16 @@ export function StoryReadingPage({ id, onNavigate }: StoryReadingPageProps) {
         )}
 
         {/* Story Content */}
-        <article className="bg-white/60 dark:bg-[#181615]/60 border border-[#EBE5DE]/80 dark:border-[#282422]/80 rounded-3xl p-6 sm:p-12 shadow-xs backdrop-blur-xs">
+        <article className="sf-glass sf-premium-card border border-[#DCE7EA]/80 dark:border-[#303D41]/80 rounded-3xl p-6 sm:p-12 shadow-[0_20px_60px_rgba(43,103,119,0.07)]">
           <div
-            className={`story-content text-[#2A2522] dark:text-[#ECE7E1] space-y-6 ${fontSizeClasses}`}
+            className={`story-content text-[#23434D] dark:text-[#E4F0F3] space-y-6 ${fontSizeClasses}`}
             style={{ fontFamily: "'Noto Serif Bengali', serif" }}
           >
             {story.content}
           </div>
 
-          <div className="mt-12 pt-6 border-t border-[#EAE4DC] dark:border-[#282422] text-right">
-            <span className="font-serif italic text-sm text-[#786E64] dark:text-[#A89E94]">
+          <div className="mt-12 pt-6 border-t border-[#DCE7EA] dark:border-[#303D41] text-right">
+            <span className="font-serif italic text-sm text-[#527785] dark:text-[#AFC4CA]">
               — শাহাদাৎ ফাতিহ
             </span>
           </div>
@@ -180,10 +180,10 @@ export function StoryReadingPage({ id, onNavigate }: StoryReadingPageProps) {
 
         {/* Related Stories */}
         {relatedStories.length > 0 && (
-          <section className="mt-16 pt-10 border-t border-[#EBE5DE] dark:border-[#262220]">
+          <section className="mt-16 pt-10 border-t border-[#DCE7EA] dark:border-[#303D41]">
             <div className="flex items-center gap-2 mb-6">
-              <BookOpen className="w-4 h-4 text-[#8C271E]" />
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-[#1F1C1A] dark:text-[#FAF7F2]">
+              <BookOpen className="w-4 h-4 text-[#2b6777]" />
+              <h2 className="font-serif text-xl sm:text-2xl font-bold text-[#173b46] dark:text-[#EEF5F7]">
                 আরও গল্প পড়ুন
               </h2>
             </div>

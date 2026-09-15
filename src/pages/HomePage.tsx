@@ -90,7 +90,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 onNavigate({ type: 'poems' });
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#2b6777] hover:bg-[#A32E24] text-white font-medium text-base shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#2b6777] hover:bg-[#245867] text-white font-medium text-base shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
             >
               <Feather className="w-4 h-4" />
               <span>কবিতা পড়ুন</span>
@@ -156,7 +156,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
         {/* LATEST NOVELS */}
         {latestNovels.length > 0 && (
-          <section className="bg-linear-to-b from-[#F5EFE9]/40 to-transparent dark:from-[#1A1715]/40 dark:to-transparent rounded-3xl p-6 sm:p-10 border border-[#c8d8e4]/80 dark:border-[#282321]/80">
+          <section className="bg-linear-to-b from-[#e8f2f4]/70 to-transparent dark:from-[#173b46]/30 dark:to-transparent rounded-3xl p-6 sm:p-10 border border-[#c8d8e4]/80 dark:border-[#282321]/80">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
               <div>
                 <span className="text-xs font-bold text-[#2b6777] dark:text-[#52ab98] tracking-wider">
@@ -317,93 +317,8 @@ export function HomePage({ onNavigate }: HomePageProps) {
         </section>
 
 
-        {/* CONTACT SECTION */}
-        <section className="relative overflow-hidden rounded-3xl border border-[#c8d8e4] dark:border-[#2b6777]/40 bg-white dark:bg-[#171514] p-6 sm:p-10 lg:p-12 shadow-sm">
-          <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-[#52ab98]/10 blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -left-24 w-64 h-64 rounded-full bg-[#2b6777]/10 blur-3xl pointer-events-none" />
-
-          <div className="relative z-10 text-center max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#2b6777]/10 dark:bg-[#52ab98]/10 text-[#2b6777] dark:text-[#52ab98] text-xs font-bold tracking-wide">
-              <MessageCircle className="w-4 h-4" />
-              <span>যোগাযোগ</span>
-            </div>
-
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2b6777] dark:text-[#FAF7F2] mt-4">
-              শাহাদাৎ ফাতিহ-এর সঙ্গে যুক্ত থাকুন
-            </h2>
-
-            <p className="font-serif text-sm sm:text-base text-[#6E645B] dark:text-[#ABA298] mt-3 leading-relaxed">
-              সাহিত্য, কবিতা ও নতুন প্রকাশনার খবর পেতে সামাজিক যোগাযোগমাধ্যমে সঙ্গে থাকুন।
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
-
-              <a
-                href="https://www.facebook.com/share/1LxGowX9at/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="sf-contact-card group flex items-center gap-4 p-4 rounded-2xl border border-[#E5DFD7] dark:border-[#302A27] bg-[#FAF8F5] dark:bg-[#1D1A18] text-left"
-              >
-                <span className="sf-contact-icon shrink-0 w-11 h-11 rounded-xl bg-[#2b6777] text-white flex items-center justify-center shadow-sm">
-                  <Facebook className="w-5 h-5" />
-                </span>
-                <span className="min-w-0">
-                  <span className="block text-xs text-[#8A8178] dark:text-[#A8A096]">Facebook</span>
-                  <span className="block font-serif font-bold text-[#2b6777] dark:text-[#EFECE8] truncate">Shadat Fatih</span>
-                </span>
-              </a>
-
-              <a
-                href="https://wa.me/8801601800222"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="sf-contact-card group flex items-center gap-4 p-4 rounded-2xl border border-[#E5DFD7] dark:border-[#302A27] bg-[#FAF8F5] dark:bg-[#1D1A18] text-left"
-              >
-                <span className="sf-contact-icon shrink-0 w-11 h-11 rounded-xl bg-[#2b6777] text-white flex items-center justify-center shadow-sm">
-                  <MessageCircle className="w-5 h-5" />
-                </span>
-                <span className="min-w-0">
-                  <span className="block text-xs text-[#8A8178] dark:text-[#A8A096]">WhatsApp</span>
-                  <span className="block font-serif font-bold text-[#2b6777] dark:text-[#EFECE8] truncate">Message Shadat Fatih</span>
-                </span>
-              </a>
-
-              <a
-                href="https://www.instagram.com/shadatfatih?stkn=MXZ0dHE0MnNhNnpzNQ=="
-                target="_blank"
-                rel="noopener noreferrer"
-                className="sf-contact-card group flex items-center gap-4 p-4 rounded-2xl border border-[#E5DFD7] dark:border-[#302A27] bg-[#FAF8F5] dark:bg-[#1D1A18] text-left"
-              >
-                <span className="sf-contact-icon shrink-0 w-11 h-11 rounded-xl bg-[#2b6777] text-white flex items-center justify-center shadow-sm">
-                  <Instagram className="w-5 h-5" />
-                </span>
-                <span className="min-w-0">
-                  <span className="block text-xs text-[#8A8178] dark:text-[#A8A096]">Instagram</span>
-                  <span className="block font-serif font-bold text-[#2b6777] dark:text-[#EFECE8] truncate">@shadatfatih</span>
-                </span>
-              </a>
-
-              <a
-                href="https://x.com/ShadatFatihX"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="sf-contact-card group flex items-center gap-4 p-4 rounded-2xl border border-[#E5DFD7] dark:border-[#302A27] bg-[#FAF8F5] dark:bg-[#1D1A18] text-left"
-              >
-                <span className="sf-contact-icon shrink-0 w-11 h-11 rounded-xl bg-[#2b6777] text-white flex items-center justify-center shadow-sm">
-                  <AtSign className="w-5 h-5" />
-                </span>
-                <span className="min-w-0">
-                  <span className="block text-xs text-[#8A8178] dark:text-[#A8A096]">X</span>
-                  <span className="block font-serif font-bold text-[#2b6777] dark:text-[#EFECE8] truncate">@ShadatFatihX</span>
-                </span>
-              </a>
-
-            </div>
-          </div>
-        </section>
-
         {/* AUTHOR INTRODUCTION SECTION */}
-        <section className="bg-linear-to-br from-[#F5EFE9] to-[#E9DFD5] dark:from-[#1E1A18] dark:to-[#141211] rounded-3xl p-8 sm:p-12 border border-[#E3DBD0] dark:border-[#2E2824]">
+        <section className="bg-linear-to-br from-[#f2f8fa] via-white to-[#e8f2f4] dark:from-[#16262b] dark:via-[#121a1d] dark:to-[#101719] rounded-3xl p-8 sm:p-12 border border-[#c8d8e4] dark:border-[#2b6777]/40">
           <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
             <div className="shrink-0 relative">
               <div className="w-40 h-40 sm:w-48 sm:h-48 rounded-2xl overflow-hidden shadow-xl border-4 border-white dark:border-[#2C2724] bg-linear-to-b from-[#C9BDB0] to-[#8C7D6F] flex items-center justify-center text-white">
@@ -435,7 +350,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                     onNavigate({ type: 'author' });
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#2b6777] hover:bg-[#A32E24] text-white text-sm font-medium transition-colors shadow-sm"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#2b6777] hover:bg-[#245867] text-white text-sm font-medium transition-colors shadow-sm"
                 >
                   <span>লেখক সম্পর্কে জানুন</span>
                   <ArrowRight className="w-4 h-4" />

@@ -277,3 +277,197 @@ select {
   transform: scale(1.08) rotate(-4deg);
   box-shadow: 0 12px 28px rgba(43, 103, 119, 0.18);
 }
+
+/* =========================================================
+   SHADAT FATIH — APPLE INSPIRED MOTION SYSTEM
+   ========================================================= */
+
+:root {
+  --sf-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --sf-ease-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --sf-shadow-soft: 0 10px 35px rgba(43, 103, 119, 0.08);
+  --sf-shadow-hover: 0 20px 55px rgba(43, 103, 119, 0.14);
+}
+
+/* Smooth page rendering */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Page entrance */
+#root {
+  animation: sf-page-enter 0.8s var(--sf-ease-soft) both;
+}
+
+@keyframes sf-page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Premium glass surface */
+.sf-glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: var(--sf-shadow-soft);
+}
+
+.dark .sf-glass {
+  background: rgba(24, 22, 21, 0.72);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Premium card motion */
+.sf-premium-card {
+  transition:
+    transform 0.55s var(--sf-ease),
+    box-shadow 0.55s var(--sf-ease),
+    border-color 0.4s ease;
+  will-change: transform;
+}
+
+.sf-premium-card:hover {
+  transform: translateY(-7px);
+  box-shadow: var(--sf-shadow-hover);
+}
+
+/* Image motion */
+.sf-premium-card img {
+  transition:
+    transform 0.8s var(--sf-ease),
+    filter 0.5s ease;
+}
+
+.sf-premium-card:hover img {
+  transform: scale(1.035);
+}
+
+/* Buttons */
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sf-premium-button {
+  transition:
+    transform 0.35s var(--sf-ease),
+    box-shadow 0.35s ease,
+    background-color 0.35s ease;
+}
+
+.sf-premium-button:hover {
+  transform: translateY(-2px);
+}
+
+.sf-premium-button:active {
+  transform: scale(0.97);
+}
+
+/* Soft animated glow */
+.sf-glow {
+  position: relative;
+  isolation: isolate;
+}
+
+.sf-glow::before {
+  content: "";
+  position: absolute;
+  inset: -35%;
+  z-index: -1;
+  background: radial-gradient(
+    circle,
+    rgba(82, 171, 152, 0.16),
+    transparent 62%
+  );
+  animation: sf-glow-pulse 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sf-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.08);
+  }
+}
+
+/* Floating decorative motion */
+.sf-float {
+  animation: sf-float 5s ease-in-out infinite;
+}
+
+@keyframes sf-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+/* Elegant underline */
+.sf-underline {
+  position: relative;
+}
+
+.sf-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  width: 42px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--sf-accent);
+  transform-origin: left;
+  transition: width 0.45s var(--sf-ease);
+}
+
+.sf-underline:hover::after {
+  width: 82px;
+}
+
+/* Focus accessibility */
+:focus-visible {
+  outline: 2px solid var(--sf-accent);
+  outline-offset: 3px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes sf-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

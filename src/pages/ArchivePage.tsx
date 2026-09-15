@@ -127,15 +127,15 @@ export function ArchivePage({ onNavigate }: ArchivePageProps) {
   ];
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 min-h-screen">
+    <div className="w-full min-w-0 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 min-h-screen overflow-x-hidden sf-glow">
       <SEOHead
         title="লেখার আর্কাইভ"
         description="শাহাদাৎ ফাতিহ-এর কবিতা, গল্প ও উপন্যাসের পূর্ণাঙ্গ লেখার আর্কাইভ।"
         canonicalPath="/archive"
       />
 
-      <div className="text-center max-w-2xl mx-auto mb-10">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2b6777]/10 text-[#2b6777] text-xs font-semibold">
+      <div className="text-center max-w-2xl mx-auto mb-10 sf-premium-card rounded-3xl px-5 py-8">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2b6777]/10 dark:bg-[#2b6777]/20 text-[#2b6777] dark:text-[#8ec9bd] text-xs font-semibold border border-[#2b6777]/10">
           <Feather className="w-3.5 h-3.5" />
           <span>লেখার আর্কাইভ</span>
         </div>
@@ -144,7 +144,7 @@ export function ArchivePage({ onNavigate }: ArchivePageProps) {
           সকল লেখা
         </h1>
 
-        <p className="font-serif text-sm sm:text-base text-[#6E645B] dark:text-[#ABA298] mt-3">
+        <p className="font-serif text-sm sm:text-base text-[#527785] dark:text-[#AFC4CA] mt-3">
           বছর → মাস → লেখা — প্রকাশনার সময়ানুক্রমিক সংগ্রহ
         </p>
       </div>
@@ -153,7 +153,7 @@ export function ArchivePage({ onNavigate }: ArchivePageProps) {
         {categories.map((category) => (
           <section
             key={category.key}
-            className="bg-white dark:bg-[#181615] border border-[#EBE5DE] dark:border-[#2C2724] rounded-2xl overflow-hidden shadow-sm"
+            className="sf-glass sf-premium-card border border-[#DCE7EA] dark:border-[#303D41] rounded-3xl overflow-hidden shadow-[0_16px_50px_rgba(43,103,119,0.06)]"
           >
             <button
               type="button"
@@ -162,14 +162,14 @@ export function ArchivePage({ onNavigate }: ArchivePageProps) {
                   openCategory === category.key ? '' : category.key
                 )
               }
-              className="w-full flex items-center justify-between p-5 sm:p-6 text-left hover:bg-[#F8F6F3] dark:hover:bg-[#211F1D] transition-colors"
+              className="w-full flex items-center justify-between p-5 sm:p-6 text-left hover:bg-[#F2F8F9] dark:hover:bg-[#1D292D] transition-all duration-300"
             >
               <div>
                 <h2 className="font-serif text-2xl sm:text-3xl font-bold">
                   {category.title}
                 </h2>
 
-                <p className="text-sm text-[#7A7167] dark:text-[#ABA298] mt-1">
+                <p className="text-sm text-[#527785] dark:text-[#AFC4CA] mt-1">
                   {category.items.length}টি প্রকাশিত লেখা
                 </p>
               </div>
@@ -205,7 +205,7 @@ function ArchiveYears({ items, type, onNavigate }: ArchiveYearsProps) {
   const groups = useMemo(() => groupByYearAndMonth(items), [items]);
 
   return (
-    <div className="border-t border-[#EBE5DE] dark:border-[#2C2724] px-4 sm:px-6 pb-6">
+    <div className="border-t border-[#DCE7EA] dark:border-[#303D41] px-4 sm:px-6 pb-6 bg-white/20 dark:bg-black/5">
       {groups.map((yearGroup) => (
         <ArchiveYear
           key={yearGroup.year}
@@ -216,7 +216,7 @@ function ArchiveYears({ items, type, onNavigate }: ArchiveYearsProps) {
       ))}
 
       {groups.length === 0 && (
-        <p className="py-8 text-center text-sm text-[#7A7167]">
+        <p className="py-8 text-center text-sm text-[#527785] dark:text-[#AFC4CA]">
           এখনো কোনো প্রকাশিত লেখা নেই।
         </p>
       )}
@@ -238,7 +238,7 @@ function ArchiveYear({ yearGroup, type, onNavigate }: ArchiveYearProps) {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 font-serif text-xl font-bold text-[#2b6777] dark:text-[#52ab98]"
+        className="flex items-center gap-2 font-serif text-xl font-bold text-[#2b6777] dark:text-[#52ab98] hover:translate-x-0.5 transition-transform duration-300"
       >
         {open ? (
           <ChevronDown className="w-5 h-5" />
@@ -279,7 +279,7 @@ function ArchiveMonth({ monthGroup, type, onNavigate }: ArchiveMonthProps) {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 text-base sm:text-lg font-semibold text-[#403A35] dark:text-[#E7E0DA]"
+        className="flex items-center gap-2 text-base sm:text-lg font-semibold text-[#365966] dark:text-[#D5E3E7] hover:text-[#2b6777] dark:hover:text-[#52ab98] transition-colors duration-300"
       >
         {open ? (
           <ChevronDown className="w-4 h-4 text-[#2b6777]" />
@@ -289,13 +289,13 @@ function ArchiveMonth({ monthGroup, type, onNavigate }: ArchiveMonthProps) {
 
         <span>{monthGroup.label}</span>
 
-        <span className="text-xs font-normal text-[#8A8178]">
+        <span className="text-xs font-normal text-[#527785] dark:text-[#AFC4CA]">
           ({monthGroup.items.length})
         </span>
       </button>
 
       {open && (
-        <div className="mt-2 ml-6 border-l border-[#D9D1C8] dark:border-[#3A3531]">
+        <div className="mt-2 ml-6 border-l-2 border-[#DCE7EA] dark:border-[#303D41]">
           {monthGroup.items.map((item) => {
             const date =
               'blogger_published_at' in item && item.blogger_published_at
@@ -317,13 +317,13 @@ function ArchiveMonth({ monthGroup, type, onNavigate }: ArchiveMonthProps) {
                     onNavigate({ type: 'novel-detail', id: item.id });
                   }
                 }}
-                className="w-full text-left pl-5 pr-2 py-3 hover:bg-[#F8F6F3] dark:hover:bg-[#211F1D] transition-colors"
+                className="w-full text-left pl-5 pr-2 py-3 rounded-r-xl hover:bg-[#F2F8F9] dark:hover:bg-[#1D292D] transition-all duration-300 hover:pl-6 group"
               >
-                <div className="font-serif text-base sm:text-lg font-semibold text-[#2B2724] dark:text-[#F1ECE7]">
+                <div className="font-serif text-base sm:text-lg font-semibold text-[#173b46] dark:text-[#EEF5F7] group-hover:text-[#2b6777] dark:group-hover:text-[#52ab98] transition-colors">
                   {item.title}
                 </div>
 
-                <div className="text-xs sm:text-sm text-[#81776E] dark:text-[#AFA69E] mt-1">
+                <div className="text-xs sm:text-sm text-[#527785] dark:text-[#AFC4CA] mt-1">
                   {formattedDate}
                 </div>
               </button>
