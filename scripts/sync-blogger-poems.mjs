@@ -114,7 +114,7 @@ async function upsertPosts(posts) {
       }
 
       const plainExcerpt = content
-        .replace(/\\s+/g, ' ')
+        .replace(/\s+/g, ' ')
         .trim()
         .slice(0, 180);
 
@@ -134,28 +134,86 @@ async function upsertPosts(posts) {
     return;
   }
 
-  const endpoint =
-    `${SUPABASE_URL}/rest/v1/poems?on_conflict=blogger_url`;
+  let inserted = 0;
+  let updated = 0;
 
-  const response = await fetch(endpoint, {
-    method: 'POST',
-    headers: {
-      apikey: SERVICE_KEY,
-      Authorization: `Bearer ${SERVICE_KEY}`,
-      'Content-Type': 'application/json',
-      Prefer: 'resolution=merge-duplicates,return=minimal'
-    },
-    body: JSON.stringify(rows)
-  });
+  for (const row of rows) {
+    const lookupEndpoint =
+      `${SUPABASE_URL}/rest/v1/poems?select=id&blogger_url=eq.` +
+      encodeURIComponent(row.blogger_url);
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(
-      `Supabase error ${response.status}: ${errorText}`
-    );
+    const lookupResponse = await fetch(lookupEndpoint, {
+      method: 'GET',
+      headers: {
+        apikey: SERVICE_KEY,
+        Authorization: `Bearer ${SERVICE_KEY}`
+      }
+    });
+
+    if (!lookupResponse.ok) {
+      const errorText = await lookupResponse.text();
+      throw new Error(
+        `Supabase lookup error ${lookupResponse.status}: ${errorText}`
+      );
+    }
+
+    const existing = await lookupResponse.json();
+
+    if (existing.length > 0) {
+      const id = existing[0].id;
+
+      const updateResponse = await fetch(
+        `${SUPABASE_URL}/rest/v1/poems?id=eq.${encodeURIComponent(id)}`,
+        {
+          method: 'PATCH',
+          headers: {
+            apikey: SERVICE_KEY,
+            Authorization: `Bearer ${SERVICE_KEY}`,
+            'Content-Type': 'application/json',
+            Prefer: 'return=minimal'
+          },
+          body: JSON.stringify(row)
+        }
+      );
+
+      if (!updateResponse.ok) {
+        const errorText = await updateResponse.text();
+        throw new Error(
+          `Supabase update error ${updateResponse.status}: ${errorText}`
+        );
+      }
+
+      updated++;
+    } else {
+      const insertResponse = await fetch(
+        `${SUPABASE_URL}/rest/v1/poems`,
+        {
+          method: 'POST',
+          headers: {
+            apikey: SERVICE_KEY,
+            Authorization: `Bearer ${SERVICE_KEY}`,
+            'Content-Type': 'application/json',
+            Prefer: 'return=minimal'
+          },
+          body: JSON.stringify(row)
+        }
+      );
+
+      if (!insertResponse.ok) {
+        const errorText = await insertResponse.text();
+        throw new Error(
+          `Supabase insert error ${insertResponse.status}: ${errorText}`
+        );
+      }
+
+      inserted++;
+    }
   }
 
-  console.log(`Successfully synced ${rows.length} Blogger poems.`);
+  console.log(`Blogger sync complete.`);
+  console.log(`Inserted: ${inserted}`);
+  console.log(`Updated: ${updated}`);
+  console.log(`Total processed: ${rows.length}`);
 }
 
 const posts = await fetchAllPosts();
