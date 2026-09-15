@@ -297,7 +297,11 @@ export function HomePage({ onNavigate }: HomePageProps) {
           <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
             <div className="shrink-0 relative">
               <div className="w-40 h-40 sm:w-48 sm:h-48 rounded-2xl overflow-hidden shadow-xl border-4 border-white dark:border-[#2C2724] bg-linear-to-b from-[#C9BDB0] to-[#8C7D6F] flex items-center justify-center text-white">
-                <User className="w-20 h-20 opacity-70" />
+                <img
+                  src="/images/shadat.png"
+                  alt="শাহাদাৎ ফাতিহ"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="absolute -bottom-3 -right-3 px-3 py-1 bg-[#8C271E] text-white text-xs font-semibold rounded-full shadow-md">
                 কবি ও কথাশিল্পী
