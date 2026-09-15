@@ -34,7 +34,17 @@ export function formatBengaliDate(dateStr: string): string {
     const day = toBengaliNumber(d.getDate());
     const month = months[d.getMonth()];
     const year = toBengaliNumber(d.getFullYear());
-    return `${day} ${month}, ${year}`;
+
+    let hours = d.getHours();
+    const minutes = d.getMinutes();
+    const period = hours >= 12 ? 'PM' : 'AM';
+
+    hours = hours % 12;
+    if (hours === 0) hours = 12;
+
+    const time = `${toBengaliNumber(hours)}:${toBengaliNumber(String(minutes).padStart(2, '0'))} ${period}`;
+
+    return `${day} ${month}, ${year} · ${time}`;
   } catch {
     return toBengaliNumber(dateStr);
   }

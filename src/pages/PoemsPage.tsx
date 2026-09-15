@@ -35,7 +35,7 @@ export function PoemsPage({ onNavigate }: PoemsPageProps) {
     }
 
     if (sortBy === 'latest') {
-      list.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      list.sort((a, b) => new Date(b.blogger_published_at || b.created_at).getTime() - new Date(a.blogger_published_at || a.created_at).getTime());
     } else if (sortBy === 'popular') {
       list.sort((a, b) => (b.views || 0) - (a.views || 0));
     }

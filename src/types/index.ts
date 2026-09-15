@@ -6,6 +6,8 @@ export interface Poem {
   content: string;
   published: boolean;
   created_at: string;
+  blogger_published_at?: string | null;
+  blogger_url?: string | null;
   views: number;
 }
 

@@ -49,7 +49,7 @@ export function PoemCard({ poem, onOpen }: PoemCardProps) {
       <div className="px-6 pb-6 pt-2 border-t border-[#F2ECE4] dark:border-[#262220] flex items-center justify-between text-xs text-[#8A8178] dark:text-[#9A9187]">
         <div className="flex items-center gap-1.5">
           <Calendar className="w-3.5 h-3.5" />
-          <span>{formatBengaliDate(poem.created_at)}</span>
+          <span>{formatBengaliDate(poem.blogger_published_at || poem.created_at)}</span>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1">

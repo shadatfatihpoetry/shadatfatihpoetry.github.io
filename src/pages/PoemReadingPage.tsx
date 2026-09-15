@@ -148,7 +148,7 @@ export function PoemReadingPage({ id, onNavigate }: PoemReadingPageProps) {
             <span>•</span>
             <span className="flex items-center gap-1">
               <Calendar className="w-3.5 h-3.5" />
-              <span>{formatBengaliDate(poem.created_at)}</span>
+              <span>{formatBengaliDate(poem.blogger_published_at || poem.created_at)}</span>
             </span>
             <span>•</span>
             <span className="flex items-center gap-1">
