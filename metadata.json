@@ -1,0 +1,6 @@
+{
+  "name": "Shadat Fatih Poetry",
+  "description": "Shadat Fatih Poetry — শাহাদাৎ ফাতিহ-এর নির্বাচিত বাংলা কবিতা, গল্প ও উপন্যাসের আধুনিক ডিজিটাল প্রকাশনা।",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

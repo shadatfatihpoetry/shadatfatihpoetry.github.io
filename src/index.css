@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Noto Serif Bengali", Georgia, serif;
+  --font-sans: "Hind Siliguri", system-ui, sans-serif;
+  --font-brand: "Cinzel", Georgia, serif;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom literary reading typography styles */
+.poem-content {
+  font-family: var(--font-serif);
+  line-height: 2.1;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.story-content,
+.chapter-content {
+  font-family: var(--font-serif);
+  line-height: 2;
+  white-space: pre-line;
+  word-break: break-word;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(140, 39, 30, 0.2);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(140, 39, 30, 0.4);
+}
