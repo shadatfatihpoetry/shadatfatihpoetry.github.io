@@ -6,7 +6,6 @@ import { ActivePage } from './types';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { SearchModal } from './components/SearchModal';
-import { SupabaseSetupModal } from './pages/admin/SupabaseSetupModal';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -103,7 +102,6 @@ function MainApp() {
     parseUrlToActivePage(window.location.pathname)
   );
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isSupabaseSetupOpen, setIsSupabaseSetupOpen] = useState(false);
 
   // Sync browser popstate (Back/Forward buttons)
   useEffect(() => {
@@ -178,14 +176,12 @@ function MainApp() {
           return (
             <AdminLogin
               onNavigate={handleNavigate}
-              onOpenSupabaseSetup={() => setIsSupabaseSetupOpen(true)}
             />
           );
         }
         return (
           <AdminDashboard
             onNavigate={handleNavigate}
-            onOpenSupabaseSetup={() => setIsSupabaseSetupOpen(true)}
           />
         );
       case 'admin-login':
@@ -200,14 +196,12 @@ function MainApp() {
           return (
             <AdminDashboard
               onNavigate={handleNavigate}
-              onOpenSupabaseSetup={() => setIsSupabaseSetupOpen(true)}
             />
           );
         }
         return (
           <AdminLogin
             onNavigate={handleNavigate}
-            onOpenSupabaseSetup={() => setIsSupabaseSetupOpen(true)}
           />
         );
       default:
@@ -238,12 +232,6 @@ function MainApp() {
         }}
       />
 
-      {/* Supabase Setup Modal */}
-      <SupabaseSetupModal
-        isOpen={isSupabaseSetupOpen}
-        onClose={() => setIsSupabaseSetupOpen(false)}
-        onReload={() => window.location.reload()}
-      />
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Poem } from '../../types';
 import { useData } from '../../context/DataContext';
-import { deleteCoverFromStorage } from '../../lib/supabase';
 import { AdminCoverUploader } from './AdminCoverUploader';
 import { X, Check, AlertCircle } from 'lucide-react';
 
@@ -78,11 +77,6 @@ export function AdminPoemModal({ isOpen, poemToEdit, onClose }: AdminPoemModalPr
           cover_url: finalCoverUrl,
           published,
         });
-
-        // Delete old storage object only after the new upload and database update succeed
-        if (initialCoverUrl && initialCoverUrl !== finalCoverUrl) {
-          deleteCoverFromStorage(initialCoverUrl);
-        }
       } else {
         await createPoem({
           title: title.trim(),

@@ -6,13 +6,12 @@ import { ActivePage } from '../../types';
 
 interface AdminLoginProps {
   onNavigate: (page: ActivePage) => void;
-  onOpenSupabaseSetup: () => void;
 }
 
-export function AdminLogin({ onNavigate, onOpenSupabaseSetup }: AdminLoginProps) {
-  const { login, isAdmin, loading: authLoading, isLiveSupabase } = useAuth();
-  const [email, setEmail] = useState(() => (isLiveSupabase ? '' : 'admin@shadatfatih.com'));
-  const [password, setPassword] = useState(() => (isLiveSupabase ? '' : 'admin123'));
+export function AdminLogin({ onNavigate }: AdminLoginProps) {
+  const { login, isAdmin, loading: authLoading, isLiveGoogleSheets } = useAuth();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -58,9 +57,9 @@ export function AdminLogin({ onNavigate, onOpenSupabaseSetup }: AdminLoginProps)
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium mt-1 bg-[#FAF4ED] dark:bg-[#221E1C] border border-[#E8DFD4] dark:border-[#332D29]">
             <Database className="w-3 h-3 text-[#8C271E]" />
             <span>
-              {isLiveSupabase ? (
+              {isLiveGoogleSheets ? (
                 <span className="text-emerald-700 dark:text-emerald-400 font-semibold">
-                  Supabase ক্লাউড কানেক্টেড
+                  Google Sheets সংযুক্ত
                 </span>
               ) : (
                 <span className="text-amber-700 dark:text-amber-400">
@@ -131,10 +130,10 @@ export function AdminLogin({ onNavigate, onOpenSupabaseSetup }: AdminLoginProps)
           </button>
         </form>
 
-        {/* Demo Credentials hint & Supabase setup button */}
+        {/* Admin security note */}
         <div className="pt-2 border-t border-[#F0EBE4] dark:border-[#272321] space-y-3 text-center">
           <p className="text-[11px] text-[#8A8178]">
-            ডেমো লগইন: <code className="bg-[#FAF4ED] dark:bg-[#25201E] px-1.5 py-0.5 rounded">admin@shadatfatih.com</code> / পাসওয়ার্ড: <code className="bg-[#FAF4ED] dark:bg-[#25201E] px-1.5 py-0.5 rounded">admin123</code>
+            অ্যাডমিন ইমেইল ও পাসওয়ার্ড Google Apps Script-এ নিরাপদভাবে সেট করা আছে।
           </p>
 
           <div className="flex items-center justify-between text-xs pt-1">
@@ -145,15 +144,6 @@ export function AdminLogin({ onNavigate, onOpenSupabaseSetup }: AdminLoginProps)
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>মূল সাইটে ফিরুন</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={onOpenSupabaseSetup}
-              className="text-[#8C271E] dark:text-[#FFB4AB] font-semibold hover:underline flex items-center gap-1"
-            >
-              <Database className="w-3.5 h-3.5" />
-              <span>Supabase কনফিগ</span>
             </button>
           </div>
         </div>

@@ -20,18 +20,16 @@ import {
   LogOut,
   ArrowLeft,
   Layers,
-  Database,
   Search,
   ExternalLink,
 } from 'lucide-react';
 
 interface AdminDashboardProps {
   onNavigate: (page: ActivePage) => void;
-  onOpenSupabaseSetup: () => void;
 }
 
-export function AdminDashboard({ onNavigate, onOpenSupabaseSetup }: AdminDashboardProps) {
-  const { user, logout, isLiveSupabase } = useAuth();
+export function AdminDashboard({ onNavigate }: AdminDashboardProps) {
+  const { user, logout, isLiveGoogleSheets } = useAuth();
   const {
     poems,
     stories,
@@ -181,19 +179,11 @@ export function AdminDashboard({ onNavigate, onOpenSupabaseSetup }: AdminDashboa
             </h1>
           </div>
           <p className="text-xs text-[#7A7167] dark:text-[#A8A096] mt-1">
-            শাহাদাৎ ফাতিহ সাহিত্য সম্ভার • {user?.email} • {isLiveSupabase ? 'Supabase ক্লাউড সক্রিয়' : 'লোকাল মোড'}
+            শাহাদাৎ ফাতিহ সাহিত্য সম্ভার • {user?.email} • {isLiveGoogleSheets ? 'Google Sheets সক্রিয়' : 'লোকাল মোড'}
           </p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2.5">
-          <button
-            type="button"
-            onClick={onOpenSupabaseSetup}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-medium border border-[#DED7CD] dark:border-[#38312C] bg-[#FAF8F5] dark:bg-[#201C1A] hover:bg-[#EFE9DF] text-[#423B35] dark:text-[#CEC7BD] transition-colors"
-          >
-            <Database className="w-3.5 h-3.5 text-[#8C271E]" />
-            <span>Supabase ডাটাবেস</span>
-          </button>
 
           <button
             type="button"
