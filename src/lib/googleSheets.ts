@@ -152,16 +152,6 @@ export async function adminRequest(
 }
 
 export async function fetchAllData(): Promise<any> {
-  const token = getAdminToken();
-
-  if (token) {
-    try {
-      return await adminRequest('adminAll');
-    } catch {
-      // Fall through to public data.
-    }
-  }
-
   return googleGet('all');
 }
 
