@@ -197,7 +197,7 @@ export function PoemReadingPage({ id, onNavigate }: PoemReadingPageProps) {
               type="button"
               onClick={() => {
                 onNavigate({ type: 'poem-detail', id: prevPoem.id });
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo({ top: 0 });
               }}
               className="p-4 rounded-2xl border border-[#DCE7EA] dark:border-[#303D41] sf-glass hover:border-[#2b6777]/40 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(43,103,119,0.10)] text-left group transition-all duration-300"
             >
@@ -218,7 +218,7 @@ export function PoemReadingPage({ id, onNavigate }: PoemReadingPageProps) {
               type="button"
               onClick={() => {
                 onNavigate({ type: 'poem-detail', id: nextPoem.id });
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo({ top: 0 });
               }}
               className="p-4 rounded-2xl border border-[#DCE7EA] dark:border-[#303D41] sf-glass hover:border-[#2b6777]/40 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(43,103,119,0.10)] text-right group transition-all duration-300 sm:col-start-2"
             >
@@ -251,7 +251,7 @@ export function PoemReadingPage({ id, onNavigate }: PoemReadingPageProps) {
                   poem={rel}
                   onOpen={(relId) => {
                     onNavigate({ type: 'poem-detail', id: relId });
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    window.scrollTo({ top: 0 });
                   }}
                 />
               ))}
