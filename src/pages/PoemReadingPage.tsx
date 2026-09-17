@@ -101,7 +101,7 @@ export function PoemReadingPage({ id, onNavigate }: PoemReadingPageProps) {
   }[settings.fontSize];
 
   return (
-    <div className="min-h-screen w-full min-w-0 max-w-full overflow-x-hidden pb-20 sf-glow">
+    <div className="min-h-screen w-full min-w-0 max-w-full overflow-x-hidden pb-20">
       <SEOHead
         title={poem.title}
         description={poem.excerpt || `${poem.title} — কবিতা`}
