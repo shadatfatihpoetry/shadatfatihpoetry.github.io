@@ -1,32 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
   <url>
     <loc>https://shadatfatihpoetry.github.io/</loc>
   </url>
-
   <url>
     <loc>https://shadatfatihpoetry.github.io/poems/</loc>
   </url>
-
   <url>
     <loc>https://shadatfatihpoetry.github.io/stories/</loc>
   </url>
-
   <url>
     <loc>https://shadatfatihpoetry.github.io/novels/</loc>
   </url>
-
   <url>
     <loc>https://shadatfatihpoetry.github.io/archive/</loc>
   </url>
-
   <url>
     <loc>https://shadatfatihpoetry.github.io/author/</loc>
   </url>
-
   <url>
     <loc>https://shadatfatihpoetry.github.io/about/</loc>
   </url>
-
 </urlset>
